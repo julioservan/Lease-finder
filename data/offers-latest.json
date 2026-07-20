@@ -1,0 +1,98 @@
+{
+  "updatedAt": "2026-07-20T05:24:04.395Z",
+  "offers": [
+    {
+      "key": "bay ridge honda|s/n|60",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 18.64,
+        "term": 60,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": 4.49,
+        "raw": "4.49% APR for up to 60 months equals $18.64 per month per $1,000 financed, for well-qualified buyers through Honda Financial Services. Not all buyers will qualify. Higher financing rates apply for buyers with lower credit ratings. Actual down payment will vary. Offer Expires 09/08/26. See dealer for details."
+      },
+      "metrics": {
+        "term": 60,
+        "monthlyPayment": 18.64,
+        "driveOff": 0,
+        "totalCost": 1118.4,
+        "effectiveMonthly": 18.64,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "firstSeen": "2026-07-20T05:24:04.395Z",
+      "lastSeen": "2026-07-20T05:24:04.395Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|48",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 22.57,
+        "term": 48,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": 3.99,
+        "raw": "3.99% APR for up to 48 months equals $22.57 per month per $1,000 financed, for well-qualified buyers through Honda Financial Services. Not all buyers will qualify. Higher financing rates apply for buyers with lower credit ratings. Actual down payment will vary. Offer Expires 09/08/26. See dealer for details."
+      },
+      "metrics": {
+        "term": 48,
+        "monthlyPayment": 22.57,
+        "driveOff": 0,
+        "totalCost": 1083.3600000000001,
+        "effectiveMonthly": 22.570000000000004,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "firstSeen": "2026-07-20T05:24:04.395Z",
+      "lastSeen": "2026-07-20T05:24:04.395Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 22.57,
+        "term": 36,
+        "dueAtSigning": 3999,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": 3.99,
+        "raw": "90 days to provide first monthly principal and interest payment. Other payments, including down payment and other fees, may be due at time of purchase. Subject to availability through 09/08/26 on new and unregistered 2026 Honda models on approved credit through Honda Financial Services. Not all buyers will qualify. See dealer for details. 36-month lease with 10,000 miles per year. $3,999 down plus tax, tag, registration, dealer fees and first month’s payment. $0 Security deposit. Payment includes all applicable Honda factory to dealer incentives. Price does not include any dealer installed accessories. All offers are mutually exclusive and cannot be combined with other offers. All vehicles subject to prior sale. All offers are subject to credit approval by Honda Financial Services. Not all buyers will qualify. See dealer for complete details. Offer expires 09/08/26 and is subject to change without notice. 3.99% APR for up to 48 months equals $22.57 per month per $1,000 financed, for well-qualified buyers through Honda Financial Services. Not all buyers will qualify. Higher financing rates apply for buyers with lower credit ratings. Actual down payment will vary. Offer Expires 09/08/26. See dealer for details. Model shown is for illustration purposes only."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 22.57,
+        "driveOff": 3999,
+        "totalCost": 4788.95,
+        "effectiveMonthly": 133.02638888888887,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "firstSeen": "2026-07-20T05:24:04.395Z",
+      "lastSeen": "2026-07-20T05:24:04.395Z"
+    }
+  ]
+}
