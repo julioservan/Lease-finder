@@ -600,6 +600,73 @@
     });
   }
 
+  /* ---------------- buscar ahora (vía función en Vercel) ---------------- */
+
+  var SCAN_WORKFLOW_URL = 'https://github.com/julioservan/Lease-finder/actions/workflows/lease-scan.yml';
+
+  function resetScanBtn() {
+    var btn = $('scan-now-btn');
+    btn.disabled = false;
+    btn.textContent = '▶ Buscar ahora';
+  }
+
+  function scanNow() {
+    var btn = $('scan-now-btn');
+    btn.disabled = true;
+    btn.textContent = '⏳ Lanzando…';
+    fetch('api/scan', { method: 'POST' }).then(function (r) {
+      return r.json()
+        .catch(function () { return null; })
+        .then(function (data) { return { status: r.status, data: data }; });
+    }).then(function (r) {
+      if (r.status === 200 && r.data && r.data.ok) {
+        btn.textContent = '⏳ Buscando…';
+        $('online-meta').textContent = '🔎 ' + r.data.message + ' La página se actualizará sola.';
+        pollForUpdate();
+      } else if (r.status === 429 && r.data) {
+        resetScanBtn();
+        alert(r.data.message);
+      } else {
+        // Sin función o sin token: plan B, lanzar desde GitHub a mano.
+        showGithubFallback(r.data && r.data.message);
+      }
+    }).catch(function () {
+      showGithubFallback(null);
+    });
+  }
+
+  function showGithubFallback(reason) {
+    resetScanBtn();
+    $('online-meta').innerHTML =
+      '⚠️ El lanzamiento directo no está disponible' +
+      (reason ? ' (' + escapeHtml(reason) + ')' : '') + '. Plan B: ' +
+      '<a href="' + SCAN_WORKFLOW_URL + '" target="_blank" rel="noopener">abre GitHub aquí</a>, ' +
+      'presiona “Run workflow”, espera ~3 minutos y dale a ↻ Recargar.';
+  }
+
+  /** Espera a que el escaneo publique datos nuevos y refresca la página sola. */
+  function pollForUpdate() {
+    var startedWith = onlineData.latest && onlineData.latest.updatedAt;
+    var tries = 0;
+    var timer = setInterval(function () {
+      tries++;
+      fetch('data/offers-latest.json', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d.updatedAt && d.updatedAt !== startedWith) {
+            clearInterval(timer);
+            resetScanBtn();
+            loadOnline();
+          } else if (tries >= 20) { // ~10 minutos
+            clearInterval(timer);
+            resetScanBtn();
+            $('online-meta').textContent = 'La búsqueda tarda más de lo normal; presiona ↻ Recargar en un rato.';
+          }
+        })
+        .catch(function () { /* reintenta en el siguiente tick */ });
+    }, 30000);
+  }
+
   /* ---------------- exportar / importar / compartir ---------------- */
 
   function exportOffers() {
@@ -783,6 +850,7 @@
     renderWatchlist();
 
     $('online-refresh').addEventListener('click', loadOnline);
+    $('scan-now-btn').addEventListener('click', scanNow);
     loadOnline();
 
     $('scan-btn').addEventListener('click', runScan);
