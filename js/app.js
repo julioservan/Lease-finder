@@ -383,6 +383,96 @@
     });
   }
 
+  /* ---------------- ofertas encontradas online ---------------- */
+
+  function loadOnline() {
+    var meta = $('online-meta');
+    meta.textContent = 'Cargando resultados del escáner…';
+    Promise.all([
+      fetch('data/offers-latest.json', { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }),
+      fetch('data/scan-status.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; })
+    ]).then(function (res) {
+      renderOnline(res[0] || {}, res[1]);
+    }).catch(function () {
+      $('online-wrap').hidden = true;
+      $('online-status-box').hidden = true;
+      meta.textContent = 'Aún no hay resultados publicados del escáner online. Corre a diario ' +
+        '(~9 am NY) sobre las agencias vigiladas; puedes lanzarlo ya con “Escanear ahora”.';
+    });
+  }
+
+  function renderOnline(latest, status) {
+    var offers = latest.offers || [];
+    var meta = $('online-meta');
+    var body = $('online-body');
+    body.innerHTML = '';
+
+    var when = latest.updatedAt ? new Date(latest.updatedAt).toLocaleString('es') : '—';
+    var okCount = status && status.sources
+      ? status.sources.filter(function (s) { return /^ok/.test(s.status); }).length
+      : null;
+    meta.textContent = 'Última corrida: ' + when + ' · ' + offers.length + ' oferta(s) activa(s)' +
+      (okCount != null ? ' · ' + okCount + '/' + status.sources.length + ' fuentes respondieron' : '') +
+      '. Las 🎯 son tus SUVs objetivo.';
+
+    if (status && status.sources && status.sources.length) {
+      var ul = $('online-status');
+      ul.innerHTML = '';
+      status.sources.forEach(function (s) {
+        var li = document.createElement('li');
+        li.textContent = s.name + (s.region ? ' (' + s.region + ')' : '') + ': ' + s.status;
+        ul.appendChild(li);
+      });
+      $('online-status-box').hidden = false;
+    }
+
+    $('online-wrap').hidden = offers.length === 0;
+    if (!offers.length) return;
+
+    // Tus SUVs objetivo primero; después por costo efectivo mensual.
+    offers.sort(function (a, b) {
+      if (!!b.isTarget !== !!a.isTarget) return b.isTarget ? 1 : -1;
+      var av = a.metrics && isNum(a.metrics.effectiveMonthly) ? a.metrics.effectiveMonthly : Infinity;
+      var bv = b.metrics && isNum(b.metrics.effectiveMonthly) ? b.metrics.effectiveMonthly : Infinity;
+      return av - bv;
+    });
+
+    offers.forEach(function (e) {
+      var m = e.metrics || {};
+      var tr = document.createElement('tr');
+      var name = (e.isTarget ? '🎯 ' : '') + (e.name || 'Oferta sin nombre');
+      tr.appendChild(cell(
+        '<span class="offer-name">' + escapeHtml(name) + '</span>' +
+        '<span class="offer-meta">' + escapeHtml('visto desde ' +
+          (e.firstSeen ? new Date(e.firstSeen).toLocaleDateString('es') : '—')) + '</span>', true));
+      tr.appendChild(cell(e.source + (e.region ? ' · ' + e.region : '')));
+      tr.appendChild(numCell(fmtMoney2(m.monthlyPayment), false));
+      tr.appendChild(cell((m.term || '—') + ' m'));
+      tr.appendChild(numCell(fmtMoney(m.driveOff), false));
+      tr.appendChild(numCell(fmtMoney(e.parsed && e.parsed.msrp), false));
+      tr.appendChild(numCell(fmtMoney2(m.effectiveMonthly), false));
+      tr.appendChild(numCell(isNum(m.score) ? m.score.toFixed(1) : '—', false));
+
+      var td = document.createElement('td');
+      var btn = document.createElement('button');
+      btn.className = 'btn';
+      btn.textContent = '💾 Guardar';
+      btn.addEventListener('click', function () {
+        saveScanned(e.parsed || {});
+        btn.textContent = '✅ Guardada';
+        btn.disabled = true;
+      });
+      td.appendChild(btn);
+      tr.appendChild(td);
+      body.appendChild(tr);
+    });
+  }
+
   /* ---------------- exportar / importar / compartir ---------------- */
 
   function exportOffers() {
@@ -514,6 +604,9 @@
       state.filterModel = $('filter-model').value;
       renderOffers();
     });
+
+    $('online-refresh').addEventListener('click', loadOnline);
+    loadOnline();
 
     $('scan-btn').addEventListener('click', runScan);
     $('scan-save-all').addEventListener('click', function () {

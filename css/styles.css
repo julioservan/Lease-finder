@@ -158,6 +158,12 @@ textarea { resize: vertical; }
 .results-table tr.highlight td { font-weight: 700; color: var(--accent-2); }
 .results-table td.indent { padding-left: 1.2rem; color: var(--muted); }
 
+/* ---------- Ofertas online ---------- */
+.online-card { margin-top: 1.25rem; }
+.online-card a.btn { text-decoration: none; display: inline-flex; align-items: center; }
+#online-status { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+#online-status li { margin-bottom: 0.2rem; }
+
 /* ---------- Escáner ---------- */
 .scanner-card { margin-top: 1.25rem; }
 #scan-input {

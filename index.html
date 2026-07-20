@@ -173,6 +173,41 @@
     </section>
   </main>
 
+  <!-- ===================== OFERTAS ONLINE ===================== -->
+  <section class="card online-card" id="online-card">
+    <div class="offers-header">
+      <h2>🌐 Ofertas encontradas online</h2>
+      <div class="actions">
+        <button type="button" class="btn subtle" id="online-refresh">↻ Recargar</button>
+        <a class="btn" href="https://github.com/julioservan/Lease-finder/actions/workflows/lease-scan.yml"
+           target="_blank" rel="noopener" title="Abre GitHub Actions y presiona 'Run workflow'">▶ Escanear ahora</a>
+      </div>
+    </div>
+    <p class="hint" id="online-meta">Cargando resultados del escáner…</p>
+    <div class="table-wrap" id="online-wrap" hidden>
+      <table class="offers-table">
+        <thead>
+          <tr>
+            <th>Oferta</th>
+            <th>Fuente</th>
+            <th>Mensual</th>
+            <th>Plazo</th>
+            <th>Inicial</th>
+            <th>MSRP</th>
+            <th>Efectivo/mes</th>
+            <th>Score</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="online-body"></tbody>
+      </table>
+    </div>
+    <details class="advanced" id="online-status-box" hidden>
+      <summary>Estado de las fuentes vigiladas</summary>
+      <ul id="online-status" class="hint"></ul>
+    </details>
+  </section>
+
   <!-- ===================== ESCÁNER ===================== -->
   <section class="card scanner-card" id="scanner-card">
     <h2>🔍 Escáner de ofertas</h2>
