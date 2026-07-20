@@ -144,6 +144,25 @@ textarea { resize: vertical; }
 .results-table tr.highlight td { font-weight: 700; color: var(--accent-2); }
 .results-table td.indent { padding-left: 1.2rem; color: var(--muted); }
 
+/* ---------- Escáner ---------- */
+.scanner-card { margin-top: 1.25rem; }
+#scan-input {
+  width: 100%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0.75rem;
+}
+.scanner-card code {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  font-size: 0.85em;
+}
+.scanner-actions { margin-bottom: 0.75rem; }
+#scan-results-table tbody tr { cursor: default; }
+#scan-results-table tbody tr:hover { background: transparent; }
+
 /* ---------- Comparador ---------- */
 .offers-card { margin-top: 1.25rem; }
 .offers-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }

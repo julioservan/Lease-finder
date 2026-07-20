@@ -161,6 +161,46 @@
     </section>
   </main>
 
+  <!-- ===================== ESCÁNER ===================== -->
+  <section class="card scanner-card" id="scanner-card">
+    <h2>🔍 Escáner de ofertas</h2>
+    <p class="hint">Pega el texto de uno o varios anuncios (correo, WhatsApp, portales…) y el escáner
+      detecta mensualidad, plazo, pago inicial, MSRP, km/año, residual y money factor.
+      Separa varias ofertas con una línea de <code>---</code> o dos líneas en blanco.
+      También puedes escanear páginas completas con el CLI: <code>node scanner/scan.js &lt;url&gt;</code>.</p>
+    <textarea id="scan-input" rows="8" placeholder="2026 BMW i4 eDrive40
+$499/mes + tax, 36 meses
+$3,500 due at signing
+MSRP: $57,900
+---
+Tesla Model 3 — Agencia Polanco
+Mensualidad de $8,499 con $25,000 de enganche
+Plazo de 24 meses. Precio de lista $749,900"></textarea>
+    <div class="actions scanner-actions">
+      <button type="button" class="btn primary" id="scan-btn">🔍 Escanear</button>
+      <button type="button" class="btn" id="scan-save-all" hidden>💾 Guardar todas</button>
+    </div>
+    <div class="table-wrap" id="scan-results-wrap" hidden>
+      <table class="offers-table" id="scan-results-table">
+        <thead>
+          <tr>
+            <th>Oferta detectada</th>
+            <th>Mensual</th>
+            <th>Plazo</th>
+            <th>Inicial</th>
+            <th>MSRP</th>
+            <th>Efectivo/mes</th>
+            <th>% MSRP</th>
+            <th>Score</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="scan-results-body"></tbody>
+      </table>
+    </div>
+    <p id="scan-empty" class="hint" hidden>No se detectó ninguna oferta. Revisa que el texto incluya al menos una mensualidad (ej. “$399/mes”).</p>
+  </section>
+
   <!-- ===================== COMPARADOR ===================== -->
   <section class="card offers-card">
     <div class="offers-header">
@@ -199,6 +239,7 @@
   </footer>
 
   <script src="js/lease-calc.js"></script>
+  <script src="js/offer-parser.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

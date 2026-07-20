@@ -30,6 +30,36 @@ datos nunca salen de tu navegador.
 - **Enlaces compartibles**: la oferta actual se codifica en la URL para
   mandarla por chat o correo.
 - Símbolo de **moneda configurable** y decimales con coma o punto.
+- **Escáner de ofertas** (web y CLI): pega el texto de anuncios y extrae
+  automáticamente los datos para puntuarlos y compararlos.
+
+## Escáner de ofertas
+
+No siempre tienes el desglose completo del lease: muchas veces solo tienes el
+anuncio ("$499/mes con $3,500 due at signing…"). El escáner lo entiende:
+
+- **En la app**: pega uno o varios anuncios en la sección *Escáner de
+  ofertas* (separados por una línea de `---` o dos líneas en blanco).
+  Detecta en español e inglés: mensualidad, plazo, pago inicial/enganche
+  (incluido *sign and drive* → $0), MSRP/precio de lista, km o millas por
+  año, residual, money factor y TAE. Cada oferta detectada se puntúa y se
+  puede guardar en el comparador junto a las calculadas (aparecen con la
+  insignia 🔍).
+- **Desde la terminal**: escanea URLs o archivos de texto/HTML completos:
+
+  ```bash
+  node scanner/scan.js https://ejemplo.com/promociones
+  node scanner/scan.js anuncios.txt pagina.html --json ofertas.json
+  ```
+
+  Imprime las ofertas ordenadas por costo efectivo mensual y, con `--json`,
+  genera un archivo listo para "Importar JSON" en la app.
+
+Cómo puntúa una oferta escaneada (sin residual/MF, solo con lo publicado):
+si el pago inicial ≥ mensualidad se asume que ya incluye el primer mes
+(`total = inicial + mensualidad × (plazo − 1)`); si es menor (enganche puro
+o $0), `total = inicial + mensualidad × plazo`. Con el MSRP del anuncio se
+calculan la regla del 1 % y el score.
 
 ## Fórmulas
 
@@ -48,22 +78,26 @@ costo total del lease      = drive-off + pagos restantes + tarifa de devolución
 ## Estructura
 
 ```
-index.html              — la aplicación (formulario, resultados, comparador)
-css/styles.css          — estilos (tema oscuro, responsivo)
-js/lease-calc.js        — lógica de cálculo pura (funciona en navegador y Node)
-js/app.js               — UI: cálculo en vivo, guardado, comparador, compartir
-test/lease-calc.test.js — tests de la lógica de cálculo
+index.html                — la aplicación (formulario, resultados, escáner, comparador)
+css/styles.css            — estilos (tema oscuro, responsivo)
+js/lease-calc.js          — lógica de cálculo pura (funciona en navegador y Node)
+js/offer-parser.js        — escáner: extrae datos de anuncios en texto libre
+js/app.js                 — UI: cálculo en vivo, guardado, escáner, comparador
+scanner/scan.js           — CLI para escanear URLs o archivos
+test/lease-calc.test.js   — tests de la lógica de cálculo
+test/offer-parser.test.js — tests del escáner
 ```
 
 ## Tests
 
 ```bash
-node test/lease-calc.test.js
+npm test
 ```
 
 ## Ideas futuras
 
 - Depósitos de seguridad múltiples (MSD) para bajar el money factor.
 - Comparación lease vs. compra financiada.
-- Historial de precios por modelo y alertas cuando baje una oferta.
+- Historial de precios por modelo y alertas cuando baje una oferta
+  (ejecutando el CLI de forma programada sobre tus fuentes favoritas).
 - Sincronización opcional en la nube para compartir entre dispositivos.
