@@ -165,6 +165,41 @@
         "https://www.waynemazda.com/lease-specials/",
         "https://www.waynemazda.com/specials/"
       ]
+    },
+    {
+      "name": "Edmunds — Ford Bronco Sport",
+      "region": "lease deals por modelo",
+      "urls": ["https://www.edmunds.com/ford/bronco-sport/lease-deals/"]
+    },
+    {
+      "name": "Edmunds — Jeep Cherokee",
+      "region": "lease deals por modelo",
+      "urls": ["https://www.edmunds.com/jeep/cherokee/lease-deals/"]
+    },
+    {
+      "name": "Edmunds — Jeep Grand Cherokee",
+      "region": "lease deals por modelo",
+      "urls": ["https://www.edmunds.com/jeep/grand-cherokee/lease-deals/"]
+    },
+    {
+      "name": "Edmunds — Mazda CX-50",
+      "region": "lease deals por modelo",
+      "urls": ["https://www.edmunds.com/mazda/cx-50/lease-deals/"]
+    },
+    {
+      "name": "Edmunds — Mazda CX-5",
+      "region": "lease deals por modelo",
+      "urls": ["https://www.edmunds.com/mazda/cx-5/lease-deals/"]
+    },
+    {
+      "name": "Edmunds — Toyota RAV4",
+      "region": "lease deals por modelo",
+      "urls": ["https://www.edmunds.com/toyota/rav4/lease-deals/"]
+    },
+    {
+      "name": "Edmunds — Honda CR-V",
+      "region": "lease deals por modelo",
+      "urls": ["https://www.edmunds.com/honda/cr-v/lease-deals/"]
     }
   ]
 }
