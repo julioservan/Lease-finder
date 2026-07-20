@@ -6,9 +6,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -17,23 +15,18 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Pages (habilita el sitio si no existe)
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Preparar sitio estático
+        run: |
+          mkdir -p _site
+          cp -r index.html css js _site/
 
-      - name: Subir sitio estático
-        uses: actions/upload-pages-artifact@v3
+      - name: Publicar en la rama gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: .
-
-      - name: Desplegar
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          commit_message: 'Publicar Lease Finder en GitHub Pages'
