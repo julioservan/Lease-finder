@@ -16,6 +16,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var lib = require('./lib.js');
 var OfferParser = require('../js/offer-parser.js');
 
 function usage() {
@@ -41,30 +42,6 @@ function padL(s, w) {
   return s.length >= w ? s : new Array(w - s.length + 1).join(' ') + s;
 }
 
-function readSource(source) {
-  if (/^https?:\/\//i.test(source)) {
-    if (typeof fetch !== 'function') {
-      return Promise.reject(new Error('Este Node no tiene fetch; usa Node 18+ o descarga la página a un archivo.'));
-    }
-    return fetch(source, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (LeaseFinder scanner)' },
-      redirect: 'follow'
-    }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status + ' al pedir ' + source);
-      return res.text();
-    });
-  }
-  return new Promise(function (resolve, reject) {
-    fs.readFile(path.resolve(source), 'utf8', function (err, data) {
-      if (err) reject(err); else resolve(data);
-    });
-  });
-}
-
-function looksLikeHtml(content) {
-  return /<\s*(?:html|body|div|p|table|span|!doctype)/i.test(content);
-}
-
 function main() {
   var args = process.argv.slice(2);
   var jsonOut = null;
@@ -80,8 +57,8 @@ function main() {
   var chain = Promise.resolve();
   args.forEach(function (source) {
     chain = chain.then(function () {
-      return readSource(source).then(function (content) {
-        var text = looksLikeHtml(content) ? OfferParser.htmlToText(content) : content;
+      return lib.readSource(source).then(function (content) {
+        var text = lib.looksLikeHtml(content) ? OfferParser.htmlToText(content) : content;
         var offers = OfferParser.scanText(text);
         console.log('• ' + source + ': ' + offers.length + ' oferta(s) detectada(s)');
         offers.forEach(function (o) { all.push({ source: source, parsed: o }); });

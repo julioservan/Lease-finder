@@ -1,0 +1,60 @@
+name: Escaneo diario de leases
+
+on:
+  schedule:
+    # Todos los días a las 13:00 UTC (~9:00 am hora de Nueva York)
+    - cron: '0 13 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Tests
+        run: npm test
+
+      - name: Escanear fuentes
+        id: scan
+        run: |
+          node scanner/watch.js --ci
+          echo "has_news=$([ -f data/report.md ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Guardar estado actualizado
+        run: |
+          git config user.name "lease-scanner[bot]"
+          git config user.email "actions@github.com"
+          git add data/offers-latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: actualizar estado del escáner de leases"
+            git push
+          else
+            echo "Sin cambios en el estado."
+          fi
+
+      - name: Abrir issue con las novedades
+        if: steps.scan.outputs.has_news == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('data/report.md', 'utf8');
+            const date = new Date().toISOString().slice(0, 10);
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚗 Ofertas de lease — novedades ${date}`,
+              body,
+              labels: ['lease-scanner']
+            });

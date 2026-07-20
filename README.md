@@ -61,6 +61,41 @@ si el pago inicial ≥ mensualidad se asume que ya incluye el primer mes
 o $0), `total = inicial + mensualidad × plazo`. Con el MSRP del anuncio se
 calculan la regla del 1 % y el score.
 
+## Vigilancia automática de fuentes
+
+`scanner/watch.js` escanea todas las fuentes de `scanner/sources.json`
+(preconfigurada con agencias cercanas a Downtown Brooklyn y New Jersey:
+Brooklyn, Queens, Manhattan, Jersey City, Hillside, Edison…) más los
+archivos que dejes en `data/inbox/`, y compara contra la corrida anterior:
+
+```bash
+node scanner/watch.js
+```
+
+- Detecta ofertas **nuevas**, ofertas que **bajaron de precio** y las marca
+  como **⭐ destacadas** si su score ≥ `settings.alertScoreMin` (default 7).
+- Mantiene el histórico en `data/offers-latest.json` (las ofertas que
+  desaparecen se conservan `settings.staleDays` días para evitar falsos
+  "nueva oferta" cuando una fuente falla un día).
+- Si hay novedades escribe `data/report.md`.
+
+El workflow `.github/workflows/lease-scan.yml` lo corre **todos los días a
+las ~9 am hora de Nueva York**, guarda el estado en el repo y **abre un
+issue** con el reporte cuando hay ofertas nuevas o mejoradas (también se
+puede lanzar a mano desde la pestaña Actions → *Run workflow*).
+
+⚠️ **Realidad de las fuentes**: muchos sitios de agencias (plataformas
+Dealer.com / DealerInspire) bloquean peticiones desde servidores en la nube
+con 403, o pintan las ofertas con JavaScript. Por eso cada corrida incluye
+el **estado de cada fuente**, para que veas cuáles responden. Consejos:
+
+- Corre `node scanner/watch.js` desde tu propia máquina (IP residencial):
+  la tasa de éxito es mucho mayor. Puedes agendarlo con `cron`/Atajos.
+- El **inbox siempre funciona**: guarda en `data/inbox/` cualquier anuncio
+  (texto o HTML descargado del navegador) y entra a la vigilancia.
+- Ajusta `scanner/sources.json` con las agencias que te interesen: cada
+  fuente acepta varias URLs candidatas y se usa la primera que dé ofertas.
+
 ## Fórmulas
 
 ```
@@ -84,6 +119,11 @@ js/lease-calc.js          — lógica de cálculo pura (funciona en navegador y 
 js/offer-parser.js        — escáner: extrae datos de anuncios en texto libre
 js/app.js                 — UI: cálculo en vivo, guardado, escáner, comparador
 scanner/scan.js           — CLI para escanear URLs o archivos
+scanner/watch.js          — vigilante: escanea fuentes, detecta nuevas/mejoradas
+scanner/sources.json      — fuentes vigiladas (Brooklyn / NJ, editable)
+scanner/lib.js            — utilidades compartidas del CLI
+data/inbox/               — deja aquí anuncios para incluirlos en la vigilancia
+.github/workflows/lease-scan.yml — escaneo diario + issue con novedades
 test/lease-calc.test.js   — tests de la lógica de cálculo
 test/offer-parser.test.js — tests del escáner
 ```
@@ -98,6 +138,5 @@ npm test
 
 - Depósitos de seguridad múltiples (MSD) para bajar el money factor.
 - Comparación lease vs. compra financiada.
-- Historial de precios por modelo y alertas cuando baje una oferta
-  (ejecutando el CLI de forma programada sobre tus fuentes favoritas).
+- Renderizar fuentes con JavaScript (headless browser) en la vigilancia.
 - Sincronización opcional en la nube para compartir entre dispositivos.

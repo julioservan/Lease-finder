@@ -1,0 +1,130 @@
+{
+  "//": "Fuentes a vigilar: agencias cercanas a Downtown Brooklyn (1 City Point, 11201) y New Jersey. Edita libremente: agrega/quita fuentes, o pon \"enabled\": false para pausar una. Cada fuente puede listar varias URLs candidatas; se usa la primera que devuelva ofertas.",
+  "settings": {
+    "alertScoreMin": 7,
+    "inboxDir": "data/inbox",
+    "staleDays": 45
+  },
+  "sources": [
+    {
+      "name": "BMW of Brooklyn",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.bmwofbrooklyn.com/lease-specials.htm",
+        "https://www.bmwofbrooklyn.com/specials/lease.htm"
+      ]
+    },
+    {
+      "name": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.bayridgehonda.com/lease-specials/",
+        "https://www.bayridgehonda.com/specials/"
+      ]
+    },
+    {
+      "name": "Bay Ridge Toyota",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.bayridgetoyota.com/lease-specials/",
+        "https://www.bayridgetoyota.com/new-vehicle-specials/"
+      ]
+    },
+    {
+      "name": "Plaza Toyota",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.plazatoyota.net/new-vehicle-specials/",
+        "https://www.plazatoyota.net/lease-specials/"
+      ]
+    },
+    {
+      "name": "Plaza Honda",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.plazahonda.com/lease-specials/",
+        "https://www.plazahonda.com/specials/"
+      ]
+    },
+    {
+      "name": "Plaza Hyundai",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.plazahyundai.com/lease-specials/",
+        "https://www.plazahyundai.com/specials/"
+      ]
+    },
+    {
+      "name": "Brooklyn Mitsubishi",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.brooklynmitsubishi.com/lease-specials/",
+        "https://www.brooklynmitsubishi.com/specials/"
+      ]
+    },
+    {
+      "name": "Paragon Honda",
+      "region": "Queens, NY",
+      "urls": [
+        "https://www.paragonhonda.com/lease-specials/",
+        "https://www.paragonhonda.com/specials/"
+      ]
+    },
+    {
+      "name": "BMW of Manhattan",
+      "region": "Manhattan, NY",
+      "urls": [
+        "https://www.bmwofmanhattan.com/lease-specials.htm",
+        "https://www.bmwofmanhattan.com/specials/lease.htm"
+      ]
+    },
+    {
+      "name": "Hudson Toyota",
+      "region": "Jersey City, NJ",
+      "urls": [
+        "https://www.hudsontoyota.com/lease-specials/",
+        "https://www.hudsontoyota.com/new-vehicle-specials/"
+      ]
+    },
+    {
+      "name": "Hudson Honda",
+      "region": "West New York, NJ",
+      "urls": [
+        "https://www.hudsonhonda.com/lease-specials/",
+        "https://www.hudsonhonda.com/specials/"
+      ]
+    },
+    {
+      "name": "Metro Honda",
+      "region": "Jersey City, NJ",
+      "urls": [
+        "https://www.metrohonda.com/lease-specials/",
+        "https://www.metrohonda.com/specials/"
+      ]
+    },
+    {
+      "name": "Route 22 Honda",
+      "region": "Hillside, NJ",
+      "urls": [
+        "https://www.route22honda.com/lease-specials/",
+        "https://www.route22honda.com/specials/"
+      ]
+    },
+    {
+      "name": "Route 22 Toyota",
+      "region": "Hillside, NJ",
+      "urls": [
+        "https://www.route22toyota.com/lease-specials/",
+        "https://www.route22toyota.com/new-vehicle-specials/"
+      ]
+    },
+    {
+      "name": "Open Road BMW",
+      "region": "Edison, NJ",
+      "urls": [
+        "https://www.openroadbmw.com/lease-specials.htm",
+        "https://www.openroadbmw.com/specials/lease.htm"
+      ]
+    }
+  ]
+}
