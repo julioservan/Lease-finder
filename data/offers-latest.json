@@ -1,0 +1,37 @@
+{
+  "updatedAt": "2026-07-20T13:33:29.305Z",
+  "offers": [
+    {
+      "key": "bay ridge honda|s/n|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 429,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $429 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 429,
+        "driveOff": 0,
+        "totalCost": 15444,
+        "effectiveMonthly": 429,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T13:33:29.305Z",
+      "lastSeen": "2026-07-20T13:33:29.305Z"
+    }
+  ]
+}
