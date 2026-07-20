@@ -493,9 +493,9 @@
           '/' + onlineData.status.sources.length + ' fuentes respondieron · '
         : '';
       meta.textContent = 'Última búsqueda: ' + new Date(onlineData.latest.updatedAt).toLocaleString('es') +
-        ' · ' + okCount + 'la próxima corre automáticamente mañana ~9 am NY.';
+        ' · ' + okCount + 'el robot busca solo 3 veces al día (~9 am, 1 pm y 5 pm NY).';
     } else {
-      meta.textContent = 'El robot busca automáticamente todos los días ~9 am NY.';
+      meta.textContent = 'El robot busca automáticamente 3 veces al día (~9 am, 1 pm y 5 pm NY).';
     }
   }
 

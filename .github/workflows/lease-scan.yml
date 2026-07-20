@@ -2,8 +2,8 @@ name: Escaneo diario de leases
 
 on:
   schedule:
-    # Todos los días a las 13:00 UTC (~9:00 am hora de Nueva York)
-    - cron: '0 13 * * *'
+    # 3 veces al día: ~9 am, ~1 pm y ~5 pm hora de Nueva York (EDT)
+    - cron: '0 13,17,21 * * *'
   workflow_dispatch: {}
 
 permissions:
