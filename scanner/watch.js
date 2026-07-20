@@ -41,6 +41,20 @@ function offerKey(sourceName, parsed, metrics) {
   return (sourceName + '|' + (parsed.name || 's/n') + '|' + metrics.term).toLowerCase();
 }
 
+/** Normaliza para comparar modelos: minúsculas y sin espacios/guiones (cx-50 = cx50). */
+function normalizeModel(s) {
+  return String(s || '').toLowerCase().replace(/[\s\-]/g, '');
+}
+
+/** ¿La oferta menciona alguno de los modelos objetivo? */
+function matchesTarget(parsed, targetModels) {
+  if (!targetModels || !targetModels.length) return false;
+  var haystack = normalizeModel((parsed.name || '') + ' ' + (parsed.raw || ''));
+  return targetModels.some(function (model) {
+    return haystack.indexOf(normalizeModel(model)) >= 0;
+  });
+}
+
 function scanContent(content) {
   var text = lib.looksLikeHtml(content) ? OfferParser.htmlToText(content) : content;
   return OfferParser.scanText(text);
@@ -135,7 +149,7 @@ function mdRow(cells) { return '| ' + cells.join(' | ') + ' |'; }
 
 function offerLine(e, extra) {
   var cells = [
-    e.name || 'Oferta sin nombre',
+    (e.isTarget ? '🎯 ' : '') + (e.name || 'Oferta sin nombre'),
     e.source + (e.region ? ' (' + e.region + ')' : ''),
     '$' + fmt(e.metrics.monthlyPayment, 2) + '/mes',
     e.metrics.term + ' m',
@@ -165,6 +179,7 @@ function main() {
   var alertScoreMin = settings.alertScoreMin == null ? 7 : settings.alertScoreMin;
   var staleDays = settings.staleDays == null ? 45 : settings.staleDays;
   var minMonthly = settings.minMonthly == null ? 80 : settings.minMonthly;
+  var targetModels = settings.targetModels || [];
   var now = new Date().toISOString();
 
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -212,7 +227,8 @@ function main() {
           url: r.url || '',
           name: parsed.name,
           parsed: parsed,
-          metrics: metrics
+          metrics: metrics,
+          isTarget: matchesTarget(parsed, targetModels)
         });
       });
     });
@@ -243,6 +259,7 @@ function main() {
       merged[e.key] = {
         key: e.key, source: e.source, region: e.region, url: e.url,
         name: e.name, parsed: e.parsed, metrics: e.metrics,
+        isTarget: e.isTarget,
         firstSeen: prev ? prev.firstSeen : now,
         lastSeen: now
       };
@@ -256,17 +273,24 @@ function main() {
     });
     fs.writeFileSync(LATEST, JSON.stringify({ updatedAt: now, offers: offers }, null, 2));
 
+    // Destacadas: buen score O uno de tus modelos objetivo.
     var highlights = news.concat(improved).filter(function (e) {
-      return e.metrics.score != null && e.metrics.score >= alertScoreMin;
+      return e.isTarget || (e.metrics.score != null && e.metrics.score >= alertScoreMin);
     });
+    var targets = offers.filter(function (e) { return e.isTarget; });
 
     console.log('\nResumen: ' + current.length + ' oferta(s) activa(s), ' +
       news.length + ' nueva(s), ' + improved.length + ' mejorada(s), ' +
-      highlights.length + ' destacada(s) (score ≥ ' + alertScoreMin + ').');
+      highlights.length + ' destacada(s), ' +
+      targets.length + ' de tus SUVs objetivo 🎯.');
 
     // Reporte solo si hay novedades
     if (news.length || improved.length) {
       var md = ['# 🚗 Novedades del escáner de leases', ''];
+      if (targets.length) {
+        md.push('## 🎯 Tus SUVs objetivo (todas las activas)', '');
+        md = md.concat(tableHead(), targets.map(function (e) { return offerLine(e); }), ['']);
+      }
       if (highlights.length) {
         md.push('## ⭐ Destacadas (score ≥ ' + alertScoreMin + ')', '');
         md = md.concat(tableHead(), highlights.map(function (e) { return offerLine(e); }), ['']);

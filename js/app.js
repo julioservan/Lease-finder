@@ -19,7 +19,8 @@
     sortKey: 'effectiveMonthly',
     sortDesc: false,
     editingId: null,
-    scanResults: []
+    scanResults: [],
+    filter: ''
   };
 
   function genId() {
@@ -33,6 +34,11 @@
   }
 
   function isNum(v) { return v != null && isFinite(v); }
+
+  function offerName(offer) {
+    if (offer.kind === 'scanned') return (offer.parsed && offer.parsed.name) || 'Oferta sin nombre';
+    return (offer.input && offer.input.name) || 'Oferta sin nombre';
+  }
 
   /* ---------------- utilidades ---------------- */
 
@@ -153,7 +159,7 @@
 
   function deleteOffer(id) {
     var offer = state.offers.find(function (o) { return o.id === id; });
-    var name = offer && offer.input.name ? '"' + offer.input.name + '"' : 'esta oferta';
+    var name = offer ? '"' + offerName(offer) + '"' : 'esta oferta';
     if (!confirm('¿Eliminar ' + name + '?')) return;
     state.offers = state.offers.filter(function (o) { return o.id !== id; });
     if (state.editingId === id) {
@@ -186,9 +192,16 @@
     body.innerHTML = '';
     $('no-offers').style.display = state.offers.length ? 'none' : 'block';
 
-    var rows = state.offers.map(function (o) {
-      return { offer: o, calc: metricsFor(o) };
-    });
+    var filter = state.filter.trim().toLowerCase();
+    var rows = state.offers
+      .filter(function (o) {
+        if (!filter) return true;
+        var raw = o.kind === 'scanned' ? (o.raw || '') : JSON.stringify(o.input || {});
+        return (offerName(o) + ' ' + raw).toLowerCase().indexOf(filter) >= 0;
+      })
+      .map(function (o) {
+        return { offer: o, calc: metricsFor(o) };
+      });
 
     function sortVal(r) {
       var v = r.calc[state.sortKey];
@@ -217,11 +230,10 @@
       var tr = document.createElement('tr');
       tr.dataset.id = r.offer.id;
       var isScanned = r.offer.kind === 'scanned';
-      var name = (isScanned ? (r.offer.parsed && r.offer.parsed.name) : r.offer.input.name) || 'Oferta sin nombre';
       var date = r.offer.savedAt ? new Date(r.offer.savedAt).toLocaleDateString('es') : '';
       var meta = (isScanned ? '🔍 escaneada · ' : '') + date;
       tr.appendChild(cell(
-        '<span class="offer-name">' + escapeHtml(name) + '</span>' +
+        '<span class="offer-name">' + escapeHtml(offerName(r.offer)) + '</span>' +
         '<span class="offer-meta">' + escapeHtml(meta) + '</span>', true));
       tr.appendChild(cell(r.calc.term + ' m'));
       tr.appendChild(numCell(fmtMoney2(r.calc.monthlyPayment), isBest('monthlyPayment', r.calc.monthlyPayment)));
@@ -359,7 +371,7 @@
         state.offers.forEach(function (o) { existing[o.id] = true; });
         var added = 0;
         imported.forEach(function (o) {
-          if (o && o.input && !existing[o.id]) {
+          if (o && (o.input || o.parsed) && !existing[o.id]) {
             state.offers.push(o);
             added++;
           }
@@ -431,6 +443,11 @@
       recalc();
       renderOffers();
       renderScanResults();
+    });
+
+    $('offers-filter').addEventListener('input', function () {
+      state.filter = $('offers-filter').value;
+      renderOffers();
     });
 
     $('scan-btn').addEventListener('click', runScan);

@@ -67,6 +67,18 @@ fieldset {
 }
 legend { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 0.4rem; }
 
+details.advanced { margin: 0 0 1rem; }
+details.advanced summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0;
+}
+details.advanced summary:hover { color: var(--accent-2); }
+details.advanced fieldset { margin-top: 0.5rem; }
+
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1rem; }
 @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
 
@@ -102,6 +114,8 @@ textarea { resize: vertical; }
 .hint { color: var(--muted); font-size: 0.78rem; }
 
 .actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+.filter-input { width: 11rem; font-size: 0.85rem; }
 
 .btn {
   background: var(--card-2);

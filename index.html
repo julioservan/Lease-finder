@@ -25,7 +25,7 @@
       <form id="lease-form" autocomplete="off">
         <div class="field full">
           <label for="name">Nombre de la oferta</label>
-          <input id="name" type="text" placeholder="Ej. BMW i4 — Agencia Norte">
+          <input id="name" type="text" placeholder="Ej. Mazda CX-50 — Koeppel Mazda">
         </div>
 
         <fieldset>
@@ -79,8 +79,9 @@
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend>Tarifas e impuestos</legend>
+        <details class="advanced">
+          <summary>Tarifas e impuestos (opcional)</summary>
+          <fieldset>
           <div class="grid-2">
             <div class="field">
               <label for="acqFee">Tarifa de adquisición</label>
@@ -112,7 +113,8 @@
               </select>
             </div>
           </div>
-        </fieldset>
+          </fieldset>
+        </details>
 
         <div class="field full">
           <label for="notes">Notas</label>
@@ -168,14 +170,14 @@
       detecta mensualidad, plazo, pago inicial, MSRP, km/año, residual y money factor.
       Separa varias ofertas con una línea de <code>---</code> o dos líneas en blanco.
       También puedes escanear páginas completas con el CLI: <code>node scanner/scan.js &lt;url&gt;</code>.</p>
-    <textarea id="scan-input" rows="8" placeholder="2026 BMW i4 eDrive40
-$499/mes + tax, 36 meses
-$3,500 due at signing
-MSRP: $57,900
+    <textarea id="scan-input" rows="8" placeholder="2026 Ford Bronco Sport Big Bend
+$299/mes, 36 meses
+$2,999 due at signing
+MSRP: $31,500
 ---
-Tesla Model 3 — Agencia Polanco
-Mensualidad de $8,499 con $25,000 de enganche
-Plazo de 24 meses. Precio de lista $749,900"></textarea>
+2026 Mazda CX-50 Select
+Mensualidad de $339 con $2,499 de enganche
+36 meses. MSRP $31,720"></textarea>
     <div class="actions scanner-actions">
       <button type="button" class="btn primary" id="scan-btn">🔍 Escanear</button>
       <button type="button" class="btn" id="scan-save-all" hidden>💾 Guardar todas</button>
@@ -206,6 +208,7 @@ Plazo de 24 meses. Precio de lista $749,900"></textarea>
     <div class="offers-header">
       <h2>Ofertas guardadas</h2>
       <div class="actions">
+        <input id="offers-filter" type="text" placeholder="Filtrar… (ej. cx-50)" class="filter-input">
         <button type="button" class="btn subtle" id="export-btn">⬇ Exportar JSON</button>
         <button type="button" class="btn subtle" id="import-btn">⬆ Importar JSON</button>
         <input type="file" id="import-file" accept="application/json" hidden>

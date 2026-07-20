@@ -5,7 +5,13 @@
     "inboxDir": "data/inbox",
     "staleDays": 45,
     "useBrowser": "auto",
-    "minMonthly": 80
+    "minMonthly": 80,
+    "//targetModels": "SUVs compactos que te interesan: cualquier oferta que los mencione se marca 🎯 y siempre entra al reporte. Se comparan sin espacios/guiones (cx-50 = cx50).",
+    "targetModels": [
+      "cherokee", "grand cherokee", "bronco sport", "cx-50", "cx-5",
+      "rav4", "cr-v", "forester", "crosstrek", "tucson", "sportage",
+      "rogue", "equinox", "tiguan", "escape", "compass"
+    ]
   },
   "sources": [
     {
@@ -126,6 +132,38 @@
       "urls": [
         "https://www.openroadbmw.com/lease-specials.htm",
         "https://www.openroadbmw.com/specials/lease.htm"
+      ]
+    },
+    {
+      "name": "Manhattan Jeep Chrysler Dodge Ram",
+      "region": "Manhattan, NY",
+      "urls": [
+        "https://www.manhattanjeep.com/lease-specials/",
+        "https://www.manhattanjeep.com/specials/"
+      ]
+    },
+    {
+      "name": "Bay Ridge Ford",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.bayridgeford.com/lease-specials/",
+        "https://www.bayridgeford.com/specials/"
+      ]
+    },
+    {
+      "name": "Koeppel Mazda",
+      "region": "Queens, NY",
+      "urls": [
+        "https://www.koeppelmazda.com/lease-specials/",
+        "https://www.koeppelmazda.com/specials/"
+      ]
+    },
+    {
+      "name": "Wayne Mazda",
+      "region": "Wayne, NJ",
+      "urls": [
+        "https://www.waynemazda.com/lease-specials/",
+        "https://www.waynemazda.com/specials/"
       ]
     }
   ]
