@@ -25,6 +25,7 @@ var OfferParser = require('../js/offer-parser.js');
 var ROOT = path.join(__dirname, '..');
 var DATA_DIR = path.join(ROOT, 'data');
 var LATEST = path.join(DATA_DIR, 'offers-latest.json');
+var STATUS = path.join(DATA_DIR, 'scan-status.json');
 var REPORT = path.join(DATA_DIR, 'report.md');
 
 function arg(flag) {
@@ -272,6 +273,14 @@ function main() {
       return (av == null ? Infinity : av) - (bv == null ? Infinity : bv);
     });
     fs.writeFileSync(LATEST, JSON.stringify({ updatedAt: now, offers: offers }, null, 2));
+
+    // Estado por fuente para mostrarlo en la app web.
+    fs.writeFileSync(STATUS, JSON.stringify({
+      updatedAt: now,
+      sources: results.map(function (r) {
+        return { name: r.source.name, region: r.source.region || '', status: r.status };
+      })
+    }, null, 2));
 
     // Destacadas: buen score O uno de tus modelos objetivo.
     var highlights = news.concat(improved).filter(function (e) {
