@@ -1,0 +1,30 @@
+name: Depurar fuente del escáner
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL a inspeccionar'
+        required: true
+        default: 'https://www.bayridgehonda.com/lease-specials/'
+      segments:
+        description: 'Máximo de segmentos a mostrar'
+        required: false
+        default: '10'
+
+permissions: {}
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar navegador
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Inspeccionar página
+        run: node scanner/debug-page.js "${{ github.event.inputs.url }}" "${{ github.event.inputs.segments }}"
