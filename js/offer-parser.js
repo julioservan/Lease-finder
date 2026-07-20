@@ -175,9 +175,35 @@
       .filter(Boolean);
   }
 
+  var YEAR = /\b(?:19|20)\d{2}\b/;
+
   /** Escanea texto con separadores explícitos entre ofertas. */
   function parseOffers(text) {
-    return splitBlocks(text).map(parseBlock).filter(hasData);
+    var parsed = splitBlocks(text).map(parseBlock);
+
+    // En páginas de agencias el nombre del vehículo suele venir en un bloque
+    // propio ("2026 Honda Odyssey FWD EX-L") antes del bloque con la oferta:
+    // heredarlo cuando el bloque con datos no trae nombre. Solo se aceptan
+    // nombres con año para no confundir encabezados genéricos con vehículos.
+    parsed.forEach(function (p, i) {
+      if (!hasData(p) || p.name) return;
+      for (var j = i - 1; j >= 0 && j >= i - 6; j--) {
+        if (parsed[j].monthly != null) break; // no cruzar otra oferta
+        var candidate = parsed[j].name;
+        if (candidate && YEAR.test(candidate)) { p.name = candidate; break; }
+      }
+    });
+
+    var offers = parsed.filter(hasData);
+
+    // El mismo pago suele repetirse en el resumen ("36 mos. $429/mo") sin
+    // nombre: descartar los anónimos que duplican una oferta ya nombrada.
+    return offers.filter(function (o) {
+      if (o.name) return true;
+      return !offers.some(function (other) {
+        return other.name && other.monthly === o.monthly && other.term === o.term;
+      });
+    });
   }
 
   function looksLikeData(line) {

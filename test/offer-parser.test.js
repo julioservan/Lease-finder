@@ -138,6 +138,32 @@ check('htmlToText + scanText sobre una página HTML', function () {
   assert.ok(offers.length >= 2, 'debe detectar 2 ofertas en el HTML, detectó ' + offers.length);
 });
 
+check('hereda el nombre del bloque anterior (páginas de agencias)', function () {
+  // Estructura real de Bay Ridge Honda: nombre en bloque propio, oferta en
+  // el bloque narrativo, y un resumen "36 mos. $X /mo" duplicado sin nombre.
+  var offers = OfferParser.parseOffers(
+    '2026 Honda Odyssey FWD EX-L\n\n\n' +
+    'Available Specials and Offers\n\n\n' +
+    'Lease the Honda Odyssey with just $3,999 down – plus taxes and fees. ' +
+    'Get behind the wheel for only $429/mo. for 36 months.\n\n\n' +
+    'Lease Special\n\n\nDETAILS: Lease Offer\n\n\n36 mos. $429 /mo\n\n\n' +
+    'Special APR\n\n\n48 mos. 3.99% APR\n\n\nOffer $500\n\n\n' +
+    '2026 Honda Civic Hatchback 2WD Sport\n\n\n' +
+    'Available Specials and Offers\n\n\n' +
+    'Lease the Honda Civic Hatchback with just $2,999 down for only $249/mo. for 36 months.\n\n\n' +
+    '36 mos. $249 /mo'
+  );
+  var named = offers.filter(function (o) { return o.name; });
+  assert.strictEqual(named.length, 2, 'debe nombrar 2 ofertas, nombró ' + named.length);
+  assert.strictEqual(named[0].name, '2026 Honda Odyssey FWD EX-L');
+  close(named[0].monthly, 429, 0.001, 'mensualidad Odyssey');
+  close(named[0].dueAtSigning, 3999, 0.001, 'enganche Odyssey');
+  assert.strictEqual(named[1].name, '2026 Honda Civic Hatchback 2WD Sport');
+  // los resúmenes anónimos duplicados deben desaparecer
+  var anon = offers.filter(function (o) { return !o.name && (o.monthly === 429 || o.monthly === 249); });
+  assert.strictEqual(anon.length, 0, 'no debe haber duplicados sin nombre');
+});
+
 check('texto sin ofertas → lista vacía', function () {
   assert.strictEqual(OfferParser.scanText('Hola, ¿cómo estás? Nos vemos mañana.').length, 0);
   assert.strictEqual(OfferParser.scanText('').length, 0);
