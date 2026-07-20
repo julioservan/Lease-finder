@@ -1,0 +1,293 @@
+{
+  "updatedAt": "2026-07-20T19:53:29.478Z",
+  "offers": [
+    {
+      "key": "bay ridge honda|s/n|229|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 229,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $229 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 229,
+        "driveOff": 0,
+        "totalCost": 8244,
+        "effectiveMonthly": 229,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|249|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 249,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $249 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 249,
+        "driveOff": 0,
+        "totalCost": 8964,
+        "effectiveMonthly": 249,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|279|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 279,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $279 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 279,
+        "driveOff": 0,
+        "totalCost": 10044,
+        "effectiveMonthly": 279,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|289|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 289,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $289 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 289,
+        "driveOff": 0,
+        "totalCost": 10404,
+        "effectiveMonthly": 289,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|319|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 319,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $319 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 319,
+        "driveOff": 0,
+        "totalCost": 11484,
+        "effectiveMonthly": 319,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|399|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 399,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $399 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 399,
+        "driveOff": 0,
+        "totalCost": 14364,
+        "effectiveMonthly": 399,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|419|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 419,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $419 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 419,
+        "driveOff": 0,
+        "totalCost": 15084,
+        "effectiveMonthly": 419,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|429|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 429,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $429 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 429,
+        "driveOff": 0,
+        "totalCost": 15444,
+        "effectiveMonthly": 429,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    },
+    {
+      "key": "bay ridge honda|s/n|439|36",
+      "source": "Bay Ridge Honda",
+      "region": "Brooklyn, NY",
+      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 439,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "36 mos. $439 /mo"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 439,
+        "driveOff": 0,
+        "totalCost": 15804,
+        "effectiveMonthly": 439,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": false,
+      "firstSeen": "2026-07-20T19:53:29.478Z",
+      "lastSeen": "2026-07-20T19:53:29.478Z"
+    }
+  ]
+}
