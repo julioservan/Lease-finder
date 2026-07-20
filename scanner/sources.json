@@ -4,7 +4,8 @@
     "alertScoreMin": 7,
     "inboxDir": "data/inbox",
     "staleDays": 45,
-    "useBrowser": "auto"
+    "useBrowser": "auto",
+    "minMonthly": 80
   },
   "sources": [
     {

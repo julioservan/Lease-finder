@@ -164,6 +164,7 @@ function main() {
   var settings = config.settings || {};
   var alertScoreMin = settings.alertScoreMin == null ? 7 : settings.alertScoreMin;
   var staleDays = settings.staleDays == null ? 45 : settings.staleDays;
+  var minMonthly = settings.minMonthly == null ? 80 : settings.minMonthly;
   var now = new Date().toISOString();
 
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -200,6 +201,10 @@ function main() {
       r.offers.forEach(function (parsed) {
         var metrics = OfferParser.scoreOffer(parsed);
         if (metrics.monthlyPayment == null) return;
+        // Filtro de plausibilidad: mensualidades ínfimas suelen ser ruido
+        // (tasas "por cada $1,000 financiados", promociones de accesorios…).
+        if (metrics.monthlyPayment < minMonthly) return;
+        if (/per\s+\$?1[,.]?000|por\s+cada\s+\$?1[,.]?000/i.test(parsed.raw || '')) return;
         current.push({
           key: offerKey(r.source.name, parsed, metrics),
           source: r.source.name,
