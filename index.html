@@ -42,12 +42,15 @@
         <select id="online-model" class="filter-select"><option value="">Todos los modelos</option></select>
         <button type="button" class="btn subtle" id="online-refresh">↻ Recargar</button>
         <a class="btn" href="https://github.com/julioservan/Lease-finder/actions/workflows/lease-scan.yml"
-           target="_blank" rel="noopener" title="Abre GitHub Actions y presiona 'Run workflow'">▶ Escanear ahora</a>
+           target="_blank" rel="noopener"
+           title="El robot vive en GitHub: al abrirse, presiona el botón 'Run workflow'. En ~3 minutos vuelve aquí y presiona ↻ Recargar.">▶ Búsqueda extra (en GitHub)</a>
       </div>
     </div>
     <p class="hint">Esto es lo que el robot encontró al revisar las páginas de ofertas de las agencias
-      vigiladas y las páginas de lease por modelo. Se actualiza solo cada mañana (~9 am NY);
-      si una agencia no publica un modelo o bloquea robots, no puede aparecer aquí.</p>
+      vigiladas y las páginas de lease por modelo. Se actualiza solo <strong>3 veces al día</strong>
+      (~9 am, 1 pm y 5 pm NY). ¿Quieres una búsqueda extra ya mismo? El botón te lleva a GitHub
+      (donde vive el robot): presiona ahí <strong>“Run workflow”</strong>, espera ~3 minutos y
+      vuelve aquí a darle “↻ Recargar”.</p>
     <p class="hint" id="online-meta">Cargando resultados del escáner…</p>
     <div class="table-wrap" id="online-wrap" hidden>
       <table class="offers-table">
