@@ -385,6 +385,8 @@
 
   /* ---------------- ofertas encontradas online ---------------- */
 
+  var onlineData = { latest: null, status: null };
+
   function loadOnline() {
     var meta = $('online-meta');
     meta.textContent = 'Cargando resultados del escáner…';
@@ -397,7 +399,9 @@
         .then(function (r) { return r.ok ? r.json() : null; })
         .catch(function () { return null; })
     ]).then(function (res) {
-      renderOnline(res[0] || {}, res[1]);
+      onlineData.latest = res[0] || {};
+      onlineData.status = res[1];
+      renderOnline(onlineData.latest, onlineData.status);
     }).catch(function () {
       $('online-wrap').hidden = true;
       $('online-status-box').hidden = true;
@@ -407,18 +411,27 @@
   }
 
   function renderOnline(latest, status) {
-    var offers = latest.offers || [];
+    var allOffers = latest.offers || [];
     var meta = $('online-meta');
     var body = $('online-body');
     body.innerHTML = '';
+
+    // Filtro por modelo seleccionado
+    var fModel = normalizeModel($('online-model').value);
+    var offers = !fModel ? allOffers : allOffers.filter(function (e) {
+      var hay = normalizeModel((e.name || '') + ' ' + ((e.parsed && e.parsed.raw) || ''));
+      return hay.indexOf(fModel) >= 0;
+    });
 
     var when = latest.updatedAt ? new Date(latest.updatedAt).toLocaleString('es') : '—';
     var okCount = status && status.sources
       ? status.sources.filter(function (s) { return /^ok/.test(s.status); }).length
       : null;
-    meta.textContent = 'Última corrida: ' + when + ' · ' + offers.length + ' oferta(s) activa(s)' +
+    meta.textContent = 'Última corrida: ' + when + ' · ' +
+      (fModel ? offers.length + ' de ' + allOffers.length : allOffers.length) + ' oferta(s) activa(s)' +
       (okCount != null ? ' · ' + okCount + '/' + status.sources.length + ' fuentes respondieron' : '') +
-      '. Las 🎯 son tus SUVs objetivo.';
+      '. Las 🎯 son tus SUVs objetivo.' +
+      (fModel && !offers.length ? ' Ninguna fuente publicó ese modelo en la última corrida.' : '');
 
     if (status && status.sources && status.sources.length) {
       var ul = $('online-status');
@@ -603,6 +616,24 @@
     $('filter-model').addEventListener('change', function () {
       state.filterModel = $('filter-model').value;
       renderOffers();
+    });
+
+    // Selector de modelo de la sección online (agrupado por marca)
+    var onlineSel = $('online-model');
+    Object.keys(VehicleCatalog).forEach(function (make) {
+      if (!VehicleCatalog[make].length) return;
+      var group = document.createElement('optgroup');
+      group.label = make;
+      VehicleCatalog[make].forEach(function (model) {
+        var o = document.createElement('option');
+        o.value = model;
+        o.textContent = model;
+        group.appendChild(o);
+      });
+      onlineSel.appendChild(group);
+    });
+    onlineSel.addEventListener('change', function () {
+      if (onlineData.latest) renderOnline(onlineData.latest, onlineData.status);
     });
 
     $('online-refresh').addEventListener('click', loadOnline);

@@ -178,11 +178,15 @@
     <div class="offers-header">
       <h2>🌐 Ofertas encontradas online</h2>
       <div class="actions">
+        <select id="online-model" class="filter-select"><option value="">Todos los modelos</option></select>
         <button type="button" class="btn subtle" id="online-refresh">↻ Recargar</button>
         <a class="btn" href="https://github.com/julioservan/Lease-finder/actions/workflows/lease-scan.yml"
            target="_blank" rel="noopener" title="Abre GitHub Actions y presiona 'Run workflow'">▶ Escanear ahora</a>
       </div>
     </div>
+    <p class="hint">Esto es lo que el robot encontró al revisar las páginas de ofertas de las agencias
+      vigiladas y las páginas de lease por modelo. Se actualiza solo cada mañana (~9 am NY);
+      si una agencia no publica un modelo o bloquea robots, no puede aparecer aquí.</p>
     <p class="hint" id="online-meta">Cargando resultados del escáner…</p>
     <div class="table-wrap" id="online-wrap" hidden>
       <table class="offers-table">
