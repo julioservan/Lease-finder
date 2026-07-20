@@ -4,6 +4,7 @@
 
   var STORAGE_KEY = 'lease-finder-offers';
   var CURRENCY_KEY = 'lease-finder-currency';
+  var WATCH_KEY = 'lease-finder-watchlist';
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
@@ -21,7 +22,8 @@
     editingId: null,
     scanResults: [],
     filterMake: '',
-    filterModel: ''
+    filterModel: '',
+    watchlist: []
   };
 
   /** Normaliza para comparar modelos: minúsculas, sin espacios ni guiones. */
@@ -387,6 +389,116 @@
 
   var onlineData = { latest: null, status: null };
 
+  /* ---------------- seguimiento de modelos ---------------- */
+
+  function loadWatchlist() {
+    try {
+      var w = JSON.parse(localStorage.getItem(WATCH_KEY));
+      if (Array.isArray(w) && w.length) return w;
+    } catch (e) { /* usar defaults */ }
+    return [
+      { make: 'Jeep', model: 'Cherokee' },
+      { make: 'Ford', model: 'Bronco Sport' },
+      { make: 'Mazda', model: 'CX-50' }
+    ];
+  }
+
+  function persistWatchlist() {
+    localStorage.setItem(WATCH_KEY, JSON.stringify(state.watchlist));
+  }
+
+  function offersForModel(model) {
+    var offers = (onlineData.latest && onlineData.latest.offers) || [];
+    var f = normalizeModel(model);
+    return offers.filter(function (e) {
+      var hay = normalizeModel((e.name || '') + ' ' + ((e.parsed && e.parsed.raw) || ''));
+      return hay.indexOf(f) >= 0;
+    });
+  }
+
+  function renderWatchlist() {
+    var grid = $('watch-grid');
+    grid.innerHTML = '';
+    var hasData = !!(onlineData.latest && onlineData.latest.updatedAt);
+
+    state.watchlist.forEach(function (w, idx) {
+      var matches = offersForModel(w.model);
+      var withPrice = matches.filter(function (e) { return e.metrics && isNum(e.metrics.effectiveMonthly); });
+      withPrice.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
+      var best = withPrice[0];
+
+      var card = document.createElement('div');
+      card.className = 'watch-item ' + (matches.length ? 'found' : 'empty');
+
+      var head = document.createElement('div');
+      head.className = 'watch-head';
+      var title = document.createElement('strong');
+      title.textContent = w.make + ' ' + w.model;
+      var del = document.createElement('button');
+      del.className = 'btn danger';
+      del.textContent = '✕';
+      del.title = 'Dejar de seguir';
+      del.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        state.watchlist.splice(idx, 1);
+        persistWatchlist();
+        renderWatchlist();
+      });
+      head.appendChild(title);
+      head.appendChild(del);
+      card.appendChild(head);
+
+      var statusEl = document.createElement('div');
+      statusEl.className = 'watch-status';
+      if (matches.length) {
+        var line = document.createElement('div');
+        line.className = 'watch-found';
+        line.textContent = '✅ ' + matches.length + ' oferta(s) encontrada(s)';
+        statusEl.appendChild(line);
+        if (best) {
+          var bestLine = document.createElement('div');
+          bestLine.textContent = 'Mejor: ' + fmtMoney2(best.metrics.effectiveMonthly) + '/mes efectivo' +
+            (isNum(best.metrics.score) ? ' · score ' + best.metrics.score.toFixed(1) : '');
+          statusEl.appendChild(bestLine);
+          var srcLine = document.createElement('small');
+          srcLine.className = 'hint';
+          srcLine.textContent = (best.name || 'sin nombre') + ' — ' + best.source +
+            (best.firstSeen ? ' · vista desde ' + new Date(best.firstSeen).toLocaleDateString('es') : '');
+          statusEl.appendChild(srcLine);
+        }
+      } else {
+        var empty = document.createElement('div');
+        empty.textContent = hasData
+          ? '🔎 Sin ofertas todavía — el robot sigue buscando a diario'
+          : '⏳ Esperando la primera búsqueda…';
+        statusEl.appendChild(empty);
+      }
+      card.appendChild(statusEl);
+
+      card.addEventListener('click', function () {
+        // Ver las ofertas de este modelo en la sección online
+        var sel = $('online-model');
+        var exists = Array.prototype.some.call(sel.options, function (o) { return o.value === w.model; });
+        sel.value = exists ? w.model : '';
+        if (onlineData.latest) renderOnline(onlineData.latest, onlineData.status);
+        $('online-card').scrollIntoView({ behavior: 'smooth' });
+      });
+      grid.appendChild(card);
+    });
+
+    var meta = $('watch-meta');
+    if (hasData) {
+      var okCount = onlineData.status && onlineData.status.sources
+        ? onlineData.status.sources.filter(function (s) { return /^ok/.test(s.status); }).length +
+          '/' + onlineData.status.sources.length + ' fuentes respondieron · '
+        : '';
+      meta.textContent = 'Última búsqueda: ' + new Date(onlineData.latest.updatedAt).toLocaleString('es') +
+        ' · ' + okCount + 'la próxima corre automáticamente mañana ~9 am NY.';
+    } else {
+      meta.textContent = 'El robot busca automáticamente todos los días ~9 am NY.';
+    }
+  }
+
   function loadOnline() {
     var meta = $('online-meta');
     meta.textContent = 'Cargando resultados del escáner…';
@@ -402,7 +514,9 @@
       onlineData.latest = res[0] || {};
       onlineData.status = res[1];
       renderOnline(onlineData.latest, onlineData.status);
+      renderWatchlist();
     }).catch(function () {
+      renderWatchlist();
       $('online-wrap').hidden = true;
       $('online-status-box').hidden = true;
       meta.textContent = 'Aún no hay resultados publicados del escáner online. Corre a diario ' +
@@ -635,6 +749,38 @@
     onlineSel.addEventListener('change', function () {
       if (onlineData.latest) renderOnline(onlineData.latest, onlineData.status);
     });
+
+    // Seguimiento de modelos
+    state.watchlist = loadWatchlist();
+    var watchMake = $('watch-make');
+    var wOpt = document.createElement('option');
+    wOpt.value = '';
+    wOpt.textContent = '— Marca —';
+    watchMake.appendChild(wOpt);
+    Object.keys(VehicleCatalog).forEach(function (make) {
+      if (!VehicleCatalog[make].length) return;
+      var o = document.createElement('option');
+      o.value = make;
+      o.textContent = make;
+      watchMake.appendChild(o);
+    });
+    populateModels($('watch-model'), '', '— Modelo —');
+    watchMake.addEventListener('change', function () {
+      populateModels($('watch-model'), watchMake.value, '— Modelo —');
+    });
+    $('watch-add').addEventListener('click', function () {
+      var make = watchMake.value;
+      var model = $('watch-model').value;
+      if (!make || !model) { alert('Elige marca y modelo primero.'); return; }
+      var dup = state.watchlist.some(function (w) { return w.make === make && w.model === model; });
+      if (!dup) {
+        state.watchlist.push({ make: make, model: model });
+        persistWatchlist();
+      }
+      $('watch-model').value = '';
+      renderWatchlist();
+    });
+    renderWatchlist();
 
     $('online-refresh').addEventListener('click', loadOnline);
     loadOnline();

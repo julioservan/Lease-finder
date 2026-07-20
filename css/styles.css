@@ -158,6 +158,30 @@ textarea { resize: vertical; }
 .results-table tr.highlight td { font-weight: 700; color: var(--accent-2); }
 .results-table td.indent { padding-left: 1.2rem; color: var(--muted); }
 
+/* ---------- Seguimiento de modelos ---------- */
+.watch-card { margin-bottom: 1.25rem; border-color: var(--accent); }
+.watch-actions { margin-bottom: 1rem; }
+.watch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.watch-item {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.8rem 0.9rem;
+  cursor: pointer;
+}
+.watch-item:hover { border-color: var(--accent); }
+.watch-item.found { border-color: var(--good); background: var(--good-bg); }
+.watch-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+.watch-head strong { font-size: 1rem; }
+.watch-status { margin-top: 0.4rem; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.15rem; }
+.watch-found { color: var(--good); font-weight: 600; }
+.watch-item.empty .watch-status { color: var(--muted); }
+
 /* ---------- Ofertas online ---------- */
 .online-card { margin-top: 1.25rem; }
 .online-card a.btn { text-decoration: none; display: inline-flex; align-items: center; }
