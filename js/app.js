@@ -6,7 +6,7 @@
   var CURRENCY_KEY = 'lease-finder-currency';
 
   var FIELDS = [
-    'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
+    'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
     'milesPerYear', 'residualPct', 'rateType', 'rate', 'acqFee',
     'capitalizeAcq', 'dispositionFee', 'upfrontFees', 'capFees',
     'taxPct', 'taxMethod', 'notes'
@@ -20,8 +20,31 @@
     sortDesc: false,
     editingId: null,
     scanResults: [],
-    filter: ''
+    filterMake: '',
+    filterModel: ''
   };
+
+  /** Normaliza para comparar modelos: minúsculas, sin espacios ni guiones. */
+  function normalizeModel(s) {
+    return String(s || '').toLowerCase().replace(/[\s\-]/g, '');
+  }
+
+  /** Llena un <select> de modelos según la marca elegida. */
+  function populateModels(selectEl, make, emptyLabel) {
+    var models = (VehicleCatalog[make] || []);
+    selectEl.innerHTML = '';
+    var opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = emptyLabel;
+    selectEl.appendChild(opt);
+    models.forEach(function (m) {
+      var o = document.createElement('option');
+      o.value = m;
+      o.textContent = m;
+      selectEl.appendChild(o);
+    });
+    selectEl.disabled = !make || models.length === 0;
+  }
 
   function genId() {
     return String(Date.now()) + '-' + Math.random().toString(36).slice(2, 7);
@@ -37,7 +60,10 @@
 
   function offerName(offer) {
     if (offer.kind === 'scanned') return (offer.parsed && offer.parsed.name) || 'Oferta sin nombre';
-    return (offer.input && offer.input.name) || 'Oferta sin nombre';
+    var input = offer.input || {};
+    var vehicle = [input.make, input.model].filter(Boolean).join(' ');
+    if (vehicle && input.name) return vehicle + ' — ' + input.name;
+    return vehicle || input.name || 'Oferta sin nombre';
   }
 
   /* ---------------- utilidades ---------------- */
@@ -84,6 +110,9 @@
       if (el.type === 'checkbox') el.checked = !!input[f];
       else el.value = input[f] == null ? '' : input[f];
     });
+    // El select de modelos depende de la marca: repoblarlo y reaplicar el valor.
+    populateModels($('model'), $('make').value, '— Modelo —');
+    if (input.model != null) $('model').value = input.model;
   }
 
   /* ---------------- cálculo en vivo ---------------- */
@@ -192,12 +221,16 @@
     body.innerHTML = '';
     $('no-offers').style.display = state.offers.length ? 'none' : 'block';
 
-    var filter = state.filter.trim().toLowerCase();
+    var fMake = normalizeModel(state.filterMake);
+    var fModel = normalizeModel(state.filterModel);
     var rows = state.offers
       .filter(function (o) {
-        if (!filter) return true;
-        var raw = o.kind === 'scanned' ? (o.raw || '') : JSON.stringify(o.input || {});
-        return (offerName(o) + ' ' + raw).toLowerCase().indexOf(filter) >= 0;
+        if (!fMake && !fModel) return true;
+        var raw = o.kind === 'scanned' ? (o.raw || '') : '';
+        var haystack = normalizeModel(offerName(o) + ' ' + raw);
+        if (fMake && haystack.indexOf(fMake) < 0) return false;
+        if (fModel && haystack.indexOf(fModel) < 0) return false;
+        return true;
       })
       .map(function (o) {
         return { offer: o, calc: metricsFor(o) };
@@ -445,8 +478,40 @@
       renderScanResults();
     });
 
-    $('offers-filter').addEventListener('input', function () {
-      state.filter = $('offers-filter').value;
+    // Selectores de marca/modelo del formulario
+    var makeSel = $('make');
+    var makeOpt = document.createElement('option');
+    makeOpt.value = '';
+    makeOpt.textContent = '— Marca —';
+    makeSel.appendChild(makeOpt);
+    Object.keys(VehicleCatalog).forEach(function (make) {
+      var o = document.createElement('option');
+      o.value = make;
+      o.textContent = make;
+      makeSel.appendChild(o);
+    });
+    populateModels($('model'), '', '— Modelo —');
+    makeSel.addEventListener('change', function () {
+      populateModels($('model'), makeSel.value, '— Modelo —');
+      recalc();
+    });
+
+    // Filtros por selector en el comparador
+    var filterMake = $('filter-make');
+    Object.keys(VehicleCatalog).forEach(function (make) {
+      var o = document.createElement('option');
+      o.value = make;
+      o.textContent = make;
+      filterMake.appendChild(o);
+    });
+    filterMake.addEventListener('change', function () {
+      state.filterMake = filterMake.value;
+      state.filterModel = '';
+      populateModels($('filter-model'), filterMake.value, 'Todos los modelos');
+      renderOffers();
+    });
+    $('filter-model').addEventListener('change', function () {
+      state.filterModel = $('filter-model').value;
       renderOffers();
     });
 

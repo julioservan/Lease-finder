@@ -23,9 +23,19 @@
     <section class="card form-card">
       <h2>Datos de la oferta</h2>
       <form id="lease-form" autocomplete="off">
+        <div class="grid-2">
+          <div class="field">
+            <label for="make">Marca</label>
+            <select id="make"></select>
+          </div>
+          <div class="field">
+            <label for="model">Modelo</label>
+            <select id="model" disabled></select>
+          </div>
+        </div>
         <div class="field full">
-          <label for="name">Nombre de la oferta</label>
-          <input id="name" type="text" placeholder="Ej. Mazda CX-50 — Koeppel Mazda">
+          <label for="name">Detalle (versión, agencia…)</label>
+          <input id="name" type="text" placeholder="Ej. Select AWD — Koeppel Mazda">
         </div>
 
         <fieldset>
@@ -208,7 +218,8 @@ Mensualidad de $339 con $2,499 de enganche
     <div class="offers-header">
       <h2>Ofertas guardadas</h2>
       <div class="actions">
-        <input id="offers-filter" type="text" placeholder="Filtrar… (ej. cx-50)" class="filter-input">
+        <select id="filter-make" class="filter-select"><option value="">Todas las marcas</option></select>
+        <select id="filter-model" class="filter-select" disabled><option value="">Todos los modelos</option></select>
         <button type="button" class="btn subtle" id="export-btn">⬇ Exportar JSON</button>
         <button type="button" class="btn subtle" id="import-btn">⬆ Importar JSON</button>
         <input type="file" id="import-file" accept="application/json" hidden>
@@ -243,6 +254,7 @@ Mensualidad de $339 con $2,499 de enganche
 
   <script src="js/lease-calc.js"></script>
   <script src="js/offer-parser.js"></script>
+  <script src="js/vehicles.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
