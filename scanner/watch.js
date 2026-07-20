@@ -39,7 +39,11 @@ function fmt(v, dec) {
 }
 
 function offerKey(sourceName, parsed, metrics) {
-  return (sourceName + '|' + (parsed.name || 's/n') + '|' + metrics.term).toLowerCase();
+  // Con nombre: clave estable por vehículo (permite detectar bajadas de
+  // precio). Sin nombre: incluir la mensualidad para que varias ofertas
+  // anónimas de la misma fuente no se aplasten entre sí.
+  var namePart = parsed.name ? parsed.name : 's/n|' + metrics.monthlyPayment;
+  return (sourceName + '|' + namePart + '|' + metrics.term).toLowerCase();
 }
 
 /** Normaliza para comparar modelos: minúsculas y sin espacios/guiones (cx-50 = cx50). */
