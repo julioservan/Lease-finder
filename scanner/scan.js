@@ -17,6 +17,7 @@
 var fs = require('fs');
 var path = require('path');
 var lib = require('./lib.js');
+var browser = require('./browser.js');
 var OfferParser = require('../js/offer-parser.js');
 
 function usage() {
@@ -53,25 +54,47 @@ function main() {
   }
   if (!args.length) usage();
 
+  function scanContent(content) {
+    var text = lib.looksLikeHtml(content) ? OfferParser.htmlToText(content) : content;
+    return OfferParser.scanText(text);
+  }
+
+  // Si fetch falla o no encuentra ofertas, reintenta con navegador headless
+  // (solo si playwright está instalado y la fuente es una URL).
+  function scanWithFallback(source) {
+    return lib.readSource(source).then(scanContent, function (err) {
+      if (browser.isAvailable() && /^(https?|file):\/\//i.test(source)) return null;
+      throw err;
+    }).then(function (offers) {
+      if (offers && offers.length > 0) return { offers: offers, via: 'fetch' };
+      if (browser.isAvailable() && /^(https?|file):\/\//i.test(source)) {
+        return browser.renderPage(source).then(function (html) {
+          return { offers: scanContent(html), via: 'navegador' };
+        });
+      }
+      return { offers: offers || [], via: 'fetch' };
+    });
+  }
+
   var all = [];
   var chain = Promise.resolve();
   args.forEach(function (source) {
     chain = chain.then(function () {
-      return lib.readSource(source).then(function (content) {
-        var text = lib.looksLikeHtml(content) ? OfferParser.htmlToText(content) : content;
-        var offers = OfferParser.scanText(text);
-        console.log('• ' + source + ': ' + offers.length + ' oferta(s) detectada(s)');
-        offers.forEach(function (o) { all.push({ source: source, parsed: o }); });
+      return scanWithFallback(source).then(function (r) {
+        console.log('• ' + source + ': ' + r.offers.length + ' oferta(s) detectada(s)' +
+          (r.via === 'navegador' ? ' (con navegador)' : ''));
+        r.offers.forEach(function (o) { all.push({ source: source, parsed: o }); });
       }, function (err) {
         console.error('• ' + source + ': ERROR — ' + err.message);
       });
     });
   });
 
-  chain.then(function () {
+  chain = chain.then(function () {
     if (!all.length) {
       console.log('\nNo se detectaron ofertas.');
-      process.exit(2);
+      process.exitCode = 2;
+      return;
     }
 
     var scored = all.map(function (o) {
@@ -117,6 +140,8 @@ function main() {
         ' — impórtalo en la app con “Importar JSON”.');
     }
   });
+
+  chain.finally(function () { return browser.close(); });
 }
 
 main();

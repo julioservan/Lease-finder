@@ -25,6 +25,11 @@ jobs:
       - name: Tests
         run: npm test
 
+      - name: Instalar navegador headless (para fuentes con JavaScript)
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
       - name: Escanear fuentes
         id: scan
         run: |

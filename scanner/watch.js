@@ -19,6 +19,7 @@
 var fs = require('fs');
 var path = require('path');
 var lib = require('./lib.js');
+var browser = require('./browser.js');
 var OfferParser = require('../js/offer-parser.js');
 
 var ROOT = path.join(__dirname, '..');
@@ -63,6 +64,38 @@ function scanSource(source) {
     });
   };
   return attempt(0, []);
+}
+
+/**
+ * Segunda pasada con navegador headless (si está instalado): reintenta en
+ * serie las fuentes que no dieron ofertas con fetch simple, ejecutando el
+ * JavaScript de la página.
+ */
+async function browserRetry(results) {
+  for (var i = 0; i < results.length; i++) {
+    var r = results[i];
+    if (r.offers.length > 0 || !r.source.urls) continue;
+    var urls = r.source.urls.filter(function (u) { return /^(https?|file):\/\//i.test(u); });
+    var errors = [];
+    for (var j = 0; j < urls.length; j++) {
+      try {
+        var html = await browser.renderPage(urls[j]);
+        var offers = scanContent(html);
+        if (offers.length > 0) {
+          r.offers = offers;
+          r.url = urls[j];
+          r.status = 'ok (' + offers.length + ' ofertas, con navegador)';
+          break;
+        }
+        errors.push('sin ofertas (navegador) en ' + urls[j]);
+      } catch (e) {
+        errors.push(e.message + ' (navegador) en ' + urls[j]);
+      }
+    }
+    if (r.offers.length === 0 && errors.length) {
+      r.status += ' · ' + errors.join(' · ');
+    }
+  }
 }
 
 function scanInbox(inboxDir) {
@@ -139,7 +172,20 @@ function main() {
   var enabled = (config.sources || []).filter(function (s) { return s.enabled !== false; });
   console.log('Vigilando ' + enabled.length + ' fuente(s) + inbox…\n');
 
+  var useBrowser = settings.useBrowser !== false && browser.isAvailable();
+
   Promise.all(enabled.map(scanSource)).then(function (results) {
+    var anyFailed = results.some(function (r) { return r.offers.length === 0; });
+    if (useBrowser && anyFailed) {
+      console.log('Reintentando fuentes sin ofertas con navegador headless…\n');
+      return browserRetry(results).then(function () { return results; });
+    }
+    if (!useBrowser && anyFailed && !browser.isAvailable()) {
+      console.log('(Tip: instala playwright para reintentar con navegador las fuentes que fallan:');
+      console.log(' npm i -D playwright && npx playwright install chromium)\n');
+    }
+    return results;
+  }).then(function (results) {
     results = results.concat(scanInbox(settings.inboxDir));
 
     var statusLines = results.map(function (r) {
@@ -248,7 +294,9 @@ function main() {
     }
   }).catch(function (err) {
     console.error('Error inesperado: ' + (err && err.stack || err));
-    process.exit(1);
+    process.exitCode = 1;
+  }).finally(function () {
+    return browser.close();
   });
 }
 

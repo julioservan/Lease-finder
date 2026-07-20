@@ -84,10 +84,26 @@ las ~9 am hora de Nueva York**, guarda el estado en el repo y **abre un
 issue** con el reporte cuando hay ofertas nuevas o mejoradas (también se
 puede lanzar a mano desde la pestaña Actions → *Run workflow*).
 
+### Navegador headless para fuentes con JavaScript
+
+Si una fuente falla o no da ofertas con la petición simple, el vigilante la
+reintenta automáticamente con **Chromium headless** (ejecutando el
+JavaScript de la página). Es opcional: se activa instalando playwright —
+
+```bash
+npm install -D playwright && npx playwright install chromium
+```
+
+— y se controla con `settings.useBrowser` en `scanner/sources.json`
+(`"auto"` por defecto; `false` para desactivarlo). También aplica al CLI
+`scan.js`. El workflow de GitHub ya lo instala en cada corrida. Si tienes
+un Chromium propio, apúntalo con la variable `LEASE_SCANNER_CHROMIUM`.
+
 ⚠️ **Realidad de las fuentes**: muchos sitios de agencias (plataformas
 Dealer.com / DealerInspire) bloquean peticiones desde servidores en la nube
-con 403, o pintan las ofertas con JavaScript. Por eso cada corrida incluye
-el **estado de cada fuente**, para que veas cuáles responden. Consejos:
+con 403 — a veces incluso a navegadores headless. Por eso cada corrida
+incluye el **estado de cada fuente**, para que veas cuáles responden.
+Consejos:
 
 - Corre `node scanner/watch.js` desde tu propia máquina (IP residencial):
   la tasa de éxito es mucho mayor. Puedes agendarlo con `cron`/Atajos.
@@ -122,6 +138,7 @@ scanner/scan.js           — CLI para escanear URLs o archivos
 scanner/watch.js          — vigilante: escanea fuentes, detecta nuevas/mejoradas
 scanner/sources.json      — fuentes vigiladas (Brooklyn / NJ, editable)
 scanner/lib.js            — utilidades compartidas del CLI
+scanner/browser.js        — renderizado opcional con Chromium headless
 data/inbox/               — deja aquí anuncios para incluirlos en la vigilancia
 .github/workflows/lease-scan.yml — escaneo diario + issue con novedades
 test/lease-calc.test.js   — tests de la lógica de cálculo
@@ -138,5 +155,4 @@ npm test
 
 - Depósitos de seguridad múltiples (MSD) para bajar el money factor.
 - Comparación lease vs. compra financiada.
-- Renderizar fuentes con JavaScript (headless browser) en la vigilancia.
 - Sincronización opcional en la nube para compartir entre dispositivos.

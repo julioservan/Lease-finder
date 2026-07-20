@@ -3,7 +3,8 @@
   "settings": {
     "alertScoreMin": 7,
     "inboxDir": "data/inbox",
-    "staleDays": 45
+    "staleDays": 45,
+    "useBrowser": "auto"
   },
   "sources": [
     {
