@@ -329,7 +329,8 @@ span.cond-row { display: flex; }
 
 .stock-list { margin-top: 8px; }
 .stock-list summary { cursor: pointer; color: var(--accent-2); font-size: 0.78rem; }
-.stock-list.secondhand { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border); }
+.stock-list.secondhand { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+.secondhand-body { margin-top: 4px; }
 .stock-list.secondhand summary { color: var(--muted); }
 .stock-list.secondhand summary:hover { color: var(--text); }
 .stock-items { margin: 8px 0 0; padding-left: 18px; max-height: 260px; overflow-y: auto; font-size: 0.78rem; }
