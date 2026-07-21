@@ -72,6 +72,16 @@
       img: { make: 'kia', family: 'sportage', year: 2024 }
     },
     {
+      make: 'Kia', model: 'Sorento', trim: 'X-Pro', rating: 8.5,
+      price: [33100, 46500],
+      engine: '2.5L 191 hp · 2.5T 281 hp · Híbrido 227 hp', drive: 'FWD/AWD', mpg: '~24/29 mpg',
+      blurb: 'Tres filas de serie, versátil y con versión X-Pro más campera.',
+      wiki: 'Kia Sorento', slug: ['kia', 'kia-sorento'],
+      photoQuery: '2025 Kia Sorento',
+      trims: ['LX', 'S', 'EX', 'SX', 'X-Line', 'X-Pro', 'Hybrid'],
+      img: { make: 'kia', family: 'sorento', year: 2024 }
+    },
+    {
       make: 'Toyota', model: 'RAV4', trim: 'Woodland', rating: 8.9,
       price: [36000, 39000],
       engine: 'Híbrido 226 hp (toda la gama 2026)', drive: 'AWD', mpg: '~38-44 mpg',
@@ -90,6 +100,16 @@
       photoQuery: '2025 Hyundai Tucson',
       trims: ['SE', 'SEL', 'XRT', 'Limited', 'Hybrid'],
       img: { make: 'hyundai', family: 'tucson', year: 2024 }
+    },
+    {
+      make: 'Hyundai', model: 'Santa Fe', trim: 'XRT', rating: 8.6,
+      price: [35400, 47000],
+      engine: '2.5T 277 hp · Híbrido 231 hp', drive: 'FWD/AWD', mpg: '~24/28 mpg (híbrido ~36)',
+      blurb: 'Rediseño 2024 con look todoterreno, 3 filas opcionales y mucho espacio.',
+      wiki: 'Hyundai Santa Fe', slug: ['hyundai', 'hyundai-santa_fe'],
+      photoQuery: '2025 Hyundai Santa Fe',
+      trims: ['SE', 'SEL', 'XRT', 'Limited', 'Calligraphy', 'Hybrid'],
+      img: { make: 'hyundai', family: 'santa-fe', year: 2024 }
     },
     {
       make: 'GMC', model: 'Terrain', trim: 'AT4', rating: 8.7, priority: 4,
@@ -219,7 +239,8 @@
     'Bronco Sport': 'ford/bronco-sport', 'CX-50': 'mazda/cx-50', 'Forester': 'subaru/forester',
     'Cherokee': 'jeep/cherokee', 'Sportage': 'kia/sportage', 'RAV4': 'toyota/rav4',
     'Tucson': 'hyundai/tucson', 'Terrain': 'gmc/terrain', 'Rogue': 'nissan/rogue',
-    'CR-V': 'honda/cr-v', 'Tiguan': 'volkswagen/tiguan'
+    'CR-V': 'honda/cr-v', 'Tiguan': 'volkswagen/tiguan',
+    'Santa Fe': 'hyundai/santa-fe', 'Sorento': 'kia/sorento'
   };
 
   MODELS.forEach(function (m) {

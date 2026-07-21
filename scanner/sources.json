@@ -10,7 +10,8 @@
     "onlyTargetModels": true,
     "targetModels": [
       "cherokee", "bronco sport", "cx-50", "forester", "sportage",
-      "rav4", "tucson", "terrain", "rogue", "cr-v", "tiguan"
+      "rav4", "tucson", "terrain", "rogue", "cr-v", "tiguan",
+      "santa fe", "sorento"
     ]
   },
   "sources": [
