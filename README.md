@@ -32,8 +32,13 @@ Cómo se calcula (todo con datos que ya existen, en `js/leasedb.js`):
   `data/market-intel.json` cuando existe.
 
 Las búsquedas de stock se guardan en `localStorage` y sobreviven a la
-recarga; las fotos son renders de modelo (imagin + Wikipedia) porque las
-fotos por VIN de los anuncios están protegidas contra hotlinking.
+recarga. Las fotos son las **fotos reales de los anuncios** que devuelve
+Auto.dev, servidas a través de la función `api/photo` (proxy de bytes en el
+servidor) porque ese CDN bloquea el hotlink directo desde el navegador. La
+primera foto de anuncio de cada modelo se guarda como su miniatura en el
+Tablero, así la base de datos «se llena» con fotos reales a medida que
+exploras modelos. Los modelos aún sin stock consultado muestran un
+marcador 🚗 hasta que aparece una foto.
 
 ## Funciones
 

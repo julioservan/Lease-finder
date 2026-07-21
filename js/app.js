@@ -447,30 +447,34 @@
   }
 
   // Palabras que delatan una foto que NO queremos (interiores, detalles…)
-  var PHOTO_BAD = /interior|engine|dashboard|badge|logo|wheel|\brear\b|taillight|headlight|seat|trunk|cargo|boot|gauge|console|infotainment|grille|emblem|patent|concept/i;
-  // imagin.studio: la clave demo pública ('hrjavascript-mastery') ahora
-  // devuelve HTTP 403 (bloqueada), así que la desactivamos y usamos fotos
-  // REALES de Wikimedia Commons / Wikipedia (gratis, con CORS). Si consigues
-  // tu propia clave de imagin.studio, ponla aquí para volver a los renders.
-  var IMAGIN_KEY = '';
+  // Fotos: usamos las FOTOS REALES de los anuncios que devuelve Auto.dev
+  // (campo `image` de cada listing). Esas URLs suelen estar protegidas contra
+  // hotlink (403 si el Referer no es el suyo), así que las servimos a través
+  // de nuestra función serverless `api/photo?url=...`, que descarga los bytes
+  // en el servidor con las cabeceras correctas. No gasta cuota de Auto.dev
+  // (ya tenemos la URL) y no depende de Wikimedia ni de renders de terceros.
+  var PHOTO_CACHE = 'lf-photo8-'; // guarda la foto representativa por modelo
 
-  /** URL del render de estudio de imagin para un modelo (o '' si no aplica). */
-  function imaginUrl(info) {
-    if (!IMAGIN_KEY || !info.img) return '';
-    return 'https://cdn.imagin.studio/getimage?customer=' + IMAGIN_KEY +
-      '&make=' + encodeURIComponent(info.img.make) +
-      '&modelFamily=' + encodeURIComponent(info.img.family) +
-      (info.img.year ? '&modelYear=' + info.img.year : '') +
-      '&angle=23&width=560&fileType=png';
+  /** Envuelve la URL de la foto de un anuncio en nuestro proxy de bytes. */
+  function photoProxy(url) {
+    if (!url) return '';
+    if (url.indexOf('api/photo') === 0) return url; // ya envuelta
+    return 'api/photo?url=' + encodeURIComponent(url);
   }
 
-  /** Foto fiable de un modelo para tarjetas/tablero: la ya cacheada o el render. */
+  /** Foto representativa cacheada de un modelo (lista para <img src>), o ''. */
   function modelPhotoUrl(info) {
     try {
-      var c = localStorage.getItem('lf-photo8-' + info.make + '-' + info.model);
-      if (c) return c;
+      var c = localStorage.getItem(PHOTO_CACHE + info.make + '-' + info.model);
+      if (c) return photoProxy(c);
     } catch (e) { /* sin caché */ }
-    return imaginUrl(info);
+    return '';
+  }
+
+  /** Guarda la foto representativa de un modelo (URL de anuncio, sin envolver). */
+  function cacheModelPhoto(info, rawUrl) {
+    if (!rawUrl) return;
+    try { localStorage.setItem(PHOTO_CACHE + info.make + '-' + info.model, rawUrl); } catch (e) { /* lleno */ }
   }
 
   // Nombre de color → hex para el swatch (coincidencia por subcadena).
@@ -489,75 +493,39 @@
   }
 
   /**
-   * Foto del modelo: render de imagin si hay clave; si no, foto real de
-   * Wikimedia Commons o la imagen del artículo de Wikipedia. Cachea la URL.
+   * Carga la foto representativa de un modelo en un <img>: usa la foto real
+   * de un anuncio (a través de `api/photo`). Si aún no se ha descubierto
+   * ninguna, intenta sacarla del stock ya cacheado; si no hay, deja el hueco
+   * con el marcador (la celda muestra un placeholder por CSS).
    */
   function loadPhoto(info, img) {
-    var cacheKey = 'lf-photo8-' + info.make + '-' + info.model;
-    var cached = null;
-    try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
-    img.addEventListener('load', function () {
-      try { localStorage.setItem(cacheKey, img.src); } catch (e) { /* lleno */ }
-    });
+    // 1) foto ya cacheada para este modelo
+    var cached = modelPhotoUrl(info);
     if (cached) { img.src = cached; return; }
 
-    function setPhoto(url) { if (url) img.src = url; }
-
-    // Última red: imagen del artículo de Wikipedia
-    function fallbackSummary() {
-      fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' +
-        encodeURIComponent((info.wiki || (info.make + ' ' + info.model)).replace(/ /g, '_')))
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          var thumb = d && d.thumbnail && d.thumbnail.source;
-          if (thumb) setPhoto(thumb.replace(/\/(\d+)px-/, '/512px-'));
-        })
-        .catch(function () { /* placeholder */ });
+    // 2) derivarla del stock de nuevos ya consultado (si existe)
+    var raw = firstStockImage(info);
+    if (raw) {
+      cacheModelPhoto(info, raw);
+      img.src = photoProxy(raw);
+      return;
     }
+    // 3) sin foto todavía: sin src; quien pinta la celda marca el placeholder.
+    img.removeAttribute('src');
+  }
 
-    // Principal: foto real del año actual en Commons (CORS con origin=*)
-    function tryCommons() {
-      var query = info.photoQuery || (info.make + ' ' + info.model);
-      var api = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*' +
-        '&generator=search&gsrnamespace=6&gsrlimit=20&gsrsearch=' + encodeURIComponent(query) +
-        '&prop=imageinfo&iiprop=url&iiurlwidth=640';
-      fetch(api)
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          var pages = d && d.query && d.query.pages ? Object.keys(d.query.pages).map(function (k) { return d.query.pages[k]; }) : [];
-          var model = normalizeModel(info.model);
-          var best = null;
-          pages.forEach(function (p) {
-            var t = p.title || '';
-            if (!/\.(jpe?g)$/i.test(t)) return;
-            if (PHOTO_BAD.test(t)) return;
-            var ii = p.imageinfo && p.imageinfo[0];
-            if (!ii || !ii.thumburl) return;
-            var rel = normalizeModel(t).indexOf(model) >= 0 ? 0 : 1;
-            var order = (p.index || 99) + rel * 100;
-            if (!best || order < best.order) best = { url: ii.thumburl, order: order };
-          });
-          if (best) setPhoto(best.url); else fallbackSummary();
-        })
-        .catch(fallbackSummary);
+  /** Primera foto de anuncio disponible en el stock cacheado del modelo. */
+  function firstStockImage(info) {
+    var conds = ['new', 'used'];
+    for (var i = 0; i < conds.length; i++) {
+      var c = stockCacheGet(info, '', conds[i]);
+      var list = c && c.data && c.data.listings;
+      if (!list) continue;
+      for (var j = 0; j < list.length; j++) {
+        if (list[j] && list[j].image) return list[j].image;
+      }
     }
-
-    // Con clave propia de imagin: render limpio, primero.
-    if (IMAGIN_KEY && info.img) {
-      var imagin = 'https://cdn.imagin.studio/getimage?customer=' + IMAGIN_KEY +
-        '&make=' + encodeURIComponent(info.img.make) +
-        '&modelFamily=' + encodeURIComponent(info.img.family) +
-        (info.img.year ? '&modelYear=' + info.img.year : '') +
-        '&angle=23&width=640&fileType=png';
-      var probe = new Image();
-      probe.onload = function () {
-        if (probe.naturalWidth >= 320) setPhoto(imagin); else tryCommons();
-      };
-      probe.onerror = tryCommons;
-      probe.src = imagin;
-    } else {
-      tryCommons();
-    }
+    return '';
   }
 
   /* ---------------- inventario real (Auto.dev vía Vercel) ---------------- */
@@ -689,8 +657,10 @@
 
   function stockItemRow(c, pimg) {
     var cls = c.condition === 'Nuevo' ? 'nuevo' : (c.condition === 'CPO' ? 'cpo' : 'usado');
-    var photo = pimg
-      ? '<div class="sc-photo"><img loading="lazy" referrerpolicy="no-referrer" src="' + escapeHtml(pimg) + '"' +
+    // Foto REAL del anuncio (vía proxy de bytes); si no hay, la del modelo.
+    var src = c.image ? photoProxy(c.image) : (pimg || '');
+    var photo = src
+      ? '<div class="sc-photo"><img loading="lazy" src="' + escapeHtml(src) + '"' +
         ' alt="' + escapeHtml(c.title) + '" onerror="this.parentNode.classList.add(\'noimg\');this.remove();"></div>'
       : '<div class="sc-photo noimg"></div>';
 
@@ -745,6 +715,11 @@
     var bc = d.byCondition || {};
     var pc = d.priceByCondition || {};
     var newList = (d.listings || []).filter(function (c) { return c.condition === 'Nuevo'; });
+
+    // Enriquece el tablero: guarda la 1ª foto real de un anuncio como
+    // foto representativa del modelo (así el Tablero deja de ser un hueco).
+    var repImg = (newList.concat(d.listings || [])).filter(function (c) { return c && c.image; })[0];
+    if (repImg && !modelPhotoUrl(info)) cacheModelPhoto(info, repImg.image);
 
     var html;
     if (bc.nuevo) {
@@ -962,11 +937,11 @@
     im.className = 'brow-img';
     im.alt = info.make + ' ' + info.model;
     im.loading = 'lazy';
-    im.referrerPolicy = 'no-referrer';
-    im.addEventListener('error', function () { im.style.visibility = 'hidden'; });
-    im.addEventListener('load', function () { im.style.visibility = 'visible'; });
-    loadPhoto(info, im); // cadena real: Commons → Wikipedia (imagin desactivado)
+    im.addEventListener('error', function () { tdP.classList.add('noimg'); im.style.display = 'none'; });
+    im.addEventListener('load', function () { tdP.classList.remove('noimg'); im.style.display = ''; });
+    loadPhoto(info, im); // foto real del anuncio vía api/photo (sin Wikimedia)
     tdP.appendChild(im);
+    if (!im.getAttribute('src')) { tdP.classList.add('noimg'); im.style.display = 'none'; } // sin foto → placeholder
     tr.appendChild(tdP);
 
     // Modelo
