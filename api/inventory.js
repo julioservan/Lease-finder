@@ -90,13 +90,13 @@ module.exports = async function handler(req, res) {
     // Diagnóstico: /api/inventory?...&debug=1 muestra la estructura real
     // para mapear los campos exactos si algo sale vacío.
     if (q.debug) {
-      var first = records[0] || null;
       return res.status(200).json({
         ok: true,
         topKeys: Object.keys(data),
         count: records.length,
-        sampleKeys: first ? Object.keys(first) : [],
-        sampleRaw: first
+        links: data.links || null,
+        api: data.api || null,
+        discover: data.discover || null
       });
     }
     var items = records.map(normalize).filter(function (x) { return x.price != null; });
