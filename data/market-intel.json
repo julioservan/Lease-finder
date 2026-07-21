@@ -1,0 +1,39 @@
+{
+  "updated": "2026-07-20",
+  "note": "Research de mercado hecho a mano (ofertas anunciadas públicamente). El 'efectivo' incluye el pago inicial repartido en el plazo.",
+  "models": {
+    "Ford Bronco Sport": {
+      "verdict": "Negociable a buen precio: dealers de NJ anuncian el Big Bend muy por debajo del promedio del mercado. Apunta a ≤$450 efectivo/mes.",
+      "benchmark": "Bueno ≤ $450 efectivo · promedio del mercado ~$510 efectivo (36m/12k)",
+      "deals": [
+        { "title": "Big Bend 4WD — dealer NJ", "monthly": 329, "das": 4662, "term": 36, "effective": 449, "source": "Freehold Ford (NJ)", "url": "https://www.freeholdford.com/bronco-sport-special/" },
+        { "title": "48 meses — dealer", "monthly": 399, "das": 2495, "term": 48, "effective": 443, "source": "Dorian Ford", "url": "https://www.dorianford.com/ford-bronco-sport-big-bend-lease-deal-offer.html" },
+        { "title": "Promedio del mercado (36m/12k)", "monthly": 467, "das": 2000, "term": 36, "effective": 510, "source": "TrueCar", "url": "https://www.truecar.com/ford/bronco-sport/lease/" }
+      ]
+    },
+    "Honda HR-V": {
+      "verdict": "El lease regalado del grupo: anuncios de $149–$199/mes en NJ. Si el objetivo es pagar poco al mes, es el rey — aunque es el menos aventurero de tus candidatos.",
+      "benchmark": "Bueno ≤ $300 efectivo · hay anuncios desde $149/mes (LX AWD, NJ)",
+      "deals": [
+        { "title": "LX AWD 39m — Garden State Honda (Clifton, NJ)", "monthly": 149, "das": null, "term": 39, "effective": null, "source": "Garden State Honda", "url": "https://www.gardenstatehonda.com/lease-specials.html" },
+        { "title": "LX AWD — Sloane Honda", "monthly": 199, "das": null, "term": 36, "effective": null, "source": "Sloane Honda", "url": "https://www.sloanehonda.com/honda-hr-v-lease-deal.html" },
+        { "title": "Oferta nacional Honda", "monthly": 249, "das": null, "term": 36, "effective": null, "source": "CarsDirect", "url": "https://www.carsdirect.com/honda/hr-v/prices-deals" }
+      ]
+    },
+    "Jeep Cherokee": {
+      "verdict": "Mal momento para lease: recién lanzado, casi sin incentivos (solo ~$1,000 de lease cash) y el mercado ronda $620/mes. Si lo quieres, hoy conviene más comprarlo o esperar 3-6 meses a que maduren los programas.",
+      "benchmark": "Hoy ~$658 efectivo promedio — espera o negocia compra",
+      "deals": [
+        { "title": "Promedio del mercado (36m/12k)", "monthly": 620, "das": 2000, "term": 36, "effective": 658, "source": "Edmunds", "url": "https://www.edmunds.com/jeep-cherokee-lease-deals/" }
+      ]
+    },
+    "GMC Terrain": {
+      "verdict": "La oferta nacional del Elevation FWD suena bien ($279/mes) pero esconde $5,609 de inicial (~$427 efectivo real) y exige ser lessee actual de GM. Negocia el inicial a la baja o compara con el Bronco Sport.",
+      "benchmark": "Nacional: $279/mes FWD + $5,609 inicial ≈ $427 efectivo (36m/10k)",
+      "deals": [
+        { "title": "Elevation FWD — oferta nacional", "monthly": 279, "das": 5609, "term": 36, "effective": 427, "source": "Autoblog / GMC", "url": "https://www.autoblog.com/carbuying/2026-gmc-terrain-lease-offer-july" },
+        { "title": "Elevation AWD (solo empleados GM)", "monthly": 299, "das": 5609, "term": 36, "effective": 447, "source": "GM Authority", "url": "https://gmauthority.com/blog/2026/07/gmc-terrain-discount-lease-finance-deals-incentives-offers-july-2026/" }
+      ]
+    }
+  }
+}

@@ -4,7 +4,7 @@
 
   var STORAGE_KEY = 'lease-finder-offers';
   var CURRENCY_KEY = 'lease-finder-currency';
-  var WATCH_KEY = 'lease-finder-watchlist-v2';
+  var WATCH_KEY = 'lease-finder-watchlist-v3';
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
@@ -482,10 +482,12 @@
       if (pct < bestValuePct) { bestValuePct = pct; bestValueModel = w.model; }
     });
 
-    // Orden: el de tu lista de interés (los no listados al final)
+    // Orden: primero tus 4 prioritarios, luego el resto de tu lista
     function rankIndex(w) {
+      var info = findRanked(w.make, w.model);
+      if (info && info.priority) return info.priority;
       var i = RankedModels.findIndex(function (m) { return m.make === w.make && m.model === w.model; });
-      return i < 0 ? 999 : i;
+      return i < 0 ? 999 : 100 + i;
     }
     var sorted = state.watchlist.slice().sort(function (a, b) {
       return rankIndex(a) - rankIndex(b);
@@ -521,6 +523,12 @@
       head.className = 'watch-head';
       var title = document.createElement('strong');
       title.textContent = w.make + ' ' + w.model;
+      if (info && info.priority) {
+        var prio = document.createElement('span');
+        prio.className = 'prio-chip';
+        prio.textContent = '❤️ Prioridad';
+        title.appendChild(prio);
+      }
       var del = document.createElement('button');
       del.className = 'btn danger';
       del.textContent = '✕';
@@ -591,6 +599,41 @@
         statusEl.appendChild(empty);
       }
       card.appendChild(statusEl);
+
+      // Research de mercado (ofertas anunciadas + veredicto)
+      var intel = onlineData.intel && onlineData.intel.models &&
+        onlineData.intel.models[w.make + ' ' + w.model];
+      if (intel) {
+        var ib = document.createElement('div');
+        ib.className = 'intel';
+        var ih = document.createElement('div');
+        ih.className = 'intel-head';
+        ih.textContent = '🔬 Research (' + (onlineData.intel.updated || '') + ')';
+        ib.appendChild(ih);
+        var iv = document.createElement('div');
+        iv.className = 'intel-verdict';
+        iv.textContent = intel.verdict;
+        ib.appendChild(iv);
+        if (intel.deals && intel.deals.length) {
+          var d0 = intel.deals[0];
+          var dl = document.createElement('div');
+          dl.className = 'intel-deal';
+          dl.innerHTML = '💵 ' + escapeHtml(d0.title) + ': <strong>' + fmtMoney(d0.monthly) + '/mes</strong>' +
+            (d0.das != null ? ' + ' + fmtMoney(d0.das) + ' inicial' : ' (+ inicial no publicado)') +
+            ' · ' + d0.term + 'm' +
+            (d0.effective != null ? ' ≈ <strong>' + fmtMoney(d0.effective) + ' efectivo</strong>' : '') +
+            ' — <a href="' + d0.url + '" target="_blank" rel="noopener">' + escapeHtml(d0.source) + '</a>';
+          dl.addEventListener('click', function (ev) { ev.stopPropagation(); });
+          ib.appendChild(dl);
+        }
+        if (intel.benchmark) {
+          var bm = document.createElement('small');
+          bm.className = 'hint';
+          bm.textContent = '🎯 ' + intel.benchmark;
+          ib.appendChild(bm);
+        }
+        card.appendChild(ib);
+      }
 
       // Enlaces: inventario nuevo / usado / CPO + comparador
       if (info) {
@@ -677,11 +720,15 @@
         .catch(function () { return null; }),
       fetch('data/price-history.json', { cache: 'no-store' })
         .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; }),
+      fetch('data/market-intel.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
         .catch(function () { return null; })
     ]).then(function (res) {
       onlineData.latest = res[0] || {};
       onlineData.status = res[1];
       onlineData.history = Array.isArray(res[2]) ? res[2] : [];
+      onlineData.intel = res[3];
       renderOnline(onlineData.latest, onlineData.status);
       renderWatchlist();
     }).catch(function () {
@@ -792,9 +839,15 @@
       return e.metrics && isNum(e.metrics.effectiveMonthly);
     });
     matches.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
+    var intel = onlineData.intel && onlineData.intel.models &&
+      onlineData.intel.models[info.make + ' ' + info.model];
+    var intelDeal = intel && intel.deals && intel.deals.filter(function (d) { return d.effective != null; })[0];
     if (matches.length) {
       $('decide-lease').value = Math.round(matches[0].metrics.effectiveMonthly);
       $('decide-lease-hint').textContent = 'Oferta real encontrada: ' + (matches[0].name || matches[0].source);
+    } else if (intelDeal) {
+      $('decide-lease').value = Math.round(intelDeal.effective);
+      $('decide-lease-hint').textContent = 'Del research: ' + intelDeal.title + ' (' + intelDeal.source + ').';
     } else {
       $('decide-lease').value = Math.round(info.msrp * 0.012);
       $('decide-lease-hint').textContent = 'Estimación (~1.2% del MSRP); edítalo si tienes una cotización real.';

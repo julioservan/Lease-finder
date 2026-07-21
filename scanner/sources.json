@@ -10,7 +10,7 @@
     "onlyTargetModels": true,
     "targetModels": [
       "cherokee", "bronco sport", "cx-50", "forester", "sportage",
-      "rav4", "tucson", "terrain", "rogue", "cr-v", "tiguan"
+      "rav4", "tucson", "terrain", "rogue", "cr-v", "tiguan", "hr-v"
     ]
   },
   "sources": [
@@ -164,6 +164,38 @@
       "urls": [
         "https://www.waynemazda.com/lease-specials/",
         "https://www.waynemazda.com/specials/"
+      ]
+    },
+    {
+      "name": "Garden State Honda",
+      "region": "Clifton, NJ",
+      "urls": [
+        "https://www.gardenstatehonda.com/lease-specials.html",
+        "https://www.gardenstatehonda.com/lease-specials/"
+      ]
+    },
+    {
+      "name": "Freehold Ford",
+      "region": "Freehold, NJ",
+      "urls": [
+        "https://www.freeholdford.com/bronco-sport-special/",
+        "https://www.freeholdford.com/lease-specials/"
+      ]
+    },
+    {
+      "name": "Lester Glenn Ford",
+      "region": "Toms River, NJ",
+      "urls": [
+        "https://www.lesterglennford.net/lester-glenn-ford-bronco-sport-special.htm",
+        "https://www.lesterglennford.net/lease-specials.htm"
+      ]
+    },
+    {
+      "name": "Lester Glenn GMC",
+      "region": "Toms River, NJ",
+      "urls": [
+        "https://www.lesterglenngmc.com/terrain-specials.html",
+        "https://www.lesterglenngmc.com/lease-specials.html"
       ]
     },
     {

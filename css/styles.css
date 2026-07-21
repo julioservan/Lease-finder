@@ -233,6 +233,32 @@ textarea { resize: vertical; }
   border-radius: 999px;
   margin: 0.15rem 0;
 }
+.prio-chip {
+  margin-left: 0.45rem;
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--bad);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+.intel {
+  margin: 0 0.9rem;
+  background: rgba(79, 142, 247, 0.08);
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+.intel-head { color: var(--accent-2); font-weight: 700; font-size: 0.75rem; }
+.intel-verdict { color: var(--text); }
+.intel-deal a { color: var(--accent-2); }
+
 .watch-item details.where { margin: 0; padding: 0 0.9rem; }
 .watch-item details.where summary { font-size: 0.75rem; padding: 0.2rem 0; }
 .where-list { margin: 0.3rem 0 0; padding-left: 1.1rem; font-size: 0.8rem; }

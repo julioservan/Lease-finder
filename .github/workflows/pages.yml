@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p _site/data
           cp -r index.html css js _site/
-          cp data/offers-latest.json data/scan-status.json data/price-history.json _site/data/ 2>/dev/null || true
+          cp data/offers-latest.json data/scan-status.json data/price-history.json data/market-intel.json _site/data/ 2>/dev/null || true
 
       - name: Publicar en la rama gh-pages
         uses: peaceiris/actions-gh-pages@v4
