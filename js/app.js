@@ -9,7 +9,7 @@
   var TAB_KEY = 'lf-tab';
   var STOCK_PREFIX = 'lf-stock2-';
   var STOCK_FRESH_MS = 6 * 3600 * 1000; // frescura para re-consultar (cuida la cuota)
-  var VIEWS = ['models', 'compare', 'offers', 'calc', 'decide'];
+  var VIEWS = ['models', 'compare', 'offers', 'usados', 'calc', 'decide'];
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
@@ -146,6 +146,7 @@
     });
     try { localStorage.setItem(TAB_KEY, name); } catch (e) { /* sin persistencia */ }
     if (name === 'compare') renderCompare();
+    if (name === 'usados') renderUsados();
   }
 
   /* ---------------- cálculo en vivo ---------------- */
@@ -687,30 +688,12 @@
         '<small class="hint"><a href="' + info.linkNew + '" target="_blank" rel="noopener">Buscar nuevos en cars.com ↗</a></small>';
     }
 
-    // Apartado segunda mano: se consulta al abrirlo (cond=used).
-    html += '<details class="stock-list secondhand"><summary>♻️ Segunda mano (CPO / usados)</summary>' +
-      '<div class="secondhand-body"></div></details>';
-
+    // La segunda mano (CPO/usados) vive en su propia pestaña.
     box.innerHTML = html;
     bindStockRefresh(box, info, trim);
     box.querySelectorAll('details.stock-list').forEach(function (det) {
       det.addEventListener('click', function (ev) { ev.stopPropagation(); });
     });
-    var sh = box.querySelector('details.secondhand');
-    if (sh) sh.addEventListener('toggle', function () {
-      if (sh.open) loadSecondhand(info, trim, sh.querySelector('.secondhand-body'));
-    });
-  }
-
-  /** Carga y pinta CPO + usados (cond=used) dentro del apartado segunda mano. */
-  function loadSecondhand(info, trim, body) {
-    if (body.dataset.loaded) return;
-    var c = stockCacheGet(info, trim, 'used');
-    if (c) { renderSecondhand(c.data, body); body.dataset.loaded = '1'; return; }
-    body.innerHTML = '<small class="hint">Buscando segunda mano…</small>';
-    fetchInventory(info, trim, 'used')
-      .then(function (d) { renderSecondhand(d, body); body.dataset.loaded = '1'; })
-      .catch(function () { body.innerHTML = '<small class="hint">No se pudo consultar ahora.</small>'; });
   }
 
   function renderSecondhand(d, body) {
@@ -1241,6 +1224,107 @@
     next();
   }
 
+  /* ---------------- CPO / segunda mano (pestaña) ---------------- */
+
+  /** Modelos a mostrar en la pestaña de segunda mano: tu lista seguida, priorizada. */
+  function usadosModels() {
+    function rankIndex(w) {
+      var info = findRanked(w.make, w.model);
+      if (info && info.priority) return info.priority;
+      var i = RankedModels.findIndex(function (m) { return m.make === w.make && m.model === w.model; });
+      return i < 0 ? 999 : 100 + i;
+    }
+    return state.watchlist.slice()
+      .sort(function (a, b) { return rankIndex(a) - rankIndex(b); })
+      .map(function (w) { return findRanked(w.make, w.model); })
+      .filter(Boolean);
+  }
+
+  function renderUsados() {
+    var grid = $('usados-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    usadosModels().forEach(function (info) {
+      var card = document.createElement('div');
+      card.className = 'watch-item';
+
+      var photo = document.createElement('div');
+      photo.className = 'model-photo';
+      var ph = document.createElement('span');
+      ph.className = 'photo-fallback';
+      ph.textContent = info.make + ' ' + info.model;
+      photo.appendChild(ph);
+      var img = document.createElement('img');
+      img.alt = info.make + ' ' + info.model;
+      img.addEventListener('load', function () { photo.classList.add('has-img'); });
+      photo.appendChild(img);
+      loadPhoto(info, img);
+      card.appendChild(photo);
+
+      var body = document.createElement('div');
+      body.className = 'watch-body';
+      card.appendChild(body);
+
+      var head = document.createElement('div');
+      head.className = 'watch-head';
+      head.innerHTML = '<div class="watch-title"><span class="make">' + escapeHtml(info.make) + '</span> ' +
+        escapeHtml(info.model) + '</div>';
+      body.appendChild(head);
+
+      var content = document.createElement('div');
+      content.className = 'secondhand-body';
+      body.appendChild(content);
+
+      var c = stockCacheGet(info, '', 'used');
+      if (c) {
+        renderSecondhand(c.data, content);
+        var age = document.createElement('small');
+        age.className = 'hint';
+        age.textContent = 'Actualizado ' + fmtAge(c.t);
+        body.appendChild(age);
+      } else {
+        var btn = document.createElement('button');
+        btn.className = 'btn mini';
+        btn.textContent = '♻️ Ver CPO / usados';
+        btn.addEventListener('click', function () {
+          content.innerHTML = '<small class="hint">Buscando segunda mano…</small>';
+          fetchInventory(info, '', 'used')
+            .then(function (d) { renderSecondhand(d, content); })
+            .catch(function () { content.innerHTML = '<small class="hint">No se pudo consultar ahora.</small>'; });
+        });
+        content.appendChild(btn);
+      }
+      grid.appendChild(card);
+    });
+  }
+
+  /** Actualiza el stock de segunda mano de todos los modelos seguidos (en serie). */
+  function usadosLoadAll() {
+    var btn = $('usados-load');
+    var infos = usadosModels();
+    var pending = infos.filter(function (m) {
+      var c = stockCacheGet(m, '', 'used');
+      return !c || (Date.now() - c.t) > STOCK_FRESH_MS;
+    });
+    if (!pending.length) { renderUsados(); return; }
+    btn.disabled = true;
+    var done = 0;
+    function next() {
+      if (done >= pending.length) {
+        btn.disabled = false;
+        btn.textContent = '📦 Actualizar todo';
+        renderUsados();
+        return;
+      }
+      var m = pending[done];
+      btn.textContent = '📦 ' + (done + 1) + '/' + pending.length + ' — ' + m.model + '…';
+      fetchInventory(m, '', 'used')
+        .catch(function () { /* seguir */ })
+        .then(function () { done++; next(); });
+    }
+    next();
+  }
+
   /* ---------------- ofertas online ---------------- */
 
   function loadOnline() {
@@ -1695,6 +1779,7 @@
       state.showUsed = this.checked;
       renderCompare();
     });
+    $('usados-load').addEventListener('click', usadosLoadAll);
 
     // Comparador ¿lease, CPO o compra?
     var decideSel = $('decide-model');
