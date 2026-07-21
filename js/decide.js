@@ -44,7 +44,9 @@
     var paidMonths = Math.min(term, horizonMonths);
     var payments = monthly * paidMonths;
     var balance = paidMonths >= term ? 0 : Math.max(0, remainingBalance(principal, aprPct, term, paidMonths));
-    var value = price * Math.pow(1 - (opts.depPct == null ? 12 : opts.depPct) / 100, years);
+    // El valor de reventa se calcula sobre el precio SIN impuesto
+    var valueBase = opts.valueBase == null ? price : opts.valueBase;
+    var value = valueBase * Math.pow(1 - (opts.depPct == null ? 12 : opts.depPct) / 100, years);
     var cost = down + payments + balance - value;
     return {
       monthly: monthly,
@@ -74,27 +76,33 @@
     var years = o.years > 0 ? o.years : 6;
     var horizonMonths = years * 12;
     var options = {};
+    // Impuesto sobre venta (en NY el lease paga impuesto sobre la suma de
+    // pagos; la compra, sobre el precio completo). Default 0 = sin impuesto.
+    var taxFactor = 1 + (o.taxPct == null ? 0 : o.taxPct) / 100;
 
     if (o.leaseMonthly != null && o.leaseMonthly > 0) {
-      var leaseCost = o.leaseMonthly * horizonMonths;
+      var leaseMonthlyTaxed = o.leaseMonthly * taxFactor;
+      var leaseCost = leaseMonthlyTaxed * horizonMonths;
       options.lease = {
         label: 'Lease',
-        monthly: o.leaseMonthly,
+        monthly: leaseMonthlyTaxed,
         totalPaid: leaseCost,
         valueAtEnd: 0,
         cost: leaseCost,
-        effectiveMonthly: o.leaseMonthly
+        effectiveMonthly: leaseMonthlyTaxed
       };
     }
     if (o.newPrice != null && o.newPrice > 0) {
-      var n = buyOption(o.newPrice, o.aprNew == null ? 5.9 : o.aprNew,
-        { years: years, downPct: o.downPct, loanMonths: o.loanMonths, depPct: o.depNew == null ? 12 : o.depNew });
+      var n = buyOption(o.newPrice * taxFactor, o.aprNew == null ? 5.9 : o.aprNew,
+        { years: years, downPct: o.downPct, loanMonths: o.loanMonths,
+          depPct: o.depNew == null ? 12 : o.depNew, valueBase: o.newPrice });
       n.label = 'Compra nueva';
       options.buyNew = n;
     }
     if (o.cpoPrice != null && o.cpoPrice > 0) {
-      var c = buyOption(o.cpoPrice, o.aprCpo == null ? 6.9 : o.aprCpo,
-        { years: years, downPct: o.downPct, loanMonths: o.loanMonths, depPct: o.depCpo == null ? 9 : o.depCpo });
+      var c = buyOption(o.cpoPrice * taxFactor, o.aprCpo == null ? 6.9 : o.aprCpo,
+        { years: years, downPct: o.downPct, loanMonths: o.loanMonths,
+          depPct: o.depCpo == null ? 9 : o.depCpo, valueBase: o.cpoPrice });
       c.label = 'CPO (seminuevo)';
       options.cpo = c;
     }

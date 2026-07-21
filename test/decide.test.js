@@ -63,6 +63,16 @@ check('decisión: lease gana en horizonte corto con pago bajo', function () {
   assert.strictEqual(d.winner, 'lease', 'ganó ' + d.winner);
 });
 
+check('impuesto NY: lease paga sobre pagos, compra sobre precio completo', function () {
+  var sin = Decide.computeDecision({ years: 6, leaseMonthly: 400, newPrice: 36000, aprNew: 0, depNew: 12, downPct: 0, loanMonths: 60 });
+  var con = Decide.computeDecision({ years: 6, leaseMonthly: 400, newPrice: 36000, aprNew: 0, depNew: 12, downPct: 0, loanMonths: 60, taxPct: 8.875 });
+  // lease: el costo sube exactamente el 8.875%
+  close(con.options.lease.cost, sin.options.lease.cost * 1.08875, 0.5, 'lease con impuesto');
+  // compra: pagas impuesto sobre 36,000 (3,195) pero el valor final no cambia
+  close(con.options.buyNew.cost - sin.options.buyNew.cost, 36000 * 0.08875, 1, 'impuesto de compra');
+  close(con.options.buyNew.valueAtEnd, sin.options.buyNew.valueAtEnd, 0.01, 'valor final sin impuesto');
+});
+
 check('opciones ausentes no truenan', function () {
   var d = Decide.computeDecision({ years: 6, newPrice: 36000 });
   assert.ok(!d.options.lease && !d.options.cpo && d.options.buyNew);

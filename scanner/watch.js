@@ -21,11 +21,13 @@ var path = require('path');
 var lib = require('./lib.js');
 var browser = require('./browser.js');
 var OfferParser = require('../js/offer-parser.js');
+var RankedModels = require('../js/models.js');
 
 var ROOT = path.join(__dirname, '..');
 var DATA_DIR = path.join(ROOT, 'data');
 var LATEST = path.join(DATA_DIR, 'offers-latest.json');
 var STATUS = path.join(DATA_DIR, 'scan-status.json');
+var HISTORY = path.join(DATA_DIR, 'price-history.json');
 var REPORT = path.join(DATA_DIR, 'report.md');
 
 function arg(flag) {
@@ -225,6 +227,8 @@ function main() {
         // (tasas "por cada $1,000 financiados", promociones de accesorios…).
         if (metrics.monthlyPayment < minMonthly) return;
         if (/per\s+\$?1[,.]?000|por\s+cada\s+\$?1[,.]?000/i.test(parsed.raw || '')) return;
+        // Sin ruido: si está activado, solo los modelos candidatos
+        if (settings.onlyTargetModels && !matchesTarget(parsed, targetModels)) return;
         current.push({
           key: offerKey(r.source.name, parsed, metrics),
           source: r.source.name,
@@ -271,12 +275,38 @@ function main() {
     });
     var cutoff = Date.now() - staleDays * 24 * 60 * 60 * 1000;
     var offers = Object.keys(merged).map(function (k) { return merged[k]; })
-      .filter(function (e) { return new Date(e.lastSeen).getTime() >= cutoff; });
+      .filter(function (e) { return new Date(e.lastSeen).getTime() >= cutoff; })
+      .filter(function (e) { return !settings.onlyTargetModels || e.isTarget; });
     offers.sort(function (a, b) {
       var av = a.metrics.effectiveMonthly, bv = b.metrics.effectiveMonthly;
       return (av == null ? Infinity : av) - (bv == null ? Infinity : bv);
     });
     fs.writeFileSync(LATEST, JSON.stringify({ updatedAt: now, offers: offers }, null, 2));
+
+    // Histórico de precios por modelo candidato (para tendencias en la app)
+    var history = [];
+    try {
+      history = JSON.parse(fs.readFileSync(HISTORY, 'utf8'));
+      if (!Array.isArray(history)) history = [];
+    } catch (e) { /* primera vez */ }
+    RankedModels.forEach(function (mm) {
+      var f = normalizeModel(mm.model);
+      var ms = offers.filter(function (e) {
+        var hay = normalizeModel((e.name || '') + ' ' + ((e.parsed && e.parsed.raw) || ''));
+        return hay.indexOf(f) >= 0 && e.metrics && isFinite(e.metrics.effectiveMonthly);
+      });
+      var best = ms.length
+        ? Math.min.apply(null, ms.map(function (e) { return e.metrics.effectiveMonthly; }))
+        : null;
+      history.push({
+        t: now,
+        model: mm.make + ' ' + mm.model,
+        best: best == null ? null : Math.round(best * 100) / 100,
+        count: ms.length
+      });
+    });
+    if (history.length > 2000) history = history.slice(history.length - 2000);
+    fs.writeFileSync(HISTORY, JSON.stringify(history, null, 1));
 
     // Estado por fuente para mostrarlo en la app web.
     fs.writeFileSync(STATUS, JSON.stringify({

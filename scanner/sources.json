@@ -6,11 +6,11 @@
     "staleDays": 45,
     "useBrowser": "auto",
     "minMonthly": 80,
-    "//targetModels": "SUVs compactos que te interesan: cualquier oferta que los mencione se marca 🎯 y siempre entra al reporte. Se comparan sin espacios/guiones (cx-50 = cx50).",
+    "//targetModels": "Tus 11 candidatos: cualquier oferta que los mencione se marca 🎯. Con onlyTargetModels=true, el resto de modelos se descarta (sin ruido).",
+    "onlyTargetModels": true,
     "targetModels": [
-      "cherokee", "grand cherokee", "bronco sport", "cx-50", "cx-5",
-      "rav4", "cr-v", "forester", "crosstrek", "tucson", "sportage",
-      "rogue", "equinox", "tiguan", "escape", "compass", "terrain"
+      "cherokee", "bronco sport", "cx-50", "forester", "sportage",
+      "rav4", "tucson", "terrain", "rogue", "cr-v", "tiguan"
     ]
   },
   "sources": [
@@ -164,6 +164,22 @@
       "urls": [
         "https://www.waynemazda.com/lease-specials/",
         "https://www.waynemazda.com/specials/"
+      ]
+    },
+    {
+      "name": "Bay Ridge Subaru",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.bayridgesubaru.com/lease-specials/",
+        "https://www.bayridgesubaru.com/specials/"
+      ]
+    },
+    {
+      "name": "Bay Ridge Nissan",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.bayridgenissan.com/lease-specials/",
+        "https://www.bayridgenissan.com/specials/"
       ]
     },
     {

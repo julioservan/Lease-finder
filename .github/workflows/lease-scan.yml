@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "lease-scanner[bot]"
           git config user.email "actions@github.com"
-          git add data/offers-latest.json data/scan-status.json
+          git add data/offers-latest.json data/scan-status.json data/price-history.json
           if ! git diff --cached --quiet; then
             git commit -m "chore: actualizar estado del escáner de leases"
             git push

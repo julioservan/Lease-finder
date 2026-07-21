@@ -450,10 +450,37 @@
     });
   }
 
+  /** Tendencia del mejor precio de un modelo según el histórico del robot. */
+  function trendForModel(makeModel) {
+    var h = onlineData.history || [];
+    var pts = h.filter(function (e) { return e.model === makeModel && e.best != null; });
+    if (pts.length < 2) return null;
+    var last = pts[pts.length - 1];
+    var prev = null;
+    for (var i = pts.length - 2; i >= 0; i--) {
+      if (pts[i].best !== last.best) { prev = pts[i]; break; }
+    }
+    if (!prev) return { dir: 0, since: pts[0].t };
+    return { dir: last.best < prev.best ? -1 : 1, prev: prev.best, last: last.best };
+  }
+
   function renderWatchlist() {
     var grid = $('watch-grid');
     grid.innerHTML = '';
     var hasData = !!(onlineData.latest && onlineData.latest.updatedAt);
+
+    // ¿Qué modelo tiene hoy la mejor relación pago/valor (efectivo ÷ MSRP)?
+    var bestValueModel = null;
+    var bestValuePct = Infinity;
+    state.watchlist.forEach(function (w) {
+      var info = findRanked(w.make, w.model);
+      if (!info) return;
+      var ms = offersForModel(w.model).filter(function (e) { return e.metrics && isNum(e.metrics.effectiveMonthly); });
+      if (!ms.length) return;
+      var best = Math.min.apply(null, ms.map(function (e) { return e.metrics.effectiveMonthly; }));
+      var pct = best / info.msrp;
+      if (pct < bestValuePct) { bestValuePct = pct; bestValueModel = w.model; }
+    });
 
     // Orden: el de tu lista de interés (los no listados al final)
     function rankIndex(w) {
@@ -533,6 +560,23 @@
           bestLine.textContent = 'Mejor: ' + fmtMoney2(best.metrics.effectiveMonthly) + '/mes efectivo' +
             (isNum(best.metrics.score) ? ' · score ' + best.metrics.score.toFixed(1) : '');
           statusEl.appendChild(bestLine);
+          if (w.model === bestValueModel) {
+            var chip = document.createElement('div');
+            chip.className = 'value-chip';
+            chip.textContent = '🏅 Mejor valor ahora mismo (pago vs precio del auto)';
+            statusEl.appendChild(chip);
+          }
+          var trend = trendForModel(w.make + ' ' + w.model);
+          if (trend) {
+            var tLine = document.createElement('div');
+            tLine.className = 'hint';
+            tLine.textContent = trend.dir === 0
+              ? '➖ Precio estable desde que lo rastreamos'
+              : (trend.dir < 0
+                ? '📉 Bajó: antes ' + fmtMoney2(trend.prev) + '/mes'
+                : '📈 Subió: antes ' + fmtMoney2(trend.prev) + '/mes');
+            statusEl.appendChild(tLine);
+          }
           var srcLine = document.createElement('small');
           srcLine.className = 'hint';
           srcLine.textContent = (best.name || 'sin nombre') + ' — ' + best.source +
@@ -572,6 +616,28 @@
         });
         links.appendChild(cmp);
         card.appendChild(links);
+
+        // Directorio: dónde mirar este modelo
+        var where = document.createElement('details');
+        where.className = 'advanced where';
+        where.addEventListener('click', function (ev) { ev.stopPropagation(); });
+        var sum = document.createElement('summary');
+        sum.textContent = '📍 Dónde mirar este modelo';
+        where.appendChild(sum);
+        var ul = document.createElement('ul');
+        ul.className = 'where-list';
+        info.dealers.forEach(function (d) {
+          var li = document.createElement('li');
+          li.innerHTML = '🏬 <a href="' + d.u + '" target="_blank" rel="noopener">' + escapeHtml(d.n) + '</a>';
+          ul.appendChild(li);
+        });
+        info.sites.forEach(function (s) {
+          var li = document.createElement('li');
+          li.innerHTML = '🌐 <a href="' + s.u + '" target="_blank" rel="noopener">' + escapeHtml(s.n) + '</a>';
+          ul.appendChild(li);
+        });
+        where.appendChild(ul);
+        card.appendChild(where);
       }
 
       card.addEventListener('click', function () {
@@ -608,10 +674,14 @@
       }),
       fetch('data/scan-status.json', { cache: 'no-store' })
         .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; }),
+      fetch('data/price-history.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
         .catch(function () { return null; })
     ]).then(function (res) {
       onlineData.latest = res[0] || {};
       onlineData.status = res[1];
+      onlineData.history = Array.isArray(res[2]) ? res[2] : [];
       renderOnline(onlineData.latest, onlineData.status);
       renderWatchlist();
     }).catch(function () {
@@ -761,7 +831,8 @@
       downPct: num($('decide-down').value),
       loanMonths: num($('decide-loan').value),
       depNew: num($('decide-dep-new').value),
-      depCpo: num($('decide-dep-cpo').value)
+      depCpo: num($('decide-dep-cpo').value),
+      taxPct: num($('decide-tax').value)
     });
     var box = $('decide-results');
     box.innerHTML = '';
@@ -1037,7 +1108,7 @@
     });
     decideSel.addEventListener('change', applyDecideModel);
     ['decide-years', 'decide-lease', 'decide-new', 'decide-apr-new', 'decide-cpo',
-     'decide-apr-cpo', 'decide-down', 'decide-loan', 'decide-dep-new', 'decide-dep-cpo']
+     'decide-apr-cpo', 'decide-tax', 'decide-down', 'decide-loan', 'decide-dep-new', 'decide-dep-cpo']
       .forEach(function (id) { $(id).addEventListener('input', runDecide); });
 
     $('online-refresh').addEventListener('click', loadOnline);

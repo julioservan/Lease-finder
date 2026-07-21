@@ -100,11 +100,68 @@
     }
   ];
 
+  /** Concesionarios cercanos por marca (Brooklyn / Queens / NJ). */
+  var DEALERS = {
+    Ford: [
+      { n: 'Bay Ridge Ford (Brooklyn)', u: 'https://www.bayridgeford.com/' },
+      { n: 'All American Ford (NJ)', u: 'https://www.allamericanford.com/' }
+    ],
+    Mazda: [
+      { n: 'Koeppel Mazda (Queens)', u: 'https://www.koeppelmazda.com/' },
+      { n: 'Wayne Mazda (NJ)', u: 'https://www.waynemazda.com/' }
+    ],
+    Subaru: [{ n: 'Bay Ridge Subaru (Brooklyn)', u: 'https://www.bayridgesubaru.com/' }],
+    Jeep: [{ n: 'Manhattan Jeep CDJR', u: 'https://www.manhattanjeep.com/' }],
+    Kia: [{ n: 'Concesionarios Kia cercanos (inventario)', u: cars('new', 'kia', 'kia-sportage') }],
+    Toyota: [
+      { n: 'Plaza Toyota (Brooklyn)', u: 'https://www.plazatoyota.net/' },
+      { n: 'Bay Ridge Toyota (Brooklyn)', u: 'https://www.bayridgetoyota.com/' },
+      { n: 'Hudson Toyota (Jersey City)', u: 'https://www.hudsontoyota.com/' }
+    ],
+    Hyundai: [{ n: 'Plaza Hyundai (Brooklyn)', u: 'https://www.plazahyundai.com/' }],
+    GMC: [{ n: 'Concesionarios GMC cercanos (inventario)', u: cars('new', 'gmc', 'gmc-terrain') }],
+    Nissan: [{ n: 'Bay Ridge Nissan (Brooklyn)', u: 'https://www.bayridgenissan.com/' }],
+    Honda: [
+      { n: 'Bay Ridge Honda (Brooklyn)', u: 'https://www.bayridgehonda.com/' },
+      { n: 'Paragon Honda (Queens)', u: 'https://www.paragonhonda.com/' },
+      { n: 'Metro Honda (Jersey City)', u: 'https://www.metrohonda.com/' }
+    ],
+    Volkswagen: [{ n: 'Concesionarios VW cercanos (inventario)', u: cars('new', 'volkswagen', 'volkswagen-tiguan') }]
+  };
+
+  /** Página oficial de ofertas de cada fabricante. */
+  var BRAND_OFFERS = {
+    Ford: 'https://www.ford.com/deals/',
+    Mazda: 'https://www.mazdausa.com/shopping-tools/special-offers',
+    Subaru: 'https://www.subaru.com/special-offers.html',
+    Jeep: 'https://www.jeep.com/current-offers.html',
+    Kia: 'https://www.kia.com/us/en/special-offers',
+    Toyota: 'https://www.toyota.com/deals/',
+    Hyundai: 'https://www.hyundaiusa.com/us/en/special-offers',
+    GMC: 'https://www.gmc.com/current-deals',
+    Nissan: 'https://www.nissanusa.com/shopping-tools/special-offers',
+    Honda: 'https://automobiles.honda.com/tools/current-offers',
+    Volkswagen: 'https://www.vw.com/en/offers.html'
+  };
+
+  var EDMUNDS_SLUG = {
+    'Bronco Sport': 'ford/bronco-sport', 'CX-50': 'mazda/cx-50', 'Forester': 'subaru/forester',
+    'Cherokee': 'jeep/cherokee', 'Sportage': 'kia/sportage', 'RAV4': 'toyota/rav4',
+    'Tucson': 'hyundai/tucson', 'Terrain': 'gmc/terrain', 'Rogue': 'nissan/rogue',
+    'CR-V': 'honda/cr-v', 'Tiguan': 'volkswagen/tiguan'
+  };
+
   MODELS.forEach(function (m) {
     m.msrp = Math.round((m.price[0] + m.price[1]) / 2);
     m.linkNew = cars('new', m.slug[0], m.slug[1]);
     m.linkUsed = cars('used', m.slug[0], m.slug[1]);
     m.linkCpo = cars('cpo', m.slug[0], m.slug[1]);
+    m.dealers = DEALERS[m.make] || [];
+    m.sites = [
+      { n: 'Ofertas oficiales de ' + m.make, u: BRAND_OFFERS[m.make] },
+      { n: 'Edmunds: lease deals del ' + m.model, u: 'https://www.edmunds.com/' + EDMUNDS_SLUG[m.model] + '/lease-deals/' },
+      { n: 'Foro Leasehackr (tratos reales)', u: 'https://forum.leasehackr.com/search?q=' + encodeURIComponent(m.make + ' ' + m.model) }
+    ];
   });
 
   return MODELS;
