@@ -487,6 +487,57 @@
     }
   }
 
+  /** Inventario real cerca de Brooklyn vía /api/inventory (Auto.dev). */
+  function loadStock(info, box, btn) {
+    var cacheKey = 'lf-stock-' + info.make + '-' + info.model;
+    var cached = null;
+    try {
+      var raw = localStorage.getItem(cacheKey);
+      if (raw) { var o = JSON.parse(raw); if (Date.now() - o.t < 6 * 3600 * 1000) cached = o.data; }
+    } catch (e) { /* sin caché */ }
+    if (cached) { renderStock(cached, info, box); return; }
+
+    btn.disabled = true;
+    btn.textContent = '📦 Buscando stock…';
+    fetch('api/inventory?make=' + encodeURIComponent(info.make) + '&model=' + encodeURIComponent(info.model) + '&zip=11201&radius=25')
+      .then(function (r) { return r.json().then(function (d) { return { status: r.status, data: d }; }); })
+      .then(function (res) {
+        if (res.status === 200 && res.data.ok) {
+          try { localStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), data: res.data })); } catch (e) {}
+          renderStock(res.data, info, box);
+        } else if (res.data && res.data.needsKey) {
+          box.innerHTML = '<small class="hint">📦 Para ver stock real en vivo, activa la clave gratuita de Auto.dev ' +
+            '(mira el README). Mientras tanto: ' +
+            '<a href="' + info.linkNew + '" target="_blank" rel="noopener">inventario en cars.com ↗</a></small>';
+        } else {
+          box.innerHTML = '<small class="hint">No se pudo consultar el stock ahora. ' +
+            '<a href="' + info.linkNew + '" target="_blank" rel="noopener">Ver en cars.com ↗</a></small>';
+        }
+      })
+      .catch(function () {
+        box.innerHTML = '<small class="hint">Función de stock no disponible aquí (usa Vercel). ' +
+          '<a href="' + info.linkNew + '" target="_blank" rel="noopener">Ver en cars.com ↗</a></small>';
+      });
+  }
+
+  function renderStock(d, info, box) {
+    if (!d.shown) {
+      box.innerHTML = '<small class="hint">📦 Sin unidades en ~25 mi ahora mismo. ' +
+        '<a href="' + info.linkNew + '" target="_blank" rel="noopener">Ampliar en cars.com ↗</a></small>';
+      return;
+    }
+    var c = d.cheapest;
+    var html = '<div class="stock-summary">📦 <strong>' + d.count + '</strong> en stock ~25 mi · ' +
+      'desde <strong>' + fmtMoney(d.minPrice) + '</strong> hasta ' + fmtMoney(d.maxPrice) + '</div>';
+    if (c) {
+      html += '<small class="hint">Más barato: ' + escapeHtml(c.title) +
+        (c.price != null ? ' — ' + fmtMoney(c.price) : '') +
+        (c.dealer ? ' · ' + escapeHtml(c.dealer) : '') +
+        (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') + '</small>';
+    }
+    box.innerHTML = html;
+  }
+
   function persistWatchlist() {
     localStorage.setItem(WATCH_KEY, JSON.stringify(state.watchlist));
   }
@@ -683,6 +734,21 @@
           ib.appendChild(bm);
         }
         card.appendChild(ib);
+      }
+
+      // Inventario real en stock (Auto.dev vía función en Vercel)
+      if (info) {
+        var stock = document.createElement('div');
+        stock.className = 'stock-box';
+        var stockBtn = document.createElement('button');
+        stockBtn.className = 'btn mini';
+        stockBtn.textContent = '📦 Ver stock cerca';
+        stockBtn.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          loadStock(info, stock, stockBtn);
+        });
+        stock.appendChild(stockBtn);
+        card.appendChild(stock);
       }
 
       // Enlaces: inventario nuevo / usado / CPO + comparador
