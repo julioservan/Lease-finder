@@ -524,22 +524,23 @@
 
   /* ---------------- inventario real (Auto.dev vía Vercel) ---------------- */
 
-  function stockKey(info, trim) {
-    return STOCK_PREFIX + info.make + '-' + info.model + (trim ? '::' + trim : '');
+  // Dos datasets por modelo/trim: 'new' (nuevos, foco) y 'used' (segunda mano).
+  function stockKey(info, trim, cond) {
+    return STOCK_PREFIX + info.make + '-' + info.model + (trim ? '::' + trim : '') + '#' + (cond || 'new');
   }
 
-  function stockCacheGet(info, trim) {
+  function stockCacheGet(info, trim, cond) {
     try {
-      var raw = localStorage.getItem(stockKey(info, trim));
+      var raw = localStorage.getItem(stockKey(info, trim, cond));
       if (!raw) return null;
       var o = JSON.parse(raw);
       return o && o.data ? o : null;
     } catch (e) { return null; }
   }
 
-  function stockCachePut(info, trim, data) {
+  function stockCachePut(info, trim, cond, data) {
     try {
-      localStorage.setItem(stockKey(info, trim),
+      localStorage.setItem(stockKey(info, trim, cond),
         JSON.stringify({ t: Date.now(), data: data }));
     } catch (e) { /* lleno */ }
   }
@@ -563,22 +564,23 @@
       if (!seen[k]) { seen[k] = true; out.push(t); }
     }
     (info.trims || []).forEach(add);
-    var c = stockCacheGet(info, '');
+    var c = stockCacheGet(info, '', 'new');
     if (c && c.data && c.data.listings) c.data.listings.forEach(function (l) { add(l.trim); });
     add(getTrimSel(info));
     return out;
   }
 
-  /** Consulta el inventario y lo guarda en caché. Devuelve una promesa con los datos. */
-  function fetchInventory(info, trim) {
+  /** Consulta el inventario (cond 'new'|'used') y lo cachea. Devuelve promesa. */
+  function fetchInventory(info, trim, cond) {
+    cond = cond === 'used' ? 'used' : 'new';
     return fetch('api/inventory?make=' + encodeURIComponent(info.make) +
       '&model=' + encodeURIComponent(info.model) +
       (trim ? '&trim=' + encodeURIComponent(trim) : '') +
-      '&zip=11201&radius=25&minYear=2025')
+      '&cond=' + cond + '&zip=11201&radius=25&minYear=2025')
       .then(function (r) { return r.json().then(function (d) { return { status: r.status, data: d }; }); })
       .then(function (res) {
         if (res.status === 200 && res.data.ok) {
-          stockCachePut(info, trim, res.data);
+          stockCachePut(info, trim, cond, res.data);
           return res.data;
         }
         var err = new Error((res.data && res.data.message) || 'error');
@@ -588,9 +590,8 @@
   }
 
   /**
-   * Pinta la caja de stock de una tarjeta: selector de trim + resultados
-   * persistentes (caché) + botón actualizar. Con autoFetch (cambio de trim
-   * del usuario) consulta al momento si no hay caché para ese trim.
+   * Caja de stock de una tarjeta: selector de trim + NUEVOS (foco) con caché
+   * persistente + apartado "Segunda mano" que se consulta al abrirlo.
    */
   function renderStockBox(info, box, autoFetch) {
     var trim = getTrimSel(info);
@@ -622,12 +623,12 @@
     content.className = 'stock-content';
     box.appendChild(content);
 
-    var c = stockCacheGet(info, trim);
+    var c = stockCacheGet(info, trim, 'new');
     if (c) { renderStock(c.data, info, content, c.t, trim); return; }
     if (autoFetch) { fetchStockInto(info, content, trim); return; }
     var btn = document.createElement('button');
     btn.className = 'btn mini';
-    btn.textContent = '📦 Ver stock cerca';
+    btn.textContent = '📦 Ver nuevos cerca (lease)';
     btn.addEventListener('click', function (ev) {
       ev.stopPropagation();
       fetchStockInto(info, content, trim);
@@ -636,8 +637,8 @@
   }
 
   function fetchStockInto(info, box, trim) {
-    box.innerHTML = '<small class="hint">📦 Buscando stock…</small>';
-    fetchInventory(info, trim)
+    box.innerHTML = '<small class="hint">📦 Buscando nuevos…</small>';
+    fetchInventory(info, trim, 'new')
       .then(function (d) { renderStock(d, info, box, Date.now(), trim); })
       .catch(function (err) {
         box.innerHTML = '<small class="hint">' +
@@ -659,28 +660,25 @@
       '</li>';
   }
 
-  /** Foco en NUEVO + lease; CPO y usados van en un apartado "Segunda mano". */
+  /** Pinta el bloque de NUEVOS (protagonista, para lease) desde datos cond=new. */
   function renderStock(d, info, box, when, trim) {
     var refreshBtn = '<button type="button" class="btn mini subtle stock-refresh" title="Actualizar">↻</button>';
     var trimTag = trim ? ' <span class="trim-chip">' + escapeHtml(trim) + '</span>' : '';
     var age = '<span class="stock-age">' + (when ? fmtAge(when) : '') + ' ' + refreshBtn + '</span>';
     var bc = d.byCondition || {};
     var pc = d.priceByCondition || {};
-    var list = d.listings || [];
-    var newList = list.filter(function (c) { return c.condition === 'Nuevo'; });
-    var cpoList = list.filter(function (c) { return c.condition === 'CPO'; });
-    var usedList = list.filter(function (c) { return c.condition === 'Usado'; });
+    var newList = (d.listings || []).filter(function (c) { return c.condition === 'Nuevo'; });
 
-    // ---- NUEVO (protagonista, lease) ----
     var html;
     if (bc.nuevo) {
       var nr = pc.nuevo || {};
-      html = '<div class="stock-summary"><span class="cond-chip nuevo">🆕 ' + bc.nuevo + ' nuevos · lease ✓</span>' +
+      var totalNew = d.total || bc.nuevo;
+      html = '<div class="stock-summary"><span class="cond-chip nuevo">🆕 ' + totalNew + ' nuevos · lease ✓</span>' +
         trimTag + age + '</div>' +
         '<div class="stock-range">' + (nr.min != null ? fmtMoney(nr.min) + ' – ' + fmtMoney(nr.max) : fmtMoney(d.minPrice) + ' – ' + fmtMoney(d.maxPrice)) +
         ' · 2025+ · ~25 mi</div>';
       if (newList.length) {
-        html += '<details class="stock-list"><summary>Ver ' + newList.length + ' nuevos</summary>' +
+        html += '<details class="stock-list"><summary>Ver ' + newList.length + ' nuevos (los más baratos)</summary>' +
           '<ol class="stock-items">' + newList.map(stockItemRow).join('') + '</ol></details>';
       }
     } else {
@@ -689,33 +687,55 @@
         '<small class="hint"><a href="' + info.linkNew + '" target="_blank" rel="noopener">Buscar nuevos en cars.com ↗</a></small>';
     }
 
-    // ---- SEGUNDA MANO (CPO + usados), plegado ----
-    if (bc.cpo || bc.usado) {
-      var sm = [];
-      if (bc.cpo) sm.push(bc.cpo + ' CPO');
-      if (bc.usado) sm.push(bc.usado + ' usados');
-      var inner = '';
-      if (cpoList.length) {
-        var cr = pc.cpo || {};
-        inner += '<div class="stock-group cpo">CPO (seminuevo certificado) — ' + cpoList.length +
-          ' <em>' + (cr.min != null ? fmtMoney(cr.min) + '–' + fmtMoney(cr.max) + ' · ' : '') + 'normalmente se financian</em></div>' +
-          '<ol class="stock-items">' + cpoList.map(stockItemRow).join('') + '</ol>';
-      }
-      if (usedList.length) {
-        var ur = pc.usado || {};
-        inner += '<div class="stock-group usado">Usados — ' + usedList.length +
-          ' <em>' + (ur.min != null ? fmtMoney(ur.min) + '–' + fmtMoney(ur.max) + ' · ' : '') + 'solo compra / financiación</em></div>' +
-          '<ol class="stock-items">' + usedList.map(stockItemRow).join('') + '</ol>';
-      }
-      html += '<details class="stock-list secondhand"><summary>♻️ Segunda mano: ' + sm.join(' · ') + '</summary>' +
-        inner + '</details>';
-    }
+    // Apartado segunda mano: se consulta al abrirlo (cond=used).
+    html += '<details class="stock-list secondhand"><summary>♻️ Segunda mano (CPO / usados)</summary>' +
+      '<div class="secondhand-body"></div></details>';
 
     box.innerHTML = html;
     bindStockRefresh(box, info, trim);
     box.querySelectorAll('details.stock-list').forEach(function (det) {
       det.addEventListener('click', function (ev) { ev.stopPropagation(); });
     });
+    var sh = box.querySelector('details.secondhand');
+    if (sh) sh.addEventListener('toggle', function () {
+      if (sh.open) loadSecondhand(info, trim, sh.querySelector('.secondhand-body'));
+    });
+  }
+
+  /** Carga y pinta CPO + usados (cond=used) dentro del apartado segunda mano. */
+  function loadSecondhand(info, trim, body) {
+    if (body.dataset.loaded) return;
+    var c = stockCacheGet(info, trim, 'used');
+    if (c) { renderSecondhand(c.data, body); body.dataset.loaded = '1'; return; }
+    body.innerHTML = '<small class="hint">Buscando segunda mano…</small>';
+    fetchInventory(info, trim, 'used')
+      .then(function (d) { renderSecondhand(d, body); body.dataset.loaded = '1'; })
+      .catch(function () { body.innerHTML = '<small class="hint">No se pudo consultar ahora.</small>'; });
+  }
+
+  function renderSecondhand(d, body) {
+    var list = d.listings || [];
+    var pc = d.priceByCondition || {};
+    var cpoList = list.filter(function (c) { return c.condition === 'CPO'; });
+    var usedList = list.filter(function (c) { return c.condition === 'Usado'; });
+    if (!cpoList.length && !usedList.length) {
+      body.innerHTML = '<small class="hint">Sin CPO ni usados 2025+ cerca.</small>';
+      return;
+    }
+    var inner = '';
+    if (cpoList.length) {
+      var cr = pc.cpo || {};
+      inner += '<div class="stock-group cpo">CPO (seminuevo certificado) — ' + cpoList.length +
+        ' <em>' + (cr.min != null ? fmtMoney(cr.min) + '–' + fmtMoney(cr.max) + ' · ' : '') + 'normalmente se financian</em></div>' +
+        '<ol class="stock-items">' + cpoList.map(stockItemRow).join('') + '</ol>';
+    }
+    if (usedList.length) {
+      var ur = pc.usado || {};
+      inner += '<div class="stock-group usado">Usados — ' + usedList.length +
+        ' <em>' + (ur.min != null ? fmtMoney(ur.min) + '–' + fmtMoney(ur.max) + ' · ' : '') + 'solo compra / financiación</em></div>' +
+        '<ol class="stock-items">' + usedList.map(stockItemRow).join('') + '</ol>';
+    }
+    body.innerHTML = inner;
   }
 
   function bindStockRefresh(box, info, trim) {
@@ -1061,8 +1081,9 @@
       td.appendChild(div);
     });
 
-    // Datos de stock cacheados por modelo (todos los trims)
-    var caches = infos.map(function (m) { return stockCacheGet(m, ''); });
+    // Datos de stock cacheados por modelo: nuevos (foco) y segunda mano.
+    var caches = infos.map(function (m) { return stockCacheGet(m, '', 'new'); });
+    var usedCaches = infos.map(function (m) { return stockCacheGet(m, '', 'used'); });
 
     function bestIndexBy(vals, lowerIsBetter) {
       var idx = null, bestV = null;
@@ -1123,13 +1144,21 @@
         (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">buscar VIN ↗</a>' : '') + '</span>';
     }, bestIndexBy(newPrices, true));
 
-    // ---- Segunda mano (CPO), solo si el interruptor está activo ----
+    // ---- Segunda mano (CPO/usados), solo con el interruptor activo ----
     if (state.showUsed) {
-      var cpoPrices = caches.map(function (c) {
+      var needFetch = infos.some(function (m, i) { return !usedCaches[i]; });
+      if (needFetch) {
+        addRow('♻️ Segunda mano', function (m, td, i) {
+          td.innerHTML = usedCaches[i]
+            ? '<span class="sub">ok</span>'
+            : '<span class="sub">pulsa “Actualizar stock”</span>';
+        });
+      }
+      var cpoPrices = usedCaches.map(function (c) {
         return c && c.data && c.data.cheapestCpo ? c.data.cheapestCpo.price : null;
       });
       addRow('♻️ CPO más barato', function (m, td, i) {
-        var c = caches[i];
+        var c = usedCaches[i];
         var ch = c && c.data && c.data.cheapestCpo;
         if (!ch) { td.innerHTML = '<span class="sub">sin CPO</span>'; return; }
         td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
@@ -1137,11 +1166,11 @@
           (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">buscar VIN ↗</a>' : '') + '</span>';
       }, bestIndexBy(cpoPrices, true));
 
-      var usedPrices = caches.map(function (c) {
+      var usedPrices = usedCaches.map(function (c) {
         return c && c.data && c.data.cheapestUsed ? c.data.cheapestUsed.price : null;
       });
       addRow('♻️ Usado más barato', function (m, td, i) {
-        var c = caches[i];
+        var c = usedCaches[i];
         var ch = c && c.data && c.data.cheapestUsed;
         if (!ch) { td.innerHTML = '<span class="sub">sin usados</span>'; return; }
         td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
@@ -1179,10 +1208,14 @@
   function compareLoadStock() {
     var btn = $('compare-load');
     var infos = compareInfos();
-    // Solo consulta los que no tienen caché fresca
-    var pending = infos.filter(function (m) {
-      var c = stockCacheGet(m, '');
-      return !c || (Date.now() - c.t) > STOCK_FRESH_MS;
+    // Tareas: nuevos siempre; segunda mano solo si el interruptor está activo.
+    var conds = state.showUsed ? ['new', 'used'] : ['new'];
+    var pending = [];
+    infos.forEach(function (m) {
+      conds.forEach(function (cond) {
+        var c = stockCacheGet(m, '', cond);
+        if (!c || (Date.now() - c.t) > STOCK_FRESH_MS) pending.push({ m: m, cond: cond });
+      });
     });
     if (!pending.length) { renderCompare(); return; }
     btn.disabled = true;
@@ -1195,9 +1228,9 @@
         renderWatchlist();
         return;
       }
-      var m = pending[done];
-      btn.textContent = '📦 ' + (done + 1) + '/' + pending.length + ' — ' + m.model + '…';
-      fetchInventory(m, '')
+      var task = pending[done];
+      btn.textContent = '📦 ' + (done + 1) + '/' + pending.length + ' — ' + task.m.model + '…';
+      fetchInventory(task.m, '', task.cond)
         .catch(function () { /* seguir con el resto */ })
         .then(function () {
           done++;
@@ -1338,11 +1371,10 @@
     $('decide-new').value = info.msrp;
     $('decide-cpo').value = Math.round(info.msrp * 0.74 / 50) * 50;
     // Si hay stock real cacheado, usa los precios reales más baratos.
-    var c = stockCacheGet(info, '');
-    if (c && c.data) {
-      if (c.data.cheapestNew) $('decide-new').value = c.data.cheapestNew.price;
-      if (c.data.cheapestCpo) $('decide-cpo').value = c.data.cheapestCpo.price;
-    }
+    var cNew = stockCacheGet(info, '', 'new');
+    if (cNew && cNew.data && cNew.data.cheapestNew) $('decide-new').value = cNew.data.cheapestNew.price;
+    var cUsed = stockCacheGet(info, '', 'used');
+    if (cUsed && cUsed.data && cUsed.data.cheapestCpo) $('decide-cpo').value = cUsed.data.cheapestCpo.price;
     // Lease: la mejor oferta real encontrada, o estimación (~1.2% del MSRP)
     var matches = offersForModel(info.model).filter(function (e) {
       return e.metrics && isNum(e.metrics.effectiveMonthly);
