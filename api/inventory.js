@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
     '&vehicle.year=' + encodeURIComponent(yearList.join(',')) +
     '&zip=' + encodeURIComponent(zip) +
     '&distance=' + encodeURIComponent(radius) +
-    '&limit=50&includes=total&domains=true'; // domains=true revela el enlace real del dealer
+    '&limit=50&includes=total';
   var MAX_PAGES = 3; // hasta ~60 unidades por consulta (cuida la cuota)
 
   function num(v) {
@@ -78,9 +78,14 @@ module.exports = async function handler(req, res) {
       city: rl.city || '',
       state: rl.state || '',
       vin: vin,
-      // Ficha del vehículo por VIN en Autotrader (aterriza en el anuncio real);
-      // carfax como respaldo cuando existe.
-      url: vin ? 'https://www.autotrader.com/cars-for-sale/vin/' + encodeURIComponent(vin) : '',
+      // Auto.dev (plan gratuito) NO expone la URL del anuncio del dealer (el
+      // campo vdp es un fragmento interno). El enlace que SÍ aterriza en este
+      // coche exacto es una búsqueda del VIN + concesionario; el Carfax por VIN
+      // es el otro enlace real y directo que trae la API.
+      url: vin
+        ? 'https://www.google.com/search?q=' +
+          encodeURIComponent('"' + vin + '" ' + (typeof rl.dealer === 'string' ? rl.dealer : (v.make || make) + ' ' + (v.model || model)))
+        : '',
       carfax: rl.carfaxUrl || ''
     };
   }
@@ -119,16 +124,7 @@ module.exports = async function handler(req, res) {
     var records = extract(data);
 
     if (q.debug) {
-      var sample = records[0] || {};
-      return res.status(200).json({
-        ok: true, topKeys: Object.keys(data), total: total, page1: records.length,
-        links: data.links || null,
-        sampleKeys: Object.keys(sample),
-        retailListingKeys: Object.keys(sample.retailListing || {}),
-        actions: data.actions || null,
-        discover: data.discover || null,
-        sample: sample
-      });
+      return res.status(200).json({ ok: true, topKeys: Object.keys(data), total: total, page1: records.length });
     }
 
     // Trae páginas extra hasta MAX_PAGES o hasta cubrir el total.
