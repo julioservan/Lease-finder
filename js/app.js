@@ -409,17 +409,18 @@
 
   // Palabras que delatan una foto que NO queremos (interiores, detalles…)
   var PHOTO_BAD = /interior|engine|dashboard|badge|logo|wheel|\brear\b|taillight|headlight|seat|trunk|cargo|boot|gauge|console|infotainment|grille|emblem|patent|concept/i;
+  // Servicio de imágenes de coches (renders de estudio limpios por marca/modelo/año)
+  var IMAGIN_KEY = 'hrjavascript-mastery';
 
   /**
-   * Foto del modelo. Estrategia: buscar en Wikimedia Commons una imagen del
-   * AÑO ACTUAL (ej. "2025 Ford Bronco Sport") en vez de la imagen genérica
-   * del artículo, que suele ser de la generación vieja. Si la búsqueda falla,
-   * cae al resumen de Wikipedia. Corre en el navegador del usuario (donde
-   * Wikimedia sí es alcanzable). Cachea solo lo que carga.
+   * Foto del modelo. Cadena: 1) imagin.studio (render de estudio limpio del
+   * modelo/año exactos — la misma fuente que usan los concesionarios);
+   * 2) foto real del año actual en Wikimedia Commons; 3) imagen del artículo
+   * de Wikipedia; 4) placeholder. Corre en el navegador del usuario (donde
+   * estas fuentes son alcanzables). Cachea solo lo que carga.
    */
   function loadPhoto(info, img) {
-    var query = info.photoQuery || (info.make + ' ' + info.model);
-    var cacheKey = 'lf-photo4-' + query;
+    var cacheKey = 'lf-photo5-' + info.make + '-' + info.model;
     var cached = null;
     try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
     img.addEventListener('load', function () {
@@ -429,10 +430,10 @@
 
     function setPhoto(url) { if (url) img.src = url; }
 
-    // Fallback: imagen del artículo (generación previa, pero mejor que nada)
+    // Paso 3: imagen del artículo de Wikipedia (última red)
     function fallbackSummary() {
       fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' +
-        encodeURIComponent((info.wiki || query).replace(/ /g, '_')))
+        encodeURIComponent((info.wiki || (info.make + ' ' + info.model)).replace(/ /g, '_')))
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (d) {
           var thumb = d && d.thumbnail && d.thumbnail.source;
@@ -441,29 +442,51 @@
         .catch(function () { /* placeholder */ });
     }
 
-    // Búsqueda de foto actual en Commons (CORS con origin=*)
-    var api = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*' +
-      '&generator=search&gsrnamespace=6&gsrlimit=20&gsrsearch=' + encodeURIComponent(query) +
-      '&prop=imageinfo&iiprop=url&iiurlwidth=640';
-    fetch(api)
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (d) {
-        var pages = d && d.query && d.query.pages ? Object.keys(d.query.pages).map(function (k) { return d.query.pages[k]; }) : [];
-        var model = normalizeModel(info.model);
-        var best = null;
-        pages.forEach(function (p) {
-          var t = p.title || '';
-          if (!/\.(jpe?g)$/i.test(t)) return;
-          if (PHOTO_BAD.test(t)) return;
-          var ii = p.imageinfo && p.imageinfo[0];
-          if (!ii || !ii.thumburl) return;
-          var rel = normalizeModel(t).indexOf(model) >= 0 ? 0 : 1; // prioriza que el nombre del modelo aparezca
-          var order = (p.index || 99) + rel * 100;
-          if (!best || order < best.order) best = { url: ii.thumburl, order: order };
-        });
-        if (best) setPhoto(best.url); else fallbackSummary();
-      })
-      .catch(fallbackSummary);
+    // Paso 2: foto real del año actual en Commons (CORS con origin=*)
+    function tryCommons() {
+      var query = info.photoQuery || (info.make + ' ' + info.model);
+      var api = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*' +
+        '&generator=search&gsrnamespace=6&gsrlimit=20&gsrsearch=' + encodeURIComponent(query) +
+        '&prop=imageinfo&iiprop=url&iiurlwidth=640';
+      fetch(api)
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          var pages = d && d.query && d.query.pages ? Object.keys(d.query.pages).map(function (k) { return d.query.pages[k]; }) : [];
+          var model = normalizeModel(info.model);
+          var best = null;
+          pages.forEach(function (p) {
+            var t = p.title || '';
+            if (!/\.(jpe?g)$/i.test(t)) return;
+            if (PHOTO_BAD.test(t)) return;
+            var ii = p.imageinfo && p.imageinfo[0];
+            if (!ii || !ii.thumburl) return;
+            var rel = normalizeModel(t).indexOf(model) >= 0 ? 0 : 1;
+            var order = (p.index || 99) + rel * 100;
+            if (!best || order < best.order) best = { url: ii.thumburl, order: order };
+          });
+          if (best) setPhoto(best.url); else fallbackSummary();
+        })
+        .catch(fallbackSummary);
+    }
+
+    // Paso 1: imagin.studio (render limpio del modelo/año exactos)
+    if (info.img) {
+      var imagin = 'https://cdn.imagin.studio/getimage?customer=' + IMAGIN_KEY +
+        '&make=' + encodeURIComponent(info.img.make) +
+        '&modelFamily=' + encodeURIComponent(info.img.family) +
+        (info.img.year ? '&modelYear=' + info.img.year : '') +
+        '&angle=23&width=640&fileType=png';
+      // Si imagin falla o devuelve un placeholder vacío, pasamos a Commons.
+      var probe = new Image();
+      probe.onload = function () {
+        // imagin devuelve ~40px cuando no tiene el modelo; exigimos algo real
+        if (probe.naturalWidth >= 320) setPhoto(imagin); else tryCommons();
+      };
+      probe.onerror = tryCommons;
+      probe.src = imagin;
+    } else {
+      tryCommons();
+    }
   }
 
   function persistWatchlist() {
