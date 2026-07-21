@@ -222,6 +222,9 @@ textarea { resize: vertical; }
 }
 .model-specs { display: flex; flex-direction: column; gap: 0.1rem; font-size: 0.8rem; color: var(--muted); }
 .model-specs em { color: var(--text); font-style: normal; opacity: 0.85; margin-top: 0.15rem; }
+.stock-box { padding: 0 0.9rem; font-size: 0.82rem; }
+.stock-summary { color: var(--good); margin-bottom: 0.15rem; }
+.stock-box a { color: var(--accent-2); }
 .watch-links { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; }
 .value-chip {
   display: inline-block;

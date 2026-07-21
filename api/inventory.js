@@ -1,0 +1,104 @@
+/**
+ * Función serverless (Vercel): consulta inventario REAL de concesionarios
+ * cerca de Downtown Brooklyn usando la API de Auto.dev, sin exponer la clave
+ * en la página.
+ *
+ * Configuración (una vez, en Vercel → proyecto lease-finder → Settings →
+ * Environment Variables):
+ *   AUTO_DEV_KEY   clave de https://www.auto.dev (1.000 llamadas/mes gratis)
+ *
+ * Uso desde la app:  GET /api/inventory?make=Honda&model=CR-V&zip=11201&radius=25
+ * Devuelve un resumen normalizado: nº en stock, rango de precio, el más
+ * barato (con concesionario y enlace) y una muestra de listados.
+ */
+'use strict';
+
+module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://julioservan.github.io');
+  if (req.method === 'OPTIONS') return res.status(204).end();
+
+  var q = req.query || {};
+  var make = (q.make || '').toString().trim();
+  var model = (q.model || '').toString().trim();
+  var zip = (q.zip || '11201').toString().trim();
+  var radius = (q.radius || '25').toString().trim();
+  if (!make || !model) {
+    return res.status(400).json({ ok: false, message: 'Faltan make y model.' });
+  }
+
+  var key = process.env.AUTO_DEV_KEY;
+  if (!key) {
+    return res.status(501).json({
+      ok: false, needsKey: true,
+      message: 'Falta AUTO_DEV_KEY en Vercel. Consíguela gratis en auto.dev (1.000 consultas/mes).'
+    });
+  }
+
+  // Auto.dev usa parámetros con notación de punto (vehicle.make, vehicle.model)
+  var url = 'https://api.auto.dev/listings' +
+    '?vehicle.make=' + encodeURIComponent(make) +
+    '&vehicle.model=' + encodeURIComponent(model) +
+    '&zip=' + encodeURIComponent(zip) +
+    '&distance=' + encodeURIComponent(radius) +
+    '&limit=50';
+
+  function num(v) {
+    if (v == null) return null;
+    var n = parseFloat(String(v).replace(/[^0-9.]/g, ''));
+    return isFinite(n) ? n : null;
+  }
+
+  // Extrae campos de forma tolerante (la API puede anidar de varias formas).
+  function normalize(listing) {
+    var rl = listing.retailListing || listing.listing || listing;
+    var v = listing.vehicle || listing;
+    var price = num(rl.price != null ? rl.price : (listing.price != null ? listing.price : listing.priceUnformatted));
+    var miles = num(rl.miles != null ? rl.miles : (listing.mileage != null ? listing.mileage : listing.miles));
+    var dealer = (rl.dealer && (rl.dealer.name || rl.dealer)) || listing.dealerName ||
+      (listing.dealer && (listing.dealer.name || listing.dealer)) || rl.sellerName || '';
+    var city = (rl.dealer && rl.dealer.city) || listing.city || (listing.dealer && listing.dealer.city) || '';
+    var year = v.year || listing.year || '';
+    var trim = v.trim || listing.trim || '';
+    var link = rl.vdp || listing.clickoffUrl || listing.url || rl.url || listing.vdpUrl || '';
+    return {
+      title: [year, make, model, trim].filter(Boolean).join(' '),
+      price: price, miles: miles,
+      dealer: typeof dealer === 'string' ? dealer : '',
+      city: typeof city === 'string' ? city : '',
+      condition: listing.condition || rl.condition || '',
+      url: typeof link === 'string' ? link : ''
+    };
+  }
+
+  try {
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 12000);
+    var r = await fetch(url, {
+      headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' },
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+    if (!r.ok) {
+      var t = await r.text();
+      return res.status(502).json({ ok: false, message: 'Auto.dev respondió ' + r.status + ': ' + t.slice(0, 160) });
+    }
+    var data = await r.json();
+    var records = data.records || data.listings || data.results || (Array.isArray(data) ? data : []);
+    var items = records.map(normalize).filter(function (x) { return x.price != null; });
+    items.sort(function (a, b) { return a.price - b.price; });
+
+    var prices = items.map(function (x) { return x.price; });
+    res.setHeader('Cache-Control', 's-maxage=3600'); // cachea 1h en el edge (cuida la cuota)
+    return res.status(200).json({
+      ok: true,
+      count: data.totalCount || data.total || items.length,
+      shown: items.length,
+      minPrice: prices.length ? Math.min.apply(null, prices) : null,
+      maxPrice: prices.length ? Math.max.apply(null, prices) : null,
+      cheapest: items[0] || null,
+      listings: items.slice(0, 8)
+    });
+  } catch (err) {
+    return res.status(500).json({ ok: false, message: 'Error: ' + (err.name === 'AbortError' ? 'timeout' : err.message) });
+  }
+};
