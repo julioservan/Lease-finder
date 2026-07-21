@@ -8,6 +8,13 @@ Es 100 % HTML + CSS + JavaScript sin dependencias: basta con abrir
 servidor estático). Las ofertas se guardan en `localStorage`, así que tus
 datos nunca salen de tu navegador.
 
+La interfaz se organiza en pestañas: **Modelos** (tus SUVs con foto, stock
+real cerca y estado del lease), **Comparar** (modelos de cualquier marca lado
+a lado: stock, precio más barato, mejor lease), **Ofertas** (lo que encontró
+el robot + tus guardadas + escáner de anuncios), **Calculadora** y
+**¿Lease o compra?**. Las búsquedas de stock se guardan en `localStorage`
+y sobreviven a la recarga de la página; el botón ↻ las actualiza.
+
 ## Funciones
 
 - **Calculadora de lease en vivo** con el modelo estándar de lease cerrado:

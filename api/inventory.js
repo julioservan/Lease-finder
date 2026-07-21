@@ -75,8 +75,10 @@ module.exports = async function handler(req, res) {
       city: rl.city || '',
       state: rl.state || '',
       vin: vin,
-      // vdp de Auto.dev es un fragmento, no una URL usable → buscamos el VIN
-      url: vin ? 'https://www.google.com/search?q=' + encodeURIComponent(vin + ' for sale') : ''
+      // Ficha del vehículo por VIN en Autotrader (aterriza en el anuncio real);
+      // carfax como respaldo cuando existe.
+      url: vin ? 'https://www.autotrader.com/cars-for-sale/vin/' + encodeURIComponent(vin) : '',
+      carfax: rl.carfaxUrl || ''
     };
   }
 

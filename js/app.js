@@ -1,10 +1,15 @@
-/* Lease Finder — UI: cálculo en vivo, guardado de ofertas y comparador. */
+/* Lease Finder — UI: pestañas, modelos, comparador entre marcas, ofertas y calculadora. */
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'lease-finder-offers';
   var CURRENCY_KEY = 'lease-finder-currency';
   var WATCH_KEY = 'lease-finder-watchlist-v4';
+  var COMPARE_KEY = 'lf-compare-v1';
+  var TAB_KEY = 'lf-tab';
+  var STOCK_PREFIX = 'lf-stock2-';
+  var STOCK_FRESH_MS = 6 * 3600 * 1000; // frescura para re-consultar (cuida la cuota)
+  var VIEWS = ['models', 'compare', 'offers', 'calc', 'decide'];
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
@@ -23,7 +28,8 @@
     scanResults: [],
     filterMake: '',
     filterModel: '',
-    watchlist: []
+    watchlist: [],
+    compare: []
   };
 
   /** Normaliza para comparar modelos: minúsculas, sin espacios ni guiones. */
@@ -84,7 +90,9 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.offers));
   }
 
-  function currency() { return $('currency').value || '$'; }
+  function currency() {
+    try { return localStorage.getItem(CURRENCY_KEY) || '$'; } catch (e) { return '$'; }
+  }
 
   function fmtMoney(v) {
     if (v == null || !isFinite(v)) return '—';
@@ -94,6 +102,14 @@
   function fmtMoney2(v) {
     if (v == null || !isFinite(v)) return '—';
     return currency() + ' ' + v.toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function fmtAge(t) {
+    var mins = Math.max(0, Math.round((Date.now() - t) / 60000));
+    if (mins < 60) return 'hace ' + mins + ' min';
+    var h = Math.round(mins / 60);
+    if (h < 48) return 'hace ' + h + ' h';
+    return 'hace ' + Math.round(h / 24) + ' días';
   }
 
   function readForm() {
@@ -115,6 +131,20 @@
     // El select de modelos depende de la marca: repoblarlo y reaplicar el valor.
     populateModels($('model'), $('make').value, '— Modelo —');
     if (input.model != null) $('model').value = input.model;
+  }
+
+  /* ---------------- pestañas ---------------- */
+
+  function showView(name) {
+    if (VIEWS.indexOf(name) < 0) name = 'models';
+    VIEWS.forEach(function (v) {
+      $('view-' + v).classList.toggle('active', v === name);
+    });
+    document.querySelectorAll('.tab').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.view === name);
+    });
+    try { localStorage.setItem(TAB_KEY, name); } catch (e) { /* sin persistencia */ }
+    if (name === 'compare') renderCompare();
   }
 
   /* ---------------- cálculo en vivo ---------------- */
@@ -207,6 +237,7 @@
     if (offer.kind === 'scanned') {
       // Las ofertas escaneadas se reabren en el escáner con su texto original.
       $('scan-input').value = offer.raw || (offer.parsed && offer.parsed.raw) || '';
+      $('scanner-card').open = true;
       runScan();
       $('scanner-card').scrollIntoView({ behavior: 'smooth' });
       return;
@@ -215,6 +246,7 @@
     state.editingId = id;
     $('save-btn').textContent = '💾 Actualizar oferta';
     recalc();
+    showView('calc');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -372,7 +404,7 @@
 
       var td = document.createElement('td');
       var btn = document.createElement('button');
-      btn.className = 'btn';
+      btn.className = 'btn mini';
       btn.textContent = '💾 Guardar';
       btn.addEventListener('click', function () {
         saveScanned(r.parsed);
@@ -385,9 +417,9 @@
     });
   }
 
-  /* ---------------- ofertas encontradas online ---------------- */
+  /* ---------------- datos online (robot + research) ---------------- */
 
-  var onlineData = { latest: null, status: null };
+  var onlineData = { latest: null, status: null, history: [], intel: null };
 
   /* ---------------- seguimiento de modelos ---------------- */
 
@@ -398,6 +430,10 @@
     } catch (e) { /* usar defaults */ }
     // Por defecto: el ranking curado completo
     return RankedModels.map(function (m) { return { make: m.make, model: m.model }; });
+  }
+
+  function persistWatchlist() {
+    localStorage.setItem(WATCH_KEY, JSON.stringify(state.watchlist));
   }
 
   function findRanked(make, model) {
@@ -414,10 +450,8 @@
   var IMAGIN_KEY = 'hrjavascript-mastery';
 
   /**
-   * Foto del modelo. Sin clave de imagin: fotos REALES sin marca de agua —
-   * 1) foto del año actual en Wikimedia Commons; 2) imagen del artículo de
-   * Wikipedia; 3) placeholder. Con clave de imagin: render de estudio limpio
-   * primero. Corre en el navegador del usuario. Cachea solo lo que carga.
+   * Foto del modelo: render de imagin si hay clave; si no, foto real de
+   * Wikimedia Commons o la imagen del artículo de Wikipedia. Cachea la URL.
    */
   function loadPhoto(info, img) {
     var cacheKey = 'lf-photo7-' + info.make + '-' + info.model;
@@ -469,7 +503,7 @@
         .catch(fallbackSummary);
     }
 
-    // Con clave propia de imagin: render limpio sin marca de agua, primero.
+    // Con clave propia de imagin: render limpio, primero.
     if (IMAGIN_KEY && info.img) {
       var imagin = 'https://cdn.imagin.studio/getimage?customer=' + IMAGIN_KEY +
         '&make=' + encodeURIComponent(info.img.make) +
@@ -487,43 +521,75 @@
     }
   }
 
-  /** Inventario real cerca de Brooklyn vía /api/inventory (Auto.dev). */
-  function loadStock(info, box, btn) {
-    var cacheKey = 'lf-stock2-' + info.make + '-' + info.model;
-    var cached = null;
-    try {
-      var raw = localStorage.getItem(cacheKey);
-      if (raw) { var o = JSON.parse(raw); if (Date.now() - o.t < 6 * 3600 * 1000) cached = o.data; }
-    } catch (e) { /* sin caché */ }
-    if (cached) { renderStock(cached, info, box); return; }
+  /* ---------------- inventario real (Auto.dev vía Vercel) ---------------- */
 
-    btn.disabled = true;
-    btn.textContent = '📦 Buscando stock…';
-    fetch('api/inventory?make=' + encodeURIComponent(info.make) + '&model=' + encodeURIComponent(info.model) + '&zip=11201&radius=25&minYear=2025')
+  function stockCacheGet(info) {
+    try {
+      var raw = localStorage.getItem(STOCK_PREFIX + info.make + '-' + info.model);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      return o && o.data ? o : null;
+    } catch (e) { return null; }
+  }
+
+  function stockCachePut(info, data) {
+    try {
+      localStorage.setItem(STOCK_PREFIX + info.make + '-' + info.model,
+        JSON.stringify({ t: Date.now(), data: data }));
+    } catch (e) { /* lleno */ }
+  }
+
+  /** Consulta el inventario y lo guarda en caché. Devuelve una promesa con los datos. */
+  function fetchInventory(info) {
+    return fetch('api/inventory?make=' + encodeURIComponent(info.make) +
+      '&model=' + encodeURIComponent(info.model) + '&zip=11201&radius=25&minYear=2025')
       .then(function (r) { return r.json().then(function (d) { return { status: r.status, data: d }; }); })
       .then(function (res) {
         if (res.status === 200 && res.data.ok) {
-          try { localStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), data: res.data })); } catch (e) {}
-          renderStock(res.data, info, box);
-        } else if (res.data && res.data.needsKey) {
-          box.innerHTML = '<small class="hint">📦 Para ver stock real en vivo, activa la clave gratuita de Auto.dev ' +
-            '(mira el README). Mientras tanto: ' +
-            '<a href="' + info.linkNew + '" target="_blank" rel="noopener">inventario en cars.com ↗</a></small>';
-        } else {
-          box.innerHTML = '<small class="hint">No se pudo consultar el stock ahora. ' +
-            '<a href="' + info.linkNew + '" target="_blank" rel="noopener">Ver en cars.com ↗</a></small>';
+          stockCachePut(info, res.data);
+          return res.data;
         }
-      })
-      .catch(function () {
-        box.innerHTML = '<small class="hint">Función de stock no disponible aquí (usa Vercel). ' +
+        var err = new Error((res.data && res.data.message) || 'error');
+        err.needsKey = !!(res.data && res.data.needsKey);
+        throw err;
+      });
+  }
+
+  /** Pinta la caja de stock de una tarjeta: caché persistente + botón actualizar. */
+  function renderStockBox(info, box) {
+    var c = stockCacheGet(info);
+    if (c) { renderStock(c.data, info, box, c.t); return; }
+    box.innerHTML = '';
+    var btn = document.createElement('button');
+    btn.className = 'btn mini';
+    btn.textContent = '📦 Ver stock cerca';
+    btn.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      fetchStockInto(info, box);
+    });
+    box.appendChild(btn);
+  }
+
+  function fetchStockInto(info, box) {
+    box.innerHTML = '<small class="hint">📦 Buscando stock…</small>';
+    fetchInventory(info)
+      .then(function (d) { renderStock(d, info, box, Date.now()); })
+      .catch(function (err) {
+        box.innerHTML = '<small class="hint">' +
+          (err.needsKey
+            ? '📦 Falta la clave de Auto.dev en Vercel (mira el README). '
+            : 'No se pudo consultar el stock ahora. ') +
           '<a href="' + info.linkNew + '" target="_blank" rel="noopener">Ver en cars.com ↗</a></small>';
       });
   }
 
-  function renderStock(d, info, box) {
+  function renderStock(d, info, box, when) {
+    var refreshBtn = '<button type="button" class="btn mini subtle stock-refresh" title="Actualizar">↻</button>';
     if (!d.shown) {
-      box.innerHTML = '<small class="hint">📦 Sin unidades en ~25 mi ahora mismo. ' +
-        '<a href="' + info.linkNew + '" target="_blank" rel="noopener">Ampliar en cars.com ↗</a></small>';
+      box.innerHTML = '<div class="stock-summary">📦 Sin unidades 2025+ en ~25 mi' +
+        '<span class="stock-age">' + (when ? fmtAge(when) : '') + ' ' + refreshBtn + '</span></div>' +
+        '<small class="hint"><a href="' + info.linkNew + '" target="_blank" rel="noopener">Ampliar en cars.com ↗</a></small>';
+      bindStockRefresh(box, info);
       return;
     }
     var bc = d.byCondition || {};
@@ -532,13 +598,12 @@
     if (bc.cpo) parts.push(bc.cpo + ' CPO');
     if (bc.usado) parts.push(bc.usado + ' usados');
     var total = d.total || d.shown;
-    var more = total > d.shown ? ' (mostrando ' + d.shown + ')' : '';
-    var yr = d.minYear ? ' · solo ' + d.minYear + '+' : '';
-    var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca (~25 mi)' + more + yr +
-      (parts.length ? ' · ' + parts.join(' · ') : '') + '</div>' +
-      '<small class="hint">Precios de ' + fmtMoney(d.minPrice) + ' a ' + fmtMoney(d.maxPrice) + '</small>';
+    var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca' +
+      (parts.length ? ' · ' + parts.join(' · ') : '') +
+      '<span class="stock-age">' + (when ? fmtAge(when) : '') + ' ' + refreshBtn + '</span></div>' +
+      '<div class="stock-range">' + fmtMoney(d.minPrice) + ' – ' + fmtMoney(d.maxPrice) +
+      ' · 2025+ · ~25 mi</div>';
 
-    // Lista completa desplegable
     var list = d.listings || [];
     if (list.length) {
       var badge = { 'Nuevo': '🆕', 'CPO': '🔵', 'Usado': '🚗' };
@@ -547,20 +612,28 @@
           escapeHtml(c.title) +
           (c.miles ? ' · ' + c.miles.toLocaleString('es') + ' mi' : '') +
           (c.dealer ? ' · ' + escapeHtml(c.dealer) + (c.city ? ' (' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') + ')' : '') : '') +
-          (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">buscar ↗</a>' : '') +
+          (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">ver anuncio ↗</a>' : '') +
+          (c.carfax ? ' <a href="' + c.carfax + '" target="_blank" rel="noopener">Carfax ↗</a>' : '') +
           '</li>';
       }).join('');
       html += '<details class="stock-list"><summary>Ver las ' + list.length + ' unidades</summary>' +
         '<ol class="stock-items">' + rows + '</ol></details>';
     }
     box.innerHTML = html;
+    bindStockRefresh(box, info);
     var det = box.querySelector('details.stock-list');
     if (det) det.addEventListener('click', function (ev) { ev.stopPropagation(); });
   }
 
-  function persistWatchlist() {
-    localStorage.setItem(WATCH_KEY, JSON.stringify(state.watchlist));
+  function bindStockRefresh(box, info) {
+    var b = box.querySelector('.stock-refresh');
+    if (b) b.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      fetchStockInto(info, box);
+    });
   }
+
+  /* ---------------- tarjetas de modelos ---------------- */
 
   function offersForModel(model) {
     var offers = (onlineData.latest && onlineData.latest.offers) || [];
@@ -583,6 +656,11 @@
     }
     if (!prev) return { dir: 0, since: pts[0].t };
     return { dir: last.best < prev.best ? -1 : 1, prev: prev.best, last: last.best };
+  }
+
+  function intelFor(make, model) {
+    return (onlineData.intel && onlineData.intel.models &&
+      onlineData.intel.models[make + ' ' + model]) || null;
   }
 
   function renderWatchlist() {
@@ -622,9 +700,9 @@
       var best = withPrice[0];
 
       var card = document.createElement('div');
-      card.className = 'watch-item ' + (matches.length ? 'found' : 'empty');
+      card.className = 'watch-item';
 
-      // Foto con placeholder y nota
+      // Foto
       var photo = document.createElement('div');
       photo.className = 'model-photo';
       var ph = document.createElement('span');
@@ -640,22 +718,27 @@
       }
       card.appendChild(photo);
 
+      var body = document.createElement('div');
+      body.className = 'watch-body';
+      card.appendChild(body);
+
+      // Título + prioridad + quitar
       var head = document.createElement('div');
       head.className = 'watch-head';
-      var title = document.createElement('strong');
-      title.textContent = w.make + ' ' + w.model;
+      var title = document.createElement('div');
+      title.className = 'watch-title';
+      title.innerHTML = '<span class="make">' + escapeHtml(w.make) + '</span> ' + escapeHtml(w.model);
       if (info && info.priority) {
         var prio = document.createElement('span');
         prio.className = 'prio-chip';
-        prio.textContent = '❤️ Prioridad';
+        prio.textContent = '❤ Prioridad';
         title.appendChild(prio);
       }
       var del = document.createElement('button');
       del.className = 'btn danger';
       del.textContent = '✕';
       del.title = 'Dejar de seguir';
-      del.addEventListener('click', function (ev) {
-        ev.stopPropagation();
+      del.addEventListener('click', function () {
         state.watchlist = state.watchlist.filter(function (x) {
           return !(x.make === w.make && x.model === w.model);
         });
@@ -664,188 +747,367 @@
       });
       head.appendChild(title);
       head.appendChild(del);
-      card.appendChild(head);
+      body.appendChild(head);
 
+      // Ficha en una línea
       if (info) {
-        var specs = document.createElement('div');
-        specs.className = 'model-specs';
-        specs.innerHTML =
-          '<span>' + escapeHtml(info.engine) + '</span>' +
-          '<span>' + escapeHtml(info.drive) + ' · ' + escapeHtml(info.mpg) + '</span>' +
-          '<span>MSRP ' + fmtMoney(info.price[0]) + ' – ' + fmtMoney(info.price[1]) + '</span>' +
-          '<em>' + escapeHtml(info.blurb) + '</em>';
-        card.appendChild(specs);
+        var sub = document.createElement('div');
+        sub.className = 'model-sub';
+        sub.title = info.blurb;
+        sub.innerHTML = '<strong>' + fmtMoney(info.price[0]) + ' – ' + fmtMoney(info.price[1]) + '</strong> · ' +
+          escapeHtml(info.engine) + ' · ' + escapeHtml(info.mpg);
+        body.appendChild(sub);
       }
 
+      // Estado del lease
       var statusEl = document.createElement('div');
       statusEl.className = 'watch-status';
       if (matches.length) {
         var line = document.createElement('div');
         line.className = 'watch-found';
-        line.textContent = '✅ ' + matches.length + ' oferta(s) de lease encontrada(s)';
+        line.textContent = '✅ ' + matches.length + ' oferta(s) de lease' +
+          (best ? ' · mejor ' + fmtMoney2(best.metrics.effectiveMonthly) + '/mes' : '');
+        line.title = best ? ((best.name || '') + ' — ' + best.source) : '';
+        line.addEventListener('click', function () {
+          var sel = $('online-model');
+          var exists = Array.prototype.some.call(sel.options, function (o) { return o.value === w.model; });
+          sel.value = exists ? w.model : '';
+          if (onlineData.latest) renderOnline(onlineData.latest, onlineData.status);
+          showView('offers');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
         statusEl.appendChild(line);
-        if (best) {
-          var bestLine = document.createElement('div');
-          bestLine.textContent = 'Mejor: ' + fmtMoney2(best.metrics.effectiveMonthly) + '/mes efectivo' +
-            (isNum(best.metrics.score) ? ' · score ' + best.metrics.score.toFixed(1) : '');
-          statusEl.appendChild(bestLine);
-          if (w.model === bestValueModel) {
-            var chip = document.createElement('div');
-            chip.className = 'value-chip';
-            chip.textContent = '🏅 Mejor valor ahora mismo (pago vs precio del auto)';
-            statusEl.appendChild(chip);
-          }
-          var trend = trendForModel(w.make + ' ' + w.model);
-          if (trend) {
-            var tLine = document.createElement('div');
-            tLine.className = 'hint';
-            tLine.textContent = trend.dir === 0
-              ? '➖ Precio estable desde que lo rastreamos'
-              : (trend.dir < 0
-                ? '📉 Bajó: antes ' + fmtMoney2(trend.prev) + '/mes'
-                : '📈 Subió: antes ' + fmtMoney2(trend.prev) + '/mes');
-            statusEl.appendChild(tLine);
-          }
-          var srcLine = document.createElement('small');
-          srcLine.className = 'hint';
-          srcLine.textContent = (best.name || 'sin nombre') + ' — ' + best.source +
-            (best.firstSeen ? ' · vista desde ' + new Date(best.firstSeen).toLocaleDateString('es') : '');
-          statusEl.appendChild(srcLine);
+        if (w.model === bestValueModel) {
+          var chip = document.createElement('div');
+          chip.className = 'value-chip';
+          chip.textContent = '🏅 Mejor valor ahora mismo';
+          statusEl.appendChild(chip);
+        }
+        var trend = trendForModel(w.make + ' ' + w.model);
+        if (trend && trend.dir !== 0) {
+          var tLine = document.createElement('div');
+          tLine.className = 'hint';
+          tLine.textContent = trend.dir < 0
+            ? '📉 Bajó: antes ' + fmtMoney2(trend.prev) + '/mes'
+            : '📈 Subió: antes ' + fmtMoney2(trend.prev) + '/mes';
+          statusEl.appendChild(tLine);
         }
       } else {
-        var empty = document.createElement('div');
-        empty.textContent = hasData
-          ? '🔎 Lease: sin ofertas todavía — el robot sigue buscando'
-          : '⏳ Esperando la primera búsqueda…';
-        statusEl.appendChild(empty);
+        var none = document.createElement('div');
+        none.className = 'watch-none';
+        none.textContent = hasData ? '🔎 Lease: sin ofertas aún' : '⏳ Esperando la primera búsqueda…';
+        statusEl.appendChild(none);
       }
-      card.appendChild(statusEl);
+      card.querySelector('.watch-body').appendChild(statusEl);
 
-      // Research de mercado (ofertas anunciadas + veredicto)
-      var intel = onlineData.intel && onlineData.intel.models &&
-        onlineData.intel.models[w.make + ' ' + w.model];
-      if (intel) {
-        var ib = document.createElement('div');
-        ib.className = 'intel';
-        var ih = document.createElement('div');
-        ih.className = 'intel-head';
-        ih.textContent = '🔬 Research (' + (onlineData.intel.updated || '') + ')';
-        ib.appendChild(ih);
-        var iv = document.createElement('div');
-        iv.className = 'intel-verdict';
-        iv.textContent = intel.verdict;
-        ib.appendChild(iv);
-        if (intel.deals && intel.deals.length) {
-          var d0 = intel.deals[0];
-          var dl = document.createElement('div');
-          dl.className = 'intel-deal';
-          dl.innerHTML = '💵 ' + escapeHtml(d0.title) + ': <strong>' + fmtMoney(d0.monthly) + '/mes</strong>' +
-            (d0.das != null ? ' + ' + fmtMoney(d0.das) + ' inicial' : ' (+ inicial no publicado)') +
-            ' · ' + d0.term + 'm' +
-            (d0.effective != null ? ' ≈ <strong>' + fmtMoney(d0.effective) + ' efectivo</strong>' : '') +
-            ' — <a href="' + d0.url + '" target="_blank" rel="noopener">' + escapeHtml(d0.source) + '</a>';
-          dl.addEventListener('click', function (ev) { ev.stopPropagation(); });
-          ib.appendChild(dl);
-        }
-        if (intel.benchmark) {
-          var bm = document.createElement('small');
-          bm.className = 'hint';
-          bm.textContent = '🎯 ' + intel.benchmark;
-          ib.appendChild(bm);
-        }
-        card.appendChild(ib);
+      // Research resumido en una línea (si existe para este modelo)
+      var intel = intelFor(w.make, w.model);
+      if (intel && intel.verdict) {
+        var il = document.createElement('div');
+        il.className = 'intel-line';
+        il.textContent = intel.verdict;
+        if (intel.benchmark) il.title = '🎯 ' + intel.benchmark;
+        body.appendChild(il);
       }
 
-      // Inventario real en stock (Auto.dev vía función en Vercel)
+      // Stock persistente (se restaura de la caché al cargar)
       if (info) {
         var stock = document.createElement('div');
         stock.className = 'stock-box';
-        var stockBtn = document.createElement('button');
-        stockBtn.className = 'btn mini';
-        stockBtn.textContent = '📦 Ver stock cerca';
-        stockBtn.addEventListener('click', function (ev) {
-          ev.stopPropagation();
-          loadStock(info, stock, stockBtn);
-        });
-        stock.appendChild(stockBtn);
-        card.appendChild(stock);
+        renderStockBox(info, stock);
+        body.appendChild(stock);
       }
 
-      // Enlaces: inventario nuevo / usado / CPO + comparador
+      // Acciones
       if (info) {
-        var links = document.createElement('div');
-        links.className = 'watch-links';
-        [['Nuevos', info.linkNew], ['Usados', info.linkUsed], ['CPO', info.linkCpo]].forEach(function (pair) {
-          var a = document.createElement('a');
-          a.className = 'btn mini';
-          a.textContent = pair[0] + ' ↗';
-          a.href = pair[1];
-          a.target = '_blank';
-          a.rel = 'noopener';
-          a.addEventListener('click', function (ev) { ev.stopPropagation(); });
-          links.appendChild(a);
-        });
+        var actionsEl = document.createElement('div');
+        actionsEl.className = 'card-actions';
         var cmp = document.createElement('button');
         cmp.className = 'btn mini primary';
         cmp.textContent = '⚖️ ¿Qué me conviene?';
-        cmp.addEventListener('click', function (ev) {
-          ev.stopPropagation();
+        cmp.addEventListener('click', function () {
           prefillDecide(info);
-          $('decide-card').scrollIntoView({ behavior: 'smooth' });
+          showView('decide');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        links.appendChild(cmp);
-        card.appendChild(links);
+        actionsEl.appendChild(cmp);
+        [['Nuevos ↗', info.linkNew], ['CPO ↗', info.linkCpo]].forEach(function (pair) {
+          var a = document.createElement('a');
+          a.className = 'btn mini subtle';
+          a.textContent = pair[0];
+          a.href = pair[1];
+          a.target = '_blank';
+          a.rel = 'noopener';
+          actionsEl.appendChild(a);
+        });
+        body.appendChild(actionsEl);
 
-        // Directorio: dónde mirar este modelo
+        // Directorio compacto
         var where = document.createElement('details');
-        where.className = 'advanced where';
-        where.addEventListener('click', function (ev) { ev.stopPropagation(); });
+        where.className = 'where';
         var sum = document.createElement('summary');
-        sum.textContent = '📍 Dónde mirar este modelo';
+        sum.textContent = '📍 Dónde mirar';
         where.appendChild(sum);
         var ul = document.createElement('ul');
         ul.className = 'where-list';
-        info.dealers.forEach(function (d) {
-          var li = document.createElement('li');
-          li.innerHTML = '🏬 <a href="' + d.u + '" target="_blank" rel="noopener">' + escapeHtml(d.n) + '</a>';
-          ul.appendChild(li);
-        });
-        info.sites.forEach(function (s) {
-          var li = document.createElement('li');
-          li.innerHTML = '🌐 <a href="' + s.u + '" target="_blank" rel="noopener">' + escapeHtml(s.n) + '</a>';
-          ul.appendChild(li);
-        });
+        info.dealers.concat(info.sites.map(function (s) { return { n: s.n, u: s.u }; }))
+          .forEach(function (d) {
+            var li = document.createElement('li');
+            li.innerHTML = '<a href="' + d.u + '" target="_blank" rel="noopener">' + escapeHtml(d.n) + '</a>';
+            ul.appendChild(li);
+          });
         where.appendChild(ul);
-        card.appendChild(where);
+        body.appendChild(where);
       }
 
-      card.addEventListener('click', function () {
-        // Ver las ofertas de lease de este modelo en la sección online
-        var sel = $('online-model');
-        var exists = Array.prototype.some.call(sel.options, function (o) { return o.value === w.model; });
-        sel.value = exists ? w.model : '';
-        if (onlineData.latest) renderOnline(onlineData.latest, onlineData.status);
-        $('online-card').scrollIntoView({ behavior: 'smooth' });
-      });
       grid.appendChild(card);
     });
 
     var meta = $('watch-meta');
     if (hasData) {
-      var okCount = onlineData.status && onlineData.status.sources
-        ? onlineData.status.sources.filter(function (s) { return /^ok/.test(s.status); }).length +
-          '/' + onlineData.status.sources.length + ' fuentes respondieron · '
-        : '';
-      meta.textContent = 'Última búsqueda: ' + new Date(onlineData.latest.updatedAt).toLocaleString('es') +
-        ' · ' + okCount + 'el robot busca solo 3 veces al día (~9 am, 1 pm y 5 pm NY).';
+      meta.textContent = 'Robot: última búsqueda ' + new Date(onlineData.latest.updatedAt).toLocaleString('es') +
+        ' · corre 3 veces al día.';
     } else {
-      meta.textContent = 'El robot busca automáticamente 3 veces al día (~9 am, 1 pm y 5 pm NY).';
+      meta.textContent = 'El robot busca ofertas de lease 3 veces al día.';
     }
   }
 
+  /* ---------------- comparador entre marcas y modelos ---------------- */
+
+  function loadCompare() {
+    try {
+      var a = JSON.parse(localStorage.getItem(COMPARE_KEY));
+      if (Array.isArray(a) && a.length) return a;
+    } catch (e) { /* defaults */ }
+    // Por defecto: tus 4 prioritarios
+    return RankedModels
+      .filter(function (m) { return m.priority; })
+      .sort(function (a, b) { return a.priority - b.priority; })
+      .map(function (m) { return m.make + '|' + m.model; });
+  }
+
+  function persistCompare() {
+    try { localStorage.setItem(COMPARE_KEY, JSON.stringify(state.compare)); } catch (e) { /* lleno */ }
+  }
+
+  function compareInfos() {
+    return state.compare.map(function (key) {
+      var p = key.split('|');
+      return findRanked(p[0], p[1]);
+    }).filter(Boolean);
+  }
+
+  function renderCompareChips() {
+    var box = $('compare-chips');
+    box.innerHTML = '';
+    RankedModels.forEach(function (m) {
+      var key = m.make + '|' + m.model;
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chip' + (state.compare.indexOf(key) >= 0 ? ' on' : '');
+      chip.innerHTML = '<span class="chip-make">' + escapeHtml(m.make) + '</span>' + escapeHtml(m.model);
+      chip.addEventListener('click', function () {
+        var i = state.compare.indexOf(key);
+        if (i >= 0) state.compare.splice(i, 1); else state.compare.push(key);
+        persistCompare();
+        renderCompareChips();
+        renderCompare();
+      });
+      box.appendChild(chip);
+    });
+  }
+
+  function renderCompare() {
+    var table = $('compare-table');
+    var infos = compareInfos();
+    $('compare-empty').hidden = infos.length > 0;
+    table.innerHTML = '';
+    if (!infos.length) return;
+
+    var thead = document.createElement('thead');
+    var hr = document.createElement('tr');
+    var corner = document.createElement('th');
+    corner.className = 'rowlabel';
+    hr.appendChild(corner);
+    infos.forEach(function (m) {
+      var th = document.createElement('th');
+      th.innerHTML = escapeHtml(m.model) + (m.priority ? ' <span class="prio-chip">❤</span>' : '') +
+        '<span class="make">' + escapeHtml(m.make) + '</span>';
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+
+    function addRow(label, cellFn, bestIdx) {
+      var tr = document.createElement('tr');
+      var td0 = document.createElement('td');
+      td0.className = 'rowlabel';
+      td0.textContent = label;
+      tr.appendChild(td0);
+      infos.forEach(function (m, i) {
+        var td = document.createElement('td');
+        cellFn(m, td, i);
+        if (bestIdx != null && bestIdx === i) td.classList.add('best');
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+      return tr;
+    }
+
+    // Foto
+    addRow('', function (m, td) {
+      var div = document.createElement('div');
+      div.className = 'cmp-photo';
+      var img = document.createElement('img');
+      img.alt = m.make + ' ' + m.model;
+      div.appendChild(img);
+      loadPhoto(m, img);
+      td.appendChild(div);
+    });
+
+    // Datos de stock cacheados por modelo
+    var caches = infos.map(function (m) { return stockCacheGet(m); });
+
+    function bestIndexBy(vals, lowerIsBetter) {
+      var idx = null, bestV = null;
+      vals.forEach(function (v, i) {
+        if (!isNum(v)) return;
+        if (bestV == null || (lowerIsBetter ? v < bestV : v > bestV)) { bestV = v; idx = i; }
+      });
+      return vals.filter(isNum).length > 1 ? idx : null;
+    }
+
+    // Precio de lista
+    var msrps = infos.map(function (m) { return m.price[0]; });
+    addRow('Precio (MSRP)', function (m, td) {
+      td.innerHTML = '<strong>' + fmtMoney(m.price[0]) + '</strong><span class="sub">hasta ' + fmtMoney(m.price[1]) + '</span>';
+    }, bestIndexBy(msrps, true));
+
+    // Ficha
+    addRow('Ficha', function (m, td) {
+      td.innerHTML = escapeHtml(m.engine) + '<span class="sub">' + escapeHtml(m.drive) + ' · ' + escapeHtml(m.mpg) + '</span>';
+    });
+
+    // Stock cerca
+    var totals = caches.map(function (c) { return c && c.data ? (c.data.total || c.data.shown) : null; });
+    addRow('Stock cerca (2025+)', function (m, td, i) {
+      var c = caches[i];
+      if (!c) { td.innerHTML = '<span class="sub">— pulsa “Actualizar stock”</span>'; return; }
+      var bc = c.data.byCondition || {};
+      var parts = [];
+      if (bc.nuevo) parts.push(bc.nuevo + ' nuevos');
+      if (bc.cpo) parts.push(bc.cpo + ' CPO');
+      if (bc.usado) parts.push(bc.usado + ' usados');
+      td.innerHTML = '<strong>' + (c.data.total || c.data.shown) + '</strong> unidades' +
+        '<span class="sub">' + parts.join(' · ') + ' · ' + fmtAge(c.t) + '</span>';
+    }, bestIndexBy(totals, false));
+
+    // Nuevo más barato
+    var newPrices = caches.map(function (c) {
+      return c && c.data && c.data.cheapestNew ? c.data.cheapestNew.price : null;
+    });
+    addRow('Nuevo más barato', function (m, td, i) {
+      var c = caches[i];
+      var ch = c && c.data && c.data.cheapestNew;
+      if (!ch) { td.textContent = '—'; return; }
+      td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
+        '<span class="sub">' + escapeHtml(ch.dealer || '') +
+        (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') + '</span>';
+    }, bestIndexBy(newPrices, true));
+
+    // CPO más barato
+    var cpoPrices = caches.map(function (c) {
+      return c && c.data && c.data.cheapestCpo ? c.data.cheapestCpo.price : null;
+    });
+    addRow('CPO más barato', function (m, td, i) {
+      var c = caches[i];
+      var ch = c && c.data && c.data.cheapestCpo;
+      if (!ch) { td.textContent = '—'; return; }
+      td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
+        '<span class="sub">' + escapeHtml(ch.dealer || '') +
+        (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') + '</span>';
+    }, bestIndexBy(cpoPrices, true));
+
+    // Mejor lease encontrado por el robot
+    var leases = infos.map(function (m) {
+      var ms = offersForModel(m.model).filter(function (e) { return e.metrics && isNum(e.metrics.effectiveMonthly); });
+      if (!ms.length) return null;
+      ms.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
+      return ms[0];
+    });
+    addRow('Mejor lease', function (m, td, i) {
+      var b = leases[i];
+      if (!b) { td.innerHTML = '<span class="sub">sin ofertas aún</span>'; return; }
+      td.innerHTML = '<strong>' + fmtMoney2(b.metrics.effectiveMonthly) + '/mes</strong>' +
+        '<span class="sub">' + escapeHtml(b.source || '') + '</span>';
+    }, bestIndexBy(leases.map(function (b) { return b ? b.metrics.effectiveMonthly : null; }), true));
+
+    // Análisis (research)
+    var anyIntel = infos.some(function (m) { return intelFor(m.make, m.model); });
+    if (anyIntel) {
+      addRow('Análisis', function (m, td) {
+        var it = intelFor(m.make, m.model);
+        if (!it) { td.textContent = '—'; return; }
+        td.innerHTML = '<span class="sub">' + escapeHtml(it.verdict || '') +
+          (it.benchmark ? '<br>🎯 ' + escapeHtml(it.benchmark) : '') + '</span>';
+      });
+    }
+
+    // Decidir
+    addRow('', function (m, td) {
+      var b = document.createElement('button');
+      b.className = 'btn mini';
+      b.textContent = '⚖️ Decidir';
+      b.addEventListener('click', function () {
+        prefillDecide(m);
+        showView('decide');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      td.appendChild(b);
+    });
+  }
+
+  /** Actualiza el stock de los modelos seleccionados (en serie, cuidando la cuota). */
+  function compareLoadStock() {
+    var btn = $('compare-load');
+    var infos = compareInfos();
+    // Solo consulta los que no tienen caché fresca
+    var pending = infos.filter(function (m) {
+      var c = stockCacheGet(m);
+      return !c || (Date.now() - c.t) > STOCK_FRESH_MS;
+    });
+    if (!pending.length) { renderCompare(); return; }
+    btn.disabled = true;
+    var done = 0;
+    function next() {
+      if (done >= pending.length) {
+        btn.disabled = false;
+        btn.textContent = '📦 Actualizar stock';
+        renderCompare();
+        renderWatchlist();
+        return;
+      }
+      var m = pending[done];
+      btn.textContent = '📦 ' + (done + 1) + '/' + pending.length + ' — ' + m.model + '…';
+      fetchInventory(m)
+        .catch(function () { /* seguir con el resto */ })
+        .then(function () {
+          done++;
+          renderCompare();
+          next();
+        });
+    }
+    next();
+  }
+
+  /* ---------------- ofertas online ---------------- */
+
   function loadOnline() {
     var meta = $('online-meta');
-    meta.textContent = 'Cargando resultados del escáner…';
+    meta.textContent = 'Cargando…';
     Promise.all([
       fetch('data/offers-latest.json', { cache: 'no-store' }).then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -867,12 +1129,12 @@
       onlineData.intel = res[3];
       renderOnline(onlineData.latest, onlineData.status);
       renderWatchlist();
+      renderCompare();
     }).catch(function () {
       renderWatchlist();
       $('online-wrap').hidden = true;
       $('online-status-box').hidden = true;
-      meta.textContent = 'Aún no hay resultados publicados del escáner online. Corre a diario ' +
-        '(~9 am NY) sobre las agencias vigiladas; puedes lanzarlo ya con “Escanear ahora”.';
+      meta.textContent = 'Aún no hay resultados del robot. Puedes lanzarlo con “▶ Buscar ahora”.';
     });
   }
 
@@ -894,10 +1156,9 @@
       ? status.sources.filter(function (s) { return /^ok/.test(s.status); }).length
       : null;
     meta.textContent = 'Última corrida: ' + when + ' · ' +
-      (fModel ? offers.length + ' de ' + allOffers.length : allOffers.length) + ' oferta(s) activa(s)' +
-      (okCount != null ? ' · ' + okCount + '/' + status.sources.length + ' fuentes respondieron' : '') +
-      '. Las 🎯 son tus SUVs objetivo.' +
-      (fModel && !offers.length ? ' Ninguna fuente publicó ese modelo en la última corrida.' : '');
+      (fModel ? offers.length + ' de ' + allOffers.length : allOffers.length) + ' oferta(s)' +
+      (okCount != null ? ' · ' + okCount + '/' + status.sources.length + ' fuentes' : '') +
+      (fModel && !offers.length ? ' · ninguna fuente publicó ese modelo.' : '');
 
     if (status && status.sources && status.sources.length) {
       var ul = $('online-status');
@@ -927,7 +1188,7 @@
       var name = (e.isTarget ? '🎯 ' : '') + (e.name || 'Oferta sin nombre');
       tr.appendChild(cell(
         '<span class="offer-name">' + escapeHtml(name) + '</span>' +
-        '<span class="offer-meta">' + escapeHtml('visto desde ' +
+        '<span class="offer-meta">' + escapeHtml('vista desde ' +
           (e.firstSeen ? new Date(e.firstSeen).toLocaleDateString('es') : '—')) + '</span>', true));
       tr.appendChild(cell(e.source + (e.region ? ' · ' + e.region : '')));
       tr.appendChild(numCell(fmtMoney2(m.monthlyPayment), false));
@@ -939,9 +1200,10 @@
 
       var td = document.createElement('td');
       var btn = document.createElement('button');
-      btn.className = 'btn';
+      btn.className = 'btn mini';
       btn.textContent = '💾 Guardar';
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
         saveScanned(e.parsed || {});
         btn.textContent = '✅ Guardada';
         btn.disabled = true;
@@ -970,13 +1232,18 @@
     if (!info) { runDecide(); return; }
     $('decide-new').value = info.msrp;
     $('decide-cpo').value = Math.round(info.msrp * 0.74 / 50) * 50;
+    // Si hay stock real cacheado, usa los precios reales más baratos.
+    var c = stockCacheGet(info);
+    if (c && c.data) {
+      if (c.data.cheapestNew) $('decide-new').value = c.data.cheapestNew.price;
+      if (c.data.cheapestCpo) $('decide-cpo').value = c.data.cheapestCpo.price;
+    }
     // Lease: la mejor oferta real encontrada, o estimación (~1.2% del MSRP)
     var matches = offersForModel(info.model).filter(function (e) {
       return e.metrics && isNum(e.metrics.effectiveMonthly);
     });
     matches.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
-    var intel = onlineData.intel && onlineData.intel.models &&
-      onlineData.intel.models[info.make + ' ' + info.model];
+    var intel = intelFor(info.make, info.model);
     var intelDeal = intel && intel.deals && intel.deals.filter(function (d) { return d.effective != null; })[0];
     if (matches.length) {
       $('decide-lease').value = Math.round(matches[0].metrics.effectiveMonthly);
@@ -1075,7 +1342,7 @@
       '⚠️ El lanzamiento directo no está disponible' +
       (reason ? ' (' + escapeHtml(reason) + ')' : '') + '. Plan B: ' +
       '<a href="' + SCAN_WORKFLOW_URL + '" target="_blank" rel="noopener">abre GitHub aquí</a>, ' +
-      'presiona “Run workflow”, espera ~3 minutos y dale a ↻ Recargar.';
+      'presiona “Run workflow”, espera ~3 minutos y dale a ↻.';
   }
 
   /** Espera a que el escaneo publique datos nuevos y refresca la página sola. */
@@ -1094,7 +1361,7 @@
           } else if (tries >= 20) { // ~10 minutos
             clearInterval(timer);
             resetScanBtn();
-            $('online-meta').textContent = 'La búsqueda tarda más de lo normal; presiona ↻ Recargar en un rato.';
+            $('online-meta').textContent = 'La búsqueda tarda más de lo normal; presiona ↻ en un rato.';
           }
         })
         .catch(function () { /* reintenta en el siguiente tick */ });
@@ -1155,11 +1422,12 @@
 
   function loadFromHash() {
     var m = location.hash.match(/#offer=(.+)/);
-    if (!m) return;
+    if (!m) return false;
     try {
       var input = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
       fillForm(input);
-    } catch (e) { /* hash inválido: ignorar */ }
+      return true;
+    } catch (e) { return false; }
   }
 
   function clearForm() {
@@ -1173,10 +1441,14 @@
   /* ---------------- arranque ---------------- */
 
   function init() {
-    var savedCurrency = localStorage.getItem(CURRENCY_KEY);
-    if (savedCurrency) $('currency').value = savedCurrency;
-
-    loadFromHash();
+    // Pestañas
+    document.querySelectorAll('.tab').forEach(function (b) {
+      b.addEventListener('click', function () { showView(b.dataset.view); });
+    });
+    var sharedOffer = loadFromHash();
+    var savedTab = null;
+    try { savedTab = localStorage.getItem(TAB_KEY); } catch (e) { /* default */ }
+    showView(sharedOffer ? 'calc' : (savedTab || 'models'));
 
     $('lease-form').addEventListener('input', recalc);
     $('lease-form').addEventListener('change', recalc);
@@ -1188,12 +1460,6 @@
     $('import-file').addEventListener('change', function (ev) {
       if (ev.target.files[0]) importOffers(ev.target.files[0]);
       ev.target.value = '';
-    });
-    $('currency').addEventListener('input', function () {
-      localStorage.setItem(CURRENCY_KEY, currency());
-      recalc();
-      renderOffers();
-      renderScanResults();
     });
 
     // Selectores de marca/modelo del formulario
@@ -1214,7 +1480,7 @@
       recalc();
     });
 
-    // Filtros por selector en el comparador
+    // Filtros por selector en el comparador de guardadas
     var filterMake = $('filter-make');
     Object.keys(VehicleCatalog).forEach(function (make) {
       var o = document.createElement('option');
@@ -1233,7 +1499,7 @@
       renderOffers();
     });
 
-    // Selector de modelo de la sección online (agrupado por marca)
+    // Selector de modelo de la sección de ofertas (agrupado por marca)
     var onlineSel = $('online-model');
     Object.keys(VehicleCatalog).forEach(function (make) {
       if (!VehicleCatalog[make].length) return;
@@ -1283,11 +1549,17 @@
     });
     renderWatchlist();
 
+    // Comparador entre marcas
+    state.compare = loadCompare();
+    renderCompareChips();
+    renderCompare();
+    $('compare-load').addEventListener('click', compareLoadStock);
+
     // Comparador ¿lease, CPO o compra?
     var decideSel = $('decide-model');
     var dOpt = document.createElement('option');
     dOpt.value = '';
-    dOpt.textContent = '— Elige un modelo del ranking —';
+    dOpt.textContent = '— Elige un modelo —';
     decideSel.appendChild(dOpt);
     RankedModels.forEach(function (m) {
       var o = document.createElement('option');
