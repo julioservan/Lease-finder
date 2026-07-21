@@ -680,8 +680,8 @@
           '<strong>' + fmtMoney(c.price) + '</strong> · ' + escapeHtml(c.title) +
           (c.miles ? ' · ' + c.miles.toLocaleString('es') + ' mi' : '') +
           (c.dealer ? ' · ' + escapeHtml(c.dealer) + (c.city ? ' (' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') + ')' : '') : '') +
-          (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">ver anuncio ↗</a>' : '') +
-          (c.carfax ? ' <a href="' + c.carfax + '" target="_blank" rel="noopener">Carfax ↗</a>' : '') +
+          (c.url ? ' · <a href="' + c.url + '" target="_blank" rel="noopener" title="Busca este VIN exacto y su concesionario">buscar este VIN ↗</a>' : '') +
+          (c.carfax ? ' · <a href="' + c.carfax + '" target="_blank" rel="noopener">Carfax ↗</a>' : '') +
           '</li>';
       }
       var body = '';
@@ -1097,7 +1097,7 @@
       if (!ch) { td.textContent = '—'; return; }
       td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
         '<span class="sub">' + escapeHtml(ch.dealer || '') +
-        (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') + '</span>';
+        (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">buscar VIN ↗</a>' : '') + '</span>';
     }, bestIndexBy(newPrices, true));
 
     // CPO más barato
@@ -1110,7 +1110,7 @@
       if (!ch) { td.textContent = '—'; return; }
       td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
         '<span class="sub">' + escapeHtml(ch.dealer || '') +
-        (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') + '</span>';
+        (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">buscar VIN ↗</a>' : '') + '</span>';
     }, bestIndexBy(cpoPrices, true));
 
     // Mejor lease encontrado por el robot
