@@ -119,7 +119,14 @@ module.exports = async function handler(req, res) {
     var records = extract(data);
 
     if (q.debug) {
-      return res.status(200).json({ ok: true, topKeys: Object.keys(data), total: total, page1: records.length, links: data.links || null });
+      var sample = records[0] || {};
+      return res.status(200).json({
+        ok: true, topKeys: Object.keys(data), total: total, page1: records.length,
+        links: data.links || null,
+        sampleKeys: Object.keys(sample),
+        retailListingKeys: Object.keys(sample.retailListing || {}),
+        sample: sample
+      });
     }
 
     // Trae páginas extra hasta MAX_PAGES o hasta cubrir el total.
