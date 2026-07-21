@@ -451,6 +451,29 @@
   // por tu propia clave de imagin.studio para obtener imágenes sin watermark.
   var IMAGIN_KEY = 'hrjavascript-mastery';
 
+  /** URL del render de estudio de imagin para un modelo (o '' si no aplica). */
+  function imaginUrl(info) {
+    if (!IMAGIN_KEY || !info.img) return '';
+    return 'https://cdn.imagin.studio/getimage?customer=' + IMAGIN_KEY +
+      '&make=' + encodeURIComponent(info.img.make) +
+      '&modelFamily=' + encodeURIComponent(info.img.family) +
+      (info.img.year ? '&modelYear=' + info.img.year : '') +
+      '&angle=23&width=560&fileType=png';
+  }
+
+  /**
+   * Foto fiable de un modelo para las tarjetas de unidad: primero la ya
+   * resuelta y cacheada (imagin/Commons), si no el render de imagin. Las
+   * fotos reales por VIN de Auto.dev no se pueden usar (host con 403).
+   */
+  function modelPhotoUrl(info) {
+    try {
+      var c = localStorage.getItem('lf-photo7-' + info.make + '-' + info.model);
+      if (c) return c;
+    } catch (e) { /* sin caché */ }
+    return imaginUrl(info);
+  }
+
   /**
    * Foto del modelo: render de imagin si hay clave; si no, foto real de
    * Wikimedia Commons o la imagen del artículo de Wikipedia. Cachea la URL.
@@ -665,14 +688,14 @@
     return null;
   }
 
-  function stockItemRow(c) {
+  function stockItemRow(c, pimg) {
     var cls = c.condition === 'Nuevo' ? 'nuevo' : (c.condition === 'CPO' ? 'cpo' : 'usado');
 
-    // Foto (o marcador con inicial de marca)
-    var photo = c.image
-      ? '<div class="sc-photo"><img loading="lazy" src="' + escapeHtml(c.image) + '" alt="' + escapeHtml(c.title) + '"' +
-        ' onerror="this.parentNode.classList.add(\'noimg\');this.remove();">' +
-        (c.photoCount > 1 ? '<span class="sc-photocount">📷 ' + c.photoCount + '</span>' : '') + '</div>'
+    // Foto: render de estudio del modelo (fiable). Las fotos reales por VIN de
+    // Auto.dev no se pueden mostrar (host retail.photos.vin devuelve 403).
+    var photo = pimg
+      ? '<div class="sc-photo"><img loading="lazy" referrerpolicy="no-referrer" src="' + escapeHtml(pimg) + '"' +
+        ' alt="' + escapeHtml(c.title) + '" onerror="this.parentNode.classList.add(\'noimg\');this.remove();"></div>'
       : '<div class="sc-photo noimg"></div>';
 
     // Descuento vs MSRP
@@ -745,8 +768,9 @@
         '<div class="stock-range">' + (nr.min != null ? fmtMoney(nr.min) + ' – ' + fmtMoney(nr.max) : fmtMoney(d.minPrice) + ' – ' + fmtMoney(d.maxPrice)) +
         ' · 2025+ · ~25 mi</div>';
       if (newList.length) {
+        var pimg = modelPhotoUrl(info);
         html += '<details class="stock-list"><summary>Ver ' + newList.length + ' nuevos (los más baratos)</summary>' +
-          '<div class="stock-cards">' + newList.map(stockItemRow).join('') + '</div></details>';
+          '<div class="stock-cards">' + newList.map(function (c) { return stockItemRow(c, pimg); }).join('') + '</div></details>';
       }
     } else {
       html = '<div class="stock-summary"><span class="cond-chip nuevo" style="opacity:.7">🆕 0 nuevos ahora</span>' +
@@ -762,9 +786,11 @@
     });
   }
 
-  function renderSecondhand(d, body) {
+  function renderSecondhand(d, body, info) {
     var list = d.listings || [];
     var pc = d.priceByCondition || {};
+    var pimg = info ? modelPhotoUrl(info) : '';
+    var row = function (c) { return stockItemRow(c, pimg); };
     var cpoList = list.filter(function (c) { return c.condition === 'CPO'; });
     var usedList = list.filter(function (c) { return c.condition === 'Usado'; });
     if (!cpoList.length && !usedList.length) {
@@ -776,13 +802,13 @@
       var cr = pc.cpo || {};
       inner += '<div class="stock-group cpo">CPO (seminuevo certificado) — ' + cpoList.length +
         ' <em>' + (cr.min != null ? fmtMoney(cr.min) + '–' + fmtMoney(cr.max) + ' · ' : '') + 'normalmente se financian</em></div>' +
-        '<div class="stock-cards">' + cpoList.map(stockItemRow).join('') + '</div>';
+        '<div class="stock-cards">' + cpoList.map(row).join('') + '</div>';
     }
     if (usedList.length) {
       var ur = pc.usado || {};
       inner += '<div class="stock-group usado">Usados — ' + usedList.length +
         ' <em>' + (ur.min != null ? fmtMoney(ur.min) + '–' + fmtMoney(ur.max) + ' · ' : '') + 'solo compra / financiación</em></div>' +
-        '<div class="stock-cards">' + usedList.map(stockItemRow).join('') + '</div>';
+        '<div class="stock-cards">' + usedList.map(row).join('') + '</div>';
     }
     body.innerHTML = inner;
   }
@@ -1343,7 +1369,7 @@
 
       var c = stockCacheGet(info, '', 'used');
       if (c) {
-        renderSecondhand(c.data, content);
+        renderSecondhand(c.data, content, info);
         var age = document.createElement('small');
         age.className = 'hint';
         age.textContent = 'Actualizado ' + fmtAge(c.t);
@@ -1355,7 +1381,7 @@
         btn.addEventListener('click', function () {
           content.innerHTML = '<small class="hint">Buscando segunda mano…</small>';
           fetchInventory(info, '', 'used')
-            .then(function (d) { renderSecondhand(d, content); })
+            .then(function (d) { renderSecondhand(d, content, info); })
             .catch(function () { content.innerHTML = '<small class="hint">No se pudo consultar ahora.</small>'; });
         });
         content.appendChild(btn);
