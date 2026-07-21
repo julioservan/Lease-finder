@@ -84,6 +84,12 @@ module.exports = async function handler(req, res) {
     }
     var data = await r.json();
     var records = data.records || data.listings || data.results || (Array.isArray(data) ? data : []);
+
+    // Diagnóstico: /api/inventory?...&debug=1 devuelve el primer registro crudo
+    // para poder mapear los campos exactos si algo sale vacío.
+    if (q.debug) {
+      return res.status(200).json({ ok: true, topKeys: Object.keys(data), sampleRaw: records[0] || null });
+    }
     var items = records.map(normalize).filter(function (x) { return x.price != null; });
     items.sort(function (a, b) { return a.price - b.price; });
 

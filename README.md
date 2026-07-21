@@ -156,3 +156,18 @@ npm test
 - Depósitos de seguridad múltiples (MSD) para bajar el money factor.
 - Comparación lease vs. compra financiada.
 - Sincronización opcional en la nube para compartir entre dispositivos.
+
+## Inventario real en stock (Auto.dev)
+
+El botón "📦 Ver stock cerca" de cada modelo consulta inventario real de
+concesionarios cerca del ZIP 11201 vía la API de [Auto.dev](https://www.auto.dev)
+(1.000 consultas/mes gratis). Para activarlo:
+
+1. Regístrate en https://www.auto.dev y copia tu **API key**.
+2. En Vercel → proyecto `lease-finder` → Settings → Environment Variables:
+   crea `AUTO_DEV_KEY` con esa clave (entorno Production) → Save.
+3. Deployments → último deploy → menú "⋯" → **Redeploy**.
+
+Sin la clave, el botón degrada al enlace de cars.com. Diagnóstico:
+`/api/inventory?make=Honda&model=CR-V&debug=1` devuelve el primer registro
+crudo para ajustar el mapeo de campos si hiciera falta.
