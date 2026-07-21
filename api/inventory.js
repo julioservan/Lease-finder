@@ -45,9 +45,13 @@ module.exports = async function handler(req, res) {
 
   // Auto.dev usa parámetros con notación de punto (vehicle.make, vehicle.model)
   // e includes=total para conocer el total real de unidades.
-  // Filtro de condición a Auto.dev (condition=New|Certified|Used).
-  var CONDMAP = { new: 'New', cpo: 'Certified', used: 'Used' };
-  var condParam = CONDMAP[cond] ? '&condition=' + CONDMAP[cond] : '';
+  // Filtro de condición a Auto.dev vía notación de punto sobre retailListing.
+  var CONDMAP = {
+    new: '&retailListing.used=false',
+    cpo: '&retailListing.cpo=true',
+    used: '&retailListing.used=true'
+  };
+  var condParam = CONDMAP[cond] || '';
 
   var base = 'https://api.auto.dev/listings' +
     '?vehicle.make=' + encodeURIComponent(make) +
