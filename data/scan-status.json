@@ -1,6 +1,81 @@
 {
-  "updatedAt": "2026-07-21T01:41:58.088Z",
+  "updatedAt": "2026-07-21T03:07:36.243Z",
   "sources": [
+    {
+      "name": "Premier Ford",
+      "region": "Brooklyn, NY",
+      "status": "HTTP 403 en https://www.premierfordinc.com/lease-specials/ · HTTP 403 en https://www.premierfordinc.com/specials/ · sin ofertas (navegador) en https://www.premierfordinc.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordinc.com/specials/"
+    },
+    {
+      "name": "Starks Ford",
+      "region": "Queens, NY",
+      "status": "HTTP 403 en https://www.starksfordofqueens.com/lease-specials/ · HTTP 403 en https://www.starksfordofqueens.com/specials/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/lease-specials/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/specials/"
+    },
+    {
+      "name": "Dana Ford",
+      "region": "Staten Island, NY",
+      "status": "HTTP 403 en https://www.drivedanaford.com/lease-specials/ · HTTP 403 en https://www.drivedanaford.com/specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/lease-specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/specials/"
+    },
+    {
+      "name": "Stevens Jersey City Ford",
+      "region": "Jersey City, NJ",
+      "status": "HTTP 404 en https://www.stevensjerseycityford.com/lease-specials/ · sin ofertas en https://www.stevensjerseycityford.com/specials/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/lease-specials/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/specials/"
+    },
+    {
+      "name": "Brooklyn CDJR",
+      "region": "Brooklyn, NY",
+      "status": "HTTP 403 en https://www.brooklynchrysler.com/lease-specials/ · HTTP 403 en https://www.brooklynchrysler.com/specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/specials/"
+    },
+    {
+      "name": "United CDJR",
+      "region": "Brooklyn, NY",
+      "status": "HTTP 403 en https://www.unitedcdjr.com/lease-specials/ · HTTP 403 en https://www.unitedcdjr.com/specials/ · sin ofertas (navegador) en https://www.unitedcdjr.com/lease-specials/ · sin ofertas (navegador) en https://www.unitedcdjr.com/specials/"
+    },
+    {
+      "name": "Island CDJR",
+      "region": "Staten Island, NY",
+      "status": "HTTP 403 en https://www.myislandcdjr.com/lease-specials/ · HTTP 403 en https://www.myislandcdjr.com/specials/ · sin ofertas (navegador) en https://www.myislandcdjr.com/lease-specials/ · sin ofertas (navegador) en https://www.myislandcdjr.com/specials/"
+    },
+    {
+      "name": "Bical Buick GMC",
+      "region": "Brooklyn, NY",
+      "status": "HTTP 404 en https://www.bicalbuickgmc.com/lease-specials/ · HTTP 404 en https://www.bicalbuickgmc.com/specials/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/specials/"
+    },
+    {
+      "name": "Island Buick GMC",
+      "region": "Staten Island, NY",
+      "status": "HTTP 403 en https://www.myislandgmc.com/lease-specials/ · HTTP 403 en https://www.myislandgmc.com/specials/ · sin ofertas (navegador) en https://www.myislandgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.myislandgmc.com/specials/"
+    },
+    {
+      "name": "North Bergen Buick GMC",
+      "region": "North Bergen, NJ",
+      "status": "HTTP 403 en https://www.northbergenbuickgmc.com/lease-specials/ · HTTP 403 en https://www.northbergenbuickgmc.com/specials/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/specials/"
+    },
+    {
+      "name": "Plaza Honda",
+      "region": "Brooklyn, NY",
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/"
+    },
+    {
+      "name": "TrueCar — Bronco Sport (lease)",
+      "region": "agregador por modelo",
+      "status": "HTTP 403 en https://www.truecar.com/ford/bronco-sport/lease/ · sin ofertas (navegador) en https://www.truecar.com/ford/bronco-sport/lease/"
+    },
+    {
+      "name": "TrueCar — Honda CR-V (lease)",
+      "region": "agregador por modelo",
+      "status": "HTTP 403 en https://www.truecar.com/honda/cr-v/lease/ · sin ofertas (navegador) en https://www.truecar.com/honda/cr-v/lease/"
+    },
+    {
+      "name": "TrueCar — GMC Terrain (lease)",
+      "region": "agregador por modelo",
+      "status": "HTTP 403 en https://www.truecar.com/gmc/terrain/lease/ · sin ofertas (navegador) en https://www.truecar.com/gmc/terrain/lease/"
+    },
+    {
+      "name": "CarsDirect — CR-V (deals)",
+      "region": "agregador por modelo",
+      "status": "ok (11 ofertas)"
+    },
     {
       "name": "BMW of Brooklyn",
       "region": "Brooklyn, NY",
@@ -95,6 +170,26 @@
       "name": "Wayne Mazda",
       "region": "Wayne, NJ",
       "status": "HTTP 403 en https://www.waynemazda.com/lease-specials/ · HTTP 403 en https://www.waynemazda.com/specials/ · sin ofertas (navegador) en https://www.waynemazda.com/lease-specials/ · sin ofertas (navegador) en https://www.waynemazda.com/specials/"
+    },
+    {
+      "name": "Garden State Honda",
+      "region": "Clifton, NJ",
+      "status": "ok (6 ofertas)"
+    },
+    {
+      "name": "Freehold Ford",
+      "region": "Freehold, NJ",
+      "status": "HTTP 403 en https://www.freeholdford.com/bronco-sport-special/ · HTTP 403 en https://www.freeholdford.com/lease-specials/ · sin ofertas (navegador) en https://www.freeholdford.com/bronco-sport-special/ · sin ofertas (navegador) en https://www.freeholdford.com/lease-specials/"
+    },
+    {
+      "name": "Lester Glenn Ford",
+      "region": "Toms River, NJ",
+      "status": "ok (5 ofertas, con navegador)"
+    },
+    {
+      "name": "Lester Glenn GMC",
+      "region": "Toms River, NJ",
+      "status": "ok (3 ofertas)"
     },
     {
       "name": "Bay Ridge Subaru",

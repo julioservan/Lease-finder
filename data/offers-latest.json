@@ -1,6 +1,134 @@
 {
-  "updatedAt": "2026-07-21T01:41:58.088Z",
+  "updatedAt": "2026-07-21T03:07:36.243Z",
   "offers": [
+    {
+      "key": "garden state honda|lease a new 2026 honda hr-v lx awd suv auto (model #: rz2h3tew) for on|39",
+      "source": "Garden State Honda",
+      "region": "Clifton, NJ",
+      "url": "https://www.gardenstatehonda.com/lease-specials.html",
+      "name": "Lease a New 2026 Honda HR-V LX AWD SUV Auto (Model #: RZ2H3TEW) for on",
+      "parsed": {
+        "name": "Lease a New 2026 Honda HR-V LX AWD SUV Auto (Model #: RZ2H3TEW) for on",
+        "monthly": 149,
+        "term": 39,
+        "dueAtSigning": null,
+        "msrp": 29150,
+        "price": null,
+        "milesPerYear": 5000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "iate delivery. Not responsible for typographical errors. Images may not reflect the actual vehicle trim level or color. No Brokers or Dealers. \n \n 2026 HR-V LX Lease Special \n Lease a New 2026 Honda HR-V LX AWD SUV Auto (Model #: RZ2H3TEW) for only $149.00 per month, for 39 months, with total due at inception of $4,995.00 cap cost reduction (down payment).\n No security deposit. Does not include 1st payment of $149.00, $795 dealer doc fee, bank fee of $1,295.00, NJ sales tax, DMV fee, NJ Tire fee, filing fee, color upcharges and dealer installed accessories (protection package). Honda HPD packages are not included. If the $4,995.00 cap cost reduction and other applicable items are not paid by the customer at the time of sale, the quoted payment will be higher since these amounts will be included in the amount leased. 5,000 miles per year. CAL Lease, must qualify for top-tier credit approval. Residency restrictions will apply; NJ residents only, for Charge Up NJ contribution. $450 disposition fee. Monthly payment/total due at lease signing calculated with LOYALTY or CONQUEST AWARD AMOUNT (available to current owners of any 2011 or newer Honda, Chevrolet, Ford, Hyundai, Jeep, Kia, Mazda, Nissan, Subaru, Tesla, Toyota, GMC, RAM and Volkswagen), toward cap cost reduction or down payment assistance. Monthly payment/total due at lease signing calculated with Charge Up New Jersey’s incentive. MSRP $29,150.00. Total monthly payments are $5,811.00. Option to purchase the vehicle at lease end (residual) is $22,445.50. Lease includes 5,000 miles per year/$.25 per mile thereafter. Early lease termination fee may apply. Higher lease rates apply for lessees with lower credit ratings. Offers cannot be combined with any other advertised offer. See dealer for complete details. In-stock vehicle only, must take immediate delivery. Not responsible for typographical errors. Images may not reflect the actual vehicle trim level or color. No Brokers or Dealers. \n \n 2026 CR-V LX Lease Special \n Lease a New 2026 Honda CR-V LX AWD SUV Auto (Model #: RS4H2TEW) for only $"
+      },
+      "metrics": {
+        "term": 39,
+        "monthlyPayment": 149,
+        "driveOff": 0,
+        "totalCost": 5811,
+        "effectiveMonthly": 149,
+        "pctOfMsrp": 0.5111492281303602,
+        "score": 16.303131991051455
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
+    {
+      "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
+      "source": "Garden State Honda",
+      "region": "Clifton, NJ",
+      "url": "https://www.gardenstatehonda.com/lease-specials.html",
+      "name": "Lease a New 2026 Honda CR-V LX AWD SUV Auto (Model #: RS4H2TEW) for on",
+      "parsed": {
+        "name": "Lease a New 2026 Honda CR-V LX AWD SUV Auto (Model #: RS4H2TEW) for on",
+        "monthly": 169,
+        "term": 39,
+        "dueAtSigning": null,
+        "msrp": 33870,
+        "price": null,
+        "milesPerYear": 5000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "iate delivery. Not responsible for typographical errors. Images may not reflect the actual vehicle trim level or color. No Brokers or Dealers. \n \n 2026 CR-V LX Lease Special \n Lease a New 2026 Honda CR-V LX AWD SUV Auto (Model #: RS4H2TEW) for only $169.00 per month, for 39 months, with total due at inception of $4,995.00 cap cost reduction (down payment).\n No security deposit. Does not include 1st payment of $169.00, $795 dealer doc fee, bank fee of $1,295.00, NJ sales tax, DMV fee, NJ Tire fee, filing fee, color upcharges and dealer installed accessories (protection package). Honda HPD packages are not included. If the $4,995.00 cap cost reduction and other applicable items are not paid by the customer at the time of sale, the quoted payment will be higher since these amounts will be included in the amount leased. 5,000 miles per year. CAL Lease, must qualify for top-tier credit approval. Residency restrictions will apply; NJ residents only, for Charge Up NJ contribution. $450 disposition fee. Monthly payment/total due at lease signing calculated with LOYALTY or CONQUEST AWARD AMOUNT (available to current owners of any 2011 or newer Honda, Chevrolet, Ford, Hyundai, Jeep, Kia, Mazda, Nissan, Subaru, Tesla, Toyota, GMC, RAM and Volkswagen), toward cap cost reduction or down payment assistance. Monthly payment/total due at lease signing calculated with Charge Up New Jersey’s incentive. MSRP $33,870.00. Total monthly payments are $6,591.00. Option to purchase the vehicle at lease end (residual) is $26,079.90. Lease includes 5,000 miles per year/$.25 per mile thereafter. Early lease termination fee may apply. Higher lease rates apply for lessees with lower credit ratings. Offers cannot be combined with any other advertised offer. See dealer for complete details. In-stock vehicle only, must take immediate delivery. Not responsible for typographical errors. Images may not reflect the actual vehicle trim level or color. No Brokers or Dealers. \n \n 2026 Pilot Sport Lease Special \n Lease a New 2026 Honda Pilot Sport SUV Auto (Model #: YG1H3TEW) for $"
+      },
+      "metrics": {
+        "term": 39,
+        "monthlyPayment": 169,
+        "driveOff": 0,
+        "totalCost": 6591,
+        "effectiveMonthly": 169,
+        "pctOfMsrp": 0.4989666371420136,
+        "score": 16.701183431952664
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
+    {
+      "key": "carsdirect — cr-v (deals)|last updated: 7/21/2026|36",
+      "source": "CarsDirect — CR-V (deals)",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/honda/cr-v/prices-deals",
+      "name": "Last updated: 7/21/2026",
+      "parsed": {
+        "name": "Last updated: 7/21/2026",
+        "monthly": 289,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": 2.49,
+        "raw": "The 2026 Honda CR-V is now available with lease offers from $289/month and financing as low as 2.49% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/21/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 289,
+        "driveOff": 0,
+        "totalCost": 10404,
+        "effectiveMonthly": 289,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
+    {
+      "key": "carsdirect — cr-v (deals)|2026 cr-v lx|36",
+      "source": "CarsDirect — CR-V (deals)",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/honda/cr-v/prices-deals",
+      "name": "2026 CR-V LX",
+      "parsed": {
+        "name": "2026 CR-V LX",
+        "monthly": 289,
+        "term": 36,
+        "dueAtSigning": 4199,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Lease Deals Financing & Rebates Payment Calculator Buying Tips Honda CR-V Target Price \n \n Honda CR-V Lease Deals Near You\n Special Lease Offer\n Exp. 9/8/2026\n\n 2026 CR-V LX\n $289 Per Month \n 36 Months \n $4,199 Due at Signing \n \n Claim Your Offer Offer Details ›"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 289,
+        "driveOff": 4199,
+        "totalCost": 14314,
+        "effectiveMonthly": 397.6111111111111,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|36",
       "source": "Bay Ridge Honda",
@@ -31,7 +159,39 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-21T01:41:58.088Z"
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
+    {
+      "key": "carsdirect — cr-v (deals)|2026 cr-v lx awd|36",
+      "source": "CarsDirect — CR-V (deals)",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/honda/cr-v/prices-deals",
+      "name": "2026 CR-V LX AWD",
+      "parsed": {
+        "name": "2026 CR-V LX AWD",
+        "monthly": 289,
+        "term": 36,
+        "dueAtSigning": 4899,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Special Lease Offer\n Exp. 9/8/2026\n\n 2026 CR-V LX AWD\n $289 Per Month \n 36 Months \n $4,899 Due at Signing \n \n Claim Your Offer Offer Details ›"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 289,
+        "driveOff": 4899,
+        "totalCost": 15014,
+        "effectiveMonthly": 417.05555555555554,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v hybrid awd sport|36",
@@ -63,7 +223,103 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-21T01:41:58.088Z"
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
+    {
+      "key": "lester glenn ford|s/n|424|48",
+      "source": "Lester Glenn Ford",
+      "region": "Toms River, NJ",
+      "url": "https://www.lesterglennford.net/lester-glenn-ford-bronco-sport-special.htm",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 424,
+        "term": 48,
+        "dueAtSigning": 2995,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Lease a new 2026 Ford Bronco Sport for as low as $424/mo for 48 months with $2,995 due at signing. All taxes and fees included!"
+      },
+      "metrics": {
+        "term": 48,
+        "monthlyPayment": 424,
+        "driveOff": 2995,
+        "totalCost": 22923,
+        "effectiveMonthly": 477.5625,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
+    {
+      "key": "lester glenn gmc|gmc terrain lease offer|36",
+      "source": "Lester Glenn GMC",
+      "region": "Toms River, NJ",
+      "url": "https://www.lesterglenngmc.com/terrain-specials.html",
+      "name": "GMC Terrain Lease Offer",
+      "parsed": {
+        "name": "GMC Terrain Lease Offer",
+        "monthly": 439,
+        "term": 36,
+        "dueAtSigning": 5187,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "GMC Terrain Lease Offer\n\n Lease a new 2026 GMC Terrain for as low as $439/mo for 36 months with $5,187 due at signing!"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 439,
+        "driveOff": 5187,
+        "totalCost": 20552,
+        "effectiveMonthly": 570.8888888888889,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
+    },
+    {
+      "key": "carsdirect — cr-v (deals)|estimate|36",
+      "source": "CarsDirect — CR-V (deals)",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/honda/cr-v/prices-deals",
+      "name": "Estimate",
+      "parsed": {
+        "name": "Estimate",
+        "monthly": 841,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": 32370,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Payment\nEstimate \n\n $841 per month \n Calculate Payment\n\n Total cost: $30,265 for the 2026 Honda CR-V LX 4dr Front-Wheel Drive — MSRP: $32,370\n Assumes listed APR, term, and 10% down; taxes, fees, and down payment excluded\n Requires financing through Honda Financial Services"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 841,
+        "driveOff": 0,
+        "totalCost": 30276,
+        "effectiveMonthly": 841,
+        "pctOfMsrp": 2.5980846462774174,
+        "score": 3.2074910820451845
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T03:07:36.243Z",
+      "lastSeen": "2026-07-21T03:07:36.243Z"
     }
   ]
 }
