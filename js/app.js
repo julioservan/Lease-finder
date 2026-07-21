@@ -658,31 +658,42 @@
       return;
     }
     var bc = d.byCondition || {};
-    var parts = [];
-    if (bc.nuevo) parts.push(bc.nuevo + ' nuevos');
-    if (bc.cpo) parts.push(bc.cpo + ' CPO');
-    if (bc.usado) parts.push(bc.usado + ' usados');
     var total = d.total || d.shown;
+    var chips = condChipsHtml(bc);
     var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca' + trimTag +
-      (parts.length ? ' · ' + parts.join(' · ') : '') +
       '<span class="stock-age">' + (when ? fmtAge(when) : '') + ' ' + refreshBtn + '</span></div>' +
+      (chips ? '<div class="cond-row">' + chips + '</div>' : '') +
       '<div class="stock-range">' + fmtMoney(d.minPrice) + ' – ' + fmtMoney(d.maxPrice) +
       ' · 2025+ · ~25 mi</div>';
 
     var list = d.listings || [];
     if (list.length) {
-      var badge = { 'Nuevo': '🆕', 'CPO': '🔵', 'Usado': '🚗' };
-      var rows = list.map(function (c) {
-        return '<li>' + (badge[c.condition] || '') + ' <strong>' + fmtMoney(c.price) + '</strong> · ' +
-          escapeHtml(c.title) +
+      // Agrupados por condición, con la clave de lease en cada grupo.
+      var groups = [
+        { key: 'Nuevo', cls: 'nuevo', label: 'Nuevos', note: 'se pueden hacer lease' },
+        { key: 'CPO', cls: 'cpo', label: 'CPO (seminuevo certificado)', note: 'lease poco común · se financian' },
+        { key: 'Usado', cls: 'usado', label: 'Usados', note: 'solo compra / financiación' }
+      ];
+      function itemRow(c) {
+        var cls = c.condition === 'Nuevo' ? 'nuevo' : (c.condition === 'CPO' ? 'cpo' : 'usado');
+        return '<li><span class="cond-pill ' + cls + '">' + c.condition + '</span> ' +
+          '<strong>' + fmtMoney(c.price) + '</strong> · ' + escapeHtml(c.title) +
           (c.miles ? ' · ' + c.miles.toLocaleString('es') + ' mi' : '') +
           (c.dealer ? ' · ' + escapeHtml(c.dealer) + (c.city ? ' (' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') + ')' : '') : '') +
           (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">ver anuncio ↗</a>' : '') +
           (c.carfax ? ' <a href="' + c.carfax + '" target="_blank" rel="noopener">Carfax ↗</a>' : '') +
           '</li>';
-      }).join('');
+      }
+      var body = '';
+      groups.forEach(function (g) {
+        var items = list.filter(function (c) { return c.condition === g.key; });
+        if (!items.length) return;
+        body += '<div class="stock-group ' + g.cls + '">' + g.label + ' — ' + items.length +
+          ' <em>' + g.note + '</em></div>' +
+          '<ol class="stock-items">' + items.map(itemRow).join('') + '</ol>';
+      });
       html += '<details class="stock-list"><summary>Ver las ' + list.length + ' unidades</summary>' +
-        '<ol class="stock-items">' + rows + '</ol></details>';
+        body + '</details>';
     }
     box.innerHTML = html;
     bindStockRefresh(box, info, trim);
@@ -696,6 +707,15 @@
       ev.stopPropagation();
       fetchStockInto(info, box, trim);
     });
+  }
+
+  /** Chips de condición con la clave de si se puede lease. */
+  function condChipsHtml(bc) {
+    var out = [];
+    if (bc.nuevo) out.push('<span class="cond-chip nuevo" title="Los autos nuevos se pueden lease con la financiera de la marca">' + bc.nuevo + ' nuevos · lease ✓</span>');
+    if (bc.cpo) out.push('<span class="cond-chip cpo" title="Seminuevo certificado: lease poco común, normalmente se financia">' + bc.cpo + ' CPO</span>');
+    if (bc.usado) out.push('<span class="cond-chip usado" title="Usados: solo compra o financiación, sin lease">' + bc.usado + ' usados</span>');
+    return out.join(' ');
   }
 
   /* ---------------- tarjetas de modelos ---------------- */
@@ -1061,13 +1081,10 @@
     addRow('Stock cerca (2025+)', function (m, td, i) {
       var c = caches[i];
       if (!c) { td.innerHTML = '<span class="sub">— pulsa “Actualizar stock”</span>'; return; }
-      var bc = c.data.byCondition || {};
-      var parts = [];
-      if (bc.nuevo) parts.push(bc.nuevo + ' nuevos');
-      if (bc.cpo) parts.push(bc.cpo + ' CPO');
-      if (bc.usado) parts.push(bc.usado + ' usados');
+      var chips = condChipsHtml(c.data.byCondition || {});
       td.innerHTML = '<strong>' + (c.data.total || c.data.shown) + '</strong> unidades' +
-        '<span class="sub">' + parts.join(' · ') + ' · ' + fmtAge(c.t) + '</span>';
+        (chips ? '<span class="cond-row">' + chips + '</span>' : '') +
+        '<span class="sub">' + fmtAge(c.t) + '</span>';
     }, bestIndexBy(totals, false));
 
     // Nuevo más barato

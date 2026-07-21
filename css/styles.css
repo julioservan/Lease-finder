@@ -287,6 +287,46 @@ details.card.collapse[open] > summary { color: var(--text); margin-bottom: 12px;
 .stock-age { color: var(--muted); font-size: 0.72rem; margin-left: auto; display: flex; align-items: center; gap: 6px; }
 .stock-range { color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
 
+/* condición: nuevo (lease) / CPO / usado */
+.cond-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+span.cond-row { display: flex; }
+.cond-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.cond-chip.nuevo { color: #86efac; background: rgba(52, 211, 153, 0.13); border: 1px solid rgba(52, 211, 153, 0.4); }
+.cond-chip.cpo { color: #93c5fd; background: rgba(96, 165, 250, 0.13); border: 1px solid rgba(96, 165, 250, 0.4); }
+.cond-chip.usado { color: var(--muted); background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-strong); }
+
+.cond-pill {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 7px;
+  border-radius: 999px;
+  vertical-align: 1px;
+}
+.cond-pill.nuevo { color: #86efac; background: rgba(52, 211, 153, 0.13); border: 1px solid rgba(52, 211, 153, 0.4); }
+.cond-pill.cpo { color: #93c5fd; background: rgba(96, 165, 250, 0.13); border: 1px solid rgba(96, 165, 250, 0.4); }
+.cond-pill.usado { color: var(--muted); background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-strong); }
+
+.stock-group {
+  margin: 10px 0 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding-left: 8px;
+  border-left: 3px solid var(--border-strong);
+}
+.stock-group em { font-weight: 400; font-style: normal; color: var(--muted); }
+.stock-group.nuevo { border-left-color: var(--good); color: #86efac; }
+.stock-group.cpo { border-left-color: #60a5fa; color: #93c5fd; }
+.stock-group.usado { border-left-color: var(--border-strong); color: var(--muted); }
+
 .stock-list { margin-top: 8px; }
 .stock-list summary { cursor: pointer; color: var(--accent-2); font-size: 0.78rem; }
 .stock-items { margin: 8px 0 0; padding-left: 18px; max-height: 260px; overflow-y: auto; font-size: 0.78rem; }
