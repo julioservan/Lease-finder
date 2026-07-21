@@ -22,7 +22,7 @@
 
   var MODELS = [
     {
-      make: 'Ford', model: 'Bronco Sport', trim: '', rating: 9.5, top: true,
+      make: 'Ford', model: 'Bronco Sport', trim: '', rating: 9.5, top: true, priority: 1,
       price: [31590, 40000],
       engine: '1.5T 181 hp · 2.0T 245 hp (Badlands)', drive: 'AWD de serie', mpg: '~25/28 mpg',
       blurb: 'Estética Bronco, AWD de serie y capacidad off-road real en tamaño compacto. El favorito.',
@@ -43,7 +43,14 @@
       wiki: 'Subaru Forester', slug: ['subaru', 'subaru-forester']
     },
     {
-      make: 'Jeep', model: 'Cherokee', trim: '2026', rating: 9.1,
+      make: 'Honda', model: 'HR-V', trim: '', rating: 8.5, priority: 2,
+      price: [26700, 32350],
+      engine: '2.0L 158 hp', drive: 'FWD/AWD', mpg: '~26/32 mpg',
+      blurb: 'El más pequeño y barato de tus candidatos; hoy es el lease más regalado del mercado en NJ.',
+      wiki: 'Honda HR-V', slug: ['honda', 'honda-hr_v']
+    },
+    {
+      make: 'Jeep', model: 'Cherokee', trim: '2026', rating: 9.1, priority: 3,
       price: [36995, 42500],
       engine: '1.6T híbrido 210 hp', drive: 'AWD', mpg: '~37 mpg combinado',
       blurb: 'El regreso 2026: ahora híbrido, eficiente y con ADN Jeep de verdad.',
@@ -71,7 +78,7 @@
       wiki: 'Hyundai Tucson', slug: ['hyundai', 'hyundai-tucson']
     },
     {
-      make: 'GMC', model: 'Terrain', trim: 'AT4', rating: 8.7,
+      make: 'GMC', model: 'Terrain', trim: 'AT4', rating: 8.7, priority: 4,
       price: [36400, 41000],
       engine: '1.5T 175 hp', drive: 'AWD', mpg: '~24/29 mpg',
       blurb: 'Renovado 2026 con pantalla de 15" y modo todoterreno AT4.',
@@ -145,7 +152,7 @@
   };
 
   var EDMUNDS_SLUG = {
-    'Bronco Sport': 'ford/bronco-sport', 'CX-50': 'mazda/cx-50', 'Forester': 'subaru/forester',
+    'Bronco Sport': 'ford/bronco-sport', 'HR-V': 'honda/hr-v', 'CX-50': 'mazda/cx-50', 'Forester': 'subaru/forester',
     'Cherokee': 'jeep/cherokee', 'Sportage': 'kia/sportage', 'RAV4': 'toyota/rav4',
     'Tucson': 'hyundai/tucson', 'Terrain': 'gmc/terrain', 'Rogue': 'nissan/rogue',
     'CR-V': 'honda/cr-v', 'Tiguan': 'volkswagen/tiguan'
