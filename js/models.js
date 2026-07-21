@@ -43,13 +43,6 @@
       wiki: 'Subaru Forester', slug: ['subaru', 'subaru-forester']
     },
     {
-      make: 'Honda', model: 'HR-V', trim: '', rating: 8.5, priority: 2,
-      price: [26700, 32350],
-      engine: '2.0L 158 hp', drive: 'FWD/AWD', mpg: '~26/32 mpg',
-      blurb: 'El más pequeño y barato de tus candidatos; hoy es el lease más regalado del mercado en NJ.',
-      wiki: 'Honda HR-V', slug: ['honda', 'honda-hr_v']
-    },
-    {
       make: 'Jeep', model: 'Cherokee', trim: '2026', rating: 9.1, priority: 3,
       price: [36995, 42500],
       engine: '1.6T híbrido 210 hp', drive: 'AWD', mpg: '~37 mpg combinado',
@@ -92,7 +85,7 @@
       wiki: 'Nissan Rogue', slug: ['nissan', 'nissan-rogue']
     },
     {
-      make: 'Honda', model: 'CR-V', trim: 'TrailSport', rating: 8.4,
+      make: 'Honda', model: 'CR-V', trim: 'TrailSport', rating: 8.4, priority: 2,
       price: [38800, 41000],
       engine: 'Híbrido 204 hp', drive: 'AWD', mpg: '~40 mpg ciudad',
       blurb: 'La compra sensata de siempre, ahora con sabor aventurero e híbrido.',
@@ -152,7 +145,7 @@
   };
 
   var EDMUNDS_SLUG = {
-    'Bronco Sport': 'ford/bronco-sport', 'HR-V': 'honda/hr-v', 'CX-50': 'mazda/cx-50', 'Forester': 'subaru/forester',
+    'Bronco Sport': 'ford/bronco-sport', 'CX-50': 'mazda/cx-50', 'Forester': 'subaru/forester',
     'Cherokee': 'jeep/cherokee', 'Sportage': 'kia/sportage', 'RAV4': 'toyota/rav4',
     'Tucson': 'hyundai/tucson', 'Terrain': 'gmc/terrain', 'Rogue': 'nissan/rogue',
     'CR-V': 'honda/cr-v', 'Tiguan': 'volkswagen/tiguan'

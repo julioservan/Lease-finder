@@ -4,7 +4,7 @@
 
   var STORAGE_KEY = 'lease-finder-offers';
   var CURRENCY_KEY = 'lease-finder-currency';
-  var WATCH_KEY = 'lease-finder-watchlist-v3';
+  var WATCH_KEY = 'lease-finder-watchlist-v4';
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',

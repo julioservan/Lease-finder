@@ -11,13 +11,14 @@
         { "title": "Promedio del mercado (36m/12k)", "monthly": 467, "das": 2000, "term": 36, "effective": 510, "source": "TrueCar", "url": "https://www.truecar.com/ford/bronco-sport/lease/" }
       ]
     },
-    "Honda HR-V": {
-      "verdict": "El lease regalado del grupo: anuncios de $149–$199/mes en NJ. Si el objetivo es pagar poco al mes, es el rey — aunque es el menos aventurero de tus candidatos.",
-      "benchmark": "Bueno ≤ $300 efectivo · hay anuncios desde $149/mes (LX AWD, NJ)",
+    "Honda CR-V": {
+      "verdict": "Fácil de conseguir a buen precio — y ojo: la oferta que el robot ya cazó en Bay Ridge Honda ($289/mes, ~$417 efectivo) le gana a la nacional. El mejor valor es el Sport Hybrid (~$421 efectivo); el TrailSport que te gusta está caro (~$548 efectivo): pagas ~$120/mes extra por el look.",
+      "benchmark": "Bueno ≤ $420 efectivo (LX/Sport Hybrid) · TrailSport hoy ~$548 efectivo",
       "deals": [
-        { "title": "LX AWD 39m — Garden State Honda (Clifton, NJ)", "monthly": 149, "das": null, "term": 39, "effective": null, "source": "Garden State Honda", "url": "https://www.gardenstatehonda.com/lease-specials.html" },
-        { "title": "LX AWD — Sloane Honda", "monthly": 199, "das": null, "term": 36, "effective": null, "source": "Sloane Honda", "url": "https://www.sloanehonda.com/honda-hr-v-lease-deal.html" },
-        { "title": "Oferta nacional Honda", "monthly": 249, "das": null, "term": 36, "effective": null, "source": "CarsDirect", "url": "https://www.carsdirect.com/honda/hr-v/prices-deals" }
+        { "title": "Sport Hybrid 2WD — oferta nacional", "monthly": 319, "das": 3999, "term": 36, "effective": 421, "source": "CarsDirect", "url": "https://www.carsdirect.com/honda/cr-v/prices-deals" },
+        { "title": "AWD LX — oferta nacional", "monthly": 299, "das": 4899, "term": 36, "effective": 427, "source": "TrueCar", "url": "https://www.truecar.com/honda/cr-v/lease/" },
+        { "title": "LX AWD — Sloane Honda (dealer agresivo)", "monthly": 241, "das": 5831, "term": 36, "effective": 396, "source": "Sloane Honda", "url": "https://www.sloanehonda.com/honda-cr-v-lease-deal.html" },
+        { "title": "TrailSport (el trim aventurero)", "monthly": 429, "das": 4699, "term": 36, "effective": 548, "source": "CarsDirect", "url": "https://www.carsdirect.com/deals-articles/2026-honda-cr-v-trailsport-lease-is-pretty-good" }
       ]
     },
     "Jeep Cherokee": {
