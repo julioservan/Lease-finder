@@ -28,6 +28,7 @@
       blurb: 'Estética Bronco, AWD de serie y capacidad off-road real en tamaño compacto. El favorito.',
       wiki: 'Ford Bronco Sport', slug: ['ford', 'ford-bronco_sport'],
       photoQuery: '2025 Ford Bronco Sport',
+      trims: ['Big Bend', 'Heritage', 'Outer Banks', 'Badlands'],
       img: { make: 'ford', family: 'bronco-sport', year: 2024 }
     },
     {
@@ -37,6 +38,7 @@
       blurb: 'El interior y manejo más premium del segmento; versión híbrida disponible.',
       wiki: 'Mazda CX-50', slug: ['mazda', 'mazda-cx_50'],
       photoQuery: '2024 Mazda CX-50',
+      trims: ['Select', 'Preferred', 'Premium', 'Premium Plus', 'Turbo', 'Hybrid'],
       img: { make: 'mazda', family: 'cx-50', year: 2024 }
     },
     {
@@ -46,6 +48,7 @@
       blurb: 'El off-road más honesto: X-Mode, suspensión elevada y visibilidad enorme.',
       wiki: 'Subaru Forester', slug: ['subaru', 'subaru-forester'],
       photoQuery: '2025 Subaru Forester',
+      trims: ['Base', 'Premium', 'Sport', 'Limited', 'Touring', 'Wilderness'],
       img: { make: 'subaru', family: 'forester', year: 2024 }
     },
     {
@@ -55,6 +58,7 @@
       blurb: 'El regreso 2026: ahora híbrido, eficiente y con ADN Jeep de verdad.',
       wiki: 'Jeep Cherokee', slug: ['jeep', 'jeep-cherokee'],
       photoQuery: '2026 Jeep Cherokee',
+      trims: ['Laredo', 'Limited', 'Overland'],
       img: { make: 'jeep', family: 'cherokee', year: 2023 }
     },
     {
@@ -64,6 +68,7 @@
       blurb: 'Mucho equipo por el dinero y garantía de 10 años/100k millas.',
       wiki: 'Kia Sportage', slug: ['kia', 'kia-sportage'],
       photoQuery: '2024 Kia Sportage',
+      trims: ['LX', 'EX', 'SX', 'X-Line', 'X-Pro', 'Hybrid'],
       img: { make: 'kia', family: 'sportage', year: 2024 }
     },
     {
@@ -73,6 +78,7 @@
       blurb: 'Fiabilidad y valor de reventa imbatibles; Woodland lista para el bosque.',
       wiki: 'Toyota RAV4', slug: ['toyota', 'toyota-rav4'],
       photoQuery: '2026 Toyota RAV4',
+      trims: ['LE', 'XLE', 'SE', 'XSE', 'Limited', 'Woodland'],
       img: { make: 'toyota', family: 'rav4', year: 2024 }
     },
     {
@@ -82,6 +88,7 @@
       blurb: 'Diseño llamativo, look aventurero y gran garantía.',
       wiki: 'Hyundai Tucson', slug: ['hyundai', 'hyundai-tucson'],
       photoQuery: '2025 Hyundai Tucson',
+      trims: ['SE', 'SEL', 'XRT', 'Limited', 'Hybrid'],
       img: { make: 'hyundai', family: 'tucson', year: 2024 }
     },
     {
@@ -91,6 +98,7 @@
       blurb: 'Renovado 2026 con pantalla de 15" y modo todoterreno AT4.',
       wiki: 'GMC Terrain', slug: ['gmc', 'gmc-terrain'],
       photoQuery: '2025 GMC Terrain',
+      trims: ['Elevation', 'AT4', 'Denali'],
       img: { make: 'gmc', family: 'terrain', year: 2024 }
     },
     {
@@ -100,6 +108,7 @@
       blurb: 'Cómodo, eficiente, y la versión Rock Creek le pone botas.',
       wiki: 'Nissan Rogue', slug: ['nissan', 'nissan-rogue'],
       photoQuery: '2025 Nissan Rogue',
+      trims: ['S', 'SV', 'SL', 'Platinum', 'Rock Creek'],
       img: { make: 'nissan', family: 'rogue', year: 2024 }
     },
     {
@@ -109,6 +118,7 @@
       blurb: 'La compra sensata de siempre, ahora con sabor aventurero e híbrido.',
       wiki: 'Honda CR-V', slug: ['honda', 'honda-cr_v'],
       photoQuery: '2025 Honda CR-V',
+      trims: ['LX', 'EX', 'EX-L', 'Sport', 'Sport-L', 'Sport Touring', 'TrailSport'],
       img: { make: 'honda', family: 'cr-v', year: 2024 }
     },
     {
@@ -118,6 +128,7 @@
       blurb: 'Nueva generación: más ligero, más equipado y con manejo europeo.',
       wiki: 'Volkswagen Tiguan', slug: ['volkswagen', 'volkswagen-tiguan'],
       photoQuery: '2025 Volkswagen Tiguan',
+      trims: ['S', 'SE', 'SE R-Line Black', 'SEL R-Line'],
       img: { make: 'volkswagen', family: 'tiguan', year: 2024 }
     }
   ];
