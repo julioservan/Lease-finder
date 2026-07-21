@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T03:07:36.243Z",
+  "updatedAt": "2026-07-21T13:30:43.883Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -14,7 +14,7 @@
     {
       "name": "Dana Ford",
       "region": "Staten Island, NY",
-      "status": "HTTP 403 en https://www.drivedanaford.com/lease-specials/ · HTTP 403 en https://www.drivedanaford.com/specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/lease-specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/specials/"
+      "status": "ok (2 ofertas, con navegador)"
     },
     {
       "name": "Stevens Jersey City Ford",
@@ -59,17 +59,17 @@
     {
       "name": "TrueCar — Bronco Sport (lease)",
       "region": "agregador por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/ford/bronco-sport/lease/ · sin ofertas (navegador) en https://www.truecar.com/ford/bronco-sport/lease/"
+      "status": "ok (19 ofertas)"
     },
     {
       "name": "TrueCar — Honda CR-V (lease)",
       "region": "agregador por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/honda/cr-v/lease/ · sin ofertas (navegador) en https://www.truecar.com/honda/cr-v/lease/"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "TrueCar — GMC Terrain (lease)",
       "region": "agregador por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/gmc/terrain/lease/ · sin ofertas (navegador) en https://www.truecar.com/gmc/terrain/lease/"
+      "status": "ok (19 ofertas)"
     },
     {
       "name": "CarsDirect — CR-V (deals)",
@@ -129,7 +129,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (26 ofertas)"
+      "status": "ok (24 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -139,7 +139,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (27 ofertas)"
+      "status": "ok (25 ofertas)"
     },
     {
       "name": "Route 22 Toyota",

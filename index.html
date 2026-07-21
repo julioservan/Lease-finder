@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=23">
+  <link rel="stylesheet" href="css/styles.css?v=24">
 </head>
 <body>
   <header class="topbar">
@@ -13,6 +13,7 @@
       <button type="button" class="tab" data-view="models">Modelos</button>
       <button type="button" class="tab" data-view="compare">Comparar</button>
       <button type="button" class="tab" data-view="offers">Ofertas</button>
+      <button type="button" class="tab" data-view="usados">CPO / Segunda mano</button>
       <button type="button" class="tab" data-view="calc">Calculadora</button>
       <button type="button" class="tab" data-view="decide">¿Lease o compra?</button>
     </nav>
@@ -140,6 +141,18 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
       </div>
       <p id="no-offers" class="hint">Nada guardado aún — usa la calculadora o guarda una oferta encontrada.</p>
     </div>
+  </section>
+
+  <!-- ===================== CPO / SEGUNDA MANO ===================== -->
+  <section class="view" id="view-usados">
+    <div class="view-head">
+      <div>
+        <h2>CPO / Segunda mano</h2>
+        <p class="hint">Seminuevos certificados (CPO) y usados 2025+ cerca (~25 mi). Normalmente se financian o se compran — el lease de segunda mano es raro. Aquí el foco no es el lease sino el mejor precio.</p>
+      </div>
+      <button type="button" class="btn primary" id="usados-load">📦 Actualizar todo</button>
+    </div>
+    <div class="watch-grid" id="usados-grid"></div>
   </section>
 
   <!-- ===================== CALCULADORA ===================== -->
@@ -372,11 +385,11 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=23"></script>
-  <script src="js/offer-parser.js?v=23"></script>
-  <script src="js/vehicles.js?v=23"></script>
-  <script src="js/models.js?v=23"></script>
-  <script src="js/decide.js?v=23"></script>
-  <script src="js/app.js?v=23"></script>
+  <script src="js/lease-calc.js?v=24"></script>
+  <script src="js/offer-parser.js?v=24"></script>
+  <script src="js/vehicles.js?v=24"></script>
+  <script src="js/models.js?v=24"></script>
+  <script src="js/decide.js?v=24"></script>
+  <script src="js/app.js?v=24"></script>
 </body>
 </html>
