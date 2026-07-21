@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=21">
+  <link rel="stylesheet" href="css/styles.css?v=22">
 </head>
 <body>
   <header class="topbar">
@@ -39,9 +39,12 @@
     <div class="view-head">
       <div>
         <h2>Comparar modelos</h2>
-        <p class="hint">Cualquier marca contra cualquier marca: stock real cerca, precio más barato y mejor lease.</p>
+        <p class="hint">Cualquier marca contra cualquier marca: mejor lease y nuevos cerca.</p>
       </div>
-      <button type="button" class="btn primary" id="compare-load">📦 Actualizar stock</button>
+      <div class="row">
+        <label class="checkbox"><input type="checkbox" id="compare-showused"> Mostrar segunda mano (CPO/usados)</label>
+        <button type="button" class="btn primary" id="compare-load">📦 Actualizar stock</button>
+      </div>
     </div>
     <div class="chips" id="compare-chips"></div>
     <div class="table-wrap">
@@ -369,11 +372,11 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=21"></script>
-  <script src="js/offer-parser.js?v=21"></script>
-  <script src="js/vehicles.js?v=21"></script>
-  <script src="js/models.js?v=21"></script>
-  <script src="js/decide.js?v=21"></script>
-  <script src="js/app.js?v=21"></script>
+  <script src="js/lease-calc.js?v=22"></script>
+  <script src="js/offer-parser.js?v=22"></script>
+  <script src="js/vehicles.js?v=22"></script>
+  <script src="js/models.js?v=22"></script>
+  <script src="js/decide.js?v=22"></script>
+  <script src="js/app.js?v=22"></script>
 </body>
 </html>

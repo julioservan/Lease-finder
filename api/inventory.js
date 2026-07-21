@@ -153,8 +153,15 @@ module.exports = async function handler(req, res) {
     items.sort(function (a, b) { return a.price - b.price; });
 
     var prices = items.map(function (x) { return x.price; });
-    function condCount(c) { return items.filter(function (x) { return x.condition === c; }).length; }
-    function cheapestOf(c) { return items.filter(function (x) { return x.condition === c; })[0] || null; }
+    function ofCond(c) { return items.filter(function (x) { return x.condition === c; }); }
+    function condCount(c) { return ofCond(c).length; }
+    function cheapestOf(c) { return ofCond(c)[0] || null; }
+    // Rango de precio por condición (items ya viene ordenado asc por precio).
+    function rangeOf(c) {
+      var g = ofCond(c);
+      if (!g.length) return null;
+      return { count: g.length, min: g[0].price, max: g[g.length - 1].price };
+    }
     res.setHeader('Cache-Control', 's-maxage=3600'); // cachea 1h en el edge (cuida la cuota)
     return res.status(200).json({
       ok: true,
@@ -163,11 +170,13 @@ module.exports = async function handler(req, res) {
       total: total != null ? total : items.length,
       shown: items.length,
       byCondition: { nuevo: condCount('Nuevo'), cpo: condCount('CPO'), usado: condCount('Usado') },
+      priceByCondition: { nuevo: rangeOf('Nuevo'), cpo: rangeOf('CPO'), usado: rangeOf('Usado') },
       minPrice: prices.length ? Math.min.apply(null, prices) : null,
       maxPrice: prices.length ? Math.max.apply(null, prices) : null,
       cheapest: items[0] || null,
       cheapestNew: cheapestOf('Nuevo'),
       cheapestCpo: cheapestOf('CPO'),
+      cheapestUsed: cheapestOf('Usado'),
       listings: items.slice(0, 60)
     });
   } catch (err) {
