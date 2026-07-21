@@ -125,6 +125,8 @@ module.exports = async function handler(req, res) {
         links: data.links || null,
         sampleKeys: Object.keys(sample),
         retailListingKeys: Object.keys(sample.retailListing || {}),
+        actions: data.actions || null,
+        discover: data.discover || null,
         sample: sample
       });
     }
