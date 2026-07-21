@@ -22,6 +22,12 @@ module.exports = async function handler(req, res) {
   var model = (q.model || '').toString().trim();
   var zip = (q.zip || '11201').toString().trim();
   var radius = (q.radius || '25').toString().trim();
+  // Año mínimo (default 2025): filtra fuera los usados viejos y ahorra cuota.
+  var minYear = parseInt(q.minYear, 10);
+  if (!(minYear >= 1990)) minYear = 2025;
+  var MAX_YEAR = 2027; // año-modelo máximo disponible
+  var yearList = [];
+  for (var y = minYear; y <= MAX_YEAR; y++) yearList.push(y);
   if (!make || !model) {
     return res.status(400).json({ ok: false, message: 'Faltan make y model.' });
   }
@@ -39,6 +45,7 @@ module.exports = async function handler(req, res) {
   var base = 'https://api.auto.dev/listings' +
     '?vehicle.make=' + encodeURIComponent(make) +
     '&vehicle.model=' + encodeURIComponent(model) +
+    '&vehicle.year=' + encodeURIComponent(yearList.join(',')) +
     '&zip=' + encodeURIComponent(zip) +
     '&distance=' + encodeURIComponent(radius) +
     '&limit=50&includes=total';
@@ -59,6 +66,7 @@ module.exports = async function handler(req, res) {
     var vin = listing.vin || v.vin || '';
     return {
       title: [v.year, (v.make || make), (v.model || model), v.trim].filter(Boolean).join(' '),
+      year: v.year || null,
       price: num(rl.price),
       msrp: num(v.baseMsrp),
       miles: num(rl.miles),
@@ -119,7 +127,9 @@ module.exports = async function handler(req, res) {
       records = records.concat(rec);
     }
 
-    var items = records.map(normalize).filter(function (x) { return x.price != null; });
+    var items = records.map(normalize).filter(function (x) {
+      return x.price != null && (!x.year || x.year >= minYear); // red de seguridad del año
+    });
     items.sort(function (a, b) { return a.price - b.price; });
 
     var prices = items.map(function (x) { return x.price; });
@@ -128,6 +138,7 @@ module.exports = async function handler(req, res) {
     res.setHeader('Cache-Control', 's-maxage=3600'); // cachea 1h en el edge (cuida la cuota)
     return res.status(200).json({
       ok: true,
+      minYear: minYear,
       total: total != null ? total : items.length,
       shown: items.length,
       byCondition: { nuevo: condCount('Nuevo'), cpo: condCount('CPO'), usado: condCount('Usado') },
