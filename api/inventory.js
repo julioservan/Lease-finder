@@ -21,6 +21,8 @@ module.exports = async function handler(req, res) {
   var make = (q.make || '').toString().trim();
   var model = (q.model || '').toString().trim();
   var trim = (q.trim || '').toString().trim();
+  // Condición: 'new' (default, foco del proyecto: nuevo + lease), 'cpo', 'used' o 'all'.
+  var cond = (q.cond || 'new').toString().trim().toLowerCase();
   var zip = (q.zip || '11201').toString().trim();
   var radius = (q.radius || '25').toString().trim();
   // Año mínimo (default 2025): filtra fuera los usados viejos y ahorra cuota.
@@ -43,10 +45,15 @@ module.exports = async function handler(req, res) {
 
   // Auto.dev usa parámetros con notación de punto (vehicle.make, vehicle.model)
   // e includes=total para conocer el total real de unidades.
+  // Filtro de condición a Auto.dev (condition=New|Certified|Used).
+  var CONDMAP = { new: 'New', cpo: 'Certified', used: 'Used' };
+  var condParam = CONDMAP[cond] ? '&condition=' + CONDMAP[cond] : '';
+
   var base = 'https://api.auto.dev/listings' +
     '?vehicle.make=' + encodeURIComponent(make) +
     '&vehicle.model=' + encodeURIComponent(model) +
     (trim ? '&vehicle.trim=' + encodeURIComponent(trim) : '') +
+    condParam +
     '&vehicle.year=' + encodeURIComponent(yearList.join(',')) +
     '&zip=' + encodeURIComponent(zip) +
     '&distance=' + encodeURIComponent(radius) +
@@ -166,6 +173,7 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       minYear: minYear,
+      cond: cond,
       trim: trim || null,
       total: total != null ? total : items.length,
       shown: items.length,
