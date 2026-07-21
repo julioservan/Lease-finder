@@ -70,32 +70,58 @@ module.exports = async function handler(req, res) {
     return isFinite(n) ? n : null;
   }
 
-  // Mapea la estructura real de Auto.dev (vehicle + retailListing).
+  function clean(s) {
+    if (typeof s !== 'string') return '';
+    s = s.trim();
+    return (!s || /^unspecified$/i.test(s)) ? '' : s;
+  }
+
+  // Mapea la estructura real de Auto.dev (vehicle + retailListing + history).
   function normalize(listing) {
     var rl = listing.retailListing || {};
     var v = listing.vehicle || {};
+    var h = listing.history || {};
     var used = rl.used === true;
     var cpo = rl.cpo === true;
     var vin = listing.vin || v.vin || '';
+    var price = num(rl.price);
+    var msrp = num(v.baseMsrp);
     return {
       title: [v.year, (v.make || make), (v.model || model), v.trim].filter(Boolean).join(' '),
-      trim: v.trim || '',
+      trim: clean(v.trim),
       year: v.year || null,
-      price: num(rl.price),
-      msrp: num(v.baseMsrp),
+      price: price,
+      msrp: msrp,
+      invoice: num(v.baseInvoice),
+      discount: (msrp && price && msrp > price) ? Math.round(msrp - price) : null,
       miles: num(rl.miles),
       condition: !used ? 'Nuevo' : (cpo ? 'CPO' : 'Usado'),
-      dealer: typeof rl.dealer === 'string' ? rl.dealer : '',
-      city: rl.city || '',
-      state: rl.state || '',
+      dealer: clean(rl.dealer),
+      city: clean(rl.city),
+      state: clean(rl.state),
       vin: vin,
-      // Auto.dev (plan gratuito) NO expone la URL del anuncio del dealer (el
-      // campo vdp es un fragmento interno). El enlace que SÍ aterriza en este
-      // coche exacto es una búsqueda del VIN + concesionario; el Carfax por VIN
-      // es el otro enlace real y directo que trae la API.
+      // Detalle del vehículo (para tarjetas ricas).
+      image: clean(rl.primaryImage),
+      photoCount: num(rl.photoCount) || 0,
+      color: clean(v.exteriorColor),
+      interior: clean(v.interiorColor),
+      drivetrain: clean(v.drivetrain),
+      fuel: clean(v.fuel),
+      engine: clean(v.engine),
+      transmission: clean(v.transmission),
+      body: clean(v.bodyStyle),
+      seats: num(v.seats) || null,
+      // Historial (sobre todo para usados/CPO).
+      accidents: h.accidentCount != null ? h.accidentCount : (h.accidents === true ? 1 : (h.accidents === false ? 0 : null)),
+      owners: num(h.ownerCount),
+      oneOwner: h.oneOwner === true,
+      usage: clean(h.usageType),
+      // Auto.dev (plan gratuito) NO expone la URL del anuncio del dealer (vdp
+      // es un fragmento interno). El enlace que SÍ aterriza en este coche
+      // exacto es una búsqueda del VIN + concesionario; el Carfax es directo.
       url: vin
         ? 'https://www.google.com/search?q=' +
-          encodeURIComponent('"' + vin + '" ' + (typeof rl.dealer === 'string' ? rl.dealer : (v.make || make) + ' ' + (v.model || model)))
+          encodeURIComponent('"' + vin + '" ' + (clean(rl.dealer) || (v.make || make) + ' ' + (v.model || model)))
         : '',
       carfax: rl.carfaxUrl || ''
     };

@@ -650,15 +650,81 @@
       });
   }
 
+  // Nombre de color → hex para el swatch (coincidencia por subcadena).
+  var COLOR_HEX = {
+    white: '#eef0f2', pearl: '#eae6da', ivory: '#efe9d6', black: '#15171b', charcoal: '#33363b',
+    silver: '#c7cacd', gray: '#83888d', grey: '#83888d', granite: '#6a6d70', platinum: '#d3d6d9',
+    gunmetal: '#4a4e54', red: '#c0392b', maroon: '#6e1f2a', burgundy: '#6e1f2a', crimson: '#b01e2e',
+    blue: '#2c5aa0', navy: '#1f3a5f', teal: '#1f7a7a', green: '#2e7d46', olive: '#5b6a2b',
+    brown: '#6b4a2b', bronze: '#8a6a45', beige: '#d8c7a0', tan: '#cdb58a', gold: '#c9a94b',
+    orange: '#d97b28', copper: '#a55a34', yellow: '#e6c828', purple: '#6b3fa0', pink: '#d96a9a'
+  };
+  function colorHex(name) {
+    var n = (name || '').toLowerCase();
+    for (var k in COLOR_HEX) { if (n.indexOf(k) >= 0) return COLOR_HEX[k]; }
+    return null;
+  }
+
   function stockItemRow(c) {
     var cls = c.condition === 'Nuevo' ? 'nuevo' : (c.condition === 'CPO' ? 'cpo' : 'usado');
-    return '<li><span class="cond-pill ' + cls + '">' + c.condition + '</span> ' +
-      '<strong>' + fmtMoney(c.price) + '</strong> · ' + escapeHtml(c.title) +
-      (c.miles ? ' · ' + c.miles.toLocaleString('es') + ' mi' : '') +
-      (c.dealer ? ' · ' + escapeHtml(c.dealer) + (c.city ? ' (' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') + ')' : '') : '') +
-      (c.url ? ' · <a href="' + c.url + '" target="_blank" rel="noopener" title="Busca este VIN exacto y su concesionario">buscar este VIN ↗</a>' : '') +
-      (c.carfax ? ' · <a href="' + c.carfax + '" target="_blank" rel="noopener">Carfax ↗</a>' : '') +
-      '</li>';
+
+    // Foto (o marcador con inicial de marca)
+    var photo = c.image
+      ? '<div class="sc-photo"><img loading="lazy" src="' + escapeHtml(c.image) + '" alt="' + escapeHtml(c.title) + '"' +
+        ' onerror="this.parentNode.classList.add(\'noimg\');this.remove();">' +
+        (c.photoCount > 1 ? '<span class="sc-photocount">📷 ' + c.photoCount + '</span>' : '') + '</div>'
+      : '<div class="sc-photo noimg"></div>';
+
+    // Descuento vs MSRP
+    var priceBlock = '<strong>' + fmtMoney(c.price) + '</strong>';
+    if (c.discount && c.discount >= 250) {
+      priceBlock += '<span class="sc-off">−' + fmtMoney(c.discount) + ' vs MSRP</span>';
+    } else if (c.msrp && c.price && c.price > c.msrp) {
+      priceBlock += '<span class="sc-over">+' + fmtMoney(c.price - c.msrp) + ' sobre MSRP</span>';
+    }
+
+    // Color con swatch
+    var color = '';
+    if (c.color) {
+      var hx = colorHex(c.color);
+      color = '<span class="sc-color">' +
+        (hx ? '<span class="sc-swatch" style="background:' + hx + '"></span>' : '') +
+        escapeHtml(c.color) + (c.interior ? ' / ' + escapeHtml(c.interior) : '') + '</span>';
+    }
+
+    // Specs (tren motriz, combustible, millas)
+    var specs = [];
+    if (c.drivetrain) specs.push(escapeHtml(c.drivetrain));
+    if (c.fuel) specs.push(escapeHtml(c.fuel));
+    if (c.miles != null) specs.push(c.miles.toLocaleString('es') + ' mi');
+    else if (c.condition === 'Nuevo') specs.push('nuevo');
+
+    // Historial (usados/CPO)
+    var hist = [];
+    if (c.condition !== 'Nuevo') {
+      if (c.accidents === 0) hist.push('<span class="sc-ok">✓ sin accidentes</span>');
+      else if (c.accidents > 0) hist.push('<span class="sc-warn">⚠ ' + c.accidents + ' accidente(s)</span>');
+      if (c.oneOwner) hist.push('<span class="sc-ok">✓ 1 dueño</span>');
+      else if (c.owners > 1) hist.push(c.owners + ' dueños');
+      if (c.usage && !/personal/i.test(c.usage)) hist.push('uso: ' + escapeHtml(c.usage));
+    }
+
+    var links = [];
+    if (c.url) links.push('<a href="' + c.url + '" target="_blank" rel="noopener" title="Busca este VIN exacto y su concesionario">buscar VIN ↗</a>');
+    if (c.carfax) links.push('<a href="' + c.carfax + '" target="_blank" rel="noopener">Carfax ↗</a>');
+
+    return '<div class="stock-card">' + photo +
+      '<div class="sc-body">' +
+        '<div class="sc-top"><span class="cond-pill ' + cls + '">' + c.condition + '</span>' +
+          '<span class="sc-price">' + priceBlock + '</span></div>' +
+        '<div class="sc-title">' + escapeHtml(c.title) + '</div>' +
+        (color ? '<div class="sc-line">' + color + '</div>' : '') +
+        (specs.length ? '<div class="sc-line sc-specs">' + specs.join(' · ') + '</div>' : '') +
+        (hist.length ? '<div class="sc-line sc-hist">' + hist.join(' · ') + '</div>' : '') +
+        (c.dealer ? '<div class="sc-line sc-dealer">🏬 ' + escapeHtml(c.dealer) +
+          (c.city ? ' · ' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') : '') + '</div>' : '') +
+        (links.length ? '<div class="sc-line sc-links">' + links.join(' · ') + '</div>' : '') +
+      '</div></div>';
   }
 
   /** Pinta el bloque de NUEVOS (protagonista, para lease) desde datos cond=new. */
@@ -680,7 +746,7 @@
         ' · 2025+ · ~25 mi</div>';
       if (newList.length) {
         html += '<details class="stock-list"><summary>Ver ' + newList.length + ' nuevos (los más baratos)</summary>' +
-          '<ol class="stock-items">' + newList.map(stockItemRow).join('') + '</ol></details>';
+          '<div class="stock-cards">' + newList.map(stockItemRow).join('') + '</div></details>';
       }
     } else {
       html = '<div class="stock-summary"><span class="cond-chip nuevo" style="opacity:.7">🆕 0 nuevos ahora</span>' +
@@ -710,13 +776,13 @@
       var cr = pc.cpo || {};
       inner += '<div class="stock-group cpo">CPO (seminuevo certificado) — ' + cpoList.length +
         ' <em>' + (cr.min != null ? fmtMoney(cr.min) + '–' + fmtMoney(cr.max) + ' · ' : '') + 'normalmente se financian</em></div>' +
-        '<ol class="stock-items">' + cpoList.map(stockItemRow).join('') + '</ol>';
+        '<div class="stock-cards">' + cpoList.map(stockItemRow).join('') + '</div>';
     }
     if (usedList.length) {
       var ur = pc.usado || {};
       inner += '<div class="stock-group usado">Usados — ' + usedList.length +
         ' <em>' + (ur.min != null ? fmtMoney(ur.min) + '–' + fmtMoney(ur.max) + ' · ' : '') + 'solo compra / financiación</em></div>' +
-        '<ol class="stock-items">' + usedList.map(stockItemRow).join('') + '</ol>';
+        '<div class="stock-cards">' + usedList.map(stockItemRow).join('') + '</div>';
     }
     body.innerHTML = inner;
   }

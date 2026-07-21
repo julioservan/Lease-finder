@@ -333,9 +333,35 @@ span.cond-row { display: flex; }
 .secondhand-body { margin-top: 4px; }
 .stock-list.secondhand summary { color: var(--muted); }
 .stock-list.secondhand summary:hover { color: var(--text); }
-.stock-items { margin: 8px 0 0; padding-left: 18px; max-height: 260px; overflow-y: auto; font-size: 0.78rem; }
-.stock-items li { margin-bottom: 4px; color: var(--muted); }
-.stock-items li strong { color: var(--text); }
+/* tarjetas de unidad de stock */
+.stock-cards { margin: 8px 0 0; max-height: 420px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 2px; }
+.stock-card {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+}
+.sc-photo { position: relative; background: linear-gradient(160deg, var(--surface-2), #10131b); aspect-ratio: 4/3; }
+.sc-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sc-photo.noimg::after { content: "🚗"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; opacity: 0.35; }
+.sc-photocount { position: absolute; bottom: 4px; right: 4px; font-size: 0.62rem; background: rgba(0,0,0,0.6); color: #fff; padding: 1px 6px; border-radius: 999px; }
+.sc-body { padding: 8px 10px 8px 0; display: flex; flex-direction: column; gap: 3px; min-width: 0; font-size: 0.78rem; }
+.sc-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.sc-price { text-align: right; }
+.sc-price strong { color: var(--text); font-size: 0.95rem; }
+.sc-off { display: block; color: var(--good); font-size: 0.68rem; font-weight: 700; }
+.sc-over { display: block; color: var(--warn); font-size: 0.68rem; font-weight: 700; }
+.sc-title { font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sc-line { color: var(--muted); }
+.sc-color { display: inline-flex; align-items: center; gap: 5px; }
+.sc-swatch { width: 11px; height: 11px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.25); flex: none; }
+.sc-hist .sc-ok { color: #86efac; }
+.sc-hist .sc-warn { color: var(--warn); }
+.sc-dealer { font-size: 0.74rem; }
+.sc-links { margin-top: 2px; }
 
 .card-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
 
