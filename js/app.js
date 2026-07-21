@@ -448,9 +448,11 @@
 
   // Palabras que delatan una foto que NO queremos (interiores, detalles…)
   var PHOTO_BAD = /interior|engine|dashboard|badge|logo|wheel|\brear\b|taillight|headlight|seat|trunk|cargo|boot|gauge|console|infotainment|grille|emblem|patent|concept/i;
-  // Render de imagin.studio (clave demo pública → con marca de agua). Cambia
-  // por tu propia clave de imagin.studio para obtener imágenes sin watermark.
-  var IMAGIN_KEY = 'hrjavascript-mastery';
+  // imagin.studio: la clave demo pública ('hrjavascript-mastery') ahora
+  // devuelve HTTP 403 (bloqueada), así que la desactivamos y usamos fotos
+  // REALES de Wikimedia Commons / Wikipedia (gratis, con CORS). Si consigues
+  // tu propia clave de imagin.studio, ponla aquí para volver a los renders.
+  var IMAGIN_KEY = '';
 
   /** URL del render de estudio de imagin para un modelo (o '' si no aplica). */
   function imaginUrl(info) {
@@ -465,7 +467,7 @@
   /** Foto fiable de un modelo para tarjetas/tablero: la ya cacheada o el render. */
   function modelPhotoUrl(info) {
     try {
-      var c = localStorage.getItem('lf-photo7-' + info.make + '-' + info.model);
+      var c = localStorage.getItem('lf-photo8-' + info.make + '-' + info.model);
       if (c) return c;
     } catch (e) { /* sin caché */ }
     return imaginUrl(info);
@@ -491,7 +493,7 @@
    * Wikimedia Commons o la imagen del artículo de Wikipedia. Cachea la URL.
    */
   function loadPhoto(info, img) {
-    var cacheKey = 'lf-photo7-' + info.make + '-' + info.model;
+    var cacheKey = 'lf-photo8-' + info.make + '-' + info.model;
     var cached = null;
     try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
     img.addEventListener('load', function () {
@@ -961,8 +963,9 @@
     im.alt = info.make + ' ' + info.model;
     im.loading = 'lazy';
     im.referrerPolicy = 'no-referrer';
-    if (r.photo) im.src = r.photo;
-    im.onerror = function () { im.style.visibility = 'hidden'; };
+    im.addEventListener('error', function () { im.style.visibility = 'hidden'; });
+    im.addEventListener('load', function () { im.style.visibility = 'visible'; });
+    loadPhoto(info, im); // cadena real: Commons → Wikipedia (imagin desactivado)
     tdP.appendChild(im);
     tr.appendChild(tdP);
 
