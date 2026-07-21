@@ -526,15 +526,27 @@
         '<a href="' + info.linkNew + '" target="_blank" rel="noopener">Ampliar en cars.com ↗</a></small>';
       return;
     }
-    var c = d.cheapest;
-    var html = '<div class="stock-summary">📦 <strong>' + d.count + '</strong> en stock ~25 mi · ' +
-      'desde <strong>' + fmtMoney(d.minPrice) + '</strong> hasta ' + fmtMoney(d.maxPrice) + '</div>';
-    if (c) {
-      html += '<small class="hint">Más barato: ' + escapeHtml(c.title) +
-        (c.price != null ? ' — ' + fmtMoney(c.price) : '') +
-        (c.dealer ? ' · ' + escapeHtml(c.dealer) : '') +
-        (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') + '</small>';
+    var bc = d.byCondition || {};
+    var parts = [];
+    if (bc.nuevo) parts.push(bc.nuevo + ' nuevos');
+    if (bc.cpo) parts.push(bc.cpo + ' CPO');
+    if (bc.usado) parts.push(bc.usado + ' usados');
+    var html = '<div class="stock-summary">📦 <strong>' + d.shown + '</strong> cerca (~25 mi)' +
+      (parts.length ? ' · ' + parts.join(' · ') : '') + '</div>' +
+      '<small class="hint">Precios de ' + fmtMoney(d.minPrice) + ' a ' + fmtMoney(d.maxPrice) + '</small>';
+
+    function line(label, c) {
+      if (!c) return '';
+      return '<small class="hint">' + label + ': ' + escapeHtml(c.title) +
+        (c.price != null ? ' — <strong>' + fmtMoney(c.price) + '</strong>' : '') +
+        (c.miles ? ' · ' + c.miles.toLocaleString('es') + ' mi' : '') +
+        (c.dealer ? ' · ' + escapeHtml(c.dealer) + (c.city ? ' (' + escapeHtml(c.city) + ')' : '') : '') +
+        (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">buscar ↗</a>' : '') + '</small>';
     }
+    // Muestra el más barato nuevo y el más barato CPO (lo relevante para comprar)
+    html += line('🆕 Nuevo + barato', d.cheapestNew);
+    html += line('🔵 CPO + barato', d.cheapestCpo);
+    if (!d.cheapestNew && !d.cheapestCpo) html += line('Más barato', d.cheapest);
     box.innerHTML = html;
   }
 

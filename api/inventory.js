@@ -48,25 +48,25 @@ module.exports = async function handler(req, res) {
     return isFinite(n) ? n : null;
   }
 
-  // Extrae campos de forma tolerante (la API puede anidar de varias formas).
+  // Mapea la estructura real de Auto.dev (vehicle + retailListing).
   function normalize(listing) {
-    var rl = listing.retailListing || listing.listing || listing;
-    var v = listing.vehicle || listing;
-    var price = num(rl.price != null ? rl.price : (listing.price != null ? listing.price : listing.priceUnformatted));
-    var miles = num(rl.miles != null ? rl.miles : (listing.mileage != null ? listing.mileage : listing.miles));
-    var dealer = (rl.dealer && (rl.dealer.name || rl.dealer)) || listing.dealerName ||
-      (listing.dealer && (listing.dealer.name || listing.dealer)) || rl.sellerName || '';
-    var city = (rl.dealer && rl.dealer.city) || listing.city || (listing.dealer && listing.dealer.city) || '';
-    var year = v.year || listing.year || '';
-    var trim = v.trim || listing.trim || '';
-    var link = rl.vdp || listing.clickoffUrl || listing.url || rl.url || listing.vdpUrl || '';
+    var rl = listing.retailListing || {};
+    var v = listing.vehicle || {};
+    var used = rl.used === true;
+    var cpo = rl.cpo === true;
+    var vin = listing.vin || v.vin || '';
     return {
-      title: [year, make, model, trim].filter(Boolean).join(' '),
-      price: price, miles: miles,
-      dealer: typeof dealer === 'string' ? dealer : '',
-      city: typeof city === 'string' ? city : '',
-      condition: listing.condition || rl.condition || '',
-      url: typeof link === 'string' ? link : ''
+      title: [v.year, (v.make || make), (v.model || model), v.trim].filter(Boolean).join(' '),
+      price: num(rl.price),
+      msrp: num(v.baseMsrp),
+      miles: num(rl.miles),
+      condition: !used ? 'Nuevo' : (cpo ? 'CPO' : 'Usado'),
+      dealer: typeof rl.dealer === 'string' ? rl.dealer : '',
+      city: rl.city || '',
+      state: rl.state || '',
+      vin: vin,
+      // vdp de Auto.dev es un fragmento, no una URL usable → buscamos el VIN
+      url: vin ? 'https://www.google.com/search?q=' + encodeURIComponent(vin + ' for sale') : ''
     };
   }
 
@@ -103,14 +103,18 @@ module.exports = async function handler(req, res) {
     items.sort(function (a, b) { return a.price - b.price; });
 
     var prices = items.map(function (x) { return x.price; });
+    function condCount(c) { return items.filter(function (x) { return x.condition === c; }).length; }
+    function cheapestOf(c) { return items.filter(function (x) { return x.condition === c; })[0] || null; }
     res.setHeader('Cache-Control', 's-maxage=3600'); // cachea 1h en el edge (cuida la cuota)
     return res.status(200).json({
       ok: true,
-      count: data.totalCount || data.total || items.length,
       shown: items.length,
+      byCondition: { nuevo: condCount('Nuevo'), cpo: condCount('CPO'), usado: condCount('Usado') },
       minPrice: prices.length ? Math.min.apply(null, prices) : null,
       maxPrice: prices.length ? Math.max.apply(null, prices) : null,
       cheapest: items[0] || null,
+      cheapestNew: cheapestOf('Nuevo'),
+      cheapestCpo: cheapestOf('CPO'),
       listings: items.slice(0, 8)
     });
   } catch (err) {
