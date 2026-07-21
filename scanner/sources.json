@@ -10,7 +10,7 @@
     "targetModels": [
       "cherokee", "grand cherokee", "bronco sport", "cx-50", "cx-5",
       "rav4", "cr-v", "forester", "crosstrek", "tucson", "sportage",
-      "rogue", "equinox", "tiguan", "escape", "compass"
+      "rogue", "equinox", "tiguan", "escape", "compass", "terrain"
     ]
   },
   "sources": [

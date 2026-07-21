@@ -1,10 +1,10 @@
 {
   "name": "lease-finder",
   "version": "0.2.0",
-  "description": "Calcula, guarda, compara y escanea ofertas de lease — inspirado en la calculadora de Leasehackr",
+  "description": "Calcula, guarda, compara y escanea ofertas de lease \u2014 inspirado en la calculadora de Leasehackr",
   "private": true,
   "scripts": {
-    "test": "node test/lease-calc.test.js && node test/offer-parser.test.js",
+    "test": "node test/lease-calc.test.js && node test/offer-parser.test.js && node test/decide.test.js",
     "scan": "node scanner/scan.js"
   },
   "license": "MIT"
