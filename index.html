@@ -3,385 +3,377 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lease Finder — calcula, guarda y compara ofertas de lease</title>
-  <link rel="stylesheet" href="css/styles.css?v=17">
+  <title>Lease Finder</title>
+  <link rel="stylesheet" href="css/styles.css?v=18">
 </head>
 <body>
-  <header class="app-header">
-    <div>
-      <h1>🚗 Lease Finder</h1>
-      <p class="subtitle">Elige tus modelos, el robot busca ofertas de lease a diario y aquí ves cómo va — inspirado en Leasehackr</p>
-    </div>
-    <div class="header-controls">
-      <label for="currency">Moneda</label>
-      <input id="currency" type="text" value="$" size="3" title="Símbolo de moneda">
-    </div>
+  <header class="topbar">
+    <div class="brand">🚗 <strong>Lease&nbsp;Finder</strong><span class="brand-zip">Brooklyn · 11201</span></div>
+    <nav class="tabs" id="tabs">
+      <button type="button" class="tab" data-view="models">Modelos</button>
+      <button type="button" class="tab" data-view="compare">Comparar</button>
+      <button type="button" class="tab" data-view="offers">Ofertas</button>
+      <button type="button" class="tab" data-view="calc">Calculadora</button>
+      <button type="button" class="tab" data-view="decide">¿Lease o compra?</button>
+    </nav>
   </header>
 
-  <!-- ===================== SEGUIMIENTO DE MODELOS ===================== -->
-  <section class="card watch-card" id="watch-card">
-    <h2>🏆 Mis SUVs candidatos</h2>
-    <p class="hint">Tus 11 candidatos con foto y ficha. El robot los busca <strong>3 veces al día</strong>
-      en las fuentes vigiladas y cada tarjeta te dice cómo va: ofertas de lease encontradas, y accesos
-      directos a inventario <strong>nuevo</strong>, <strong>usado</strong> y <strong>CPO</strong> cerca de
-      ti (ZIP 11201). El botón ⚖️ compara si te conviene lease, CPO o compra. Puedes seguir más modelos
-      o quitar los que descartes.</p>
-    <div class="actions watch-actions">
-      <select id="watch-make" class="filter-select"></select>
-      <select id="watch-model" class="filter-select" disabled></select>
-      <button type="button" class="btn primary" id="watch-add">➕ Seguir modelo</button>
-    </div>
-    <div class="watch-grid" id="watch-grid"></div>
-    <p class="hint" id="watch-meta"></p>
-  </section>
-
-
-  <!-- ===================== OFERTAS ONLINE ===================== -->
-  <section class="card online-card" id="online-card">
-    <div class="offers-header">
-      <h2>🌐 Ofertas encontradas online</h2>
-      <div class="actions">
-        <select id="online-model" class="filter-select"><option value="">Todos los modelos</option></select>
-        <button type="button" class="btn subtle" id="online-refresh">↻ Recargar</button>
-        <button type="button" class="btn primary" id="scan-now-btn"
-           title="Lanza el robot de búsqueda al momento. Los resultados aparecen aquí solos en ~3-4 minutos.">▶ Buscar ahora</button>
+  <!-- ===================== MODELOS ===================== -->
+  <section class="view" id="view-models">
+    <div class="view-head">
+      <div>
+        <h2>Mis SUVs</h2>
+        <p class="hint" id="watch-meta"></p>
+      </div>
+      <div class="row">
+        <select id="watch-make" class="filter-select"></select>
+        <select id="watch-model" class="filter-select" disabled></select>
+        <button type="button" class="btn subtle" id="watch-add">＋ Seguir</button>
       </div>
     </div>
-    <p class="hint">Esto es lo que el robot encontró al revisar las páginas de ofertas de las agencias
-      vigiladas y las páginas de lease por modelo. Se actualiza solo <strong>3 veces al día</strong>
-      (~9 am, 1 pm y 5 pm NY), y con <strong>“▶ Buscar ahora”</strong> lanzas una búsqueda extra al
-      momento — los resultados aparecen aquí solos en ~3-4 minutos.</p>
-    <p class="hint" id="online-meta">Cargando resultados del escáner…</p>
-    <div class="table-wrap" id="online-wrap" hidden>
-      <table class="offers-table">
-        <thead>
-          <tr>
-            <th>Oferta</th>
-            <th>Fuente</th>
-            <th>Mensual</th>
-            <th>Plazo</th>
-            <th>Inicial</th>
-            <th>MSRP</th>
-            <th>Efectivo/mes</th>
-            <th>Score</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="online-body"></tbody>
-      </table>
-    </div>
-    <details class="advanced" id="online-status-box" hidden>
-      <summary>Estado de las fuentes vigiladas</summary>
-      <ul id="online-status" class="hint"></ul>
-    </details>
+    <div class="watch-grid" id="watch-grid"></div>
   </section>
 
-  <!-- ===================== ESCÁNER ===================== -->
-  <section class="card scanner-card" id="scanner-card">
-    <h2>🔍 Escáner de ofertas</h2>
-    <p class="hint">Pega el texto de uno o varios anuncios (correo, WhatsApp, portales…) y el escáner
-      detecta mensualidad, plazo, pago inicial, MSRP, km/año, residual y money factor.
-      Separa varias ofertas con una línea de <code>---</code> o dos líneas en blanco.
-      También puedes escanear páginas completas con el CLI: <code>node scanner/scan.js &lt;url&gt;</code>.</p>
-    <textarea id="scan-input" rows="8" placeholder="2026 Ford Bronco Sport Big Bend
-$299/mes, 36 meses
-$2,999 due at signing
-MSRP: $31,500
+  <!-- ===================== COMPARAR ===================== -->
+  <section class="view" id="view-compare">
+    <div class="view-head">
+      <div>
+        <h2>Comparar modelos</h2>
+        <p class="hint">Cualquier marca contra cualquier marca: stock real cerca, precio más barato y mejor lease.</p>
+      </div>
+      <button type="button" class="btn primary" id="compare-load">📦 Actualizar stock</button>
+    </div>
+    <div class="chips" id="compare-chips"></div>
+    <div class="table-wrap">
+      <table class="compare-table" id="compare-table"></table>
+    </div>
+    <p class="hint" id="compare-empty" hidden>Elige al menos un modelo arriba.</p>
+  </section>
+
+  <!-- ===================== OFERTAS ===================== -->
+  <section class="view" id="view-offers">
+    <div class="view-head">
+      <div>
+        <h2>Ofertas de lease</h2>
+        <p class="hint" id="online-meta">Cargando…</p>
+      </div>
+      <div class="row">
+        <select id="online-model" class="filter-select"><option value="">Todos los modelos</option></select>
+        <button type="button" class="btn subtle" id="online-refresh">↻</button>
+        <button type="button" class="btn primary" id="scan-now-btn" title="Lanza el robot ahora; resultados en ~3-4 min.">▶ Buscar ahora</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="table-wrap" id="online-wrap" hidden>
+        <table class="offers-table">
+          <thead>
+            <tr>
+              <th>Oferta</th><th>Fuente</th><th>Mensual</th><th>Plazo</th>
+              <th>Inicial</th><th>MSRP</th><th>Efectivo/mes</th><th>Score</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="online-body"></tbody>
+        </table>
+      </div>
+      <details class="advanced" id="online-status-box" hidden>
+        <summary>Estado de las fuentes</summary>
+        <ul id="online-status" class="hint"></ul>
+      </details>
+    </div>
+
+    <details class="card collapse" id="scanner-card">
+      <summary>🔍 Escanear un anuncio pegado (texto de correo, WhatsApp…)</summary>
+      <textarea id="scan-input" rows="6" placeholder="2026 Ford Bronco Sport Big Bend
+$299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
 ---
-2026 Mazda CX-50 Select
-Mensualidad de $339 con $2,499 de enganche
-36 meses. MSRP $31,720"></textarea>
-    <div class="actions scanner-actions">
-      <button type="button" class="btn primary" id="scan-btn">🔍 Escanear</button>
-      <button type="button" class="btn" id="scan-save-all" hidden>💾 Guardar todas</button>
+(separa varias ofertas con --- o dos líneas en blanco)"></textarea>
+      <div class="actions">
+        <button type="button" class="btn primary" id="scan-btn">Escanear</button>
+        <button type="button" class="btn" id="scan-save-all" hidden>💾 Guardar todas</button>
+      </div>
+      <div class="table-wrap" id="scan-results-wrap" hidden>
+        <table class="offers-table" id="scan-results-table">
+          <thead>
+            <tr>
+              <th>Oferta detectada</th><th>Mensual</th><th>Plazo</th><th>Inicial</th>
+              <th>MSRP</th><th>Efectivo/mes</th><th>% MSRP</th><th>Score</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="scan-results-body"></tbody>
+        </table>
+      </div>
+      <p id="scan-empty" class="hint" hidden>No se detectó ninguna oferta (se necesita al menos una mensualidad, ej. “$399/mes”).</p>
+    </details>
+
+    <div class="card">
+      <div class="offers-header">
+        <h3>Guardadas</h3>
+        <div class="row">
+          <select id="filter-make" class="filter-select"><option value="">Todas las marcas</option></select>
+          <select id="filter-model" class="filter-select" disabled><option value="">Todos los modelos</option></select>
+          <button type="button" class="btn subtle" id="export-btn">⬇ JSON</button>
+          <button type="button" class="btn subtle" id="import-btn">⬆ JSON</button>
+          <input type="file" id="import-file" accept="application/json" hidden>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="offers-table" id="offers-table">
+          <thead>
+            <tr>
+              <th>Oferta</th>
+              <th>Plazo</th>
+              <th data-sort="monthlyPayment" class="sortable">Mensual</th>
+              <th data-sort="driveOff" class="sortable">Inicial</th>
+              <th data-sort="effectiveMonthly" class="sortable">Efectivo/mes</th>
+              <th data-sort="totalCost" class="sortable">Total</th>
+              <th data-sort="pctOfMsrp" class="sortable">% MSRP</th>
+              <th data-sort="score" class="sortable desc">Score</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="offers-body"></tbody>
+        </table>
+      </div>
+      <p id="no-offers" class="hint">Nada guardado aún — usa la calculadora o guarda una oferta encontrada.</p>
     </div>
-    <div class="table-wrap" id="scan-results-wrap" hidden>
-      <table class="offers-table" id="scan-results-table">
-        <thead>
-          <tr>
-            <th>Oferta detectada</th>
-            <th>Mensual</th>
-            <th>Plazo</th>
-            <th>Inicial</th>
-            <th>MSRP</th>
-            <th>Efectivo/mes</th>
-            <th>% MSRP</th>
-            <th>Score</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="scan-results-body"></tbody>
-      </table>
-    </div>
-    <p id="scan-empty" class="hint" hidden>No se detectó ninguna oferta. Revisa que el texto incluya al menos una mensualidad (ej. “$399/mes”).</p>
+  </section>
+
+  <!-- ===================== CALCULADORA ===================== -->
+  <section class="view" id="view-calc">
+    <main class="layout">
+      <div class="card form-card">
+        <h2>Datos de la oferta</h2>
+        <form id="lease-form" autocomplete="off">
+          <div class="grid-2">
+            <div class="field">
+              <label for="make">Marca</label>
+              <select id="make"></select>
+            </div>
+            <div class="field">
+              <label for="model">Modelo</label>
+              <select id="model" disabled></select>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="name">Detalle (versión, agencia…)</label>
+            <input id="name" type="text" placeholder="Ej. Select AWD — Koeppel Mazda">
+          </div>
+
+          <fieldset>
+            <legend>Vehículo y precio</legend>
+            <div class="grid-2">
+              <div class="field">
+                <label for="msrp">MSRP</label>
+                <input id="msrp" type="number" step="any" min="0" placeholder="45000">
+              </div>
+              <div class="field">
+                <label for="price">Precio negociado</label>
+                <input id="price" type="number" step="any" min="0" placeholder="41000">
+                <small id="discount-hint" class="hint"></small>
+              </div>
+              <div class="field">
+                <label for="incentives">Incentivos / bonos</label>
+                <input id="incentives" type="number" step="any" min="0" value="0">
+              </div>
+              <div class="field">
+                <label for="downPayment">Enganche</label>
+                <input id="downPayment" type="number" step="any" min="0" value="0">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Condiciones del lease</legend>
+            <div class="grid-2">
+              <div class="field">
+                <label for="term">Plazo (meses)</label>
+                <input id="term" type="number" min="1" max="72" value="36">
+              </div>
+              <div class="field">
+                <label for="milesPerYear">Millas por año</label>
+                <input id="milesPerYear" type="number" min="0" step="any" value="16000">
+              </div>
+              <div class="field">
+                <label for="residualPct">Residual (% del MSRP)</label>
+                <input id="residualPct" type="number" step="any" min="0" max="100" placeholder="58">
+              </div>
+              <div class="field">
+                <label for="rate">
+                  <select id="rateType" class="inline-select">
+                    <option value="mf">Money factor</option>
+                    <option value="apr">TAE / interés %</option>
+                  </select>
+                </label>
+                <input id="rate" type="number" step="any" min="0" placeholder="0.00125">
+                <small id="rate-hint" class="hint"></small>
+              </div>
+            </div>
+          </fieldset>
+
+          <details class="advanced">
+            <summary>Tarifas e impuestos</summary>
+            <fieldset>
+            <div class="grid-2">
+              <div class="field">
+                <label for="acqFee">Tarifa de adquisición</label>
+                <input id="acqFee" type="number" step="any" min="0" value="0">
+                <label class="checkbox"><input id="capitalizeAcq" type="checkbox"> Capitalizarla</label>
+              </div>
+              <div class="field">
+                <label for="dispositionFee">Tarifa de devolución</label>
+                <input id="dispositionFee" type="number" step="any" min="0" value="0">
+              </div>
+              <div class="field">
+                <label for="upfrontFees">Otras tarifas al inicio</label>
+                <input id="upfrontFees" type="number" step="any" min="0" value="0">
+              </div>
+              <div class="field">
+                <label for="capFees">Otras tarifas capitalizadas</label>
+                <input id="capFees" type="number" step="any" min="0" value="0">
+              </div>
+              <div class="field">
+                <label for="taxPct">Impuesto %</label>
+                <input id="taxPct" type="number" step="any" min="0" value="0">
+              </div>
+              <div class="field">
+                <label for="taxMethod">Método de impuesto</label>
+                <select id="taxMethod">
+                  <option value="monthly">Sobre cada pago</option>
+                  <option value="upfront">Sobre la suma, al inicio</option>
+                  <option value="none">Sin impuesto / incluido</option>
+                </select>
+              </div>
+            </div>
+            </fieldset>
+          </details>
+
+          <div class="field full">
+            <label for="notes">Notas</label>
+            <textarea id="notes" rows="2" placeholder="Vendedor, vigencia, condiciones…"></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary" id="save-btn">💾 Guardar oferta</button>
+            <button type="button" class="btn" id="share-btn">🔗 Copiar enlace</button>
+            <button type="button" class="btn subtle" id="clear-btn">Limpiar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card results-card">
+        <h2>Resultados</h2>
+        <div class="score-panel">
+          <div class="score-box" id="score-box">
+            <span class="score-value" id="r-score">—</span>
+            <span class="score-label">Score (años)</span>
+            <small class="hint">≥ 8 suele ser excelente</small>
+          </div>
+          <div class="score-box" id="pct-box">
+            <span class="score-value" id="r-pct">—</span>
+            <span class="score-label">Regla del 1%</span>
+            <small class="hint">≤ 1% del MSRP es buena señal</small>
+          </div>
+        </div>
+
+        <table class="results-table">
+          <tbody>
+            <tr class="highlight"><td>Pago mensual</td><td id="r-monthly">—</td></tr>
+            <tr><td class="indent">Depreciación</td><td id="r-dep">—</td></tr>
+            <tr><td class="indent">Cargo financiero</td><td id="r-rent">—</td></tr>
+            <tr><td class="indent">Impuesto mensual</td><td id="r-tax">—</td></tr>
+            <tr><td>Pago inicial (drive-off)</td><td id="r-driveoff">—</td></tr>
+            <tr><td>Costo total del lease</td><td id="r-total">—</td></tr>
+            <tr class="highlight"><td>Costo efectivo mensual</td><td id="r-effective">—</td></tr>
+            <tr><td>Costo por milla</td><td id="r-permile">—</td></tr>
+            <tr><td>Cap. cost ajustado</td><td id="r-adjcap">—</td></tr>
+            <tr><td>Valor residual</td><td id="r-residual">—</td></tr>
+            <tr><td>TAE equivalente</td><td id="r-apr">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
   </section>
 
   <!-- ===================== ¿LEASE, CPO O COMPRA? ===================== -->
-  <section class="card decide-card" id="decide-card">
-    <h2>⚖️ ¿Lease, CPO o compra nueva?</h2>
-    <p class="hint">Elige el modelo y ajusta los números si quieres (vienen prellenados con el precio
-      del modelo, la mejor oferta de lease encontrada —o una estimación— y supuestos típicos).
-      Compara el <strong>costo total de tenerlo</strong> durante el horizonte: lease encadenado vs
-      financiar nuevo vs financiar un seminuevo certificado, contando lo que el auto aún vale al final.</p>
-    <div class="grid-3 decide-inputs">
-      <div class="field">
-        <label for="decide-model">Modelo</label>
-        <select id="decide-model"></select>
-      </div>
-      <div class="field">
-        <label for="decide-years">Horizonte (años)</label>
-        <input id="decide-years" type="number" min="1" max="15" value="6">
-      </div>
-      <div class="field">
-        <label for="decide-lease">Lease: costo efectivo $/mes</label>
-        <input id="decide-lease" type="number" step="any" min="0">
-        <small class="hint" id="decide-lease-hint"></small>
-      </div>
-      <div class="field">
-        <label for="decide-new">Precio nuevo $</label>
-        <input id="decide-new" type="number" step="any" min="0">
-      </div>
-      <div class="field">
-        <label for="decide-apr-new">TAE crédito nuevo %</label>
-        <input id="decide-apr-new" type="number" step="any" min="0" value="5.9">
-      </div>
-      <div class="field">
-        <label for="decide-cpo">Precio CPO (seminuevo) $</label>
-        <input id="decide-cpo" type="number" step="any" min="0">
-      </div>
-      <div class="field">
-        <label for="decide-apr-cpo">TAE crédito CPO %</label>
-        <input id="decide-apr-cpo" type="number" step="any" min="0" value="6.9">
-      </div>
-      <div class="field">
-        <label for="decide-tax">Impuesto % (NYC: 8.875)</label>
-        <input id="decide-tax" type="number" step="any" min="0" value="8.875">
-        <small class="hint">En NY el lease paga impuesto solo sobre la suma de pagos; la compra, sobre el precio completo.</small>
+  <section class="view" id="view-decide">
+    <div class="view-head">
+      <div>
+        <h2>¿Lease, CPO o compra nueva?</h2>
+        <p class="hint">Costo total de tenerlo durante el horizonte, contando lo que el auto aún vale al final.</p>
       </div>
     </div>
-    <details class="advanced">
-      <summary>Supuestos avanzados</summary>
+    <div class="card">
       <div class="grid-3 decide-inputs">
         <div class="field">
-          <label for="decide-down">Enganche en compras %</label>
-          <input id="decide-down" type="number" step="any" min="0" max="100" value="10">
+          <label for="decide-model">Modelo</label>
+          <select id="decide-model"></select>
         </div>
         <div class="field">
-          <label for="decide-loan">Plazo del crédito (meses)</label>
-          <input id="decide-loan" type="number" min="12" max="96" value="60">
+          <label for="decide-years">Horizonte (años)</label>
+          <input id="decide-years" type="number" min="1" max="15" value="6">
         </div>
         <div class="field">
-          <label for="decide-dep-new">Depreciación nuevo %/año</label>
-          <input id="decide-dep-new" type="number" step="any" min="0" max="50" value="12">
+          <label for="decide-lease">Lease: costo efectivo $/mes</label>
+          <input id="decide-lease" type="number" step="any" min="0">
+          <small class="hint" id="decide-lease-hint"></small>
         </div>
         <div class="field">
-          <label for="decide-dep-cpo">Depreciación CPO %/año</label>
-          <input id="decide-dep-cpo" type="number" step="any" min="0" max="50" value="9">
+          <label for="decide-new">Precio nuevo $</label>
+          <input id="decide-new" type="number" step="any" min="0">
+        </div>
+        <div class="field">
+          <label for="decide-apr-new">TAE crédito nuevo %</label>
+          <input id="decide-apr-new" type="number" step="any" min="0" value="5.9">
+        </div>
+        <div class="field">
+          <label for="decide-cpo">Precio CPO $</label>
+          <input id="decide-cpo" type="number" step="any" min="0">
+        </div>
+        <div class="field">
+          <label for="decide-apr-cpo">TAE crédito CPO %</label>
+          <input id="decide-apr-cpo" type="number" step="any" min="0" value="6.9">
+        </div>
+        <div class="field">
+          <label for="decide-tax">Impuesto % (NYC: 8.875)</label>
+          <input id="decide-tax" type="number" step="any" min="0" value="8.875">
+          <small class="hint">En NY el lease paga impuesto solo sobre los pagos; la compra, sobre el precio completo.</small>
         </div>
       </div>
-    </details>
-    <div class="decide-results" id="decide-results"></div>
-  </section>
-
-  <main class="layout">
-    <!-- ===================== FORMULARIO ===================== -->
-    <section class="card form-card">
-      <h2>Datos de la oferta</h2>
-      <form id="lease-form" autocomplete="off">
-        <div class="grid-2">
+      <details class="advanced">
+        <summary>Supuestos avanzados</summary>
+        <div class="grid-3 decide-inputs">
           <div class="field">
-            <label for="make">Marca</label>
-            <select id="make"></select>
+            <label for="decide-down">Enganche en compras %</label>
+            <input id="decide-down" type="number" step="any" min="0" max="100" value="10">
           </div>
           <div class="field">
-            <label for="model">Modelo</label>
-            <select id="model" disabled></select>
+            <label for="decide-loan">Plazo del crédito (meses)</label>
+            <input id="decide-loan" type="number" min="12" max="96" value="60">
+          </div>
+          <div class="field">
+            <label for="decide-dep-new">Depreciación nuevo %/año</label>
+            <input id="decide-dep-new" type="number" step="any" min="0" max="50" value="12">
+          </div>
+          <div class="field">
+            <label for="decide-dep-cpo">Depreciación CPO %/año</label>
+            <input id="decide-dep-cpo" type="number" step="any" min="0" max="50" value="9">
           </div>
         </div>
-        <div class="field full">
-          <label for="name">Detalle (versión, agencia…)</label>
-          <input id="name" type="text" placeholder="Ej. Select AWD — Koeppel Mazda">
-        </div>
-
-        <fieldset>
-          <legend>Vehículo y precio</legend>
-          <div class="grid-2">
-            <div class="field">
-              <label for="msrp">MSRP (precio de lista)</label>
-              <input id="msrp" type="number" step="any" min="0" placeholder="45000">
-            </div>
-            <div class="field">
-              <label for="price">Precio negociado</label>
-              <input id="price" type="number" step="any" min="0" placeholder="41000">
-              <small id="discount-hint" class="hint"></small>
-            </div>
-            <div class="field">
-              <label for="incentives">Incentivos / bonos</label>
-              <input id="incentives" type="number" step="any" min="0" value="0">
-            </div>
-            <div class="field">
-              <label for="downPayment">Enganche (pago inicial)</label>
-              <input id="downPayment" type="number" step="any" min="0" value="0">
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Condiciones del lease</legend>
-          <div class="grid-2">
-            <div class="field">
-              <label for="term">Plazo (meses)</label>
-              <input id="term" type="number" min="1" max="72" value="36">
-            </div>
-            <div class="field">
-              <label for="milesPerYear">Km / millas por año</label>
-              <input id="milesPerYear" type="number" min="0" step="any" value="16000">
-            </div>
-            <div class="field">
-              <label for="residualPct">Residual (% del MSRP)</label>
-              <input id="residualPct" type="number" step="any" min="0" max="100" placeholder="58">
-            </div>
-            <div class="field">
-              <label for="rate">
-                <select id="rateType" class="inline-select">
-                  <option value="mf">Money factor</option>
-                  <option value="apr">TAE / interés %</option>
-                </select>
-              </label>
-              <input id="rate" type="number" step="any" min="0" placeholder="0.00125">
-              <small id="rate-hint" class="hint"></small>
-            </div>
-          </div>
-        </fieldset>
-
-        <details class="advanced">
-          <summary>Tarifas e impuestos (opcional)</summary>
-          <fieldset>
-          <div class="grid-2">
-            <div class="field">
-              <label for="acqFee">Tarifa de adquisición</label>
-              <input id="acqFee" type="number" step="any" min="0" value="0">
-              <label class="checkbox"><input id="capitalizeAcq" type="checkbox"> Capitalizarla</label>
-            </div>
-            <div class="field">
-              <label for="dispositionFee">Tarifa de devolución</label>
-              <input id="dispositionFee" type="number" step="any" min="0" value="0">
-            </div>
-            <div class="field">
-              <label for="upfrontFees">Otras tarifas al inicio</label>
-              <input id="upfrontFees" type="number" step="any" min="0" value="0">
-            </div>
-            <div class="field">
-              <label for="capFees">Otras tarifas capitalizadas</label>
-              <input id="capFees" type="number" step="any" min="0" value="0">
-            </div>
-            <div class="field">
-              <label for="taxPct">Impuesto %</label>
-              <input id="taxPct" type="number" step="any" min="0" value="0">
-            </div>
-            <div class="field">
-              <label for="taxMethod">Método de impuesto</label>
-              <select id="taxMethod">
-                <option value="monthly">Sobre cada pago mensual</option>
-                <option value="upfront">Sobre la suma de pagos, al inicio</option>
-                <option value="none">Sin impuesto / ya incluido</option>
-              </select>
-            </div>
-          </div>
-          </fieldset>
-        </details>
-
-        <div class="field full">
-          <label for="notes">Notas</label>
-          <textarea id="notes" rows="2" placeholder="Vendedor, vigencia de la oferta, condiciones..."></textarea>
-        </div>
-
-        <div class="actions">
-          <button type="submit" class="btn primary" id="save-btn">💾 Guardar oferta</button>
-          <button type="button" class="btn" id="share-btn">🔗 Copiar enlace</button>
-          <button type="button" class="btn subtle" id="clear-btn">Limpiar</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- ===================== RESULTADOS ===================== -->
-    <section class="card results-card">
-      <h2>Resultados</h2>
-      <div class="score-panel">
-        <div class="score-box" id="score-box">
-          <span class="score-value" id="r-score">—</span>
-          <span class="score-label">Score (años)</span>
-          <small class="hint">MSRP ÷ (costo efectivo × 12). Más alto = mejor; ≥ 8 suele ser excelente.</small>
-        </div>
-        <div class="score-box" id="pct-box">
-          <span class="score-value" id="r-pct">—</span>
-          <span class="score-label">Regla del 1%</span>
-          <small class="hint">Costo efectivo mensual como % del MSRP. ≤ 1% es buena señal.</small>
-        </div>
-      </div>
-
-      <table class="results-table">
-        <tbody>
-          <tr class="highlight"><td>Pago mensual</td><td id="r-monthly">—</td></tr>
-          <tr><td class="indent">Depreciación</td><td id="r-dep">—</td></tr>
-          <tr><td class="indent">Cargo financiero</td><td id="r-rent">—</td></tr>
-          <tr><td class="indent">Impuesto mensual</td><td id="r-tax">—</td></tr>
-          <tr><td>Pago inicial (drive-off)</td><td id="r-driveoff">—</td></tr>
-          <tr><td>Costo total del lease</td><td id="r-total">—</td></tr>
-          <tr class="highlight"><td>Costo efectivo mensual</td><td id="r-effective">—</td></tr>
-          <tr><td>Costo por km / milla</td><td id="r-permile">—</td></tr>
-          <tr><td>Cap. cost ajustado</td><td id="r-adjcap">—</td></tr>
-          <tr><td>Valor residual</td><td id="r-residual">—</td></tr>
-          <tr><td>TAE equivalente</td><td id="r-apr">—</td></tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
-
-  <!-- ===================== COMPARADOR ===================== -->
-  <section class="card offers-card">
-    <div class="offers-header">
-      <h2>Ofertas guardadas</h2>
-      <div class="actions">
-        <select id="filter-make" class="filter-select"><option value="">Todas las marcas</option></select>
-        <select id="filter-model" class="filter-select" disabled><option value="">Todos los modelos</option></select>
-        <button type="button" class="btn subtle" id="export-btn">⬇ Exportar JSON</button>
-        <button type="button" class="btn subtle" id="import-btn">⬆ Importar JSON</button>
-        <input type="file" id="import-file" accept="application/json" hidden>
-      </div>
+      </details>
+      <div class="decide-results" id="decide-results"></div>
     </div>
-    <p class="hint">La mejor oferta de cada columna se resalta en verde. Haz clic en una fila para cargarla en la calculadora.</p>
-    <div class="table-wrap">
-      <table class="offers-table" id="offers-table">
-        <thead>
-          <tr>
-            <th>Oferta</th>
-            <th>Plazo</th>
-            <th data-sort="monthlyPayment" class="sortable">Pago mensual</th>
-            <th data-sort="driveOff" class="sortable">Inicial</th>
-            <th data-sort="effectiveMonthly" class="sortable">Efectivo/mes</th>
-            <th data-sort="totalCost" class="sortable">Costo total</th>
-            <th data-sort="pctOfMsrp" class="sortable">% MSRP</th>
-            <th data-sort="score" class="sortable desc">Score</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="offers-body"></tbody>
-      </table>
-    </div>
-    <p id="no-offers" class="hint">Todavía no hay ofertas guardadas. Llena la calculadora y presiona “Guardar oferta”.</p>
   </section>
 
   <footer class="app-footer">
-    <p>Los datos se guardan localmente en tu navegador. Inspirado en la
-      <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">calculadora de Leasehackr</a>.</p>
+    <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=17"></script>
-  <script src="js/offer-parser.js?v=17"></script>
-  <script src="js/vehicles.js?v=17"></script>
-  <script src="js/models.js?v=17"></script>
-  <script src="js/decide.js?v=17"></script>
-  <script src="js/app.js?v=17"></script>
+  <script src="js/lease-calc.js?v=18"></script>
+  <script src="js/offer-parser.js?v=18"></script>
+  <script src="js/vehicles.js?v=18"></script>
+  <script src="js/models.js?v=18"></script>
+  <script src="js/decide.js?v=18"></script>
+  <script src="js/app.js?v=18"></script>
 </body>
 </html>
