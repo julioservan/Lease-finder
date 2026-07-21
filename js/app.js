@@ -407,34 +407,63 @@
     return null;
   }
 
-  /** Foto automática del modelo vía Wikipedia (con caché en el navegador). */
-  function loadPhoto(wikiTitle, img) {
-    var cacheKey = 'lf-photo3-' + wikiTitle;
+  // Palabras que delatan una foto que NO queremos (interiores, detalles…)
+  var PHOTO_BAD = /interior|engine|dashboard|badge|logo|wheel|\brear\b|taillight|headlight|seat|trunk|cargo|boot|gauge|console|infotainment|grille|emblem|patent|concept/i;
+
+  /**
+   * Foto del modelo. Estrategia: buscar en Wikimedia Commons una imagen del
+   * AÑO ACTUAL (ej. "2025 Ford Bronco Sport") en vez de la imagen genérica
+   * del artículo, que suele ser de la generación vieja. Si la búsqueda falla,
+   * cae al resumen de Wikipedia. Corre en el navegador del usuario (donde
+   * Wikimedia sí es alcanzable). Cachea solo lo que carga.
+   */
+  function loadPhoto(info, img) {
+    var query = info.photoQuery || (info.make + ' ' + info.model);
+    var cacheKey = 'lf-photo4-' + query;
     var cached = null;
     try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
-    // Solo se cachean fotos que SÍ cargaron
     img.addEventListener('load', function () {
       try { localStorage.setItem(cacheKey, img.src); } catch (e) { /* lleno */ }
     });
     if (cached) { img.src = cached; return; }
-    fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' +
-      encodeURIComponent(wikiTitle.replace(/ /g, '_')))
+
+    function setPhoto(url) { if (url) img.src = url; }
+
+    // Fallback: imagen del artículo (generación previa, pero mejor que nada)
+    function fallbackSummary() {
+      fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' +
+        encodeURIComponent((info.wiki || query).replace(/ /g, '_')))
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          var thumb = d && d.thumbnail && d.thumbnail.source;
+          if (thumb) setPhoto(thumb.replace(/\/(\d+)px-/, '/512px-'));
+        })
+        .catch(function () { /* placeholder */ });
+    }
+
+    // Búsqueda de foto actual en Commons (CORS con origin=*)
+    var api = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*' +
+      '&generator=search&gsrnamespace=6&gsrlimit=20&gsrsearch=' + encodeURIComponent(query) +
+      '&prop=imageinfo&iiprop=url&iiurlwidth=640';
+    fetch(api)
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
-        var thumb = d && d.thumbnail && d.thumbnail.source;
-        if (!thumb) return;
-        // Intentar la versión de 640px (ligera y nítida); si ese tamaño no
-        // existe para esa foto, caer a la miniatura original garantizada.
-        var big = thumb.replace(/\/(\d+)px-/, '/640px-');
-        if (big !== thumb) {
-          img.onerror = function () {
-            img.onerror = null;
-            img.src = thumb;
-          };
-        }
-        img.src = big;
+        var pages = d && d.query && d.query.pages ? Object.keys(d.query.pages).map(function (k) { return d.query.pages[k]; }) : [];
+        var model = normalizeModel(info.model);
+        var best = null;
+        pages.forEach(function (p) {
+          var t = p.title || '';
+          if (!/\.(jpe?g)$/i.test(t)) return;
+          if (PHOTO_BAD.test(t)) return;
+          var ii = p.imageinfo && p.imageinfo[0];
+          if (!ii || !ii.thumburl) return;
+          var rel = normalizeModel(t).indexOf(model) >= 0 ? 0 : 1; // prioriza que el nombre del modelo aparezca
+          var order = (p.index || 99) + rel * 100;
+          if (!best || order < best.order) best = { url: ii.thumburl, order: order };
+        });
+        if (best) setPhoto(best.url); else fallbackSummary();
       })
-      .catch(function () { /* se queda el placeholder */ });
+      .catch(fallbackSummary);
   }
 
   function persistWatchlist() {
@@ -515,7 +544,7 @@
         img.alt = w.make + ' ' + w.model;
         img.addEventListener('load', function () { photo.classList.add('has-img'); });
         photo.appendChild(img);
-        loadPhoto(info.wiki, img);
+        loadPhoto(info, img);
       }
       card.appendChild(photo);
 
