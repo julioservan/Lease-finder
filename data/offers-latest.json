@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T03:07:36.243Z",
+  "updatedAt": "2026-07-21T13:30:43.883Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda hr-v lx awd suv auto (model #: rz2h3tew) for on|39",
@@ -31,7 +31,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|last updated: 7/21/2026|36",
@@ -95,7 +95,71 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — bronco sport (lease)|how much does it cost to finance a 2026 ford bronco sport?|36",
+      "source": "TrueCar — Bronco Sport (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/ford/bronco-sport/lease/",
+      "name": "How much does it cost to finance a 2026 Ford Bronco Sport?",
+      "parsed": {
+        "name": "How much does it cost to finance a 2026 Ford Bronco Sport?",
+        "monthly": 345,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The 2026 Ford Bronco Sport is a SUV. Other similar vehicles include the Chevrolet Trailblazer, Jeep Compass, Mitsubishi Eclipse Cross, Subaru Crosstrek, Kia Seltos, and Mitsubishi Outlander Sport. Based on average leasing information for comparable vehicles, the cheapest to lease is the Subaru Crosstrek at $345/mo and the most expensive to lease is the Jeep Compass at $650/mo."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 345,
+        "driveOff": 0,
+        "totalCost": 12420,
+        "effectiveMonthly": 345,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — honda cr-v (lease)|how much does it cost to finance a 2026 honda cr-v?|36",
+      "source": "TrueCar — Honda CR-V (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/honda/cr-v/lease/",
+      "name": "How much does it cost to finance a 2026 Honda CR-V?",
+      "parsed": {
+        "name": "How much does it cost to finance a 2026 Honda CR-V?",
+        "monthly": 362,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The 2026 Honda CR-V is a SUV. Other similar vehicles include the Mazda CX-5, Toyota RAV4, Ford Escape, Hyundai Tucson, and Nissan Rogue. Based on average leasing information for comparable vehicles, the cheapest to lease is the Hyundai Tucson at $362/mo and the most expensive to lease is the Nissan Rogue at $442/mo."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 362,
+        "driveOff": 0,
+        "totalCost": 13032,
+        "effectiveMonthly": 362,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|2026 cr-v lx|36",
@@ -127,7 +191,71 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — gmc terrain (lease)|how much does it cost to finance a 2026 gmc terrain?|36",
+      "source": "TrueCar — GMC Terrain (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/gmc/terrain/lease/",
+      "name": "How much does it cost to finance a 2026 GMC Terrain?",
+      "parsed": {
+        "name": "How much does it cost to finance a 2026 GMC Terrain?",
+        "monthly": 400,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The 2026 GMC Terrain is a SUV. Other similar vehicles include the Chevrolet Equinox, Toyota RAV4, Mazda CX-5, Honda CR-V, Buick Envision, Ford Escape, and Nissan Kicks. Based on average leasing information for comparable vehicles, the cheapest to lease is the Mazda CX-5 at $400/mo and the most expensive to lease is the Buick Envision at $723/mo."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 400,
+        "driveOff": 0,
+        "totalCost": 14400,
+        "effectiveMonthly": 400,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — honda cr-v (lease)|estimate|36",
+      "source": "TrueCar — Honda CR-V (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/honda/cr-v/lease/",
+      "name": "Estimate",
+      "parsed": {
+        "name": "Estimate",
+        "monthly": 410,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Honda CR-V Lease Deals & Incentives \n Change Vehicle    |    View Model Overview Average Lease Payment\n $410\n /mo \n Estimate"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 410,
+        "driveOff": 0,
+        "totalCost": 14760,
+        "effectiveMonthly": 410,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|36",
@@ -159,7 +287,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|2026 cr-v lx awd|36",
@@ -191,7 +319,39 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — bronco sport (lease)|s/n|434|48",
+      "source": "TrueCar — Bronco Sport (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/ford/bronco-sport/lease/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 434,
+        "term": 48,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 12000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The lowest monthly payment to lease the Ford Bronco Sport is $434 per month for a 48-month term and 12,000 miles per year when you pay $2,000 at signing."
+      },
+      "metrics": {
+        "term": 48,
+        "monthlyPayment": 434,
+        "driveOff": 0,
+        "totalCost": 20832,
+        "effectiveMonthly": 434,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v hybrid awd sport|36",
@@ -223,7 +383,135 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — honda cr-v (lease)|how much does it cost to lease a 2026 honda cr-v?|36",
+      "source": "TrueCar — Honda CR-V (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/honda/cr-v/lease/",
+      "name": "How much does it cost to lease a 2026 Honda CR-V?",
+      "parsed": {
+        "name": "How much does it cost to lease a 2026 Honda CR-V?",
+        "monthly": 402,
+        "term": 36,
+        "dueAtSigning": 2000,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 12000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The average lease option for the 2026 Honda CR-V is $410 per month for a 36-month term, 12,000 miles per year, and $2,000 due at signing. Monthly payments can range from $402/mo to $489/mo depending on lease duration and annual mileage."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 402,
+        "driveOff": 2000,
+        "totalCost": 16070,
+        "effectiveMonthly": 446.3888888888889,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — honda cr-v (lease)|build & price view inventory|36",
+      "source": "TrueCar — Honda CR-V (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/honda/cr-v/lease/",
+      "name": "Build & Price View Inventory",
+      "parsed": {
+        "name": "Build & Price View Inventory",
+        "monthly": 410,
+        "term": 36,
+        "dueAtSigning": 2000,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Build & Price View Inventory \n\n The 2026 Honda CR-V is a compact SUV that features Hill Descent Assist, Pedestrian Detection, and Wireless Charging. Leasing the Honda CR-V can be a good option through a variety of lease deals, options, and packages. The estimated average lease payment for the Honda CR-V is $410/mo with $2,000 due at signing for a 36-month term with 12,000 annual mileage limit. Estimated average monthly lease payments for the same deal but with 24-month or 48-month term lengths are $477/mo and $411/mo respectively.\n Honda CR-V Lease Options\n \n 10,000 miles/year 12,000 miles/year 15,000 miles/year 18,000 miles/year Mileage"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 410,
+        "driveOff": 2000,
+        "totalCost": 16350,
+        "effectiveMonthly": 454.1666666666667,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — bronco sport (lease)|estimate|36",
+      "source": "TrueCar — Bronco Sport (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/ford/bronco-sport/lease/",
+      "name": "Estimate",
+      "parsed": {
+        "name": "Estimate",
+        "monthly": 462,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Ford Bronco Sport Lease Deals & Incentives \n Change Vehicle    |    View Model Overview Average Lease Payment\n $462\n /mo \n Estimate"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 462,
+        "driveOff": 0,
+        "totalCost": 16632,
+        "effectiveMonthly": 462,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — bronco sport (lease)|how much does it cost to lease a 2026 ford bronco sport?|36",
+      "source": "TrueCar — Bronco Sport (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/ford/bronco-sport/lease/",
+      "name": "How much does it cost to lease a 2026 Ford Bronco Sport?",
+      "parsed": {
+        "name": "How much does it cost to lease a 2026 Ford Bronco Sport?",
+        "monthly": 434,
+        "term": 36,
+        "dueAtSigning": 2000,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 12000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The average lease option for the 2026 Ford Bronco Sport is $462 per month for a 36-month term, 12,000 miles per year, and $2,000 due at signing. Monthly payments can range from $434/mo to $662/mo depending on lease duration and annual mileage."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 434,
+        "driveOff": 2000,
+        "totalCost": 17190,
+        "effectiveMonthly": 477.5,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "lester glenn ford|s/n|424|48",
@@ -255,7 +543,167 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — gmc terrain (lease)|s/n|481|48",
+      "source": "TrueCar — GMC Terrain (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/gmc/terrain/lease/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 481,
+        "term": 48,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The lowest monthly payment to lease the GMC Terrain is $481 per month for a 48-month term and 10,000 miles per year when you pay $2,000 at signing."
+      },
+      "metrics": {
+        "term": 48,
+        "monthlyPayment": 481,
+        "driveOff": 0,
+        "totalCost": 23088,
+        "effectiveMonthly": 481,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — gmc terrain (lease)|estimate|36",
+      "source": "TrueCar — GMC Terrain (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/gmc/terrain/lease/",
+      "name": "Estimate",
+      "parsed": {
+        "name": "Estimate",
+        "monthly": 504,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 GMC Terrain Lease Deals & Incentives \n Change Vehicle    |    View Model Overview Average Lease Payment\n $504\n /mo \n Estimate"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 504,
+        "driveOff": 0,
+        "totalCost": 18144,
+        "effectiveMonthly": 504,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — bronco sport (lease)|build & price view inventory|36",
+      "source": "TrueCar — Bronco Sport (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/ford/bronco-sport/lease/",
+      "name": "Build & Price View Inventory",
+      "parsed": {
+        "name": "Build & Price View Inventory",
+        "monthly": 462,
+        "term": 36,
+        "dueAtSigning": 2000,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Build & Price View Inventory \n\n The 2026 Ford Bronco Sport is a compact SUV that features Pedestrian Detection, Start/Stop System, and Adaptive Cruise Control. Leasing the Ford Bronco Sport can be a good option through a variety of lease deals, options, and packages. The estimated average lease payment for the Ford Bronco Sport is $462/mo with $2,000 due at signing for a 36-month term with 12,000 annual mileage limit. Estimated average monthly lease payments for the same deal but with 24-month or 48-month term lengths are $609/mo and $434/mo respectively.\n Ford Bronco Sport Lease Options\n \n 10,000 miles/year 12,000 miles/year 15,000 miles/year 18,000 miles/year Mileage"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 462,
+        "driveOff": 2000,
+        "totalCost": 18170,
+        "effectiveMonthly": 504.72222222222223,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — gmc terrain (lease)|how much does it cost to lease a 2026 gmc terrain?|36",
+      "source": "TrueCar — GMC Terrain (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/gmc/terrain/lease/",
+      "name": "How much does it cost to lease a 2026 GMC Terrain?",
+      "parsed": {
+        "name": "How much does it cost to lease a 2026 GMC Terrain?",
+        "monthly": 481,
+        "term": 36,
+        "dueAtSigning": 2000,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 12000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "The average lease option for the 2026 GMC Terrain is $504 per month for a 36-month term, 12,000 miles per year, and $2,000 due at signing. Monthly payments can range from $481/mo to $648/mo depending on lease duration and annual mileage."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 481,
+        "driveOff": 2000,
+        "totalCost": 18835,
+        "effectiveMonthly": 523.1944444444445,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "truecar — gmc terrain (lease)|build & price view inventory|36",
+      "source": "TrueCar — GMC Terrain (lease)",
+      "region": "agregador por modelo",
+      "url": "https://www.truecar.com/gmc/terrain/lease/",
+      "name": "Build & Price View Inventory",
+      "parsed": {
+        "name": "Build & Price View Inventory",
+        "monthly": 504,
+        "term": 36,
+        "dueAtSigning": 2000,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Build & Price View Inventory \n\n The 2026 GMC Terrain is a compact SUV that features Hill Descent Assist, Pedestrian Detection, and Start/Stop System. Leasing the GMC Terrain can be a good option through a variety of lease deals, options, and packages. The estimated average lease payment for the GMC Terrain is $504/mo with $2,000 due at signing for a 36-month term with 12,000 annual mileage limit. Estimated average monthly lease payments for the same deal but with 24-month or 48-month term lengths are $636/mo and $487/mo respectively.\n GMC Terrain Lease Options\n \n 10,000 miles/year 12,000 miles/year 15,000 miles/year 18,000 miles/year Mileage"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 504,
+        "driveOff": 2000,
+        "totalCost": 19640,
+        "effectiveMonthly": 545.5555555555555,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-21T13:30:43.883Z",
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "lester glenn gmc|gmc terrain lease offer|36",
@@ -287,7 +735,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|estimate|36",
@@ -319,7 +767,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T03:07:36.243Z"
+      "lastSeen": "2026-07-21T13:30:43.883Z"
     }
   ]
 }
