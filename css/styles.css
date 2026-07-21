@@ -225,6 +225,10 @@ textarea { resize: vertical; }
 .stock-box { padding: 0 0.9rem; font-size: 0.82rem; }
 .stock-summary { color: var(--good); margin-bottom: 0.15rem; }
 .stock-box a { color: var(--accent-2); }
+.stock-list { margin-top: 0.35rem; }
+.stock-list summary { cursor: pointer; color: var(--accent-2); font-size: 0.8rem; }
+.stock-items { margin: 0.4rem 0 0; padding-left: 1.2rem; max-height: 260px; overflow-y: auto; }
+.stock-items li { margin-bottom: 0.35rem; line-height: 1.35; }
 .watch-links { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; }
 .value-chip {
   display: inline-block;
