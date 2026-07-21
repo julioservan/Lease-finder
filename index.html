@@ -4,90 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=27">
+  <link rel="stylesheet" href="css/styles.css?v=28">
 </head>
 <body>
   <header class="topbar">
     <div class="brand">🚗 <strong>Lease&nbsp;Finder</strong><span class="brand-zip">Brooklyn · 11201</span></div>
     <nav class="tabs" id="tabs">
-      <button type="button" class="tab" data-view="models">Modelos</button>
-      <button type="button" class="tab" data-view="compare">Comparar</button>
-      <button type="button" class="tab" data-view="offers">Ofertas</button>
+      <button type="button" class="tab" data-view="board">Tablero</button>
       <button type="button" class="tab" data-view="usados">CPO / Segunda mano</button>
       <button type="button" class="tab" data-view="calc">Calculadora</button>
       <button type="button" class="tab" data-view="decide">¿Lease o compra?</button>
     </nav>
   </header>
 
-  <!-- ===================== MODELOS ===================== -->
-  <section class="view" id="view-models">
+  <!-- ===================== TABLERO (base de datos de leases) ===================== -->
+  <section class="view" id="view-board">
     <div class="view-head">
       <div>
-        <h2>Mis SUVs</h2>
-        <p class="hint" id="watch-meta"></p>
+        <h2>Tablero de leases</h2>
+        <p class="hint" id="board-meta">Cargando…</p>
       </div>
       <div class="row">
-        <select id="watch-make" class="filter-select"></select>
-        <select id="watch-model" class="filter-select" disabled></select>
-        <button type="button" class="btn subtle" id="watch-add">＋ Seguir</button>
+        <select id="board-make" class="filter-select"><option value="">Todas las marcas</option></select>
+        <button type="button" class="btn subtle" id="board-refresh" title="Recargar datos">↻</button>
+        <button type="button" class="btn primary" id="scan-now-btn" title="Lanza el robot de búsqueda al momento. Los resultados aparecen solos en ~3-4 minutos.">▶ Buscar ahora</button>
       </div>
     </div>
-    <div class="watch-grid" id="watch-grid"></div>
-  </section>
 
-  <!-- ===================== COMPARAR ===================== -->
-  <section class="view" id="view-compare">
-    <div class="view-head">
-      <div>
-        <h2>Comparar modelos</h2>
-        <p class="hint">Cualquier marca contra cualquier marca: mejor lease y nuevos cerca.</p>
-      </div>
-      <div class="row">
-        <label class="checkbox"><input type="checkbox" id="compare-showused"> Mostrar segunda mano (CPO/usados)</label>
-        <button type="button" class="btn primary" id="compare-load">📦 Actualizar stock</button>
-      </div>
-    </div>
-    <div class="chips" id="compare-chips"></div>
     <div class="table-wrap">
-      <table class="compare-table" id="compare-table"></table>
-    </div>
-    <p class="hint" id="compare-empty" hidden>Elige al menos un modelo arriba.</p>
-  </section>
-
-  <!-- ===================== OFERTAS ===================== -->
-  <section class="view" id="view-offers">
-    <div class="view-head">
-      <div>
-        <h2>Ofertas de lease</h2>
-        <p class="hint" id="online-meta">Cargando…</p>
-      </div>
-      <div class="row">
-        <select id="online-model" class="filter-select"><option value="">Todos los modelos</option></select>
-        <button type="button" class="btn subtle" id="online-refresh">↻</button>
-        <button type="button" class="btn primary" id="scan-now-btn" title="Lanza el robot ahora; resultados en ~3-4 min.">▶ Buscar ahora</button>
-      </div>
+      <table class="board" id="board-table">
+        <thead>
+          <tr>
+            <th class="bt-photo"></th>
+            <th class="sortable" data-sort="name">Modelo</th>
+            <th class="sortable desc" data-sort="best">Mejor lease</th>
+            <th class="sortable" data-sort="pct">Regla 1%</th>
+            <th class="sortable" data-sort="trend">Tendencia</th>
+            <th class="sortable" data-sort="offers">Ofertas</th>
+            <th class="sortable" data-sort="stock">Nuevos</th>
+            <th class="sortable" data-sort="sent">Valoración</th>
+          </tr>
+        </thead>
+        <tbody id="board-body"></tbody>
+      </table>
     </div>
 
-    <div class="card">
-      <div class="table-wrap" id="online-wrap" hidden>
-        <table class="offers-table">
-          <thead>
-            <tr>
-              <th>Oferta</th><th>Fuente</th><th>Mensual</th><th>Plazo</th>
-              <th>Inicial</th><th>MSRP</th><th>Efectivo/mes</th><th>Score</th><th></th>
-            </tr>
-          </thead>
-          <tbody id="online-body"></tbody>
-        </table>
-      </div>
-      <details class="advanced" id="online-status-box" hidden>
-        <summary>Estado de las fuentes</summary>
-        <ul id="online-status" class="hint"></ul>
-      </details>
-    </div>
+    <details class="advanced" id="online-status-box" hidden>
+      <summary>Estado de las fuentes del robot</summary>
+      <ul id="online-status" class="hint"></ul>
+    </details>
 
+    <!-- Descubrir: escanear un anuncio pegado -> alimenta la base de datos -->
     <details class="card collapse" id="scanner-card">
-      <summary>🔍 Escanear un anuncio pegado (texto de correo, WhatsApp…)</summary>
+      <summary>🔍 Añadir una oferta: pega un anuncio (correo, WhatsApp, web…)</summary>
       <textarea id="scan-input" rows="6" placeholder="2026 Ford Bronco Sport Big Bend
 $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
 ---
@@ -110,9 +79,10 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
       <p id="scan-empty" class="hint" hidden>No se detectó ninguna oferta (se necesita al menos una mensualidad, ej. “$399/mes”).</p>
     </details>
 
-    <div class="card">
+    <!-- Ofertas guardadas / detectadas -->
+    <details class="card collapse" id="saved-card">
+      <summary>💾 Ofertas guardadas y detectadas</summary>
       <div class="offers-header">
-        <h3>Guardadas</h3>
         <div class="row">
           <select id="filter-make" class="filter-select"><option value="">Todas las marcas</option></select>
           <select id="filter-model" class="filter-select" disabled><option value="">Todos los modelos</option></select>
@@ -140,7 +110,7 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
         </table>
       </div>
       <p id="no-offers" class="hint">Nada guardado aún — usa la calculadora o guarda una oferta encontrada.</p>
-    </div>
+    </details>
   </section>
 
   <!-- ===================== CPO / SEGUNDA MANO ===================== -->
@@ -385,11 +355,12 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=27"></script>
-  <script src="js/offer-parser.js?v=27"></script>
-  <script src="js/vehicles.js?v=27"></script>
-  <script src="js/models.js?v=27"></script>
-  <script src="js/decide.js?v=27"></script>
-  <script src="js/app.js?v=27"></script>
+  <script src="js/lease-calc.js?v=28"></script>
+  <script src="js/offer-parser.js?v=28"></script>
+  <script src="js/vehicles.js?v=28"></script>
+  <script src="js/models.js?v=28"></script>
+  <script src="js/leasedb.js?v=28"></script>
+  <script src="js/decide.js?v=28"></script>
+  <script src="js/app.js?v=28"></script>
 </body>
 </html>

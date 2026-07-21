@@ -9,7 +9,7 @@
   var TAB_KEY = 'lf-tab';
   var STOCK_PREFIX = 'lf-stock2-';
   var STOCK_FRESH_MS = 6 * 3600 * 1000; // frescura para re-consultar (cuida la cuota)
-  var VIEWS = ['models', 'compare', 'offers', 'usados', 'calc', 'decide'];
+  var VIEWS = ['board', 'usados', 'calc', 'decide'];
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
@@ -29,8 +29,9 @@
     filterMake: '',
     filterModel: '',
     watchlist: [],
-    compare: [],
-    showUsed: false
+    boardMake: '',
+    boardSort: { key: 'sent', desc: true },
+    expanded: {}
   };
 
   /** Normaliza para comparar modelos: minúsculas, sin espacios ni guiones. */
@@ -137,7 +138,7 @@
   /* ---------------- pestañas ---------------- */
 
   function showView(name) {
-    if (VIEWS.indexOf(name) < 0) name = 'models';
+    if (VIEWS.indexOf(name) < 0) name = 'board';
     VIEWS.forEach(function (v) {
       $('view-' + v).classList.toggle('active', v === name);
     });
@@ -145,7 +146,7 @@
       b.classList.toggle('active', b.dataset.view === name);
     });
     try { localStorage.setItem(TAB_KEY, name); } catch (e) { /* sin persistencia */ }
-    if (name === 'compare') renderCompare();
+    if (name === 'board') renderBoard();
     if (name === 'usados') renderUsados();
   }
 
@@ -461,17 +462,28 @@
       '&angle=23&width=560&fileType=png';
   }
 
-  /**
-   * Foto fiable de un modelo para las tarjetas de unidad: primero la ya
-   * resuelta y cacheada (imagin/Commons), si no el render de imagin. Las
-   * fotos reales por VIN de Auto.dev no se pueden usar (host con 403).
-   */
+  /** Foto fiable de un modelo para tarjetas/tablero: la ya cacheada o el render. */
   function modelPhotoUrl(info) {
     try {
       var c = localStorage.getItem('lf-photo7-' + info.make + '-' + info.model);
       if (c) return c;
     } catch (e) { /* sin caché */ }
     return imaginUrl(info);
+  }
+
+  // Nombre de color → hex para el swatch (coincidencia por subcadena).
+  var COLOR_HEX = {
+    white: '#eef0f2', pearl: '#eae6da', ivory: '#efe9d6', black: '#15171b', charcoal: '#33363b',
+    silver: '#c7cacd', gray: '#83888d', grey: '#83888d', granite: '#6a6d70', platinum: '#d3d6d9',
+    gunmetal: '#4a4e54', red: '#c0392b', maroon: '#6e1f2a', burgundy: '#6e1f2a', crimson: '#b01e2e',
+    blue: '#2c5aa0', navy: '#1f3a5f', teal: '#1f7a7a', green: '#2e7d46', olive: '#5b6a2b',
+    brown: '#6b4a2b', bronze: '#8a6a45', beige: '#d8c7a0', tan: '#cdb58a', gold: '#c9a94b',
+    orange: '#d97b28', copper: '#a55a34', yellow: '#e6c828', purple: '#6b3fa0', pink: '#d96a9a'
+  };
+  function colorHex(name) {
+    var n = (name || '').toLowerCase();
+    for (var k in COLOR_HEX) { if (n.indexOf(k) >= 0) return COLOR_HEX[k]; }
+    return null;
   }
 
   /**
@@ -673,63 +685,36 @@
       });
   }
 
-  // Nombre de color → hex para el swatch (coincidencia por subcadena).
-  var COLOR_HEX = {
-    white: '#eef0f2', pearl: '#eae6da', ivory: '#efe9d6', black: '#15171b', charcoal: '#33363b',
-    silver: '#c7cacd', gray: '#83888d', grey: '#83888d', granite: '#6a6d70', platinum: '#d3d6d9',
-    gunmetal: '#4a4e54', red: '#c0392b', maroon: '#6e1f2a', burgundy: '#6e1f2a', crimson: '#b01e2e',
-    blue: '#2c5aa0', navy: '#1f3a5f', teal: '#1f7a7a', green: '#2e7d46', olive: '#5b6a2b',
-    brown: '#6b4a2b', bronze: '#8a6a45', beige: '#d8c7a0', tan: '#cdb58a', gold: '#c9a94b',
-    orange: '#d97b28', copper: '#a55a34', yellow: '#e6c828', purple: '#6b3fa0', pink: '#d96a9a'
-  };
-  function colorHex(name) {
-    var n = (name || '').toLowerCase();
-    for (var k in COLOR_HEX) { if (n.indexOf(k) >= 0) return COLOR_HEX[k]; }
-    return null;
-  }
-
   function stockItemRow(c, pimg) {
     var cls = c.condition === 'Nuevo' ? 'nuevo' : (c.condition === 'CPO' ? 'cpo' : 'usado');
-
-    // Foto: render de estudio del modelo (fiable). Las fotos reales por VIN de
-    // Auto.dev no se pueden mostrar (host retail.photos.vin devuelve 403).
     var photo = pimg
       ? '<div class="sc-photo"><img loading="lazy" referrerpolicy="no-referrer" src="' + escapeHtml(pimg) + '"' +
         ' alt="' + escapeHtml(c.title) + '" onerror="this.parentNode.classList.add(\'noimg\');this.remove();"></div>'
       : '<div class="sc-photo noimg"></div>';
 
-    // Descuento vs MSRP
     var priceBlock = '<strong>' + fmtMoney(c.price) + '</strong>';
-    if (c.discount && c.discount >= 250) {
-      priceBlock += '<span class="sc-off">−' + fmtMoney(c.discount) + ' vs MSRP</span>';
-    } else if (c.msrp && c.price && c.price > c.msrp) {
-      priceBlock += '<span class="sc-over">+' + fmtMoney(c.price - c.msrp) + ' sobre MSRP</span>';
-    }
+    if (c.discount && c.discount >= 250) priceBlock += '<span class="sc-off">−' + fmtMoney(c.discount) + ' vs MSRP</span>';
+    else if (c.msrp && c.price && c.price > c.msrp) priceBlock += '<span class="sc-over">+' + fmtMoney(c.price - c.msrp) + ' sobre MSRP</span>';
 
-    // Color con swatch
     var color = '';
     if (c.color) {
       var hx = colorHex(c.color);
-      color = '<span class="sc-color">' +
-        (hx ? '<span class="sc-swatch" style="background:' + hx + '"></span>' : '') +
+      color = '<span class="sc-color">' + (hx ? '<span class="sc-swatch" style="background:' + hx + '"></span>' : '') +
         escapeHtml(c.color) + (c.interior ? ' / ' + escapeHtml(c.interior) : '') + '</span>';
     }
 
-    // Specs (tren motriz, combustible, millas)
     var specs = [];
     if (c.drivetrain) specs.push(escapeHtml(c.drivetrain));
     if (c.fuel) specs.push(escapeHtml(c.fuel));
     if (c.miles != null) specs.push(c.miles.toLocaleString('es') + ' mi');
     else if (c.condition === 'Nuevo') specs.push('nuevo');
 
-    // Historial (usados/CPO)
     var hist = [];
     if (c.condition !== 'Nuevo') {
       if (c.accidents === 0) hist.push('<span class="sc-ok">✓ sin accidentes</span>');
       else if (c.accidents > 0) hist.push('<span class="sc-warn">⚠ ' + c.accidents + ' accidente(s)</span>');
       if (c.oneOwner) hist.push('<span class="sc-ok">✓ 1 dueño</span>');
       else if (c.owners > 1) hist.push(c.owners + ' dueños');
-      if (c.usage && !/personal/i.test(c.usage)) hist.push('uso: ' + escapeHtml(c.usage));
     }
 
     var links = [];
@@ -742,7 +727,7 @@
           '<span class="sc-price">' + priceBlock + '</span></div>' +
         '<div class="sc-title">' + escapeHtml(c.title) + '</div>' +
         (color ? '<div class="sc-line">' + color + '</div>' : '') +
-        (specs.length ? '<div class="sc-line sc-specs">' + specs.join(' · ') + '</div>' : '') +
+        (specs.length ? '<div class="sc-line">' + specs.join(' · ') + '</div>' : '') +
         (hist.length ? '<div class="sc-line sc-hist">' + hist.join(' · ') + '</div>' : '') +
         (c.dealer ? '<div class="sc-line sc-dealer">🏬 ' + escapeHtml(c.dealer) +
           (c.city ? ' · ' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') : '') + '</div>' : '') +
@@ -851,469 +836,271 @@
       onlineData.intel.models[make + ' ' + model]) || null;
   }
 
-  function renderWatchlist() {
-    var grid = $('watch-grid');
-    grid.innerHTML = '';
-    var hasData = !!(onlineData.latest && onlineData.latest.updatedAt);
+  /* ---------------- TABLERO (base de datos de leases) ---------------- */
 
-    // ¿Qué modelo tiene hoy la mejor relación pago/valor (efectivo ÷ MSRP)?
-    var bestValueModel = null;
-    var bestValuePct = Infinity;
-    state.watchlist.forEach(function (w) {
-      var info = findRanked(w.make, w.model);
-      if (!info) return;
-      var ms = offersForModel(w.model).filter(function (e) { return e.metrics && isNum(e.metrics.effectiveMonthly); });
-      if (!ms.length) return;
-      var best = Math.min.apply(null, ms.map(function (e) { return e.metrics.effectiveMonthly; }));
-      var pct = best / info.msrp;
-      if (pct < bestValuePct) { bestValuePct = pct; bestValueModel = w.model; }
-    });
+  var SENT_META = {
+    best:   { txt: '⭐ La mejor', cls: 'best' },
+    good:   { txt: 'Buena',       cls: 'good' },
+    ok:     { txt: 'Normal',      cls: 'ok' },
+    wait:   { txt: 'Espera',      cls: 'wait' },
+    pricey: { txt: 'Cara',        cls: 'pricey' },
+    none:   { txt: 'Sin datos',   cls: 'none' }
+  };
+  function sentRank(level) {
+    return { best: 5, good: 4, ok: 3, wait: 2, pricey: 1, none: 0 }[level] || 0;
+  }
 
-    // Orden: primero tus 4 prioritarios, luego el resto de tu lista
-    function rankIndex(w) {
-      var info = findRanked(w.make, w.model);
-      if (info && info.priority) return info.priority;
-      var i = RankedModels.findIndex(function (m) { return m.make === w.make && m.model === w.model; });
-      return i < 0 ? 999 : 100 + i;
+  /** Mini-gráfico de la serie de precios (SVG puro, sin librerías). */
+  function sparkline(series, w, h) {
+    w = w || 72; h = h || 22;
+    var pts = (series || []).filter(function (p) { return isNum(p.best); });
+    if (pts.length < 2) return '<span class="spark-na">—</span>';
+    var vals = pts.map(function (p) { return p.best; });
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    var rng = (max - min) || 1;
+    var step = w / (pts.length - 1);
+    var d = pts.map(function (p, i) {
+      return (i * step).toFixed(1) + ',' + (h - 1 - ((p.best - min) / rng) * (h - 3)).toFixed(1);
+    }).join(' ');
+    var down = vals[vals.length - 1] <= vals[0];
+    return '<svg class="spark ' + (down ? 'down' : 'up') + '" width="' + w + '" height="' + h +
+      '" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none">' +
+      '<polyline points="' + d + '" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+  }
+
+  function trendCell(tr) {
+    if (!tr || tr.points < 2 || tr.deltaToday == null || tr.dir === 0) {
+      return '<span class="trend-flat">—</span>';
     }
-    var sorted = state.watchlist.slice().sort(function (a, b) {
-      return rankIndex(a) - rankIndex(b);
+    var down = tr.dir < 0;
+    return '<span class="trend ' + (down ? 'down' : 'up') + '">' + (down ? '▼' : '▲') + ' ' +
+      fmtMoney(Math.abs(tr.deltaToday)) + '</span>';
+  }
+
+  /** Datos calculados de un modelo para el tablero. */
+  function boardData(info) {
+    var offers = LeaseDB.offersFor(info);
+    var best = offers.length ? offers[0].metrics.effectiveMonthly : null;
+    var a = LeaseDB.assess(info, intelFor(info.make, info.model));
+    var c = stockCacheGet(info, '', 'new');
+    var stockNew = c && c.data ? ((c.data.byCondition && c.data.byCondition.nuevo) || c.data.total || 0) : null;
+    return {
+      info: info, offers: offers, best: best,
+      pct: a.pct, assess: a, trend: a.trend, stockNew: stockNew,
+      photo: modelPhotoUrl(info)
+    };
+  }
+
+  function renderBoard() {
+    var body = $('board-body');
+    if (!body) return;
+    body.innerHTML = '';
+
+    var make = state.boardMake || '';
+    var rows = RankedModels
+      .filter(function (m) { return !make || m.make === make; })
+      .map(boardData);
+
+    // Promociona a "la mejor" el modelo con menor % (regla 1%) entre las buenas.
+    var cand = rows.filter(function (r) { return (r.assess.level === 'good' || r.assess.level === 'ok') && isNum(r.pct); });
+    if (cand.length) {
+      cand.sort(function (a, b) { return a.pct - b.pct; });
+      cand[0].assess.level = 'best';
+    }
+
+    // Orden
+    var sk = state.boardSort.key, desc = state.boardSort.desc;
+    function val(r) {
+      switch (sk) {
+        case 'name': return (r.info.make + ' ' + r.info.model).toLowerCase();
+        case 'best': return isNum(r.best) ? r.best : Infinity;
+        case 'pct': return isNum(r.pct) ? r.pct : Infinity;
+        case 'trend': return r.trend && r.trend.deltaToday != null ? r.trend.deltaToday : Infinity;
+        case 'offers': return r.offers.length;
+        case 'stock': return isNum(r.stockNew) ? r.stockNew : -1;
+        default: return sentRank(r.assess.level) + (isNum(r.pct) ? (2 - Math.min(2, r.pct)) : 0);
+      }
+    }
+    rows.sort(function (a, b) {
+      var x = val(a), y = val(b), d;
+      if (typeof x === 'string') d = x < y ? -1 : x > y ? 1 : 0;
+      else d = x - y;
+      return desc ? -d : d;
     });
 
-    sorted.forEach(function (w) {
-      var info = findRanked(w.make, w.model);
-      var matches = offersForModel(w.model);
-      var withPrice = matches.filter(function (e) { return e.metrics && isNum(e.metrics.effectiveMonthly); });
-      withPrice.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
-      var best = withPrice[0];
-
-      var card = document.createElement('div');
-      card.className = 'watch-item';
-
-      // Foto
-      var photo = document.createElement('div');
-      photo.className = 'model-photo';
-      var ph = document.createElement('span');
-      ph.className = 'photo-fallback';
-      ph.textContent = w.make + ' ' + w.model;
-      photo.appendChild(ph);
-      if (info) {
-        var img = document.createElement('img');
-        img.alt = w.make + ' ' + w.model;
-        img.addEventListener('load', function () { photo.classList.add('has-img'); });
-        photo.appendChild(img);
-        loadPhoto(info, img);
-      }
-      card.appendChild(photo);
-
-      var body = document.createElement('div');
-      body.className = 'watch-body';
-      card.appendChild(body);
-
-      // Título + prioridad + quitar
-      var head = document.createElement('div');
-      head.className = 'watch-head';
-      var title = document.createElement('div');
-      title.className = 'watch-title';
-      title.innerHTML = '<span class="make">' + escapeHtml(w.make) + '</span> ' + escapeHtml(w.model);
-      if (info && info.priority) {
-        var prio = document.createElement('span');
-        prio.className = 'prio-chip';
-        prio.textContent = '❤ Prioridad';
-        title.appendChild(prio);
-      }
-      var del = document.createElement('button');
-      del.className = 'btn danger';
-      del.textContent = '✕';
-      del.title = 'Dejar de seguir';
-      del.addEventListener('click', function () {
-        state.watchlist = state.watchlist.filter(function (x) {
-          return !(x.make === w.make && x.model === w.model);
-        });
-        persistWatchlist();
-        renderWatchlist();
-      });
-      head.appendChild(title);
-      head.appendChild(del);
-      body.appendChild(head);
-
-      // Ficha en una línea
-      if (info) {
-        var sub = document.createElement('div');
-        sub.className = 'model-sub';
-        sub.title = info.blurb;
-        sub.innerHTML = '<strong>' + fmtMoney(info.price[0]) + ' – ' + fmtMoney(info.price[1]) + '</strong> · ' +
-          escapeHtml(info.engine) + ' · ' + escapeHtml(info.mpg);
-        body.appendChild(sub);
-      }
-
-      // Estado del lease
-      var statusEl = document.createElement('div');
-      statusEl.className = 'watch-status';
-      if (matches.length) {
-        var line = document.createElement('div');
-        line.className = 'watch-found';
-        line.textContent = '✅ ' + matches.length + ' oferta(s) de lease' +
-          (best ? ' · mejor ' + fmtMoney2(best.metrics.effectiveMonthly) + '/mes' : '');
-        line.title = best ? ((best.name || '') + ' — ' + best.source) : '';
-        line.addEventListener('click', function () {
-          var sel = $('online-model');
-          var exists = Array.prototype.some.call(sel.options, function (o) { return o.value === w.model; });
-          sel.value = exists ? w.model : '';
-          if (onlineData.latest) renderOnline(onlineData.latest, onlineData.status);
-          showView('offers');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        statusEl.appendChild(line);
-        if (w.model === bestValueModel) {
-          var chip = document.createElement('div');
-          chip.className = 'value-chip';
-          chip.textContent = '🏅 Mejor valor ahora mismo';
-          statusEl.appendChild(chip);
-        }
-        var trend = trendForModel(w.make + ' ' + w.model);
-        if (trend && trend.dir !== 0) {
-          var tLine = document.createElement('div');
-          tLine.className = 'hint';
-          tLine.textContent = trend.dir < 0
-            ? '📉 Bajó: antes ' + fmtMoney2(trend.prev) + '/mes'
-            : '📈 Subió: antes ' + fmtMoney2(trend.prev) + '/mes';
-          statusEl.appendChild(tLine);
-        }
-      } else {
-        var none = document.createElement('div');
-        none.className = 'watch-none';
-        none.textContent = hasData ? '🔎 Lease: sin ofertas aún' : '⏳ Esperando la primera búsqueda…';
-        statusEl.appendChild(none);
-      }
-      card.querySelector('.watch-body').appendChild(statusEl);
-
-      // Research resumido en una línea (si existe para este modelo)
-      var intel = intelFor(w.make, w.model);
-      if (intel && intel.verdict) {
-        var il = document.createElement('div');
-        il.className = 'intel-line';
-        il.textContent = intel.verdict;
-        if (intel.benchmark) il.title = '🎯 ' + intel.benchmark;
-        body.appendChild(il);
-      }
-
-      // Stock persistente (se restaura de la caché al cargar)
-      if (info) {
-        var stock = document.createElement('div');
-        stock.className = 'stock-box';
-        renderStockBox(info, stock);
-        body.appendChild(stock);
-      }
-
-      // Acciones
-      if (info) {
-        var actionsEl = document.createElement('div');
-        actionsEl.className = 'card-actions';
-        var cmp = document.createElement('button');
-        cmp.className = 'btn mini primary';
-        cmp.textContent = '⚖️ ¿Qué me conviene?';
-        cmp.addEventListener('click', function () {
-          prefillDecide(info);
-          showView('decide');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        actionsEl.appendChild(cmp);
-        [['Nuevos ↗', info.linkNew], ['CPO ↗', info.linkCpo]].forEach(function (pair) {
-          var a = document.createElement('a');
-          a.className = 'btn mini subtle';
-          a.textContent = pair[0];
-          a.href = pair[1];
-          a.target = '_blank';
-          a.rel = 'noopener';
-          actionsEl.appendChild(a);
-        });
-        body.appendChild(actionsEl);
-
-        // Directorio compacto
-        var where = document.createElement('details');
-        where.className = 'where';
-        var sum = document.createElement('summary');
-        sum.textContent = '📍 Dónde mirar';
-        where.appendChild(sum);
-        var ul = document.createElement('ul');
-        ul.className = 'where-list';
-        info.dealers.concat(info.sites.map(function (s) { return { n: s.n, u: s.u }; }))
-          .forEach(function (d) {
-            var li = document.createElement('li');
-            li.innerHTML = '<a href="' + d.u + '" target="_blank" rel="noopener">' + escapeHtml(d.n) + '</a>';
-            ul.appendChild(li);
-          });
-        where.appendChild(ul);
-        body.appendChild(where);
-      }
-
-      grid.appendChild(card);
+    rows.forEach(function (r) {
+      body.appendChild(boardRow(r));
+      var key = r.info.make + '|' + r.info.model;
+      if (state.expanded[key]) body.appendChild(boardExpand(r));
     });
 
-    var meta = $('watch-meta');
-    if (hasData) {
-      meta.textContent = 'Robot: última búsqueda ' + new Date(onlineData.latest.updatedAt).toLocaleString('es') +
-        ' · corre 3 veces al día.';
+    // meta + indicadores de orden
+    var withOffers = rows.filter(function (r) { return r.offers.length; }).length;
+    var meta = $('board-meta');
+    if (onlineData.latest && onlineData.latest.updatedAt) {
+      meta.textContent = 'Base de datos: ' + withOffers + '/' + rows.length + ' modelos con leases · robot: ' +
+        new Date(onlineData.latest.updatedAt).toLocaleString('es') + ' (3×/día). Crece con cada búsqueda.';
     } else {
-      meta.textContent = 'El robot busca ofertas de lease 3 veces al día.';
+      meta.textContent = 'La base de datos crece con cada búsqueda del robot (3×/día) y con lo que pegues en “Añadir una oferta”.';
     }
-  }
-
-  /* ---------------- comparador entre marcas y modelos ---------------- */
-
-  function loadCompare() {
-    try {
-      var a = JSON.parse(localStorage.getItem(COMPARE_KEY));
-      if (Array.isArray(a) && a.length) return a;
-    } catch (e) { /* defaults */ }
-    // Por defecto: tus 4 prioritarios
-    return RankedModels
-      .filter(function (m) { return m.priority; })
-      .sort(function (a, b) { return a.priority - b.priority; })
-      .map(function (m) { return m.make + '|' + m.model; });
-  }
-
-  function persistCompare() {
-    try { localStorage.setItem(COMPARE_KEY, JSON.stringify(state.compare)); } catch (e) { /* lleno */ }
-  }
-
-  function compareInfos() {
-    return state.compare.map(function (key) {
-      var p = key.split('|');
-      return findRanked(p[0], p[1]);
-    }).filter(Boolean);
-  }
-
-  function renderCompareChips() {
-    var box = $('compare-chips');
-    box.innerHTML = '';
-    RankedModels.forEach(function (m) {
-      var key = m.make + '|' + m.model;
-      var chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'chip' + (state.compare.indexOf(key) >= 0 ? ' on' : '');
-      chip.innerHTML = '<span class="chip-make">' + escapeHtml(m.make) + '</span>' + escapeHtml(m.model);
-      chip.addEventListener('click', function () {
-        var i = state.compare.indexOf(key);
-        if (i >= 0) state.compare.splice(i, 1); else state.compare.push(key);
-        persistCompare();
-        renderCompareChips();
-        renderCompare();
-      });
-      box.appendChild(chip);
+    document.querySelectorAll('#board-table th.sortable').forEach(function (th) {
+      th.classList.toggle('sorted', th.dataset.sort === sk);
     });
   }
 
-  function renderCompare() {
-    var table = $('compare-table');
-    var infos = compareInfos();
-    $('compare-empty').hidden = infos.length > 0;
-    table.innerHTML = '';
-    if (!infos.length) return;
-
-    var thead = document.createElement('thead');
-    var hr = document.createElement('tr');
-    var corner = document.createElement('th');
-    corner.className = 'rowlabel';
-    hr.appendChild(corner);
-    infos.forEach(function (m) {
-      var th = document.createElement('th');
-      th.innerHTML = escapeHtml(m.model) + (m.priority ? ' <span class="prio-chip">❤</span>' : '') +
-        '<span class="make">' + escapeHtml(m.make) + '</span>';
-      hr.appendChild(th);
-    });
-    thead.appendChild(hr);
-    table.appendChild(thead);
-
-    var tbody = document.createElement('tbody');
-    table.appendChild(tbody);
-
-    function addRow(label, cellFn, bestIdx) {
-      var tr = document.createElement('tr');
-      var td0 = document.createElement('td');
-      td0.className = 'rowlabel';
-      td0.textContent = label;
-      tr.appendChild(td0);
-      infos.forEach(function (m, i) {
-        var td = document.createElement('td');
-        cellFn(m, td, i);
-        if (bestIdx != null && bestIdx === i) td.classList.add('best');
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-      return tr;
-    }
+  function boardRow(r) {
+    var info = r.info, a = r.assess, sm = SENT_META[a.level] || SENT_META.none;
+    var tr = document.createElement('tr');
+    tr.className = 'brow sent-' + sm.cls;
 
     // Foto
-    addRow('', function (m, td) {
-      var div = document.createElement('div');
-      div.className = 'cmp-photo';
-      var img = document.createElement('img');
-      img.alt = m.make + ' ' + m.model;
-      div.appendChild(img);
-      loadPhoto(m, img);
-      td.appendChild(div);
-    });
+    var tdP = document.createElement('td');
+    tdP.className = 'bt-photo';
+    var im = document.createElement('img');
+    im.className = 'brow-img';
+    im.alt = info.make + ' ' + info.model;
+    im.loading = 'lazy';
+    im.referrerPolicy = 'no-referrer';
+    if (r.photo) im.src = r.photo;
+    im.onerror = function () { im.style.visibility = 'hidden'; };
+    tdP.appendChild(im);
+    tr.appendChild(tdP);
 
-    // Datos de stock cacheados por modelo: nuevos (foco) y segunda mano.
-    var caches = infos.map(function (m) { return stockCacheGet(m, '', 'new'); });
-    var usedCaches = infos.map(function (m) { return stockCacheGet(m, '', 'used'); });
+    // Modelo
+    var tdN = document.createElement('td');
+    tdN.setAttribute('data-l', 'Modelo');
+    tdN.innerHTML = '<span class="brow-chev">▸</span><span class="brow-name">' +
+      '<span class="make">' + escapeHtml(info.make) + '</span> ' + escapeHtml(info.model) + '</span>' +
+      (info.priority ? ' <span class="prio-chip">❤</span>' : '');
+    tr.appendChild(tdN);
 
-    function bestIndexBy(vals, lowerIsBetter) {
-      var idx = null, bestV = null;
-      vals.forEach(function (v, i) {
-        if (!isNum(v)) return;
-        if (bestV == null || (lowerIsBetter ? v < bestV : v > bestV)) { bestV = v; idx = i; }
-      });
-      return vals.filter(isNum).length > 1 ? idx : null;
-    }
+    tr.appendChild(cellTd('Mejor lease', isNum(r.best)
+      ? '<strong>' + fmtMoney2(r.best) + '</strong><span class="u">/mes</span>' : '<span class="muted">—</span>'));
 
-    // Precio de lista
-    var msrps = infos.map(function (m) { return m.price[0]; });
-    addRow('Precio (MSRP)', function (m, td) {
-      td.innerHTML = '<strong>' + fmtMoney(m.price[0]) + '</strong><span class="sub">hasta ' + fmtMoney(m.price[1]) + '</span>';
-    }, bestIndexBy(msrps, true));
+    var pctCls = isNum(r.pct) ? (r.pct <= 1 ? 'good' : r.pct <= 1.25 ? 'warn' : 'bad') : '';
+    tr.appendChild(cellTd('Regla 1%', isNum(r.pct)
+      ? '<span class="pct ' + pctCls + '">' + r.pct.toFixed(2) + '%</span>' : '<span class="muted">—</span>'));
 
-    // Ficha
-    addRow('Ficha', function (m, td) {
-      td.innerHTML = escapeHtml(m.engine) + '<span class="sub">' + escapeHtml(m.drive) + ' · ' + escapeHtml(m.mpg) + '</span>';
-    });
+    tr.appendChild(cellTd('Tendencia', sparkline(LeaseDB.seriesFor(info)) + ' ' + trendCell(r.trend)));
+    tr.appendChild(cellTd('Ofertas', r.offers.length ? String(r.offers.length) : '<span class="muted">0</span>'));
+    tr.appendChild(cellTd('Nuevos', isNum(r.stockNew) ? String(r.stockNew) : '<span class="muted">·</span>'));
+    tr.appendChild(cellTd('Valoración', '<span class="sent ' + sm.cls + '">' + sm.txt + '</span>'));
 
-    // Mejor lease encontrado por el robot (protagonista)
-    var leases = infos.map(function (m) {
-      var ms = offersForModel(m.model).filter(function (e) { return e.metrics && isNum(e.metrics.effectiveMonthly); });
-      if (!ms.length) return null;
-      ms.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
-      return ms[0];
-    });
-    addRow('💚 Mejor lease', function (m, td, i) {
-      var b = leases[i];
-      if (!b) { td.innerHTML = '<span class="sub">sin ofertas aún</span>'; return; }
-      td.innerHTML = '<strong>' + fmtMoney2(b.metrics.effectiveMonthly) + '/mes</strong>' +
-        '<span class="sub">' + escapeHtml(b.source || '') + '</span>';
-    }, bestIndexBy(leases.map(function (b) { return b ? b.metrics.effectiveMonthly : null; }), true));
-
-    // Nuevos cerca (para lease)
-    var newCounts = caches.map(function (c) { return c && c.data ? (c.data.byCondition && c.data.byCondition.nuevo) || 0 : null; });
-    addRow('🆕 Nuevos cerca', function (m, td, i) {
-      var c = caches[i];
-      if (!c) { td.innerHTML = '<span class="sub">— pulsa “Actualizar stock”</span>'; return; }
-      var n = (c.data.byCondition && c.data.byCondition.nuevo) || 0;
-      var nr = c.data.priceByCondition && c.data.priceByCondition.nuevo;
-      td.innerHTML = '<strong>' + n + '</strong> con lease ✓' +
-        (nr ? '<span class="sub">' + fmtMoney(nr.min) + '–' + fmtMoney(nr.max) + ' · ' + fmtAge(c.t) + '</span>'
-            : '<span class="sub">' + fmtAge(c.t) + '</span>');
-    }, bestIndexBy(newCounts, false));
-
-    // Nuevo más barato
-    var newPrices = caches.map(function (c) {
-      return c && c.data && c.data.cheapestNew ? c.data.cheapestNew.price : null;
-    });
-    addRow('Nuevo más barato', function (m, td, i) {
-      var c = caches[i];
-      var ch = c && c.data && c.data.cheapestNew;
-      if (!ch) { td.textContent = '—'; return; }
-      td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
-        '<span class="sub">' + escapeHtml(ch.dealer || '') +
-        (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">buscar VIN ↗</a>' : '') + '</span>';
-    }, bestIndexBy(newPrices, true));
-
-    // ---- Segunda mano (CPO/usados), solo con el interruptor activo ----
-    if (state.showUsed) {
-      var needFetch = infos.some(function (m, i) { return !usedCaches[i]; });
-      if (needFetch) {
-        addRow('♻️ Segunda mano', function (m, td, i) {
-          td.innerHTML = usedCaches[i]
-            ? '<span class="sub">ok</span>'
-            : '<span class="sub">pulsa “Actualizar stock”</span>';
-        });
-      }
-      var cpoPrices = usedCaches.map(function (c) {
-        return c && c.data && c.data.cheapestCpo ? c.data.cheapestCpo.price : null;
-      });
-      addRow('♻️ CPO más barato', function (m, td, i) {
-        var c = usedCaches[i];
-        var ch = c && c.data && c.data.cheapestCpo;
-        if (!ch) { td.innerHTML = '<span class="sub">sin CPO</span>'; return; }
-        td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
-          '<span class="sub">' + escapeHtml(ch.dealer || '') +
-          (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">buscar VIN ↗</a>' : '') + '</span>';
-      }, bestIndexBy(cpoPrices, true));
-
-      var usedPrices = usedCaches.map(function (c) {
-        return c && c.data && c.data.cheapestUsed ? c.data.cheapestUsed.price : null;
-      });
-      addRow('♻️ Usado más barato', function (m, td, i) {
-        var c = usedCaches[i];
-        var ch = c && c.data && c.data.cheapestUsed;
-        if (!ch) { td.innerHTML = '<span class="sub">sin usados</span>'; return; }
-        td.innerHTML = '<strong>' + fmtMoney(ch.price) + '</strong>' +
-          '<span class="sub">' + escapeHtml(ch.dealer || '') +
-          (ch.url ? ' · <a href="' + ch.url + '" target="_blank" rel="noopener">buscar VIN ↗</a>' : '') + '</span>';
-      }, bestIndexBy(usedPrices, true));
-    }
-
-    // Análisis (research)
-    var anyIntel = infos.some(function (m) { return intelFor(m.make, m.model); });
-    if (anyIntel) {
-      addRow('Análisis', function (m, td) {
-        var it = intelFor(m.make, m.model);
-        if (!it) { td.textContent = '—'; return; }
-        td.innerHTML = '<span class="sub">' + escapeHtml(it.verdict || '') +
-          (it.benchmark ? '<br>🎯 ' + escapeHtml(it.benchmark) : '') + '</span>';
-      });
-    }
-
-    // Decidir
-    addRow('', function (m, td) {
-      var b = document.createElement('button');
-      b.className = 'btn mini';
-      b.textContent = '⚖️ Decidir';
-      b.addEventListener('click', function () {
-        prefillDecide(m);
-        showView('decide');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      td.appendChild(b);
-    });
+    var key = info.make + '|' + info.model;
+    tr.addEventListener('click', function () { toggleBoardExpand(tr, r, key); });
+    if (state.expanded[key]) tr.classList.add('open');
+    return tr;
   }
 
-  /** Actualiza el stock de los modelos seleccionados (en serie, cuidando la cuota). */
-  function compareLoadStock() {
-    var btn = $('compare-load');
-    var infos = compareInfos();
-    // Tareas: nuevos siempre; segunda mano solo si el interruptor está activo.
-    var conds = state.showUsed ? ['new', 'used'] : ['new'];
-    var pending = [];
-    infos.forEach(function (m) {
-      conds.forEach(function (cond) {
-        var c = stockCacheGet(m, '', cond);
-        if (!c || (Date.now() - c.t) > STOCK_FRESH_MS) pending.push({ m: m, cond: cond });
-      });
-    });
-    if (!pending.length) { renderCompare(); return; }
-    btn.disabled = true;
-    var done = 0;
-    function next() {
-      if (done >= pending.length) {
-        btn.disabled = false;
-        btn.textContent = '📦 Actualizar stock';
-        renderCompare();
-        renderWatchlist();
-        return;
+  function cellTd(label, html) {
+    var td = document.createElement('td');
+    td.setAttribute('data-l', label);
+    td.innerHTML = html;
+    return td;
+  }
+
+  function toggleBoardExpand(tr, r, key) {
+    if (state.expanded[key]) {
+      delete state.expanded[key];
+      tr.classList.remove('open');
+      if (tr.nextSibling && tr.nextSibling.classList && tr.nextSibling.classList.contains('bexpand')) {
+        tr.parentNode.removeChild(tr.nextSibling);
       }
-      var task = pending[done];
-      btn.textContent = '📦 ' + (done + 1) + '/' + pending.length + ' — ' + task.m.model + '…';
-      fetchInventory(task.m, '', task.cond)
-        .catch(function () { /* seguir con el resto */ })
-        .then(function () {
-          done++;
-          renderCompare();
-          next();
-        });
+    } else {
+      state.expanded[key] = true;
+      tr.classList.add('open');
+      var ex = boardExpand(r);
+      tr.parentNode.insertBefore(ex, tr.nextSibling);
     }
-    next();
+  }
+
+  function boardExpand(r) {
+    var info = r.info, a = r.assess;
+    var tr = document.createElement('tr');
+    tr.className = 'bexpand';
+    var td = document.createElement('td');
+    td.colSpan = 8;
+    tr.appendChild(td);
+
+    var box = document.createElement('div');
+    box.className = 'bexpand-inner';
+    td.appendChild(box);
+
+    // Valoración + serie
+    var head = document.createElement('div');
+    head.className = 'bx-head';
+    head.innerHTML = '<div class="bx-verdict"><span class="sent ' + (SENT_META[a.level] || SENT_META.none).cls + '">' +
+      (SENT_META[a.level] || SENT_META.none).txt + '</span> ' + escapeHtml(a.reason || '') + '</div>' +
+      '<div class="bx-spark">' + sparkline(LeaseDB.seriesFor(info), 160, 40) + '</div>';
+    box.appendChild(head);
+
+    // Ofertas descubiertas
+    if (r.offers.length) {
+      var t = '<div class="bx-sub">Ofertas descubiertas (' + r.offers.length + ')</div>' +
+        '<div class="table-wrap"><table class="offers-table bx-offers"><thead><tr>' +
+        '<th>Fuente</th><th>Efectivo/mes</th><th>Mensual</th><th>Plazo</th><th>Vista</th><th></th></tr></thead><tbody>';
+      r.offers.slice(0, 12).forEach(function (o, i) {
+        var m = o.metrics || {};
+        t += '<tr><td>' + escapeHtml(o.source || o.name || '—') +
+          (o.region ? '<span class="offer-meta">' + escapeHtml(o.region) + '</span>' : '') + '</td>' +
+          '<td>' + fmtMoney2(m.effectiveMonthly) + '</td>' +
+          '<td>' + fmtMoney2(m.monthlyPayment) + '</td>' +
+          '<td>' + (m.term || '—') + 'm</td>' +
+          '<td>' + (o.firstSeen ? new Date(o.firstSeen).toLocaleDateString('es') : '—') + '</td>' +
+          '<td>' + (o.url ? '<a href="' + o.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') +
+          ' <button type="button" class="btn mini bx-save" data-i="' + i + '">💾</button></td></tr>';
+      });
+      t += '</tbody></table></div>';
+      var offBox = document.createElement('div');
+      offBox.innerHTML = t;
+      offBox.querySelectorAll('.bx-save').forEach(function (b) {
+        b.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          saveScanned(r.offers[+b.dataset.i].parsed || {});
+          b.textContent = '✅'; b.disabled = true;
+        });
+      });
+      box.appendChild(offBox);
+    } else {
+      var no = document.createElement('div');
+      no.className = 'hint';
+      no.textContent = 'Sin ofertas de lease descubiertas todavía para este modelo.';
+      box.appendChild(no);
+    }
+
+    // Stock de nuevos (reutiliza la caja con selector de trim)
+    var stock = document.createElement('div');
+    stock.className = 'stock-box';
+    renderStockBox(info, stock);
+    box.appendChild(stock);
+
+    // Acciones
+    var acts = document.createElement('div');
+    acts.className = 'card-actions';
+    var dec = document.createElement('button');
+    dec.className = 'btn mini primary';
+    dec.textContent = '⚖️ ¿Qué me conviene?';
+    dec.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      prefillDecide(info);
+      showView('decide');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    acts.appendChild(dec);
+    [['Nuevos ↗', info.linkNew], ['CPO ↗', info.linkCpo]].forEach(function (pair) {
+      var link = document.createElement('a');
+      link.className = 'btn mini subtle';
+      link.textContent = pair[0]; link.href = pair[1]; link.target = '_blank'; link.rel = 'noopener';
+      link.addEventListener('click', function (ev) { ev.stopPropagation(); });
+      acts.appendChild(link);
+    });
+    box.appendChild(acts);
+
+    box.addEventListener('click', function (ev) {
+      // no cerrar al interactuar dentro del panel
+      if (ev.target.closest && ev.target.closest('a,button,select,summary,details')) ev.stopPropagation();
+    });
+    return tr;
   }
 
   /* ---------------- CPO / segunda mano (pestaña) ---------------- */
@@ -1420,8 +1207,8 @@
   /* ---------------- ofertas online ---------------- */
 
   function loadOnline() {
-    var meta = $('online-meta');
-    meta.textContent = 'Cargando…';
+    var meta = $('board-meta');
+    if (meta) meta.textContent = 'Cargando…';
     Promise.all([
       fetch('data/offers-latest.json', { cache: 'no-store' }).then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -1441,91 +1228,28 @@
       onlineData.status = res[1];
       onlineData.history = Array.isArray(res[2]) ? res[2] : [];
       onlineData.intel = res[3];
-      renderOnline(onlineData.latest, onlineData.status);
-      renderWatchlist();
-      renderCompare();
+      // Acumula en la base de datos local (crece con cada carga).
+      try { LeaseDB.ingest(onlineData.latest.offers || [], onlineData.history, RankedModels); } catch (e) { /* noop */ }
+      renderSources(onlineData.status);
+      renderBoard();
     }).catch(function () {
-      renderWatchlist();
-      $('online-wrap').hidden = true;
-      $('online-status-box').hidden = true;
-      meta.textContent = 'Aún no hay resultados del robot. Puedes lanzarlo con “▶ Buscar ahora”.';
+      try { LeaseDB.ingest([], onlineData.history, RankedModels); } catch (e) { /* noop */ }
+      renderBoard();
+      if (meta) meta.textContent = 'Aún no hay resultados del robot. Puedes lanzarlo con “▶ Buscar ahora”. La base de datos crece con cada búsqueda.';
     });
   }
 
-  function renderOnline(latest, status) {
-    var allOffers = latest.offers || [];
-    var meta = $('online-meta');
-    var body = $('online-body');
-    body.innerHTML = '';
-
-    // Filtro por modelo seleccionado
-    var fModel = normalizeModel($('online-model').value);
-    var offers = !fModel ? allOffers : allOffers.filter(function (e) {
-      var hay = normalizeModel((e.name || '') + ' ' + ((e.parsed && e.parsed.raw) || ''));
-      return hay.indexOf(fModel) >= 0;
+  /** Lista el estado de las fuentes del robot (desplegable del tablero). */
+  function renderSources(status) {
+    if (!status || !status.sources || !status.sources.length) return;
+    var ul = $('online-status');
+    ul.innerHTML = '';
+    status.sources.forEach(function (s) {
+      var li = document.createElement('li');
+      li.textContent = s.name + (s.region ? ' (' + s.region + ')' : '') + ': ' + s.status;
+      ul.appendChild(li);
     });
-
-    var when = latest.updatedAt ? new Date(latest.updatedAt).toLocaleString('es') : '—';
-    var okCount = status && status.sources
-      ? status.sources.filter(function (s) { return /^ok/.test(s.status); }).length
-      : null;
-    meta.textContent = 'Última corrida: ' + when + ' · ' +
-      (fModel ? offers.length + ' de ' + allOffers.length : allOffers.length) + ' oferta(s)' +
-      (okCount != null ? ' · ' + okCount + '/' + status.sources.length + ' fuentes' : '') +
-      (fModel && !offers.length ? ' · ninguna fuente publicó ese modelo.' : '');
-
-    if (status && status.sources && status.sources.length) {
-      var ul = $('online-status');
-      ul.innerHTML = '';
-      status.sources.forEach(function (s) {
-        var li = document.createElement('li');
-        li.textContent = s.name + (s.region ? ' (' + s.region + ')' : '') + ': ' + s.status;
-        ul.appendChild(li);
-      });
-      $('online-status-box').hidden = false;
-    }
-
-    $('online-wrap').hidden = offers.length === 0;
-    if (!offers.length) return;
-
-    // Tus SUVs objetivo primero; después por costo efectivo mensual.
-    offers.sort(function (a, b) {
-      if (!!b.isTarget !== !!a.isTarget) return b.isTarget ? 1 : -1;
-      var av = a.metrics && isNum(a.metrics.effectiveMonthly) ? a.metrics.effectiveMonthly : Infinity;
-      var bv = b.metrics && isNum(b.metrics.effectiveMonthly) ? b.metrics.effectiveMonthly : Infinity;
-      return av - bv;
-    });
-
-    offers.forEach(function (e) {
-      var m = e.metrics || {};
-      var tr = document.createElement('tr');
-      var name = (e.isTarget ? '🎯 ' : '') + (e.name || 'Oferta sin nombre');
-      tr.appendChild(cell(
-        '<span class="offer-name">' + escapeHtml(name) + '</span>' +
-        '<span class="offer-meta">' + escapeHtml('vista desde ' +
-          (e.firstSeen ? new Date(e.firstSeen).toLocaleDateString('es') : '—')) + '</span>', true));
-      tr.appendChild(cell(e.source + (e.region ? ' · ' + e.region : '')));
-      tr.appendChild(numCell(fmtMoney2(m.monthlyPayment), false));
-      tr.appendChild(cell((m.term || '—') + ' m'));
-      tr.appendChild(numCell(fmtMoney(m.driveOff), false));
-      tr.appendChild(numCell(fmtMoney(e.parsed && e.parsed.msrp), false));
-      tr.appendChild(numCell(fmtMoney2(m.effectiveMonthly), false));
-      tr.appendChild(numCell(isNum(m.score) ? m.score.toFixed(1) : '—', false));
-
-      var td = document.createElement('td');
-      var btn = document.createElement('button');
-      btn.className = 'btn mini';
-      btn.textContent = '💾 Guardar';
-      btn.addEventListener('click', function (ev) {
-        ev.stopPropagation();
-        saveScanned(e.parsed || {});
-        btn.textContent = '✅ Guardada';
-        btn.disabled = true;
-      });
-      td.appendChild(btn);
-      tr.appendChild(td);
-      body.appendChild(tr);
-    });
+    $('online-status-box').hidden = false;
   }
 
   /* ---------------- ¿lease, CPO o compra? ---------------- */
@@ -1635,7 +1359,7 @@
     }).then(function (r) {
       if (r.status === 200 && r.data && r.data.ok) {
         btn.textContent = '⏳ Buscando…';
-        $('online-meta').textContent = '🔎 ' + r.data.message + ' La página se actualizará sola.';
+        ($('board-meta')||{}).textContent = '🔎 ' + r.data.message + ' La página se actualizará sola.';
         pollForUpdate();
       } else if (r.status === 429 && r.data) {
         resetScanBtn();
@@ -1651,7 +1375,7 @@
 
   function showGithubFallback(reason) {
     resetScanBtn();
-    $('online-meta').innerHTML =
+    ($('board-meta')||{}).innerHTML =
       '⚠️ El lanzamiento directo no está disponible' +
       (reason ? ' (' + escapeHtml(reason) + ')' : '') + '. Plan B: ' +
       '<a href="' + SCAN_WORKFLOW_URL + '" target="_blank" rel="noopener">abre GitHub aquí</a>, ' +
@@ -1674,7 +1398,7 @@
           } else if (tries >= 20) { // ~10 minutos
             clearInterval(timer);
             resetScanBtn();
-            $('online-meta').textContent = 'La búsqueda tarda más de lo normal; presiona ↻ en un rato.';
+            ($('board-meta')||{}).textContent = 'La búsqueda tarda más de lo normal; presiona ↻ en un rato.';
           }
         })
         .catch(function () { /* reintenta en el siguiente tick */ });
@@ -1812,65 +1536,37 @@
       renderOffers();
     });
 
-    // Selector de modelo de la sección de ofertas (agrupado por marca)
-    var onlineSel = $('online-model');
-    Object.keys(VehicleCatalog).forEach(function (make) {
-      if (!VehicleCatalog[make].length) return;
-      var group = document.createElement('optgroup');
-      group.label = make;
-      VehicleCatalog[make].forEach(function (model) {
+    // Tablero: watchlist = todos los modelos del ranking (para el tablero y CPO).
+    state.watchlist = RankedModels.map(function (m) { return { make: m.make, model: m.model }; });
+
+    // Filtro de marca del tablero
+    var boardMake = $('board-make');
+    RankedModels.map(function (m) { return m.make; })
+      .filter(function (mk, i, arr) { return arr.indexOf(mk) === i; })
+      .forEach(function (mk) {
         var o = document.createElement('option');
-        o.value = model;
-        o.textContent = model;
-        group.appendChild(o);
+        o.value = mk; o.textContent = mk;
+        boardMake.appendChild(o);
       });
-      onlineSel.appendChild(group);
-    });
-    onlineSel.addEventListener('change', function () {
-      if (onlineData.latest) renderOnline(onlineData.latest, onlineData.status);
+    boardMake.addEventListener('change', function () {
+      state.boardMake = boardMake.value;
+      renderBoard();
     });
 
-    // Seguimiento de modelos
-    state.watchlist = loadWatchlist();
-    var watchMake = $('watch-make');
-    var wOpt = document.createElement('option');
-    wOpt.value = '';
-    wOpt.textContent = '— Marca —';
-    watchMake.appendChild(wOpt);
-    Object.keys(VehicleCatalog).forEach(function (make) {
-      if (!VehicleCatalog[make].length) return;
-      var o = document.createElement('option');
-      o.value = make;
-      o.textContent = make;
-      watchMake.appendChild(o);
+    // Orden por cabecera del tablero (dirección por defecto sensata por columna)
+    var DEFAULT_DESC = { name: false, best: false, pct: false, trend: false, offers: true, stock: true, sent: true };
+    document.querySelectorAll('#board-table th.sortable').forEach(function (th) {
+      th.addEventListener('click', function () {
+        var key = th.dataset.sort;
+        if (state.boardSort.key === key) state.boardSort.desc = !state.boardSort.desc;
+        else state.boardSort = { key: key, desc: !!DEFAULT_DESC[key] };
+        renderBoard();
+      });
     });
-    populateModels($('watch-model'), '', '— Modelo —');
-    watchMake.addEventListener('change', function () {
-      populateModels($('watch-model'), watchMake.value, '— Modelo —');
-    });
-    $('watch-add').addEventListener('click', function () {
-      var make = watchMake.value;
-      var model = $('watch-model').value;
-      if (!make || !model) { alert('Elige marca y modelo primero.'); return; }
-      var dup = state.watchlist.some(function (w) { return w.make === make && w.model === model; });
-      if (!dup) {
-        state.watchlist.push({ make: make, model: model });
-        persistWatchlist();
-      }
-      $('watch-model').value = '';
-      renderWatchlist();
-    });
-    renderWatchlist();
 
-    // Comparador entre marcas
-    state.compare = loadCompare();
-    renderCompareChips();
-    renderCompare();
-    $('compare-load').addEventListener('click', compareLoadStock);
-    $('compare-showused').addEventListener('change', function () {
-      state.showUsed = this.checked;
-      renderCompare();
-    });
+    renderBoard();
+
+    $('board-refresh').addEventListener('click', loadOnline);
     $('usados-load').addEventListener('click', usadosLoadAll);
 
     // Comparador ¿lease, CPO o compra?
@@ -1890,7 +1586,6 @@
      'decide-apr-cpo', 'decide-tax', 'decide-down', 'decide-loan', 'decide-dep-new', 'decide-dep-cpo']
       .forEach(function (id) { $(id).addEventListener('input', runDecide); });
 
-    $('online-refresh').addEventListener('click', loadOnline);
     $('scan-now-btn').addEventListener('click', scanNow);
     loadOnline();
 

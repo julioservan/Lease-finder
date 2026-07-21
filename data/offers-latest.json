@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T13:30:43.883Z",
+  "updatedAt": "2026-07-21T17:28:37.694Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda hr-v lx awd suv auto (model #: rz2h3tew) for on|39",
@@ -31,7 +31,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|last updated: 7/21/2026|36",
@@ -81,8 +81,8 @@
         "milesPerYear": null,
         "residualPct": null,
         "moneyFactor": null,
-        "apr": 2.49,
-        "raw": "The 2026 Honda CR-V is now available with lease offers from $289/month and financing as low as 2.49% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/21/2026"
+        "apr": 2.99,
+        "raw": "The 2026 Honda CR-V is now available with lease offers from $289/month and financing as low as 2.99% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/21/2026"
       },
       "metrics": {
         "term": 36,
@@ -95,7 +95,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "truecar — bronco sport (lease)|how much does it cost to finance a 2026 ford bronco sport?|36",
@@ -191,7 +191,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "truecar — gmc terrain (lease)|how much does it cost to finance a 2026 gmc terrain?|36",
@@ -287,7 +287,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|2026 cr-v lx awd|36",
@@ -319,7 +319,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "truecar — bronco sport (lease)|s/n|434|48",
@@ -383,7 +383,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "truecar — honda cr-v (lease)|how much does it cost to lease a 2026 honda cr-v?|36",
@@ -543,7 +543,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "truecar — gmc terrain (lease)|s/n|481|48",
@@ -735,7 +735,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|estimate|36",
@@ -745,7 +745,7 @@
       "name": "Estimate",
       "parsed": {
         "name": "Estimate",
-        "monthly": 841,
+        "monthly": 847,
         "term": null,
         "dueAtSigning": null,
         "msrp": 32370,
@@ -754,20 +754,20 @@
         "residualPct": null,
         "moneyFactor": null,
         "apr": null,
-        "raw": "Payment\nEstimate \n\n $841 per month \n Calculate Payment\n\n Total cost: $30,265 for the 2026 Honda CR-V LX 4dr Front-Wheel Drive — MSRP: $32,370\n Assumes listed APR, term, and 10% down; taxes, fees, and down payment excluded\n Requires financing through Honda Financial Services"
+        "raw": "Payment\nEstimate \n\n $847 per month \n Calculate Payment\n\n Total cost: $30,495 for the 2026 Honda CR-V LX 4dr Front-Wheel Drive — MSRP: $32,370\n Assumes listed APR, term, and 10% down; taxes, fees, and down payment excluded\n Requires financing through Honda Financial Services"
       },
       "metrics": {
         "term": 36,
-        "monthlyPayment": 841,
+        "monthlyPayment": 847,
         "driveOff": 0,
-        "totalCost": 30276,
-        "effectiveMonthly": 841,
-        "pctOfMsrp": 2.5980846462774174,
-        "score": 3.2074910820451845
+        "totalCost": 30492,
+        "effectiveMonthly": 847,
+        "pctOfMsrp": 2.616620327463701,
+        "score": 3.1847697756788667
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-21T13:30:43.883Z"
+      "lastSeen": "2026-07-21T17:28:37.694Z"
     }
   ]
 }
