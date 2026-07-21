@@ -20,6 +20,7 @@ module.exports = async function handler(req, res) {
   var q = req.query || {};
   var make = (q.make || '').toString().trim();
   var model = (q.model || '').toString().trim();
+  var trim = (q.trim || '').toString().trim();
   var zip = (q.zip || '11201').toString().trim();
   var radius = (q.radius || '25').toString().trim();
   // Año mínimo (default 2025): filtra fuera los usados viejos y ahorra cuota.
@@ -45,6 +46,7 @@ module.exports = async function handler(req, res) {
   var base = 'https://api.auto.dev/listings' +
     '?vehicle.make=' + encodeURIComponent(make) +
     '&vehicle.model=' + encodeURIComponent(model) +
+    (trim ? '&vehicle.trim=' + encodeURIComponent(trim) : '') +
     '&vehicle.year=' + encodeURIComponent(yearList.join(',')) +
     '&zip=' + encodeURIComponent(zip) +
     '&distance=' + encodeURIComponent(radius) +
@@ -66,6 +68,7 @@ module.exports = async function handler(req, res) {
     var vin = listing.vin || v.vin || '';
     return {
       title: [v.year, (v.make || make), (v.model || model), v.trim].filter(Boolean).join(' '),
+      trim: v.trim || '',
       year: v.year || null,
       price: num(rl.price),
       msrp: num(v.baseMsrp),
@@ -132,6 +135,16 @@ module.exports = async function handler(req, res) {
     var items = records.map(normalize).filter(function (x) {
       return x.price != null && (!x.year || x.year >= minYear); // red de seguridad del año
     });
+    // Red de seguridad del trim: si la API ignorase vehicle.trim, filtramos aquí.
+    if (trim) {
+      var before = items.length;
+      var tLow = trim.toLowerCase();
+      items = items.filter(function (x) {
+        return (x.trim || x.title || '').toLowerCase().indexOf(tLow) >= 0;
+      });
+      // El total de la API ya no sería fiable si tuvo que filtrarse localmente.
+      if (items.length < before) total = null;
+    }
     items.sort(function (a, b) { return a.price - b.price; });
 
     var prices = items.map(function (x) { return x.price; });
@@ -141,6 +154,7 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       minYear: minYear,
+      trim: trim || null,
       total: total != null ? total : items.length,
       shown: items.length,
       byCondition: { nuevo: condCount('Nuevo'), cpo: condCount('CPO'), usado: condCount('Usado') },

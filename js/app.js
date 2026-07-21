@@ -523,30 +523,61 @@
 
   /* ---------------- inventario real (Auto.dev vía Vercel) ---------------- */
 
-  function stockCacheGet(info) {
+  function stockKey(info, trim) {
+    return STOCK_PREFIX + info.make + '-' + info.model + (trim ? '::' + trim : '');
+  }
+
+  function stockCacheGet(info, trim) {
     try {
-      var raw = localStorage.getItem(STOCK_PREFIX + info.make + '-' + info.model);
+      var raw = localStorage.getItem(stockKey(info, trim));
       if (!raw) return null;
       var o = JSON.parse(raw);
       return o && o.data ? o : null;
     } catch (e) { return null; }
   }
 
-  function stockCachePut(info, data) {
+  function stockCachePut(info, trim, data) {
     try {
-      localStorage.setItem(STOCK_PREFIX + info.make + '-' + info.model,
+      localStorage.setItem(stockKey(info, trim),
         JSON.stringify({ t: Date.now(), data: data }));
     } catch (e) { /* lleno */ }
   }
 
+  /** Trim elegido por modelo (persistente). */
+  function getTrimSel(info) {
+    try { return localStorage.getItem('lf-trimsel-' + info.make + '-' + info.model) || ''; } catch (e) { return ''; }
+  }
+
+  function setTrimSel(info, v) {
+    try { localStorage.setItem('lf-trimsel-' + info.make + '-' + info.model, v || ''); } catch (e) { /* lleno */ }
+  }
+
+  /** Opciones de trim: las curadas del modelo + las vistas en el stock cacheado. */
+  function trimOptions(info) {
+    var seen = {};
+    var out = [];
+    function add(t) {
+      if (!t) return;
+      var k = t.toLowerCase();
+      if (!seen[k]) { seen[k] = true; out.push(t); }
+    }
+    (info.trims || []).forEach(add);
+    var c = stockCacheGet(info, '');
+    if (c && c.data && c.data.listings) c.data.listings.forEach(function (l) { add(l.trim); });
+    add(getTrimSel(info));
+    return out;
+  }
+
   /** Consulta el inventario y lo guarda en caché. Devuelve una promesa con los datos. */
-  function fetchInventory(info) {
+  function fetchInventory(info, trim) {
     return fetch('api/inventory?make=' + encodeURIComponent(info.make) +
-      '&model=' + encodeURIComponent(info.model) + '&zip=11201&radius=25&minYear=2025')
+      '&model=' + encodeURIComponent(info.model) +
+      (trim ? '&trim=' + encodeURIComponent(trim) : '') +
+      '&zip=11201&radius=25&minYear=2025')
       .then(function (r) { return r.json().then(function (d) { return { status: r.status, data: d }; }); })
       .then(function (res) {
         if (res.status === 200 && res.data.ok) {
-          stockCachePut(info, res.data);
+          stockCachePut(info, trim, res.data);
           return res.data;
         }
         var err = new Error((res.data && res.data.message) || 'error');
@@ -555,25 +586,58 @@
       });
   }
 
-  /** Pinta la caja de stock de una tarjeta: caché persistente + botón actualizar. */
-  function renderStockBox(info, box) {
-    var c = stockCacheGet(info);
-    if (c) { renderStock(c.data, info, box, c.t); return; }
+  /**
+   * Pinta la caja de stock de una tarjeta: selector de trim + resultados
+   * persistentes (caché) + botón actualizar. Con autoFetch (cambio de trim
+   * del usuario) consulta al momento si no hay caché para ese trim.
+   */
+  function renderStockBox(info, box, autoFetch) {
+    var trim = getTrimSel(info);
     box.innerHTML = '';
+
+    var head = document.createElement('div');
+    head.className = 'stock-head';
+    var sel = document.createElement('select');
+    sel.className = 'trim-select';
+    var all = document.createElement('option');
+    all.value = '';
+    all.textContent = 'Todos los trims';
+    sel.appendChild(all);
+    trimOptions(info).forEach(function (t) {
+      var o = document.createElement('option');
+      o.value = t;
+      o.textContent = t;
+      sel.appendChild(o);
+    });
+    sel.value = trim;
+    sel.addEventListener('change', function () {
+      setTrimSel(info, sel.value);
+      renderStockBox(info, box, true);
+    });
+    head.appendChild(sel);
+    box.appendChild(head);
+
+    var content = document.createElement('div');
+    content.className = 'stock-content';
+    box.appendChild(content);
+
+    var c = stockCacheGet(info, trim);
+    if (c) { renderStock(c.data, info, content, c.t, trim); return; }
+    if (autoFetch) { fetchStockInto(info, content, trim); return; }
     var btn = document.createElement('button');
     btn.className = 'btn mini';
     btn.textContent = '📦 Ver stock cerca';
     btn.addEventListener('click', function (ev) {
       ev.stopPropagation();
-      fetchStockInto(info, box);
+      fetchStockInto(info, content, trim);
     });
-    box.appendChild(btn);
+    content.appendChild(btn);
   }
 
-  function fetchStockInto(info, box) {
+  function fetchStockInto(info, box, trim) {
     box.innerHTML = '<small class="hint">📦 Buscando stock…</small>';
-    fetchInventory(info)
-      .then(function (d) { renderStock(d, info, box, Date.now()); })
+    fetchInventory(info, trim)
+      .then(function (d) { renderStock(d, info, box, Date.now(), trim); })
       .catch(function (err) {
         box.innerHTML = '<small class="hint">' +
           (err.needsKey
@@ -583,13 +647,14 @@
       });
   }
 
-  function renderStock(d, info, box, when) {
+  function renderStock(d, info, box, when, trim) {
     var refreshBtn = '<button type="button" class="btn mini subtle stock-refresh" title="Actualizar">↻</button>';
+    var trimTag = trim ? ' <span class="trim-chip">' + escapeHtml(trim) + '</span>' : '';
     if (!d.shown) {
-      box.innerHTML = '<div class="stock-summary">📦 Sin unidades 2025+ en ~25 mi' +
+      box.innerHTML = '<div class="stock-summary">📦 Sin unidades 2025+ en ~25 mi' + trimTag +
         '<span class="stock-age">' + (when ? fmtAge(when) : '') + ' ' + refreshBtn + '</span></div>' +
         '<small class="hint"><a href="' + info.linkNew + '" target="_blank" rel="noopener">Ampliar en cars.com ↗</a></small>';
-      bindStockRefresh(box, info);
+      bindStockRefresh(box, info, trim);
       return;
     }
     var bc = d.byCondition || {};
@@ -598,7 +663,7 @@
     if (bc.cpo) parts.push(bc.cpo + ' CPO');
     if (bc.usado) parts.push(bc.usado + ' usados');
     var total = d.total || d.shown;
-    var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca' +
+    var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca' + trimTag +
       (parts.length ? ' · ' + parts.join(' · ') : '') +
       '<span class="stock-age">' + (when ? fmtAge(when) : '') + ' ' + refreshBtn + '</span></div>' +
       '<div class="stock-range">' + fmtMoney(d.minPrice) + ' – ' + fmtMoney(d.maxPrice) +
@@ -620,16 +685,16 @@
         '<ol class="stock-items">' + rows + '</ol></details>';
     }
     box.innerHTML = html;
-    bindStockRefresh(box, info);
+    bindStockRefresh(box, info, trim);
     var det = box.querySelector('details.stock-list');
     if (det) det.addEventListener('click', function (ev) { ev.stopPropagation(); });
   }
 
-  function bindStockRefresh(box, info) {
+  function bindStockRefresh(box, info, trim) {
     var b = box.querySelector('.stock-refresh');
     if (b) b.addEventListener('click', function (ev) {
       ev.stopPropagation();
-      fetchStockInto(info, box);
+      fetchStockInto(info, box, trim);
     });
   }
 
@@ -968,8 +1033,8 @@
       td.appendChild(div);
     });
 
-    // Datos de stock cacheados por modelo
-    var caches = infos.map(function (m) { return stockCacheGet(m); });
+    // Datos de stock cacheados por modelo (todos los trims)
+    var caches = infos.map(function (m) { return stockCacheGet(m, ''); });
 
     function bestIndexBy(vals, lowerIsBetter) {
       var idx = null, bestV = null;
@@ -1076,7 +1141,7 @@
     var infos = compareInfos();
     // Solo consulta los que no tienen caché fresca
     var pending = infos.filter(function (m) {
-      var c = stockCacheGet(m);
+      var c = stockCacheGet(m, '');
       return !c || (Date.now() - c.t) > STOCK_FRESH_MS;
     });
     if (!pending.length) { renderCompare(); return; }
@@ -1092,7 +1157,7 @@
       }
       var m = pending[done];
       btn.textContent = '📦 ' + (done + 1) + '/' + pending.length + ' — ' + m.model + '…';
-      fetchInventory(m)
+      fetchInventory(m, '')
         .catch(function () { /* seguir con el resto */ })
         .then(function () {
           done++;
@@ -1233,7 +1298,7 @@
     $('decide-new').value = info.msrp;
     $('decide-cpo').value = Math.round(info.msrp * 0.74 / 50) * 50;
     // Si hay stock real cacheado, usa los precios reales más baratos.
-    var c = stockCacheGet(info);
+    var c = stockCacheGet(info, '');
     if (c && c.data) {
       if (c.data.cheapestNew) $('decide-new').value = c.data.cheapestNew.price;
       if (c.data.cheapestCpo) $('decide-cpo').value = c.data.cheapestCpo.price;

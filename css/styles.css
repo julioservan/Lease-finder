@@ -264,6 +264,24 @@ details.card.collapse[open] > summary { color: var(--text); margin-bottom: 12px;
 
 /* stock */
 .stock-box { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 10px 12px; font-size: 0.82rem; }
+.stock-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.trim-select {
+  width: auto;
+  max-width: 100%;
+  font-size: 0.76rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: var(--surface);
+}
+.trim-chip {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #c4d0ff;
+  background: rgba(109, 139, 255, 0.16);
+  border: 1px solid rgba(109, 139, 255, 0.4);
+  padding: 1px 8px;
+  border-radius: 999px;
+}
 .stock-summary { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .stock-summary strong { font-size: 0.95rem; }
 .stock-age { color: var(--muted); font-size: 0.72rem; margin-left: auto; display: flex; align-items: center; gap: 6px; }
