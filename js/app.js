@@ -531,23 +531,30 @@
     if (bc.nuevo) parts.push(bc.nuevo + ' nuevos');
     if (bc.cpo) parts.push(bc.cpo + ' CPO');
     if (bc.usado) parts.push(bc.usado + ' usados');
-    var html = '<div class="stock-summary">📦 <strong>' + d.shown + '</strong> cerca (~25 mi)' +
+    var total = d.total || d.shown;
+    var more = total > d.shown ? ' (mostrando ' + d.shown + ')' : '';
+    var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca (~25 mi)' + more +
       (parts.length ? ' · ' + parts.join(' · ') : '') + '</div>' +
       '<small class="hint">Precios de ' + fmtMoney(d.minPrice) + ' a ' + fmtMoney(d.maxPrice) + '</small>';
 
-    function line(label, c) {
-      if (!c) return '';
-      return '<small class="hint">' + label + ': ' + escapeHtml(c.title) +
-        (c.price != null ? ' — <strong>' + fmtMoney(c.price) + '</strong>' : '') +
-        (c.miles ? ' · ' + c.miles.toLocaleString('es') + ' mi' : '') +
-        (c.dealer ? ' · ' + escapeHtml(c.dealer) + (c.city ? ' (' + escapeHtml(c.city) + ')' : '') : '') +
-        (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">buscar ↗</a>' : '') + '</small>';
+    // Lista completa desplegable
+    var list = d.listings || [];
+    if (list.length) {
+      var badge = { 'Nuevo': '🆕', 'CPO': '🔵', 'Usado': '🚗' };
+      var rows = list.map(function (c) {
+        return '<li>' + (badge[c.condition] || '') + ' <strong>' + fmtMoney(c.price) + '</strong> · ' +
+          escapeHtml(c.title) +
+          (c.miles ? ' · ' + c.miles.toLocaleString('es') + ' mi' : '') +
+          (c.dealer ? ' · ' + escapeHtml(c.dealer) + (c.city ? ' (' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') + ')' : '') : '') +
+          (c.url ? ' <a href="' + c.url + '" target="_blank" rel="noopener">buscar ↗</a>' : '') +
+          '</li>';
+      }).join('');
+      html += '<details class="stock-list"><summary>Ver las ' + list.length + ' unidades</summary>' +
+        '<ol class="stock-items">' + rows + '</ol></details>';
     }
-    // Muestra el más barato nuevo y el más barato CPO (lo relevante para comprar)
-    html += line('🆕 Nuevo + barato', d.cheapestNew);
-    html += line('🔵 CPO + barato', d.cheapestCpo);
-    if (!d.cheapestNew && !d.cheapestCpo) html += line('Más barato', d.cheapest);
     box.innerHTML = html;
+    var det = box.querySelector('details.stock-list');
+    if (det) det.addEventListener('click', function (ev) { ev.stopPropagation(); });
   }
 
   function persistWatchlist() {

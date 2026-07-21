@@ -35,12 +35,14 @@ module.exports = async function handler(req, res) {
   }
 
   // Auto.dev usa parámetros con notación de punto (vehicle.make, vehicle.model)
-  var url = 'https://api.auto.dev/listings' +
+  // e includes=total para conocer el total real de unidades.
+  var base = 'https://api.auto.dev/listings' +
     '?vehicle.make=' + encodeURIComponent(make) +
     '&vehicle.model=' + encodeURIComponent(model) +
     '&zip=' + encodeURIComponent(zip) +
     '&distance=' + encodeURIComponent(radius) +
-    '&limit=50';
+    '&limit=50&includes=total';
+  var MAX_PAGES = 3; // hasta ~60 unidades por consulta (cuida la cuota)
 
   function num(v) {
     if (v == null) return null;
@@ -70,35 +72,53 @@ module.exports = async function handler(req, res) {
     };
   }
 
-  try {
-    var controller = new AbortController();
-    var timer = setTimeout(function () { controller.abort(); }, 12000);
-    var r = await fetch(url, {
-      headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' },
-      signal: controller.signal
-    });
-    clearTimeout(timer);
-    if (!r.ok) {
-      var t = await r.text();
-      return res.status(502).json({ ok: false, message: 'Auto.dev respondió ' + r.status + ': ' + t.slice(0, 160) });
-    }
-    var data = await r.json();
-    var records = data.records || data.listings || data.results || data.data ||
+  function extract(data) {
+    var recs = data.records || data.listings || data.results || data.data ||
       (Array.isArray(data) ? data : []);
-    if (!Array.isArray(records)) records = [];
+    return Array.isArray(recs) ? recs : [];
+  }
 
-    // Diagnóstico: /api/inventory?...&debug=1 muestra la estructura real
-    // para mapear los campos exactos si algo sale vacío.
-    if (q.debug) {
-      return res.status(200).json({
-        ok: true,
-        topKeys: Object.keys(data),
-        count: records.length,
-        links: data.links || null,
-        api: data.api || null,
-        discover: data.discover || null
+  async function getPage(page) {
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 9000);
+    try {
+      var r = await fetch(base + '&page=' + page, {
+        headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' },
+        signal: controller.signal
       });
+      clearTimeout(timer);
+      if (!r.ok) return { err: r.status, body: (await r.text()).slice(0, 160) };
+      return { data: await r.json() };
+    } catch (e) {
+      clearTimeout(timer);
+      return { err: e.name === 'AbortError' ? 'timeout' : e.message };
     }
+  }
+
+  try {
+    var first = await getPage(1);
+    if (first.err) {
+      return res.status(502).json({ ok: false, message: 'Auto.dev respondió ' + first.err + (first.body ? ': ' + first.body : '') });
+    }
+    var data = first.data;
+    var total = data.total != null ? data.total : (data.totalCount != null ? data.totalCount :
+      (data.meta && data.meta.total != null ? data.meta.total : null));
+    var records = extract(data);
+
+    if (q.debug) {
+      return res.status(200).json({ ok: true, topKeys: Object.keys(data), total: total, page1: records.length, links: data.links || null });
+    }
+
+    // Trae páginas extra hasta MAX_PAGES o hasta cubrir el total.
+    for (var pg = 2; pg <= MAX_PAGES; pg++) {
+      if (total != null && records.length >= total) break;
+      var more = await getPage(pg);
+      if (more.err || !more.data) break;
+      var rec = extract(more.data);
+      if (!rec.length) break;
+      records = records.concat(rec);
+    }
+
     var items = records.map(normalize).filter(function (x) { return x.price != null; });
     items.sort(function (a, b) { return a.price - b.price; });
 
@@ -108,6 +128,7 @@ module.exports = async function handler(req, res) {
     res.setHeader('Cache-Control', 's-maxage=3600'); // cachea 1h en el edge (cuida la cuota)
     return res.status(200).json({
       ok: true,
+      total: total != null ? total : items.length,
       shown: items.length,
       byCondition: { nuevo: condCount('Nuevo'), cpo: condCount('CPO'), usado: condCount('Usado') },
       minPrice: prices.length ? Math.min.apply(null, prices) : null,
@@ -115,7 +136,7 @@ module.exports = async function handler(req, res) {
       cheapest: items[0] || null,
       cheapestNew: cheapestOf('Nuevo'),
       cheapestCpo: cheapestOf('CPO'),
-      listings: items.slice(0, 8)
+      listings: items.slice(0, 60)
     });
   } catch (err) {
     return res.status(500).json({ ok: false, message: 'Error: ' + (err.name === 'AbortError' ? 'timeout' : err.message) });
