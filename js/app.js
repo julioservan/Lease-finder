@@ -4,7 +4,7 @@
 
   var STORAGE_KEY = 'lease-finder-offers';
   var CURRENCY_KEY = 'lease-finder-currency';
-  var WATCH_KEY = 'lease-finder-watchlist';
+  var WATCH_KEY = 'lease-finder-watchlist-v2';
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
@@ -396,11 +396,33 @@
       var w = JSON.parse(localStorage.getItem(WATCH_KEY));
       if (Array.isArray(w) && w.length) return w;
     } catch (e) { /* usar defaults */ }
-    return [
-      { make: 'Jeep', model: 'Cherokee' },
-      { make: 'Ford', model: 'Bronco Sport' },
-      { make: 'Mazda', model: 'CX-50' }
-    ];
+    // Por defecto: el ranking curado completo
+    return RankedModels.map(function (m) { return { make: m.make, model: m.model }; });
+  }
+
+  function findRanked(make, model) {
+    for (var i = 0; i < RankedModels.length; i++) {
+      if (RankedModels[i].make === make && RankedModels[i].model === model) return RankedModels[i];
+    }
+    return null;
+  }
+
+  /** Foto automática del modelo vía Wikipedia (con caché en el navegador). */
+  function loadPhoto(wikiTitle, img) {
+    var cacheKey = 'lf-photo-' + wikiTitle;
+    var cached = null;
+    try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
+    if (cached) { img.src = cached; return; }
+    fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' +
+      encodeURIComponent(wikiTitle.replace(/ /g, '_')))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        var src = d && ((d.originalimage && d.originalimage.source) || (d.thumbnail && d.thumbnail.source));
+        if (!src) return;
+        img.src = src;
+        try { localStorage.setItem(cacheKey, src); } catch (e) { /* lleno */ }
+      })
+      .catch(function () { /* se queda el placeholder */ });
   }
 
   function persistWatchlist() {
@@ -421,7 +443,14 @@
     grid.innerHTML = '';
     var hasData = !!(onlineData.latest && onlineData.latest.updatedAt);
 
-    state.watchlist.forEach(function (w, idx) {
+    // Orden: por nota del ranking (los no rankeados al final)
+    var sorted = state.watchlist.slice().sort(function (a, b) {
+      var ra = findRanked(a.make, a.model), rb = findRanked(b.make, b.model);
+      return (rb ? rb.rating : 0) - (ra ? ra.rating : 0);
+    });
+
+    sorted.forEach(function (w) {
+      var info = findRanked(w.make, w.model);
       var matches = offersForModel(w.model);
       var withPrice = matches.filter(function (e) { return e.metrics && isNum(e.metrics.effectiveMonthly); });
       withPrice.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
@@ -430,17 +459,40 @@
       var card = document.createElement('div');
       card.className = 'watch-item ' + (matches.length ? 'found' : 'empty');
 
+      // Foto con placeholder y nota
+      var photo = document.createElement('div');
+      photo.className = 'model-photo';
+      var ph = document.createElement('span');
+      ph.className = 'photo-fallback';
+      ph.textContent = w.make + ' ' + w.model;
+      photo.appendChild(ph);
+      if (info) {
+        var img = document.createElement('img');
+        img.alt = w.make + ' ' + w.model;
+        img.loading = 'lazy';
+        img.addEventListener('load', function () { photo.classList.add('has-img'); });
+        photo.appendChild(img);
+        loadPhoto(info.wiki, img);
+        var badge = document.createElement('span');
+        badge.className = 'rating-badge';
+        badge.textContent = (info.top ? '⭐ ' : '') + info.rating.toFixed(1);
+        photo.appendChild(badge);
+      }
+      card.appendChild(photo);
+
       var head = document.createElement('div');
       head.className = 'watch-head';
       var title = document.createElement('strong');
-      title.textContent = w.make + ' ' + w.model;
+      title.textContent = w.make + ' ' + w.model + (info && info.trim ? ' ' + info.trim : '');
       var del = document.createElement('button');
       del.className = 'btn danger';
       del.textContent = '✕';
       del.title = 'Dejar de seguir';
       del.addEventListener('click', function (ev) {
         ev.stopPropagation();
-        state.watchlist.splice(idx, 1);
+        state.watchlist = state.watchlist.filter(function (x) {
+          return !(x.make === w.make && x.model === w.model);
+        });
         persistWatchlist();
         renderWatchlist();
       });
@@ -448,12 +500,23 @@
       head.appendChild(del);
       card.appendChild(head);
 
+      if (info) {
+        var specs = document.createElement('div');
+        specs.className = 'model-specs';
+        specs.innerHTML =
+          '<span>' + escapeHtml(info.engine) + '</span>' +
+          '<span>' + escapeHtml(info.drive) + ' · ' + escapeHtml(info.mpg) + '</span>' +
+          '<span>MSRP ' + fmtMoney(info.price[0]) + ' – ' + fmtMoney(info.price[1]) + '</span>' +
+          '<em>' + escapeHtml(info.blurb) + '</em>';
+        card.appendChild(specs);
+      }
+
       var statusEl = document.createElement('div');
       statusEl.className = 'watch-status';
       if (matches.length) {
         var line = document.createElement('div');
         line.className = 'watch-found';
-        line.textContent = '✅ ' + matches.length + ' oferta(s) encontrada(s)';
+        line.textContent = '✅ ' + matches.length + ' oferta(s) de lease encontrada(s)';
         statusEl.appendChild(line);
         if (best) {
           var bestLine = document.createElement('div');
@@ -469,14 +532,40 @@
       } else {
         var empty = document.createElement('div');
         empty.textContent = hasData
-          ? '🔎 Sin ofertas todavía — el robot sigue buscando a diario'
+          ? '🔎 Lease: sin ofertas todavía — el robot sigue buscando'
           : '⏳ Esperando la primera búsqueda…';
         statusEl.appendChild(empty);
       }
       card.appendChild(statusEl);
 
+      // Enlaces: inventario nuevo / usado / CPO + comparador
+      if (info) {
+        var links = document.createElement('div');
+        links.className = 'watch-links';
+        [['Nuevos', info.linkNew], ['Usados', info.linkUsed], ['CPO', info.linkCpo]].forEach(function (pair) {
+          var a = document.createElement('a');
+          a.className = 'btn mini';
+          a.textContent = pair[0] + ' ↗';
+          a.href = pair[1];
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.addEventListener('click', function (ev) { ev.stopPropagation(); });
+          links.appendChild(a);
+        });
+        var cmp = document.createElement('button');
+        cmp.className = 'btn mini primary';
+        cmp.textContent = '⚖️ ¿Qué me conviene?';
+        cmp.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          prefillDecide(info);
+          $('decide-card').scrollIntoView({ behavior: 'smooth' });
+        });
+        links.appendChild(cmp);
+        card.appendChild(links);
+      }
+
       card.addEventListener('click', function () {
-        // Ver las ofertas de este modelo en la sección online
+        // Ver las ofertas de lease de este modelo en la sección online
         var sel = $('online-model');
         var exists = Array.prototype.some.call(sel.options, function (o) { return o.value === w.model; });
         sel.value = exists ? w.model : '';
@@ -598,6 +687,81 @@
       tr.appendChild(td);
       body.appendChild(tr);
     });
+  }
+
+  /* ---------------- ¿lease, CPO o compra? ---------------- */
+
+  function num(v) { var n = parseFloat(v); return isFinite(n) ? n : null; }
+
+  function prefillDecide(info) {
+    var sel = $('decide-model');
+    sel.value = info.make + '|' + info.model;
+    applyDecideModel();
+  }
+
+  function applyDecideModel() {
+    var val = $('decide-model').value;
+    if (!val) { runDecide(); return; }
+    var parts = val.split('|');
+    var info = findRanked(parts[0], parts[1]);
+    if (!info) { runDecide(); return; }
+    $('decide-new').value = info.msrp;
+    $('decide-cpo').value = Math.round(info.msrp * 0.74 / 50) * 50;
+    // Lease: la mejor oferta real encontrada, o estimación (~1.2% del MSRP)
+    var matches = offersForModel(info.model).filter(function (e) {
+      return e.metrics && isNum(e.metrics.effectiveMonthly);
+    });
+    matches.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
+    if (matches.length) {
+      $('decide-lease').value = Math.round(matches[0].metrics.effectiveMonthly);
+      $('decide-lease-hint').textContent = 'Oferta real encontrada: ' + (matches[0].name || matches[0].source);
+    } else {
+      $('decide-lease').value = Math.round(info.msrp * 0.012);
+      $('decide-lease-hint').textContent = 'Estimación (~1.2% del MSRP); edítalo si tienes una cotización real.';
+    }
+    runDecide();
+  }
+
+  function decideResultCard(opt, isWinner, horizonMonths) {
+    var div = document.createElement('div');
+    div.className = 'decide-option' + (isWinner ? ' decide-win' : '');
+    var rows = [
+      '<h3>' + (isWinner ? '🏆 ' : '') + escapeHtml(opt.label) + '</h3>',
+      '<div class="decide-big">' + fmtMoney(opt.cost) + '</div>',
+      '<small class="hint">costo total en el horizonte</small>',
+      '<div>' + fmtMoney2(opt.cost / horizonMonths) + ' equivalentes/mes</div>',
+      '<div class="hint">Pago: ' + fmtMoney2(opt.monthly) + '/mes' +
+        (opt.down ? ' · enganche ' + fmtMoney(opt.down) : '') + '</div>'
+    ];
+    rows.push('<div class="hint">' + (opt.valueAtEnd > 0
+      ? 'Al final el auto vale ' + fmtMoney(opt.valueAtEnd) + ' (tuyo)'
+      : 'Al final no te queda auto (entregas el lease)') + '</div>');
+    div.innerHTML = rows.join('');
+    return div;
+  }
+
+  function runDecide() {
+    var res = Decide.computeDecision({
+      years: num($('decide-years').value) || 6,
+      leaseMonthly: num($('decide-lease').value),
+      newPrice: num($('decide-new').value),
+      aprNew: num($('decide-apr-new').value),
+      cpoPrice: num($('decide-cpo').value),
+      aprCpo: num($('decide-apr-cpo').value),
+      downPct: num($('decide-down').value),
+      loanMonths: num($('decide-loan').value),
+      depNew: num($('decide-dep-new').value),
+      depCpo: num($('decide-dep-cpo').value)
+    });
+    var box = $('decide-results');
+    box.innerHTML = '';
+    var keys = ['lease', 'cpo', 'buyNew'];
+    keys.forEach(function (k) {
+      if (res.options[k]) box.appendChild(decideResultCard(res.options[k], res.winner === k, res.horizonMonths));
+    });
+    if (!Object.keys(res.options).length) {
+      box.innerHTML = '<p class="hint">Captura al menos un precio o un pago de lease para comparar.</p>';
+    }
   }
 
   /* ---------------- buscar ahora (vía función en Vercel) ---------------- */
@@ -848,6 +1012,23 @@
       renderWatchlist();
     });
     renderWatchlist();
+
+    // Comparador ¿lease, CPO o compra?
+    var decideSel = $('decide-model');
+    var dOpt = document.createElement('option');
+    dOpt.value = '';
+    dOpt.textContent = '— Elige un modelo del ranking —';
+    decideSel.appendChild(dOpt);
+    RankedModels.forEach(function (m) {
+      var o = document.createElement('option');
+      o.value = m.make + '|' + m.model;
+      o.textContent = m.rating.toFixed(1) + ' · ' + m.make + ' ' + m.model + (m.trim ? ' ' + m.trim : '');
+      decideSel.appendChild(o);
+    });
+    decideSel.addEventListener('change', applyDecideModel);
+    ['decide-years', 'decide-lease', 'decide-new', 'decide-apr-new', 'decide-cpo',
+     'decide-apr-cpo', 'decide-down', 'decide-loan', 'decide-dep-new', 'decide-dep-cpo']
+      .forEach(function (id) { $(id).addEventListener('input', runDecide); });
 
     $('online-refresh').addEventListener('click', loadOnline);
     $('scan-now-btn').addEventListener('click', scanNow);

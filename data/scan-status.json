@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-20T20:04:57.108Z",
+  "updatedAt": "2026-07-21T00:07:13.156Z",
   "sources": [
     {
       "name": "BMW of Brooklyn",
@@ -9,7 +9,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (51 ofertas, con navegador)"
+      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -54,7 +54,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (27 ofertas)"
+      "status": "ok (26 ofertas)"
     },
     {
       "name": "Metro Honda",
