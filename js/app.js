@@ -489,7 +489,7 @@
 
   /** Inventario real cerca de Brooklyn vía /api/inventory (Auto.dev). */
   function loadStock(info, box, btn) {
-    var cacheKey = 'lf-stock-' + info.make + '-' + info.model;
+    var cacheKey = 'lf-stock2-' + info.make + '-' + info.model;
     var cached = null;
     try {
       var raw = localStorage.getItem(cacheKey);
@@ -499,7 +499,7 @@
 
     btn.disabled = true;
     btn.textContent = '📦 Buscando stock…';
-    fetch('api/inventory?make=' + encodeURIComponent(info.make) + '&model=' + encodeURIComponent(info.model) + '&zip=11201&radius=25')
+    fetch('api/inventory?make=' + encodeURIComponent(info.make) + '&model=' + encodeURIComponent(info.model) + '&zip=11201&radius=25&minYear=2025')
       .then(function (r) { return r.json().then(function (d) { return { status: r.status, data: d }; }); })
       .then(function (res) {
         if (res.status === 200 && res.data.ok) {
@@ -533,7 +533,8 @@
     if (bc.usado) parts.push(bc.usado + ' usados');
     var total = d.total || d.shown;
     var more = total > d.shown ? ' (mostrando ' + d.shown + ')' : '';
-    var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca (~25 mi)' + more +
+    var yr = d.minYear ? ' · solo ' + d.minYear + '+' : '';
+    var html = '<div class="stock-summary">📦 <strong>' + total + '</strong> cerca (~25 mi)' + more + yr +
       (parts.length ? ' · ' + parts.join(' · ') : '') + '</div>' +
       '<small class="hint">Precios de ' + fmtMoney(d.minPrice) + ' a ' + fmtMoney(d.maxPrice) + '</small>';
 
