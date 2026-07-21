@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
     '&vehicle.year=' + encodeURIComponent(yearList.join(',')) +
     '&zip=' + encodeURIComponent(zip) +
     '&distance=' + encodeURIComponent(radius) +
-    '&limit=50&includes=total';
+    '&limit=50&includes=total&domains=true'; // domains=true revela el enlace real del dealer
   var MAX_PAGES = 3; // hasta ~60 unidades por consulta (cuida la cuota)
 
   function num(v) {
