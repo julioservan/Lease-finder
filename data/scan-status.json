@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T00:07:13.156Z",
+  "updatedAt": "2026-07-21T01:41:58.088Z",
   "sources": [
     {
       "name": "BMW of Brooklyn",
@@ -9,7 +9,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/"
+      "status": "ok (51 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -95,6 +95,16 @@
       "name": "Wayne Mazda",
       "region": "Wayne, NJ",
       "status": "HTTP 403 en https://www.waynemazda.com/lease-specials/ · HTTP 403 en https://www.waynemazda.com/specials/ · sin ofertas (navegador) en https://www.waynemazda.com/lease-specials/ · sin ofertas (navegador) en https://www.waynemazda.com/specials/"
+    },
+    {
+      "name": "Bay Ridge Subaru",
+      "region": "Brooklyn, NY",
+      "status": "HTTP 403 en https://www.bayridgesubaru.com/lease-specials/ · HTTP 403 en https://www.bayridgesubaru.com/specials/ · sin ofertas (navegador) en https://www.bayridgesubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgesubaru.com/specials/"
+    },
+    {
+      "name": "Bay Ridge Nissan",
+      "region": "Brooklyn, NY",
+      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/"
     },
     {
       "name": "Edmunds — Ford Bronco Sport",
