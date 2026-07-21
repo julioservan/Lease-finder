@@ -409,18 +409,19 @@
 
   // Palabras que delatan una foto que NO queremos (interiores, detalles…)
   var PHOTO_BAD = /interior|engine|dashboard|badge|logo|wheel|\brear\b|taillight|headlight|seat|trunk|cargo|boot|gauge|console|infotainment|grille|emblem|patent|concept/i;
-  // Servicio de imágenes de coches (renders de estudio limpios por marca/modelo/año)
-  var IMAGIN_KEY = 'hrjavascript-mastery';
+  // Render limpio de imagin.studio SOLO si tienes tu propia clave (sin ella
+  // las imágenes traen marca de agua, así que por defecto usamos fotos reales).
+  // Consigue una clave gratis/de pago en https://imagin.studio y pégala aquí.
+  var IMAGIN_KEY = '';
 
   /**
-   * Foto del modelo. Cadena: 1) imagin.studio (render de estudio limpio del
-   * modelo/año exactos — la misma fuente que usan los concesionarios);
-   * 2) foto real del año actual en Wikimedia Commons; 3) imagen del artículo
-   * de Wikipedia; 4) placeholder. Corre en el navegador del usuario (donde
-   * estas fuentes son alcanzables). Cachea solo lo que carga.
+   * Foto del modelo. Sin clave de imagin: fotos REALES sin marca de agua —
+   * 1) foto del año actual en Wikimedia Commons; 2) imagen del artículo de
+   * Wikipedia; 3) placeholder. Con clave de imagin: render de estudio limpio
+   * primero. Corre en el navegador del usuario. Cachea solo lo que carga.
    */
   function loadPhoto(info, img) {
-    var cacheKey = 'lf-photo5-' + info.make + '-' + info.model;
+    var cacheKey = 'lf-photo6-' + info.make + '-' + info.model;
     var cached = null;
     try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
     img.addEventListener('load', function () {
@@ -430,7 +431,7 @@
 
     function setPhoto(url) { if (url) img.src = url; }
 
-    // Paso 3: imagen del artículo de Wikipedia (última red)
+    // Última red: imagen del artículo de Wikipedia
     function fallbackSummary() {
       fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' +
         encodeURIComponent((info.wiki || (info.make + ' ' + info.model)).replace(/ /g, '_')))
@@ -442,7 +443,7 @@
         .catch(function () { /* placeholder */ });
     }
 
-    // Paso 2: foto real del año actual en Commons (CORS con origin=*)
+    // Principal: foto real del año actual en Commons (CORS con origin=*)
     function tryCommons() {
       var query = info.photoQuery || (info.make + ' ' + info.model);
       var api = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*' +
@@ -469,17 +470,15 @@
         .catch(fallbackSummary);
     }
 
-    // Paso 1: imagin.studio (render limpio del modelo/año exactos)
-    if (info.img) {
+    // Con clave propia de imagin: render limpio sin marca de agua, primero.
+    if (IMAGIN_KEY && info.img) {
       var imagin = 'https://cdn.imagin.studio/getimage?customer=' + IMAGIN_KEY +
         '&make=' + encodeURIComponent(info.img.make) +
         '&modelFamily=' + encodeURIComponent(info.img.family) +
         (info.img.year ? '&modelYear=' + info.img.year : '') +
         '&angle=23&width=640&fileType=png';
-      // Si imagin falla o devuelve un placeholder vacío, pasamos a Commons.
       var probe = new Image();
       probe.onload = function () {
-        // imagin devuelve ~40px cuando no tiene el modelo; exigimos algo real
         if (probe.naturalWidth >= 320) setPhoto(imagin); else tryCommons();
       };
       probe.onerror = tryCommons;
