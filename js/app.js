@@ -409,21 +409,30 @@
 
   /** Foto automática del modelo vía Wikipedia (con caché en el navegador). */
   function loadPhoto(wikiTitle, img) {
-    var cacheKey = 'lf-photo2-' + wikiTitle;
+    var cacheKey = 'lf-photo3-' + wikiTitle;
     var cached = null;
     try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
+    // Solo se cachean fotos que SÍ cargaron
+    img.addEventListener('load', function () {
+      try { localStorage.setItem(cacheKey, img.src); } catch (e) { /* lleno */ }
+    });
     if (cached) { img.src = cached; return; }
     fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' +
       encodeURIComponent(wikiTitle.replace(/ /g, '_')))
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
-        // Miniatura (ligera y rápida), ampliada a 640px para que se vea bien;
-        // nunca la imagen original, que pesa varios MB y tarda en cargar.
-        var src = d && d.thumbnail && d.thumbnail.source;
-        if (!src) return;
-        src = src.replace(/\/(\d+)px-/, '/640px-');
-        img.src = src;
-        try { localStorage.setItem(cacheKey, src); } catch (e) { /* lleno */ }
+        var thumb = d && d.thumbnail && d.thumbnail.source;
+        if (!thumb) return;
+        // Intentar la versión de 640px (ligera y nítida); si ese tamaño no
+        // existe para esa foto, caer a la miniatura original garantizada.
+        var big = thumb.replace(/\/(\d+)px-/, '/640px-');
+        if (big !== thumb) {
+          img.onerror = function () {
+            img.onerror = null;
+            img.src = thumb;
+          };
+        }
+        img.src = big;
       })
       .catch(function () { /* se queda el placeholder */ });
   }
