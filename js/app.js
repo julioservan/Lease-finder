@@ -409,7 +409,7 @@
 
   /** Foto automática del modelo vía Wikipedia (con caché en el navegador). */
   function loadPhoto(wikiTitle, img) {
-    var cacheKey = 'lf-photo-' + wikiTitle;
+    var cacheKey = 'lf-photo2-' + wikiTitle;
     var cached = null;
     try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
     if (cached) { img.src = cached; return; }
@@ -417,8 +417,11 @@
       encodeURIComponent(wikiTitle.replace(/ /g, '_')))
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
-        var src = d && ((d.originalimage && d.originalimage.source) || (d.thumbnail && d.thumbnail.source));
+        // Miniatura (ligera y rápida), ampliada a 640px para que se vea bien;
+        // nunca la imagen original, que pesa varios MB y tarda en cargar.
+        var src = d && d.thumbnail && d.thumbnail.source;
         if (!src) return;
+        src = src.replace(/\/(\d+)px-/, '/640px-');
         img.src = src;
         try { localStorage.setItem(cacheKey, src); } catch (e) { /* lleno */ }
       })
@@ -443,10 +446,13 @@
     grid.innerHTML = '';
     var hasData = !!(onlineData.latest && onlineData.latest.updatedAt);
 
-    // Orden: por nota del ranking (los no rankeados al final)
+    // Orden: el de tu lista de interés (los no listados al final)
+    function rankIndex(w) {
+      var i = RankedModels.findIndex(function (m) { return m.make === w.make && m.model === w.model; });
+      return i < 0 ? 999 : i;
+    }
     var sorted = state.watchlist.slice().sort(function (a, b) {
-      var ra = findRanked(a.make, a.model), rb = findRanked(b.make, b.model);
-      return (rb ? rb.rating : 0) - (ra ? ra.rating : 0);
+      return rankIndex(a) - rankIndex(b);
     });
 
     sorted.forEach(function (w) {
@@ -469,21 +475,16 @@
       if (info) {
         var img = document.createElement('img');
         img.alt = w.make + ' ' + w.model;
-        img.loading = 'lazy';
         img.addEventListener('load', function () { photo.classList.add('has-img'); });
         photo.appendChild(img);
         loadPhoto(info.wiki, img);
-        var badge = document.createElement('span');
-        badge.className = 'rating-badge';
-        badge.textContent = (info.top ? '⭐ ' : '') + info.rating.toFixed(1);
-        photo.appendChild(badge);
       }
       card.appendChild(photo);
 
       var head = document.createElement('div');
       head.className = 'watch-head';
       var title = document.createElement('strong');
-      title.textContent = w.make + ' ' + w.model + (info && info.trim ? ' ' + info.trim : '');
+      title.textContent = w.make + ' ' + w.model;
       var del = document.createElement('button');
       del.className = 'btn danger';
       del.textContent = '✕';
@@ -1022,7 +1023,7 @@
     RankedModels.forEach(function (m) {
       var o = document.createElement('option');
       o.value = m.make + '|' + m.model;
-      o.textContent = m.rating.toFixed(1) + ' · ' + m.make + ' ' + m.model + (m.trim ? ' ' + m.trim : '');
+      o.textContent = m.make + ' ' + m.model;
       decideSel.appendChild(o);
     });
     decideSel.addEventListener('change', applyDecideModel);
