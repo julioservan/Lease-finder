@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T18:45:57.981Z",
+  "updatedAt": "2026-07-21T19:04:51.876Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -84,7 +84,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (51 ofertas, con navegador)"
+      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -235,6 +235,56 @@
       "name": "Edmunds — Honda CR-V",
       "region": "lease deals por modelo",
       "status": "HTTP 403 en https://www.edmunds.com/honda/cr-v/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/honda/cr-v/lease-deals/"
+    },
+    {
+      "name": "Edmunds — Subaru Forester",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.edmunds.com/subaru/forester/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/subaru/forester/lease-deals/"
+    },
+    {
+      "name": "Edmunds — Kia Sportage",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.edmunds.com/kia/sportage/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/kia/sportage/lease-deals/"
+    },
+    {
+      "name": "Edmunds — Hyundai Tucson",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.edmunds.com/hyundai/tucson/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/hyundai/tucson/lease-deals/"
+    },
+    {
+      "name": "Edmunds — Nissan Rogue",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.edmunds.com/nissan/rogue/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/nissan/rogue/lease-deals/"
+    },
+    {
+      "name": "Edmunds — Volkswagen Tiguan",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.edmunds.com/volkswagen/tiguan/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/volkswagen/tiguan/lease-deals/"
+    },
+    {
+      "name": "Edmunds — Hyundai Santa Fe",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.edmunds.com/hyundai/santa-fe/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/hyundai/santa-fe/lease-deals/"
+    },
+    {
+      "name": "Edmunds — Kia Sorento",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.edmunds.com/kia/sorento/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/kia/sorento/lease-deals/"
+    },
+    {
+      "name": "TrueCar — Kia Sportage (lease)",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.truecar.com/kia/sportage/lease/ · sin ofertas (navegador) en https://www.truecar.com/kia/sportage/lease/"
+    },
+    {
+      "name": "TrueCar — Hyundai Santa Fe (lease)",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.truecar.com/hyundai/santa-fe/lease/ · sin ofertas (navegador) en https://www.truecar.com/hyundai/santa-fe/lease/"
+    },
+    {
+      "name": "TrueCar — Kia Sorento (lease)",
+      "region": "lease deals por modelo",
+      "status": "HTTP 403 en https://www.truecar.com/kia/sorento/lease/ · sin ofertas (navegador) en https://www.truecar.com/kia/sorento/lease/"
     }
   ]
 }
