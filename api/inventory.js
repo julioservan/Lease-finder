@@ -83,12 +83,21 @@ module.exports = async function handler(req, res) {
       return res.status(502).json({ ok: false, message: 'Auto.dev respondió ' + r.status + ': ' + t.slice(0, 160) });
     }
     var data = await r.json();
-    var records = data.records || data.listings || data.results || (Array.isArray(data) ? data : []);
+    var records = data.records || data.listings || data.results || data.data ||
+      (Array.isArray(data) ? data : []);
+    if (!Array.isArray(records)) records = [];
 
-    // Diagnóstico: /api/inventory?...&debug=1 devuelve el primer registro crudo
-    // para poder mapear los campos exactos si algo sale vacío.
+    // Diagnóstico: /api/inventory?...&debug=1 muestra la estructura real
+    // para mapear los campos exactos si algo sale vacío.
     if (q.debug) {
-      return res.status(200).json({ ok: true, topKeys: Object.keys(data), sampleRaw: records[0] || null });
+      var first = records[0] || null;
+      return res.status(200).json({
+        ok: true,
+        topKeys: Object.keys(data),
+        count: records.length,
+        sampleKeys: first ? Object.keys(first) : [],
+        sampleRaw: first
+      });
     }
     var items = records.map(normalize).filter(function (x) { return x.price != null; });
     items.sort(function (a, b) { return a.price - b.price; });
