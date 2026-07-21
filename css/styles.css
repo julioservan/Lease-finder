@@ -267,8 +267,10 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .brow { cursor: pointer; transition: background 0.1s ease; }
 .brow:hover { background: var(--hover); }
 .brow.open { background: var(--hover); }
-.bt-photo { width: 64px; }
+.bt-photo { width: 64px; position: relative; }
 .brow-img { width: 58px; height: 38px; object-fit: contain; border-radius: 4px; background: var(--surface-2); display: block; }
+.bt-photo.noimg { min-height: 38px; }
+.bt-photo.noimg::after { content: "🚗"; display: flex; align-items: center; justify-content: center; width: 58px; height: 38px; border-radius: 4px; background: radial-gradient(120% 90% at 50% 20%, #2c2c2c, #1c1c1c); font-size: 1.05rem; opacity: 0.35; }
 .brow-chev { color: var(--faint); font-size: 0.7rem; margin-right: 6px; display: inline-block; transition: transform 0.12s ease; }
 .brow.open .brow-chev { transform: rotate(90deg); color: var(--text); }
 .brow-name { font-weight: 600; color: var(--text-strong); }
