@@ -409,10 +409,9 @@
 
   // Palabras que delatan una foto que NO queremos (interiores, detalles…)
   var PHOTO_BAD = /interior|engine|dashboard|badge|logo|wheel|\brear\b|taillight|headlight|seat|trunk|cargo|boot|gauge|console|infotainment|grille|emblem|patent|concept/i;
-  // Render limpio de imagin.studio SOLO si tienes tu propia clave (sin ella
-  // las imágenes traen marca de agua, así que por defecto usamos fotos reales).
-  // Consigue una clave gratis/de pago en https://imagin.studio y pégala aquí.
-  var IMAGIN_KEY = '';
+  // Render de imagin.studio (clave demo pública → con marca de agua). Cambia
+  // por tu propia clave de imagin.studio para obtener imágenes sin watermark.
+  var IMAGIN_KEY = 'hrjavascript-mastery';
 
   /**
    * Foto del modelo. Sin clave de imagin: fotos REALES sin marca de agua —
@@ -421,7 +420,7 @@
    * primero. Corre en el navegador del usuario. Cachea solo lo que carga.
    */
   function loadPhoto(info, img) {
-    var cacheKey = 'lf-photo6-' + info.make + '-' + info.model;
+    var cacheKey = 'lf-photo7-' + info.make + '-' + info.model;
     var cached = null;
     try { cached = localStorage.getItem(cacheKey); } catch (e) { /* sin caché */ }
     img.addEventListener('load', function () {
