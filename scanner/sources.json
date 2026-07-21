@@ -15,6 +15,81 @@
   },
   "sources": [
     {
+      "name": "Premier Ford",
+      "region": "Brooklyn, NY",
+      "urls": ["https://www.premierfordinc.com/lease-specials/", "https://www.premierfordinc.com/specials/"]
+    },
+    {
+      "name": "Starks Ford",
+      "region": "Queens, NY",
+      "urls": ["https://www.starksfordofqueens.com/lease-specials/", "https://www.starksfordofqueens.com/specials/"]
+    },
+    {
+      "name": "Dana Ford",
+      "region": "Staten Island, NY",
+      "urls": ["https://www.drivedanaford.com/lease-specials/", "https://www.drivedanaford.com/specials/"]
+    },
+    {
+      "name": "Stevens Jersey City Ford",
+      "region": "Jersey City, NJ",
+      "urls": ["https://www.stevensjerseycityford.com/lease-specials/", "https://www.stevensjerseycityford.com/specials/"]
+    },
+    {
+      "name": "Brooklyn CDJR",
+      "region": "Brooklyn, NY",
+      "urls": ["https://www.brooklynchrysler.com/lease-specials/", "https://www.brooklynchrysler.com/specials/"]
+    },
+    {
+      "name": "United CDJR",
+      "region": "Brooklyn, NY",
+      "urls": ["https://www.unitedcdjr.com/lease-specials/", "https://www.unitedcdjr.com/specials/"]
+    },
+    {
+      "name": "Island CDJR",
+      "region": "Staten Island, NY",
+      "urls": ["https://www.myislandcdjr.com/lease-specials/", "https://www.myislandcdjr.com/specials/"]
+    },
+    {
+      "name": "Bical Buick GMC",
+      "region": "Brooklyn, NY",
+      "urls": ["https://www.bicalbuickgmc.com/lease-specials/", "https://www.bicalbuickgmc.com/specials/"]
+    },
+    {
+      "name": "Island Buick GMC",
+      "region": "Staten Island, NY",
+      "urls": ["https://www.myislandgmc.com/lease-specials/", "https://www.myislandgmc.com/specials/"]
+    },
+    {
+      "name": "North Bergen Buick GMC",
+      "region": "North Bergen, NJ",
+      "urls": ["https://www.northbergenbuickgmc.com/lease-specials/", "https://www.northbergenbuickgmc.com/specials/"]
+    },
+    {
+      "name": "Plaza Honda",
+      "region": "Brooklyn, NY",
+      "urls": ["https://www.plazahonda.com/lease-specials/", "https://www.plazahonda.com/specials/"]
+    },
+    {
+      "name": "TrueCar — Bronco Sport (lease)",
+      "region": "agregador por modelo",
+      "urls": ["https://www.truecar.com/ford/bronco-sport/lease/"]
+    },
+    {
+      "name": "TrueCar — Honda CR-V (lease)",
+      "region": "agregador por modelo",
+      "urls": ["https://www.truecar.com/honda/cr-v/lease/"]
+    },
+    {
+      "name": "TrueCar — GMC Terrain (lease)",
+      "region": "agregador por modelo",
+      "urls": ["https://www.truecar.com/gmc/terrain/lease/"]
+    },
+    {
+      "name": "CarsDirect — CR-V (deals)",
+      "region": "agregador por modelo",
+      "urls": ["https://www.carsdirect.com/honda/cr-v/prices-deals"]
+    },
+    {
       "name": "BMW of Brooklyn",
       "region": "Brooklyn, NY",
       "urls": [
