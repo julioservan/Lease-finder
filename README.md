@@ -8,12 +8,32 @@ Es 100 % HTML + CSS + JavaScript sin dependencias: basta con abrir
 servidor estático). Las ofertas se guardan en `localStorage`, así que tus
 datos nunca salen de tu navegador.
 
-La interfaz se organiza en pestañas: **Modelos** (tus SUVs con foto, stock
-real cerca y estado del lease), **Comparar** (modelos de cualquier marca lado
-a lado: stock, precio más barato, mejor lease), **Ofertas** (lo que encontró
-el robot + tus guardadas + escáner de anuncios), **Calculadora** y
-**¿Lease o compra?**. Las búsquedas de stock se guardan en `localStorage`
-y sobreviven a la recarga de la página; el botón ↻ las actualiza.
+La interfaz se organiza en pestañas: **Tablero**, **CPO / Segunda mano**,
+**Calculadora** y **¿Lease o compra?**.
+
+El **Tablero** es una base de datos de leases que **crece con cada
+descubrimiento**: una tabla con todos los modelos y, de un vistazo, su
+mejor lease, la regla del 1 %, la **tendencia** (si el precio mejora o
+empeora desde hoy, con mini-gráfico) y una **valoración automática**
+(⭐ La mejor / Buena / Normal / Espera / Cara / Sin datos). Al tocar una
+fila se despliegan todas las ofertas descubiertas de ese modelo, el stock
+de nuevos cerca y el comparador lease-vs-compra.
+
+Cómo se calcula (todo con datos que ya existen, en `js/leasedb.js`):
+
+- La base local (`localStorage` clave `lf-db-v1`) acumula cada oferta vista
+  por el robot (`data/offers-latest.json`) y por lo que pegues en “Añadir
+  una oferta”, más la serie temporal del mejor precio
+  (`data/price-history.json`, que el robot amplía 3×/día).
+- **Tendencia**: compara el mejor efectivo actual con el del inicio del día
+  y con el histórico; baja = mejora para lease.
+- **Valoración**: regla del 1 % (pago efectivo ÷ MSRP) + tendencia + si está
+  en su mínimo visto, mezclado con el veredicto escrito a mano en
+  `data/market-intel.json` cuando existe.
+
+Las búsquedas de stock se guardan en `localStorage` y sobreviven a la
+recarga; las fotos son renders de modelo (imagin + Wikipedia) porque las
+fotos por VIN de los anuncios están protegidas contra hotlinking.
 
 ## Funciones
 
