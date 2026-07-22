@@ -44,6 +44,16 @@
   /** ¿La oferta menciona este modelo? (substring normalizado sobre nombre+raw) */
   var MAKES_RE = /honda|toyota|ford|gmc|hyundai|kia|mazda|subaru|nissan|jeep|volkswagen|chevrolet|buick|bmw|chrysler|dodge|ram|acura|lexus|audi|volvo/i;
 
+  /**
+   * ¿Estimación de agregador (CarsDirect/Edmunds/TrueCar)? Se OCULTAN en toda
+   * la app: no son ofertas de un sitio donde puedas firmar. Los brokers de
+   * lease (VIP…) sí se muestran — con ellos sí se firma.
+   */
+  function isAggregator(offer) {
+    return /agregador|por modelo/i.test(offer.region || '') ||
+      /carsdirect|edmunds|truecar/i.test(offer.source || '');
+  }
+
   function offerMatches(offer, info) {
     // Si el nombre ya identifica el vehículo (año + marca), manda el nombre:
     // el texto crudo arrastra modelos vecinos de la misma página y provocaba
@@ -114,7 +124,8 @@
     var out = [];
     for (var k in db.offers) {
       var o = db.offers[k];
-      if (o && offerMatches(o, info) && o.metrics && isNum(o.metrics.effectiveMonthly)) out.push(o);
+      if (!o || isAggregator(o)) continue; // solo concesionarios/brokers reales
+      if (offerMatches(o, info) && o.metrics && isNum(o.metrics.effectiveMonthly)) out.push(o);
     }
     out.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
     return out;

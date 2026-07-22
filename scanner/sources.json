@@ -564,6 +564,103 @@
         "https://www.brooklynvolkswagenny.com/new-inventory/index.htm",
         "https://www.brooklynvolkswagenny.com/new-vehicles/"
       ]
+    },
+    {
+      "name": "Eastchester CJDR",
+      "region": "Bronx, NY",
+      "urls": [
+        "https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm",
+        "https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/",
+        "https://www.eastchesterchryslerjeepdodgeram.com/specials/",
+        "https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm",
+        "https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Koeppel Hyundai",
+      "region": "Queens, NY",
+      "urls": [
+        "https://www.koeppelhyundai.com/promotions/new/index.htm",
+        "https://www.koeppelhyundai.com/lease-specials/",
+        "https://www.koeppelhyundai.com/specials/",
+        "https://www.koeppelhyundai.com/new-inventory/index.htm",
+        "https://www.koeppelhyundai.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Hyundai City Bay Ridge",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.hyundaicityny.com/promotions/new/index.htm",
+        "https://www.hyundaicityny.com/lease-specials/",
+        "https://www.hyundaicityny.com/specials/",
+        "https://www.hyundaicityny.com/new-inventory/index.htm",
+        "https://www.hyundaicityny.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Star Hyundai",
+      "region": "Bayside, NY",
+      "urls": [
+        "https://www.starhyundai.com/lease-specials/",
+        "https://www.starhyundai.com/specials/",
+        "https://www.starhyundai.com/new-inventory/index.htm",
+        "https://www.starhyundai.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Ramsey Mazda",
+      "region": "Ramsey, NJ",
+      "urls": [
+        "https://www.ramseymazda.com/specials/new.htm",
+        "https://www.ramseymazda.com/lease-specials/",
+        "https://www.ramseymazda.com/specials/",
+        "https://www.ramseymazda.com/new-inventory/index.htm",
+        "https://www.ramseymazda.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Open Road Mazda East Brunswick",
+      "region": "East Brunswick, NJ",
+      "urls": [
+        "https://www.openroadmazdaofeastbrunswick.com/newspecials.html",
+        "https://www.openroadmazdaofeastbrunswick.com/lease-specials/",
+        "https://www.openroadmazdaofeastbrunswick.com/specials/",
+        "https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm",
+        "https://www.openroadmazdaofeastbrunswick.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Open Road Mazda Morristown",
+      "region": "Morristown, NJ",
+      "urls": [
+        "https://www.openroadmazdaofmorristown.com/newspecials.html",
+        "https://www.openroadmazdaofmorristown.com/lease-specials/",
+        "https://www.openroadmazdaofmorristown.com/specials/",
+        "https://www.openroadmazdaofmorristown.com/new-inventory/index.htm",
+        "https://www.openroadmazdaofmorristown.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "VIP Auto Lease — Jeep",
+      "region": "bróker — Brooklyn, NY",
+      "urls": [
+        "https://viplease.com/best-jeep-lease-deals-nyc/"
+      ]
+    },
+    {
+      "name": "VIP Auto Lease — Kia",
+      "region": "bróker — Brooklyn, NY",
+      "urls": [
+        "https://viplease.com/best-kia-lease-deals-nyc/"
+      ]
+    },
+    {
+      "name": "VIP Auto Lease — Mazda",
+      "region": "bróker — Brooklyn, NY",
+      "urls": [
+        "https://viplease.com/best-mazda-lease-deals-nyc/"
+      ]
     }
   ]
 }

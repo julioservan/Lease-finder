@@ -343,6 +343,9 @@ function main() {
     RankedModels.forEach(function (mm) {
       var f = normalizeModel(mm.model);
       var ms = offers.filter(function (e) {
+        // Solo concesionarios/brokers reales: los agregadores no marcan tendencia
+        // (la app también los oculta — así lo que ves y la serie coinciden).
+        if (/agregador|por modelo/i.test(e.region || '') || /carsdirect|edmunds|truecar/i.test(e.source || '')) return false;
         var hay = offerHaystack(e.name, e.parsed && e.parsed.raw);
         return hay.indexOf(f) >= 0 && e.metrics && isFinite(e.metrics.effectiveMonthly);
       });
