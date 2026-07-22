@@ -380,3 +380,17 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .bstat.no .pill { background: var(--pink); color: #2a0d10; }
 .bstat.none { background: var(--surface-2); border-color: var(--border); color: var(--muted); }
 .bstat .msg { color: var(--text); }
+
+/* ============ Nota del concesionario ============ */
+.dgrade {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 20px; height: 20px; padding: 0 4px; border-radius: 5px;
+  font-size: 0.74rem; font-weight: 700; vertical-align: 1px; cursor: help;
+}
+.dgrade-a { color: var(--green); background: var(--green-bg); }
+.dgrade-b { color: var(--blue); background: var(--blue-bg); }
+.dgrade-c { color: var(--amber); background: var(--amber-bg); }
+.dgrade-d { color: var(--pink); background: var(--pink-bg); }
+.dgrade-q { color: var(--muted); background: var(--hover); }
+.dflag { color: var(--amber); cursor: help; font-size: 0.85rem; }
+#dealers-table .offer-meta { display: block; font-size: 0.72rem; color: var(--faint); max-width: 46ch; }
