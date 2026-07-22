@@ -42,8 +42,17 @@
   function modelKey(info) { return info.make + ' ' + info.model; }
 
   /** ¿La oferta menciona este modelo? (substring normalizado sobre nombre+raw) */
+  var MAKES_RE = /honda|toyota|ford|gmc|hyundai|kia|mazda|subaru|nissan|jeep|volkswagen|chevrolet|buick|bmw|chrysler|dodge|ram|acura|lexus|audi|volvo/i;
+
   function offerMatches(offer, info) {
-    var hay = normalizeModel((offer.name || '') + ' ' + ((offer.parsed && offer.parsed.raw) || ''));
+    // Si el nombre ya identifica el vehículo (año + marca), manda el nombre:
+    // el texto crudo arrastra modelos vecinos de la misma página y provocaba
+    // atribuciones falsas (un lease del HR-V contado como CR-V).
+    var name = offer.name || '';
+    var vehicleName = /\b20\d{2}\b/.test(name) && MAKES_RE.test(name);
+    var hay = vehicleName
+      ? normalizeModel(name)
+      : normalizeModel(name + ' ' + ((offer.parsed && offer.parsed.raw) || ''));
     return hay.indexOf(normalizeModel(info.model)) >= 0;
   }
 

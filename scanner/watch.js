@@ -54,10 +54,30 @@ function normalizeModel(s) {
   return String(s || '').toLowerCase().replace(/[\s\-]/g, '');
 }
 
+var MAKES_RE = /honda|toyota|ford|gmc|hyundai|kia|mazda|subaru|nissan|jeep|volkswagen|chevrolet|buick|bmw|chrysler|dodge|ram|acura|lexus|audi|volvo/i;
+
+/** ¿El nombre identifica un vehículo concreto (año + marca)? */
+function isVehicleName(name) {
+  var n = String(name || '');
+  return /\b20\d{2}\b/.test(n) && MAKES_RE.test(n);
+}
+
+/**
+ * Texto contra el que clasificar el modelo de una oferta. Si el nombre ya
+ * identifica el vehículo (año + marca), manda el nombre: el texto crudo
+ * arrastra menciones de modelos VECINOS de la misma página y provocaba
+ * atribuciones falsas (p. ej. un lease del HR-V contado como CR-V).
+ */
+function offerHaystack(name, raw) {
+  return isVehicleName(name)
+    ? normalizeModel(name)
+    : normalizeModel((name || '') + ' ' + (raw || ''));
+}
+
 /** ¿La oferta menciona alguno de los modelos objetivo? */
 function matchesTarget(parsed, targetModels) {
   if (!targetModels || !targetModels.length) return false;
-  var haystack = normalizeModel((parsed.name || '') + ' ' + (parsed.raw || ''));
+  var haystack = offerHaystack(parsed.name, parsed.raw);
   return targetModels.some(function (model) {
     return haystack.indexOf(normalizeModel(model)) >= 0;
   });
@@ -321,7 +341,7 @@ function main() {
     RankedModels.forEach(function (mm) {
       var f = normalizeModel(mm.model);
       var ms = offers.filter(function (e) {
-        var hay = normalizeModel((e.name || '') + ' ' + ((e.parsed && e.parsed.raw) || ''));
+        var hay = offerHaystack(e.name, e.parsed && e.parsed.raw);
         return hay.indexOf(f) >= 0 && e.metrics && isFinite(e.metrics.effectiveMonthly);
       });
       var best = ms.length
