@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T19:04:51.876Z",
+  "updatedAt": "2026-07-21T21:25:02.514Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -84,7 +84,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/"
+      "status": "ok (51 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -99,7 +99,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/"
+      "status": "timeout en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/"
     },
     {
       "name": "Plaza Hyundai",

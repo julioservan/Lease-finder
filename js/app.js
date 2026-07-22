@@ -923,6 +923,59 @@
     document.querySelectorAll('#board-table th.sortable').forEach(function (th) {
       th.classList.toggle('sorted', th.dataset.sort === sk);
     });
+
+    boardPreload(); // rellena foto + Nuevos de los modelos que aún no tienen stock
+  }
+
+  // Precarga CONTROLADA del inventario para que el tablero se llene solo:
+  // 1 intento por modelo cada 3 días (aunque recargues la página), así no se
+  // quema la cuota de Auto.dev. Los modelos con stock cacheado se saltan.
+  var PRELOAD_TTL = 3 * 864e5;
+
+  function preloadAttempted(info) {
+    try {
+      var t = +localStorage.getItem('lf-preload-' + info.make + '-' + info.model) || 0;
+      return (Date.now() - t) < PRELOAD_TTL;
+    } catch (e) { return false; }
+  }
+
+  function boardPreload() {
+    var make = state.boardMake || '';
+    var pend = RankedModels.filter(function (info) {
+      if (make && info.make !== make) return false;
+      if (stockCacheGet(info, '', 'new')) return false; // ya hay stock cacheado
+      if (preloadAttempted(info)) return false;          // intentado hace poco
+      return true;
+    });
+    pend.forEach(function (info, i) {
+      setTimeout(function () {
+        try { localStorage.setItem('lf-preload-' + info.make + '-' + info.model, String(Date.now())); } catch (e) { /* lleno */ }
+        fetchInventory(info, '', 'new')
+          .then(function (d) { updateBoardRow(info, d); })
+          .catch(function () { /* sin stock o sin clave: se queda con el placeholder */ });
+      }, i * 450); // escalonado para no disparar 13 peticiones a la vez
+    });
+  }
+
+  /** Actualiza en sitio la foto + Nuevos de una fila del tablero tras precargar. */
+  function updateBoardRow(info, d) {
+    var rep = (d.listings || []).filter(function (c) { return c && c.image; })[0];
+    if (rep && !modelPhotoUrl(info)) cacheModelPhoto(info, rep.image);
+
+    var tr = document.querySelector('#board-body tr.brow[data-key="' + info.make + '|' + info.model + '"]');
+    if (!tr) return;
+
+    var stockNew = (d.byCondition && d.byCondition.nuevo) || d.total || 0;
+    var tdNuevos = tr.querySelector('td[data-l="Nuevos"]');
+    if (tdNuevos) tdNuevos.textContent = stockNew || 0;
+
+    // Si no había oferta de lease pero sí stock, etiqueta honesta.
+    var sent = tr.querySelector('td[data-l="Valoración"] .sent.none');
+    if (sent && stockNew > 0) sent.textContent = 'Sin lease aún';
+
+    var purl = modelPhotoUrl(info);
+    var img = tr.querySelector('.brow-img');
+    if (img && purl) { img.style.display = ''; img.src = purl; }
   }
 
   function boardRow(r) {
@@ -962,9 +1015,13 @@
     tr.appendChild(cellTd('Tendencia', sparkline(LeaseDB.seriesFor(info)) + ' ' + trendCell(r.trend)));
     tr.appendChild(cellTd('Ofertas', r.offers.length ? String(r.offers.length) : '<span class="muted">0</span>'));
     tr.appendChild(cellTd('Nuevos', isNum(r.stockNew) ? String(r.stockNew) : '<span class="muted">·</span>'));
-    tr.appendChild(cellTd('Valoración', '<span class="sent ' + sm.cls + '">' + sm.txt + '</span>'));
+    // Sin oferta de lease pero con stock real → etiqueta honesta (no "Sin datos").
+    var sTxt = sm.txt;
+    if (a.level === 'none' && isNum(r.stockNew) && r.stockNew > 0) sTxt = 'Sin lease aún';
+    tr.appendChild(cellTd('Valoración', '<span class="sent ' + sm.cls + '">' + sTxt + '</span>'));
 
     var key = info.make + '|' + info.model;
+    tr.dataset.key = key; // para refrescar la fila en sitio tras la precarga
     tr.addEventListener('click', function () { toggleBoardExpand(tr, r, key); });
     if (state.expanded[key]) tr.classList.add('open');
     return tr;
