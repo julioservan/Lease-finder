@@ -114,31 +114,108 @@
       ]
     },
     {
-      "name": "TrueCar — Bronco Sport (lease)",
+      "//": "Agregadores por modelo. CarsDirect es el que SÍ responde (no bloquea como Edmunds/TrueCar); va primero y Edmunds queda de respaldo por si algún día pasa.",
+      "name": "CarsDirect — CR-V",
       "region": "agregador por modelo",
       "urls": [
-        "https://www.truecar.com/ford/bronco-sport/lease/"
+        "https://www.carsdirect.com/honda/cr-v/prices-deals",
+        "https://www.edmunds.com/honda/cr-v/lease-deals/"
       ]
     },
     {
-      "name": "TrueCar — Honda CR-V (lease)",
+      "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
       "urls": [
-        "https://www.truecar.com/honda/cr-v/lease/"
+        "https://www.carsdirect.com/ford/bronco-sport/prices-deals",
+        "https://www.edmunds.com/ford/bronco-sport/lease-deals/"
       ]
     },
     {
-      "name": "TrueCar — GMC Terrain (lease)",
+      "name": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
       "urls": [
-        "https://www.truecar.com/gmc/terrain/lease/"
+        "https://www.carsdirect.com/gmc/terrain/prices-deals",
+        "https://www.edmunds.com/gmc/terrain/lease-deals/"
       ]
     },
     {
-      "name": "CarsDirect — CR-V (deals)",
+      "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
       "urls": [
-        "https://www.carsdirect.com/honda/cr-v/prices-deals"
+        "https://www.carsdirect.com/toyota/rav4/prices-deals",
+        "https://www.edmunds.com/toyota/rav4/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Hyundai Tucson",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/hyundai/tucson/prices-deals",
+        "https://www.edmunds.com/hyundai/tucson/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Hyundai Santa Fe",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/hyundai/santa-fe/prices-deals",
+        "https://www.edmunds.com/hyundai/santa-fe/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Kia Sportage",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/kia/sportage/prices-deals",
+        "https://www.edmunds.com/kia/sportage/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Kia Sorento",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/kia/sorento/prices-deals",
+        "https://www.edmunds.com/kia/sorento/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Subaru Forester",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/subaru/forester/prices-deals",
+        "https://www.edmunds.com/subaru/forester/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Mazda CX-50",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/mazda/cx-50/prices-deals",
+        "https://www.edmunds.com/mazda/cx-50/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Nissan Rogue",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/nissan/rogue/prices-deals",
+        "https://www.edmunds.com/nissan/rogue/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — Jeep Cherokee",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/jeep/cherokee/prices-deals",
+        "https://www.edmunds.com/jeep/cherokee/lease-deals/"
+      ]
+    },
+    {
+      "name": "CarsDirect — VW Tiguan",
+      "region": "agregador por modelo",
+      "urls": [
+        "https://www.carsdirect.com/volkswagen/tiguan/prices-deals",
+        "https://www.edmunds.com/volkswagen/tiguan/lease-deals/"
       ]
     },
     {
@@ -339,125 +416,6 @@
       "urls": [
         "https://www.bayridgenissan.com/lease-specials/",
         "https://www.bayridgenissan.com/specials/"
-      ]
-    },
-    {
-      "name": "Edmunds — Ford Bronco Sport",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/ford/bronco-sport/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Jeep Cherokee",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/jeep/cherokee/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Jeep Grand Cherokee",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/jeep/grand-cherokee/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Mazda CX-50",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/mazda/cx-50/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Mazda CX-5",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/mazda/cx-5/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Toyota RAV4",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/toyota/rav4/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Honda CR-V",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/honda/cr-v/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Subaru Forester",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/subaru/forester/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Kia Sportage",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/kia/sportage/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Hyundai Tucson",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/hyundai/tucson/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Nissan Rogue",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/nissan/rogue/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Volkswagen Tiguan",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/volkswagen/tiguan/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Hyundai Santa Fe",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/hyundai/santa-fe/lease-deals/"
-      ]
-    },
-    {
-      "name": "Edmunds — Kia Sorento",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.edmunds.com/kia/sorento/lease-deals/"
-      ]
-    },
-    {
-      "name": "TrueCar — Kia Sportage (lease)",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.truecar.com/kia/sportage/lease/"
-      ]
-    },
-    {
-      "name": "TrueCar — Hyundai Santa Fe (lease)",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.truecar.com/hyundai/santa-fe/lease/"
-      ]
-    },
-    {
-      "name": "TrueCar — Kia Sorento (lease)",
-      "region": "lease deals por modelo",
-      "urls": [
-        "https://www.truecar.com/kia/sorento/lease/"
       ]
     }
   ]

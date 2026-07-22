@@ -4,8 +4,8 @@
 var fs = require('fs');
 var path = require('path');
 
-var USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) ' +
-  'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
+var USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
+  'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 
 function looksLikeHtml(content) {
   return /<\s*(?:html|body|div|p|table|span|!doctype)/i.test(content);
