@@ -970,15 +970,24 @@
       fmtMoney(Math.abs(tr.deltaToday)) + '</span>';
   }
 
+  /** ¿La oferta viene de un agregador (estimación) y no de un concesionario real? */
+  function isAggOffer(o) {
+    return /agregador|por modelo/i.test(o.region || '') || /carsdirect|edmunds|truecar/i.test(o.source || '');
+  }
+
   /** Datos calculados de un modelo para el tablero. */
   function boardData(info) {
     var offers = LeaseDB.offersFor(info);
-    var best = offers.length ? offers[0].metrics.effectiveMonthly : null;
+    // Mandan los concesionarios REALES; el agregador solo si no hay otra cosa.
+    var dealers = offers.filter(function (o) { return !isAggOffer(o); });
+    var shown = dealers.length ? dealers[0] : offers[0];
+    var best = shown ? shown.metrics.effectiveMonthly : null;
+    var bestEst = !!shown && !dealers.length; // solo estimación de agregador
     var a = LeaseDB.assess(info, intelFor(info.make, info.model));
     var c = stockCacheGet(info, '', 'new');
     var stockNew = c && c.data ? ((c.data.byCondition && c.data.byCondition.nuevo) || c.data.total || 0) : null;
     return {
-      info: info, offers: offers, best: best,
+      info: info, offers: offers, best: best, bestEst: bestEst,
       pct: a.pct, assess: a, trend: a.trend, stockNew: stockNew,
       photo: modelPhotoUrl(info)
     };
@@ -1173,7 +1182,9 @@
     tr.appendChild(tdN);
 
     tr.appendChild(cellTd('Mejor lease', isNum(r.best)
-      ? '<strong>' + fmtMoney2(r.best) + '</strong><span class="u">/mes</span>' : '<span class="muted">—</span>'));
+      ? '<strong>' + fmtMoney2(r.best) + '</strong><span class="u">/mes</span>' +
+        (r.bestEst ? ' <span class="est-chip" title="Estimación de agregador (CarsDirect) — aún sin oferta de un concesionario real">est.</span>' : '')
+      : '<span class="muted">—</span>'));
 
     var pctCls = isNum(r.pct) ? (r.pct <= 1 ? 'good' : r.pct <= 1.25 ? 'warn' : 'bad') : '';
     tr.appendChild(cellTd('Regla 1%', isNum(r.pct)
@@ -1236,18 +1247,23 @@
       '<div class="bx-spark">' + sparkline(LeaseDB.seriesFor(info), 160, 40) + '</div>';
     box.appendChild(head);
 
-    // Ofertas descubiertas
+    // Ofertas descubiertas: concesionarios REALES primero, agregadores al final.
     if (r.offers.length) {
+      var sorted = r.offers.filter(function (o) { return !isAggOffer(o); })
+        .concat(r.offers.filter(isAggOffer));
       var t = '<div class="bx-sub">Ofertas descubiertas (' + r.offers.length + ')</div>' +
         '<div class="table-wrap"><table class="offers-table bx-offers"><thead><tr>' +
         '<th>Fuente</th><th>Efectivo/mes</th><th>Mensual</th><th>Plazo</th><th>Vista</th><th></th></tr></thead><tbody>';
-      r.offers.slice(0, 12).forEach(function (o, i) {
+      sorted.slice(0, 12).forEach(function (o, i) {
         var m = o.metrics || {};
         var flags = DealerScore.offerFlags(o.parsed && o.parsed.raw);
         var flagHtml = flags.length
           ? ' <span class="dflag" title="' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '">⚠</span>'
           : '';
-        t += '<tr><td>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml +
+        var srcHtml = isAggOffer(o)
+          ? '<span class="est-chip" title="Estimación de agregador, no una oferta de concesionario">agregador</span> ' + escapeHtml(o.source || o.name || '—')
+          : dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—');
+        t += '<tr' + (isAggOffer(o) ? ' class="agg-row"' : '') + '><td>' + srcHtml + flagHtml +
           (o.region ? '<span class="offer-meta">' + escapeHtml(o.region) + '</span>' : '') + '</td>' +
           '<td>' + fmtMoney2(m.effectiveMonthly) + '</td>' +
           '<td>' + fmtMoney2(m.monthlyPayment) + '</td>' +
@@ -1262,7 +1278,7 @@
       offBox.querySelectorAll('.bx-save').forEach(function (b) {
         b.addEventListener('click', function (ev) {
           ev.stopPropagation();
-          saveScanned(r.offers[+b.dataset.i].parsed || {});
+          saveScanned(sorted[+b.dataset.i].parsed || {});
           b.textContent = '✅'; b.disabled = true;
         });
       });

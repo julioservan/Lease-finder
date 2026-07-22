@@ -274,10 +274,10 @@
       "name": "Plaza Toyota",
       "region": "Brooklyn, NY",
       "urls": [
-        "https://www.plazatoyota.net/new-vehicle-specials/",
-        "https://www.plazatoyota.net/lease-specials/",
-        "https://www.plazatoyota.net/new-inventory/index.htm",
-        "https://www.plazatoyota.net/new-vehicles/"
+        "https://www.plazatoyota.com/new-vehicle-specials/",
+        "https://www.plazatoyota.com/lease-specials/",
+        "https://www.plazatoyota.com/new-inventory/index.htm",
+        "https://www.plazatoyota.com/new-vehicles/"
       ]
     },
     {
@@ -488,6 +488,81 @@
         "https://www.bayridgenissan.com/specials/",
         "https://www.bayridgenissan.com/new-inventory/index.htm",
         "https://www.bayridgenissan.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Plaza Kia",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.plazakiany.com/lease-specials/",
+        "https://www.plazakiany.com/specials/",
+        "https://www.plazakiany.com/new-inventory/index.htm",
+        "https://www.plazakiany.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "John Starks Kia",
+      "region": "Queens, NY",
+      "urls": [
+        "https://www.johnstarkskia.com/promotions/new/index.htm",
+        "https://www.johnstarkskia.com/lease-specials/",
+        "https://www.johnstarkskia.com/specials/",
+        "https://www.johnstarkskia.com/new-inventory/index.htm",
+        "https://www.johnstarkskia.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Northstar Kia",
+      "region": "Queens, NY",
+      "urls": [
+        "https://www.northstarkiany.com/lease-specials/",
+        "https://www.northstarkiany.com/specials/",
+        "https://www.northstarkiany.com/new-inventory/index.htm",
+        "https://www.northstarkiany.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Island Kia",
+      "region": "Staten Island, NY",
+      "urls": [
+        "https://www.myislandkia.com/specials/index.htm",
+        "https://www.myislandkia.com/lease-specials/",
+        "https://www.myislandkia.com/specials/",
+        "https://www.myislandkia.com/new-inventory/index.htm",
+        "https://www.myislandkia.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Koeppel Subaru",
+      "region": "Long Island City, NY",
+      "urls": [
+        "https://www.koeppelsubaru.com/specials/index.htm",
+        "https://www.koeppelsubaru.com/lease-specials/",
+        "https://www.koeppelsubaru.com/specials/",
+        "https://www.koeppelsubaru.com/new-inventory/index.htm",
+        "https://www.koeppelsubaru.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Koeppel Nissan",
+      "region": "Queens, NY",
+      "urls": [
+        "https://www.koeppelnissan.com/specials/index.htm",
+        "https://www.koeppelnissan.com/lease-specials/",
+        "https://www.koeppelnissan.com/specials/",
+        "https://www.koeppelnissan.com/new-inventory/index.htm",
+        "https://www.koeppelnissan.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Brooklyn Volkswagen",
+      "region": "Brooklyn, NY",
+      "urls": [
+        "https://www.brooklynvolkswagenny.com/new-deals/",
+        "https://www.brooklynvolkswagenny.com/lease-specials/",
+        "https://www.brooklynvolkswagenny.com/specials/",
+        "https://www.brooklynvolkswagenny.com/new-inventory/index.htm",
+        "https://www.brooklynvolkswagenny.com/new-vehicles/"
       ]
     }
   ]

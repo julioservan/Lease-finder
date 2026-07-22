@@ -325,7 +325,9 @@ function main() {
       .filter(function (e) { return !settings.onlyTargetModels || e.isTarget; })
       // Purga las que quedaron guardadas de antes de este filtro (financiación).
       .filter(function (e) { return !OfferParser.looksLikeFinancing((e.parsed && e.parsed.raw) || ''); })
-      .filter(function (e) { return !(e.metrics && e.metrics.pctOfMsrp != null && e.metrics.pctOfMsrp > 1.7); });
+      .filter(function (e) { return !(e.metrics && e.metrics.pctOfMsrp != null && e.metrics.pctOfMsrp > 1.7); })
+      // Purga ofertas de agregadores retirados (TrueCar/Edmunds ya no son fuentes).
+      .filter(function (e) { return !/^(truecar|edmunds)\s*—/i.test(e.source || ''); });
     offers.sort(function (a, b) {
       var av = a.metrics.effectiveMonthly, bv = b.metrics.effectiveMonthly;
       return (av == null ? Infinity : av) - (bv == null ? Infinity : bv);
