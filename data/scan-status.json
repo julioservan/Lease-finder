@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T17:28:15.291Z",
+  "updatedAt": "2026-07-22T21:23:02.553Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,27 +89,27 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,17 +119,17 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
       "region": "Brooklyn, NY",
-      "status": "ok (20 ofertas)"
+      "status": "ok (19 ofertas)"
     },
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · HTTP 415 en https://www.bayridgehonda.com/new-inventory/index.htm · HTTP 415 en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -349,12 +349,12 @@
     {
       "name": "Lease NYC — Kia Sorento",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Subaru Forester",
       "region": "bróker — NYC",
-      "status": "ok (10 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "Lease NYC — Mazda CX-50",
@@ -364,22 +364,22 @@
     {
       "name": "Lease NYC — Nissan Rogue",
       "region": "bróker — NYC",
-      "status": "ok (10 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Volkswagen Tiguan",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Honda CR-V",
       "region": "bróker — NYC",
-      "status": "ok (14 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "Lease NYC — GMC Terrain",
       "region": "bróker — NYC",
-      "status": "ok (9 ofertas)"
+      "status": "ok (11 ofertas)"
     }
   ]
 }
