@@ -128,36 +128,47 @@ function scanSource(source) {
   return attempt(0, []);
 }
 
-/**
- * Segunda pasada con navegador headless (si está instalado): reintenta en
- * serie las fuentes que no dieron ofertas con fetch simple, ejecutando el
- * JavaScript de la página.
- */
-async function browserRetry(results) {
-  for (var i = 0; i < results.length; i++) {
-    var r = results[i];
-    if (r.offers.length > 0 || !r.source.urls) continue;
-    var urls = r.source.urls.filter(function (u) { return /^(https?|file):\/\//i.test(u); });
-    var errors = [];
-    for (var j = 0; j < urls.length; j++) {
-      try {
-        var html = await browser.renderPage(urls[j]);
-        var offers = scanContent(html);
-        if (offers.length > 0) {
-          r.offers = offers;
-          r.url = urls[j];
-          r.status = 'ok (' + offers.length + ' ofertas, con navegador)';
-          break;
-        }
-        errors.push('sin ofertas (navegador) en ' + urls[j] + jsonLdNote(html));
-      } catch (e) {
-        errors.push(e.message + ' (navegador) en ' + urls[j]);
+/** Reintenta UNA fuente con el navegador headless probando sus URLs en orden. */
+async function browserRetryOne(r) {
+  var urls = r.source.urls.filter(function (u) { return /^(https?|file):\/\//i.test(u); });
+  var errors = [];
+  for (var j = 0; j < urls.length; j++) {
+    try {
+      var html = await browser.renderPage(urls[j]);
+      var offers = scanContent(html);
+      if (offers.length > 0) {
+        r.offers = offers;
+        r.url = urls[j];
+        r.status = 'ok (' + offers.length + ' ofertas, con navegador)';
+        return;
       }
-    }
-    if (r.offers.length === 0 && errors.length) {
-      r.status += ' · ' + errors.join(' · ');
+      errors.push('sin ofertas (navegador) en ' + urls[j] + jsonLdNote(html));
+    } catch (e) {
+      errors.push(e.message + ' (navegador) en ' + urls[j]);
     }
   }
+  if (r.offers.length === 0 && errors.length) r.status += ' · ' + errors.join(' · ');
+}
+
+/**
+ * Segunda pasada con navegador headless (si está instalado): reintenta las
+ * fuentes que no dieron ofertas con fetch simple, ejecutando el JavaScript
+ * de la página. En PARALELO con un límite de concurrencia (cada pestaña usa
+ * su propio contexto), para que el escaneo no tarde varios minutos.
+ */
+async function browserRetry(results, concurrency) {
+  var pending = results.filter(function (r) { return r.offers.length === 0 && r.source.urls; });
+  var limit = concurrency || 4;
+  var next = 0;
+  async function worker() {
+    while (next < pending.length) {
+      var r = pending[next++];
+      await browserRetryOne(r);
+    }
+  }
+  var workers = [];
+  for (var w = 0; w < Math.min(limit, pending.length); w++) workers.push(worker());
+  await Promise.all(workers);
 }
 
 function scanInbox(inboxDir) {
