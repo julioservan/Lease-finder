@@ -368,7 +368,15 @@ function main() {
       .filter(function (e) { return !OfferParser.looksLikeFinancing((e.parsed && e.parsed.raw) || ''); })
       .filter(function (e) { return !(e.metrics && e.metrics.pctOfMsrp != null && e.metrics.pctOfMsrp > 1.7); })
       // Purga ofertas de agregadores retirados (TrueCar/Edmunds ya no son fuentes).
-      .filter(function (e) { return !/^(truecar|edmunds)\s*—/i.test(e.source || ''); });
+      .filter(function (e) { return !/^(truecar|edmunds)\s*—/i.test(e.source || ''); })
+      // Purga mensualidades imposibles guardadas antes del tope $950.
+      .filter(function (e) { return !(e.metrics && e.metrics.monthlyPayment > 950); })
+      // Purga cruces guardados: una fuente por-modelo solo conserva SU modelo.
+      .filter(function (e) {
+        var m = /^Lease NYC — (.+)$/.exec(e.source || '');
+        if (!m) return true;
+        return offerHaystack(e.name, e.parsed && e.parsed.raw).indexOf(modelKeyOf(m[1])) >= 0;
+      });
     offers.sort(function (a, b) {
       var av = a.metrics.effectiveMonthly, bv = b.metrics.effectiveMonthly;
       return (av == null ? Infinity : av) - (bv == null ? Infinity : bv);
