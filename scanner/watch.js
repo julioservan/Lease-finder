@@ -74,6 +74,19 @@ function offerHaystack(name, raw) {
     : normalizeModel((name || '') + ' ' + (raw || ''));
 }
 
+/**
+ * Fuentes POR-MODELO (páginas de broker/dealer dedicadas a un solo coche,
+ * p. ej. viplease.com/best-jeep-lease-deals-nyc/jeep-cherokee/): la página
+ * ES de ese modelo, así que cualquier mensualidad que salga es de él. Si la
+ * oferta no trae ya un nombre de vehículo, se le estampa el modelo de la
+ * fuente para que la atribución sea infalible (aquí y en la web).
+ */
+function stampModel(parsed, source, year) {
+  if (!source.model) return;
+  if (isVehicleName(parsed.name)) return; // ya identifica un vehículo concreto
+  parsed.name = (year ? year + ' ' : '') + source.model;
+}
+
 /** ¿La oferta menciona alguno de los modelos objetivo? */
 function matchesTarget(parsed, targetModels) {
   if (!targetModels || !targetModels.length) return false;
@@ -271,8 +284,10 @@ function main() {
 
     // Entradas actuales con métricas
     var current = [];
+    var thisYear = new Date().getFullYear();
     results.forEach(function (r) {
       r.offers.forEach(function (parsed) {
+        stampModel(parsed, r.source, thisYear); // fuentes por-modelo: atribución fiable
         var metrics = OfferParser.scoreOffer(parsed);
         if (metrics.monthlyPayment == null) return;
         // Filtro de plausibilidad: mensualidades ínfimas suelen ser ruido
