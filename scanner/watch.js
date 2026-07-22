@@ -227,6 +227,11 @@ function main() {
         // (tasas "por cada $1,000 financiados", promociones de accesorios…).
         if (metrics.monthlyPayment < minMonthly) return;
         if (/per\s+\$?1[,.]?000|por\s+cada\s+\$?1[,.]?000/i.test(parsed.raw || '')) return;
+        // Estimaciones de FINANCIACIÓN/compra disfrazadas de lease.
+        if (OfferParser.looksLikeFinancing(parsed.raw || '')) return;
+        // Red de seguridad: ningún lease real cuesta >1.7% del MSRP al mes
+        // (eso es un pago de préstamo, no de lease).
+        if (metrics.pctOfMsrp != null && metrics.pctOfMsrp > 1.7) return;
         // Sin ruido: si está activado, solo los modelos candidatos
         if (settings.onlyTargetModels && !matchesTarget(parsed, targetModels)) return;
         current.push({
@@ -276,7 +281,10 @@ function main() {
     var cutoff = Date.now() - staleDays * 24 * 60 * 60 * 1000;
     var offers = Object.keys(merged).map(function (k) { return merged[k]; })
       .filter(function (e) { return new Date(e.lastSeen).getTime() >= cutoff; })
-      .filter(function (e) { return !settings.onlyTargetModels || e.isTarget; });
+      .filter(function (e) { return !settings.onlyTargetModels || e.isTarget; })
+      // Purga las que quedaron guardadas de antes de este filtro (financiación).
+      .filter(function (e) { return !OfferParser.looksLikeFinancing((e.parsed && e.parsed.raw) || ''); })
+      .filter(function (e) { return !(e.metrics && e.metrics.pctOfMsrp != null && e.metrics.pctOfMsrp > 1.7); });
     offers.sort(function (a, b) {
       var av = a.metrics.effectiveMonthly, bv = b.metrics.effectiveMonthly;
       return (av == null ? Infinity : av) - (bv == null ? Infinity : bv);

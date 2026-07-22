@@ -282,13 +282,30 @@
    * Escaneo general: usa los separadores explícitos y, si el texto parece
    * una página larga con varias ofertas sin separar, cae al escaneo suelto.
    */
+  /**
+   * ¿El texto es una estimación de FINANCIACIÓN/compra en vez de un lease?
+   * Los agregadores (p. ej. CarsDirect) muestran una calculadora de préstamo
+   * ("Payment Estimate $X per month … Total cost: $Y for the [coche]") cuya
+   * mensualidad NO es un lease (amortiza el coche entero, ~2% del MSRP/mes).
+   * Esas colaban como si fueran leases carísimos; aquí se descartan.
+   */
+  function looksLikeFinancing(raw) {
+    var t = String(raw || '').toLowerCase();
+    if (/payment estimate/.test(t) && /(total cost|calculate payment)/.test(t)) return true;
+    if (/total cost:\s*\$[\d,]+\s+for the\b/.test(t)) return true;
+    var mm = t.match(/based on\s+(\d+)[- ]month/); // plazo de préstamo (leases < 60m)
+    if (mm && parseInt(mm[1], 10) >= 60) return true;
+    return false;
+  }
+
   function scanText(text) {
     var byBlocks = parseOffers(text);
+    var result = byBlocks;
     if (byBlocks.length <= 1) {
       var loose = scanLoose(text);
-      if (loose.length > byBlocks.length) return loose;
+      if (loose.length > byBlocks.length) result = loose;
     }
-    return byBlocks;
+    return result.filter(function (o) { return !looksLikeFinancing(o.raw); });
   }
 
   /** Métricas comparables (mismas columnas que la calculadora). */
@@ -338,6 +355,7 @@
     scanLoose: scanLoose,
     scanText: scanText,
     scoreOffer: scoreOffer,
+    looksLikeFinancing: looksLikeFinancing,
     htmlToText: htmlToText,
     splitBlocks: splitBlocks
   };

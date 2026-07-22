@@ -192,6 +192,27 @@
     costeModelFilled = true;
   }
 
+  /** Abre "Coste al mes" con el mejor lease real de un modelo ya puesto. */
+  function prefillCoste(info) {
+    fillCosteModels();
+    var b = LeaseDB.bestOffer(info);
+    var eff = b && b.metrics ? b.metrics.effectiveMonthly : null;
+    if (isNum(eff)) {
+      $('c-lease').value = Math.round(eff);
+      $('c-tag').textContent = info.make + ' ' + info.model;
+      // Sincroniza el selector si el modelo está en la lista.
+      var sel = $('c-model');
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].textContent.indexOf(info.make + ' ' + info.model + ' —') === 0) { sel.selectedIndex = i; break; }
+      }
+    } else {
+      // Sin oferta: usa el MSRP × regla 1% como estimación de partida.
+      if (info.msrp) $('c-lease').value = Math.round(info.msrp * 0.01);
+      $('c-tag').textContent = info.make + ' ' + info.model + ' (estimado)';
+    }
+    renderCoste();
+  }
+
   function costeNum(id) { var x = parseFloat(($(id) || {}).value); return isFinite(x) && x > 0 ? x : 0; }
 
   function renderCoste() {
@@ -1217,6 +1238,16 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     acts.appendChild(dec);
+    var cst = document.createElement('button');
+    cst.className = 'btn mini';
+    cst.textContent = '💸 ¿Cuánto al mes?';
+    cst.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      prefillCoste(info);
+      showView('coste');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    acts.appendChild(cst);
     [['Nuevos ↗', info.linkNew], ['CPO ↗', info.linkCpo]].forEach(function (pair) {
       var link = document.createElement('a');
       link.className = 'btn mini subtle';
