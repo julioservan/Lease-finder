@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T21:25:02.514Z",
+  "updatedAt": "2026-07-22T00:12:05.649Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -57,24 +57,69 @@
       "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/"
     },
     {
-      "name": "TrueCar — Bronco Sport (lease)",
-      "region": "agregador por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/ford/bronco-sport/lease/ · sin ofertas (navegador) en https://www.truecar.com/ford/bronco-sport/lease/"
-    },
-    {
-      "name": "TrueCar — Honda CR-V (lease)",
-      "region": "agregador por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/honda/cr-v/lease/ · sin ofertas (navegador) en https://www.truecar.com/honda/cr-v/lease/"
-    },
-    {
-      "name": "TrueCar — GMC Terrain (lease)",
-      "region": "agregador por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/gmc/terrain/lease/ · sin ofertas (navegador) en https://www.truecar.com/gmc/terrain/lease/"
-    },
-    {
-      "name": "CarsDirect — CR-V (deals)",
+      "name": "CarsDirect — CR-V",
       "region": "agregador por modelo",
       "status": "ok (11 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Bronco Sport",
+      "region": "agregador por modelo",
+      "status": "ok (9 ofertas)"
+    },
+    {
+      "name": "CarsDirect — GMC Terrain",
+      "region": "agregador por modelo",
+      "status": "ok (10 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Toyota RAV4",
+      "region": "agregador por modelo",
+      "status": "ok (7 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Hyundai Tucson",
+      "region": "agregador por modelo",
+      "status": "ok (13 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Hyundai Santa Fe",
+      "region": "agregador por modelo",
+      "status": "ok (12 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Kia Sportage",
+      "region": "agregador por modelo",
+      "status": "ok (8 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Kia Sorento",
+      "region": "agregador por modelo",
+      "status": "ok (8 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Subaru Forester",
+      "region": "agregador por modelo",
+      "status": "ok (7 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Mazda CX-50",
+      "region": "agregador por modelo",
+      "status": "ok (8 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Nissan Rogue",
+      "region": "agregador por modelo",
+      "status": "ok (8 ofertas)"
+    },
+    {
+      "name": "CarsDirect — Jeep Cherokee",
+      "region": "agregador por modelo",
+      "status": "ok (12 ofertas)"
+    },
+    {
+      "name": "CarsDirect — VW Tiguan",
+      "region": "agregador por modelo",
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -84,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (51 ofertas, con navegador)"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -99,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "timeout en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/"
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/"
     },
     {
       "name": "Plaza Hyundai",
@@ -179,7 +224,7 @@
     {
       "name": "Freehold Ford",
       "region": "Freehold, NJ",
-      "status": "HTTP 403 en https://www.freeholdford.com/bronco-sport-special/ · HTTP 403 en https://www.freeholdford.com/lease-specials/ · sin ofertas (navegador) en https://www.freeholdford.com/bronco-sport-special/ · sin ofertas (navegador) en https://www.freeholdford.com/lease-specials/"
+      "status": "ok (2 ofertas, con navegador)"
     },
     {
       "name": "Lester Glenn Ford",
@@ -200,91 +245,6 @@
       "name": "Bay Ridge Nissan",
       "region": "Brooklyn, NY",
       "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/"
-    },
-    {
-      "name": "Edmunds — Ford Bronco Sport",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/ford/bronco-sport/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/ford/bronco-sport/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Jeep Cherokee",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/jeep/cherokee/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/jeep/cherokee/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Jeep Grand Cherokee",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/jeep/grand-cherokee/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/jeep/grand-cherokee/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Mazda CX-50",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/mazda/cx-50/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/mazda/cx-50/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Mazda CX-5",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/mazda/cx-5/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/mazda/cx-5/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Toyota RAV4",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/toyota/rav4/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/toyota/rav4/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Honda CR-V",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/honda/cr-v/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/honda/cr-v/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Subaru Forester",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/subaru/forester/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/subaru/forester/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Kia Sportage",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/kia/sportage/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/kia/sportage/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Hyundai Tucson",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/hyundai/tucson/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/hyundai/tucson/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Nissan Rogue",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/nissan/rogue/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/nissan/rogue/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Volkswagen Tiguan",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/volkswagen/tiguan/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/volkswagen/tiguan/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Hyundai Santa Fe",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/hyundai/santa-fe/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/hyundai/santa-fe/lease-deals/"
-    },
-    {
-      "name": "Edmunds — Kia Sorento",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.edmunds.com/kia/sorento/lease-deals/ · sin ofertas (navegador) en https://www.edmunds.com/kia/sorento/lease-deals/"
-    },
-    {
-      "name": "TrueCar — Kia Sportage (lease)",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/kia/sportage/lease/ · sin ofertas (navegador) en https://www.truecar.com/kia/sportage/lease/"
-    },
-    {
-      "name": "TrueCar — Hyundai Santa Fe (lease)",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/hyundai/santa-fe/lease/ · sin ofertas (navegador) en https://www.truecar.com/hyundai/santa-fe/lease/"
-    },
-    {
-      "name": "TrueCar — Kia Sorento (lease)",
-      "region": "lease deals por modelo",
-      "status": "HTTP 403 en https://www.truecar.com/kia/sorento/lease/ · sin ofertas (navegador) en https://www.truecar.com/kia/sorento/lease/"
     }
   ]
 }
