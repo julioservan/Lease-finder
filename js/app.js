@@ -1041,6 +1041,57 @@
     });
 
     boardPreload(); // rellena foto + Nuevos de los modelos que aún no tienen stock
+    renderDealers();
+  }
+
+  /* ---------------- nota del concesionario ---------------- */
+
+  var GRADE_TXT = { A: 'juega limpio', B: 'bien, con matices', C: 'ojo con la letra pequeña', D: 'mensualidad gancho / condiciones', '?': 'pocos datos aún' };
+
+  var dealerCache = { src: null, cards: [] };
+
+  function dealerCards() {
+    var src = onlineData.latest;
+    if (dealerCache.src !== src) {
+      dealerCache.src = src;
+      dealerCache.cards = DealerScore.analyze((src && src.offers) || []);
+    }
+    return dealerCache.cards;
+  }
+
+  function gradeChip(grade, title) {
+    var cls = grade === '?' ? 'q' : grade.toLowerCase();
+    return '<span class="dgrade dgrade-' + cls + '" title="' + escapeHtml(title || GRADE_TXT[grade] || '') + '">' + grade + '</span>';
+  }
+
+  function renderDealers() {
+    var body = $('dealers-body');
+    if (!body) return;
+    var cards = dealerCards();
+    if (!cards.length) {
+      body.innerHTML = '<tr><td colspan="6" class="hint">Aún no hay concesionarios con ofertas descubiertas.</td></tr>';
+      return;
+    }
+    body.innerHTML = cards.map(function (d) {
+      var conds = Object.keys(d.flagCounts).length
+        ? Object.keys(d.flagCounts).map(function (k) {
+            var def = { financing: 'financiación', tradein: 'trade-in', loyalty: 'loyalty', group: 'militar/estudiante', deposit: 'depósito' }[k] || k;
+            return def + ' ×' + d.flagCounts[k];
+          }).join(', ')
+        : '—';
+      return '<tr><td>' + gradeChip(d.grade, d.reasons.join(' · ')) + '</td>' +
+        '<td>' + escapeHtml(d.name) + '<span class="offer-meta">' + escapeHtml(d.region) + ' · ' + escapeHtml(d.reasons.join(' · ')) + '</span></td>' +
+        '<td>' + d.offers + '</td>' +
+        '<td>' + Math.round(d.dasPct * 100) + '%' + (d.zeroDown ? ' <span class="offer-meta">(' + d.zeroDown + ' con $0)</span>' : '') + '</td>' +
+        '<td>' + (d.avgRatio != null ? '+' + Math.round((d.avgRatio - 1) * 100) + '%' : '—') + '</td>' +
+        '<td>' + escapeHtml(conds) + '</td></tr>';
+    }).join('');
+  }
+
+  /** Nota del concesionario de UNA oferta (para el desplegable del Tablero). */
+  function dealerGradeFor(source) {
+    var d = dealerCards().filter(function (x) { return x.name === source; })[0];
+    return d ? gradeChip(d.grade, d.reasons.join(' · ')) : '';
   }
 
   // Precarga CONTROLADA del inventario para que el tablero se llene solo:
@@ -1192,7 +1243,11 @@
         '<th>Fuente</th><th>Efectivo/mes</th><th>Mensual</th><th>Plazo</th><th>Vista</th><th></th></tr></thead><tbody>';
       r.offers.slice(0, 12).forEach(function (o, i) {
         var m = o.metrics || {};
-        t += '<tr><td>' + escapeHtml(o.source || o.name || '—') +
+        var flags = DealerScore.offerFlags(o.parsed && o.parsed.raw);
+        var flagHtml = flags.length
+          ? ' <span class="dflag" title="' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '">⚠</span>'
+          : '';
+        t += '<tr><td>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml +
           (o.region ? '<span class="offer-meta">' + escapeHtml(o.region) + '</span>' : '') + '</td>' +
           '<td>' + fmtMoney2(m.effectiveMonthly) + '</td>' +
           '<td>' + fmtMoney2(m.monthlyPayment) + '</td>' +

@@ -4,7 +4,7 @@
   "description": "Calcula, guarda, compara y escanea ofertas de lease — inspirado en la calculadora de Leasehackr",
   "private": true,
   "scripts": {
-    "test": "node test/lease-calc.test.js && node test/offer-parser.test.js && node test/decide.test.js && node test/jsonld.test.js",
+    "test": "node test/lease-calc.test.js && node test/offer-parser.test.js && node test/decide.test.js && node test/jsonld.test.js && node test/dealerscore.test.js",
     "scan": "node scanner/scan.js"
   },
   "license": "MIT"

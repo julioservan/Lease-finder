@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=35">
+  <link rel="stylesheet" href="css/styles.css?v=36">
 </head>
 <body>
   <header class="topbar">
@@ -53,6 +53,20 @@
     <details class="advanced" id="online-status-box" hidden>
       <summary>Estado de las fuentes del robot</summary>
       <ul id="online-status" class="hint"></ul>
+    </details>
+
+    <!-- Nota del concesionario: quién juega limpio, no solo quién es más barato -->
+    <details class="card collapse" id="dealers-card">
+      <summary>🏬 Nota de los concesionarios: ¿quién juega limpio?</summary>
+      <p class="hint">Calculada con sus propias ofertas: si declaran la entrada, si la mensualidad anunciada se acerca al coste real (o es un gancho con entrada gorda), y si los descuentos exigen condiciones (financiar con ellos, trade-in, loyalty, militar…). «?» = pocos datos aún.</p>
+      <div class="table-wrap">
+        <table class="offers-table" id="dealers-table">
+          <thead>
+            <tr><th>Nota</th><th>Concesionario</th><th>Ofertas</th><th>Entrada declarada</th><th>Real vs anunciado</th><th>Condiciones</th></tr>
+          </thead>
+          <tbody id="dealers-body"></tbody>
+        </table>
+      </div>
     </details>
 
     <!-- Descubrir: escanear un anuncio pegado -> alimenta la base de datos -->
@@ -473,12 +487,13 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=35"></script>
-  <script src="js/offer-parser.js?v=35"></script>
-  <script src="js/vehicles.js?v=35"></script>
-  <script src="js/models.js?v=35"></script>
-  <script src="js/leasedb.js?v=35"></script>
-  <script src="js/decide.js?v=35"></script>
-  <script src="js/app.js?v=35"></script>
+  <script src="js/lease-calc.js?v=36"></script>
+  <script src="js/offer-parser.js?v=36"></script>
+  <script src="js/vehicles.js?v=36"></script>
+  <script src="js/models.js?v=36"></script>
+  <script src="js/leasedb.js?v=36"></script>
+  <script src="js/dealerscore.js?v=36"></script>
+  <script src="js/decide.js?v=36"></script>
+  <script src="js/app.js?v=36"></script>
 </body>
 </html>
