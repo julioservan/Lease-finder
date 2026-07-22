@@ -20,6 +20,7 @@ var fs = require('fs');
 var path = require('path');
 var lib = require('./lib.js');
 var browser = require('./browser.js');
+var JsonLd = require('./jsonld.js');
 var OfferParser = require('../js/offer-parser.js');
 var RankedModels = require('../js/models.js');
 
@@ -63,8 +64,28 @@ function matchesTarget(parsed, targetModels) {
 }
 
 function scanContent(content) {
-  var text = lib.looksLikeHtml(content) ? OfferParser.htmlToText(content) : content;
-  return OfferParser.scanText(text);
+  var isHtml = lib.looksLikeHtml(content);
+  var text = isHtml ? OfferParser.htmlToText(content) : content;
+  var offers = OfferParser.scanText(text);
+  if (!isHtml) return offers;
+
+  // Además del texto visible, mira el JSON-LD (datos estructurados que
+  // incrustan Dealer.com/DealerInspire/DealerOn/CDK): las promos ahí suelen
+  // traer la mensualidad aunque la maquetación la esconda.
+  JsonLd.offerTexts(content).forEach(function (t) {
+    OfferParser.scanText(t).forEach(function (o) {
+      var dup = offers.some(function (p) { return p.monthly === o.monthly && p.term === o.term; });
+      if (!dup) offers.push(o);
+    });
+  });
+  return offers;
+}
+
+/** Nota de diagnóstico: cuántos vehículos estructurados tiene la página. */
+function jsonLdNote(content) {
+  if (!lib.looksLikeHtml(content)) return '';
+  var n = JsonLd.vehicles(content).length;
+  return n > 0 ? ' [' + n + ' vehículos en JSON-LD]' : '';
 }
 
 /** Intenta las URLs de una fuente en orden hasta que alguna dé ofertas. */
@@ -79,7 +100,7 @@ function scanSource(source) {
       if (offers.length > 0) {
         return { source: source, url: urls[i], offers: offers, status: 'ok (' + offers.length + ' ofertas)' };
       }
-      return attempt(i + 1, errors.concat('sin ofertas en ' + urls[i]));
+      return attempt(i + 1, errors.concat('sin ofertas en ' + urls[i] + jsonLdNote(content)));
     }, function (err) {
       return attempt(i + 1, errors.concat(err.message + ' en ' + urls[i]));
     });
@@ -108,7 +129,7 @@ async function browserRetry(results) {
           r.status = 'ok (' + offers.length + ' ofertas, con navegador)';
           break;
         }
-        errors.push('sin ofertas (navegador) en ' + urls[j]);
+        errors.push('sin ofertas (navegador) en ' + urls[j] + jsonLdNote(html));
       } catch (e) {
         errors.push(e.message + ' (navegador) en ' + urls[j]);
       }

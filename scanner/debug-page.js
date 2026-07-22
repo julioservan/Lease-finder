@@ -11,6 +11,7 @@
 
 var browser = require('./browser.js');
 var lib = require('./lib.js');
+var JsonLd = require('./jsonld.js');
 var OfferParser = require('../js/offer-parser.js');
 
 var url = process.argv[2];
@@ -51,6 +52,27 @@ getContent().then(function (content) {
     console.log('- name=' + JSON.stringify(o.name) + ' monthly=' + o.monthly +
       ' term=' + o.term + ' das=' + o.dueAtSigning + ' msrp=' + o.msrp);
   });
+
+  // -------- Datos estructurados JSON-LD (plataformas de dealers) --------
+  if (lib.looksLikeHtml(content)) {
+    var blocks = JsonLd.extractBlocks(content);
+    var vehs = JsonLd.vehicles(content);
+    var otexts = JsonLd.offerTexts(content);
+    console.log('\n===== JSON-LD =====');
+    console.log('Bloques ld+json:', blocks.length, '| vehículos:', vehs.length, '| textos de oferta:', otexts.length);
+    vehs.slice(0, 10).forEach(function (v) {
+      console.log('- 🚗 ' + (v.name || '(sin nombre)') + ' | VIN ' + (v.vin || '—') +
+        ' | $' + (v.price || '?') + ' | ' + (v.condition || '?') + ' | ' + (v.trim || ''));
+    });
+    otexts.slice(0, 5).forEach(function (t, i) {
+      console.log('--- texto de oferta ' + (i + 1) + ' ---');
+      console.log(t.slice(0, 400));
+      var parsed = OfferParser.scanText(t);
+      parsed.forEach(function (o) {
+        console.log('  → parser: monthly=' + o.monthly + ' term=' + o.term + ' das=' + o.dueAtSigning);
+      });
+    });
+  }
 }).then(function () {
   return browser.close();
 }, function (err) {
