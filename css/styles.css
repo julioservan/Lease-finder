@@ -396,3 +396,26 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 #dealers-table .offer-meta { display: block; font-size: 0.72rem; color: var(--faint); max-width: 46ch; }
 .est-chip { font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: var(--hover); padding: 1px 6px; border-radius: 4px; vertical-align: 1px; cursor: help; }
 .bx-offers tr.agg-row td { opacity: 0.62; }
+
+/* ============ Ficha de detalle de una oferta ============ */
+.bx-row { cursor: pointer; }
+.bx-row:hover td { background: var(--hover); }
+.bx-row .brow-chev { margin-right: 5px; }
+.bx-row.open .brow-chev { transform: rotate(90deg); }
+.bx-detail > td { background: var(--surface-2); padding: 0 !important; }
+.bxd { padding: 14px 16px 16px; }
+.bxd-title { font-weight: 600; color: var(--text-strong); font-size: 0.98rem; }
+.bxd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin: 12px 0 10px; }
+.bxd-cell { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 7px 10px; }
+.bxd-cell span { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--faint); }
+.bxd-cell strong { font-size: 0.95rem; color: var(--text-strong); font-variant-numeric: tabular-nums; }
+.bxd-cell.warn strong { color: var(--amber); font-size: 0.83rem; }
+.bxd-conds { font-size: 0.82rem; color: var(--amber); margin-bottom: 8px; }
+.bxd-conds.ok { color: var(--green); }
+.bxd-rawbox summary { cursor: pointer; font-size: 0.82rem; color: var(--muted); }
+.bxd-rawbox summary:hover { color: var(--text); }
+.bxd-raw {
+  margin-top: 8px; max-height: 220px; overflow: auto; white-space: pre-wrap;
+  font-size: 0.76rem; line-height: 1.5; color: var(--muted);
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 10px 12px;
+}

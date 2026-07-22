@@ -1217,6 +1217,50 @@
     }
   }
 
+  /** Ficha completa de una oferta descubierta (números, condiciones, letra pequeña, enlace). */
+  function offerDetailHtml(o, info, i) {
+    var m = o.metrics || {};
+    var p = o.parsed || {};
+    var flags = DealerScore.offerFlags(p.raw);
+    var title = o.name || (info.make + ' ' + info.model);
+
+    // Enlace a la fuente; si la oferta vieja no guardó URL, búsqueda exacta.
+    var link = o.url ||
+      ('https://www.google.com/search?q=' + encodeURIComponent('"' + title + '" ' + (o.source || '') + ' lease'));
+
+    function cell(l, v, warn) {
+      return '<div class="bxd-cell' + (warn ? ' warn' : '') + '"><span>' + l + '</span><strong>' + v + '</strong></div>';
+    }
+    var cells =
+      cell('Mensual', isNum(m.monthlyPayment) ? fmtMoney2(m.monthlyPayment) : '—') +
+      cell('Plazo', (m.term || '—') + ' meses') +
+      cell('Entrada', m.driveOff != null ? fmtMoney(m.driveOff) : 'no declarada ⚠', m.driveOff == null) +
+      cell('Efectivo/mes', isNum(m.effectiveMonthly) ? fmtMoney2(m.effectiveMonthly) : '—') +
+      (p.msrp ? cell('MSRP', fmtMoney(p.msrp)) : '') +
+      (isNum(m.pctOfMsrp) ? cell('Regla 1%', m.pctOfMsrp.toFixed(2) + '%') : '') +
+      (p.milesPerYear ? cell('Millas/año', p.milesPerYear.toLocaleString('es')) : '');
+
+    var conds = flags.length
+      ? '<div class="bxd-conds">⚠ Condiciones: ' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '</div>'
+      : '<div class="bxd-conds ok">✓ Sin condiciones escondidas detectadas</div>';
+
+    var seen = '<div class="offer-meta">' + escapeHtml(o.source || '') + (o.region ? ' · ' + escapeHtml(o.region) : '') +
+      (o.firstSeen ? ' · descubierta el ' + new Date(o.firstSeen).toLocaleDateString('es') : '') +
+      (o.lastSeen ? ' · vista por última vez el ' + new Date(o.lastSeen).toLocaleDateString('es') : '') + '</div>';
+
+    var raw = p.raw
+      ? '<details class="bxd-rawbox"><summary>Ver el anuncio original (letra pequeña)</summary><div class="bxd-raw">' + escapeHtml(p.raw) + '</div></details>'
+      : '';
+
+    return '<div class="bxd">' +
+      '<div class="bxd-title">' + escapeHtml(title) + '</div>' + seen +
+      '<div class="bxd-grid">' + cells + '</div>' + conds + raw +
+      '<div class="card-actions">' +
+        '<a class="btn mini primary" href="' + link + '" target="_blank" rel="noopener">' + (o.url ? 'Abrir la fuente ↗' : 'Buscar esta oferta ↗') + '</a>' +
+        '<button type="button" class="btn mini bx-coste" data-i="' + i + '">💸 ¿Cuánto al mes?</button>' +
+      '</div></div>';
+  }
+
   function boardExpand(r) {
     var info = r.info, a = r.assess;
     var tr = document.createElement('tr');
@@ -1249,14 +1293,15 @@
         var flagHtml = flags.length
           ? ' <span class="dflag" title="' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '">⚠</span>'
           : '';
-        t += '<tr><td>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml +
+        t += '<tr class="bx-row" data-i="' + i + '" title="Toca para ver la oferta en detalle">' +
+          '<td><span class="brow-chev">▸</span>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml +
           (o.region ? '<span class="offer-meta">' + escapeHtml(o.region) + '</span>' : '') + '</td>' +
           '<td>' + fmtMoney2(m.effectiveMonthly) + '</td>' +
           '<td>' + fmtMoney2(m.monthlyPayment) + '</td>' +
           '<td>' + (m.term || '—') + 'm</td>' +
           '<td>' + (o.firstSeen ? new Date(o.firstSeen).toLocaleDateString('es') : '—') + '</td>' +
-          '<td>' + (o.url ? '<a href="' + o.url + '" target="_blank" rel="noopener">ver ↗</a>' : '') +
-          ' <button type="button" class="btn mini bx-save" data-i="' + i + '">💾</button></td></tr>';
+          '<td><button type="button" class="btn mini bx-save" data-i="' + i + '">💾</button></td></tr>' +
+          '<tr class="bx-detail" hidden><td colspan="6">' + offerDetailHtml(o, r.info, i) + '</td></tr>';
       });
       t += '</tbody></table></div>';
       var offBox = document.createElement('div');
@@ -1266,6 +1311,32 @@
           ev.stopPropagation();
           saveScanned(sorted[+b.dataset.i].parsed || {});
           b.textContent = '✅'; b.disabled = true;
+        });
+      });
+      // Toca una oferta → se despliega su ficha completa (letra pequeña incluida).
+      offBox.querySelectorAll('.bx-row').forEach(function (row) {
+        row.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          if (ev.target.closest && ev.target.closest('a,button')) return;
+          var det = row.nextElementSibling;
+          var open = det && !det.hidden;
+          if (det) det.hidden = open;
+          row.classList.toggle('open', !open);
+        });
+      });
+      offBox.querySelectorAll('.bx-coste').forEach(function (b) {
+        b.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          var o = sorted[+b.dataset.i];
+          var m = o.metrics || {};
+          fillCosteModels();
+          if (isNum(m.monthlyPayment)) $('c-lease').value = Math.round(m.monthlyPayment);
+          if (m.driveOff != null) $('c-down').value = Math.round(m.driveOff);
+          if (m.term) $('c-term').value = m.term;
+          $('c-tag').textContent = (o.name || r.info.make + ' ' + r.info.model).slice(0, 40);
+          renderCoste();
+          showView('coste');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       });
       box.appendChild(offBox);
