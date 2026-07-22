@@ -341,3 +341,42 @@ details.advanced[open] > summary { margin-bottom: 10px; }
   .sc-title { font-size: 0.84rem; }
   .stock-cards { max-height: 60vh; }
 }
+
+/* ============ Coste al mes (coste real de tenerlo) ============ */
+.coste-grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
+@media (min-width: 900px) {
+  .coste-grid { grid-template-columns: 1fr 360px; }
+  .coste-receipt { position: sticky; top: 16px; }
+}
+.coste-out { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.coste-note { font-size: 0.8rem; color: var(--faint); line-height: 1.5; margin-top: 14px; }
+
+.rec-line { display: grid; grid-template-columns: 11px 1fr auto; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px dotted var(--border); }
+.rec-dot { width: 10px; height: 10px; border-radius: 3px; }
+.rec-name { font-size: 0.9rem; color: var(--text); }
+.rec-name small { display: block; color: var(--faint); font-size: 0.72rem; }
+.rec-amt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; font-size: 0.95rem; text-align: right; color: var(--text); }
+.rec-line.rec-zero { opacity: 0.4; }
+
+.rec-total-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 14px; padding-top: 13px; border-top: 2px solid var(--border-strong); }
+.rec-total-row .tl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 600; }
+.rec-total-row .tl small { display: block; text-transform: none; letter-spacing: 0; color: var(--faint); font-weight: 400; font-size: 0.74rem; margin-top: 2px; }
+.rec-total { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 700; font-size: clamp(1.9rem, 6vw, 2.5rem); letter-spacing: -0.02em; color: var(--text-strong); font-variant-numeric: tabular-nums; line-height: 1; }
+.rec-year { text-align: right; color: var(--faint); font-size: 0.8rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; margin-top: 6px; }
+
+.rec-bar { display: flex; height: 13px; border-radius: 7px; overflow: hidden; margin: 15px 0 9px; background: var(--surface-2); }
+.rec-bar i { display: block; height: 100%; }
+.rec-legend { display: flex; flex-wrap: wrap; gap: 5px 12px; font-size: 0.74rem; color: var(--muted); }
+.rec-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.rec-legend b { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
+.budget-box { margin-top: 16px; }
+.budget-box .field { margin-bottom: 8px; }
+.bstat { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-s); font-size: 0.88rem; border: 1px solid transparent; }
+.bstat .pill { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 700; font-size: 0.78rem; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.bstat.ok { background: var(--green-bg); border-color: rgba(77,171,109,0.35); color: var(--green); }
+.bstat.ok .pill { background: var(--green); color: #10240f; }
+.bstat.no { background: var(--pink-bg); border-color: rgba(224,128,138,0.35); color: var(--pink); }
+.bstat.no .pill { background: var(--pink); color: #2a0d10; }
+.bstat.none { background: var(--surface-2); border-color: var(--border); color: var(--muted); }
+.bstat .msg { color: var(--text); }

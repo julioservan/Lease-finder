@@ -9,7 +9,7 @@
   var TAB_KEY = 'lf-tab';
   var STOCK_PREFIX = 'lf-stock2-';
   var STOCK_FRESH_MS = 6 * 3600 * 1000; // frescura para re-consultar (cuida la cuota)
-  var VIEWS = ['board', 'usados', 'calc', 'decide'];
+  var VIEWS = ['board', 'usados', 'calc', 'coste', 'decide'];
 
   var FIELDS = [
     'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
@@ -148,6 +148,101 @@
     try { localStorage.setItem(TAB_KEY, name); } catch (e) { /* sin persistencia */ }
     if (name === 'board') renderBoard();
     if (name === 'usados') renderUsados();
+    if (name === 'coste') renderCoste();
+  }
+
+  /* ---------------- Coste real al mes (coste total de tenerlo) ---------------- */
+
+  var COSTE_ITEMS = [
+    { name: 'Lease', note: 'pago mensual', color: '#6fb2f0', get: function (v) { return v.lease; } },
+    { name: 'Seguro', note: 'cobertura completa', color: '#4dab6d', get: function (v) { return v.ins; } },
+    { name: 'Gasolina', note: null, color: '#d9a84b', get: function (v) { return v.fuel; } },
+    { name: 'Aparcamiento', note: null, color: '#c58bb0', get: function (v) { return v.park; } },
+    { name: 'Peajes (E-ZPass)', note: null, color: '#8bb45a', get: function (v) { return v.toll; } },
+    { name: 'Peaje de congestión', note: null, color: '#d98a5a', get: function (v) { return v.cong; } },
+    { name: 'Mantenimiento', note: null, color: '#9aa4b2', get: function (v) { return v.maint; } },
+    { name: 'Registro + inspección', note: 'anual ÷ 12', color: '#a99adf', get: function (v) { return v.reg; } },
+    { name: 'Entrada repartida', note: '÷ meses del lease', color: '#5fb0c8', get: function (v) { return v.down; } }
+  ];
+
+  var costeModelFilled = false;
+
+  function fillCosteModels() {
+    if (costeModelFilled) return;
+    var sel = $('c-model');
+    if (!sel) return;
+    RankedModels.forEach(function (info, i) {
+      var b = LeaseDB.bestOffer(info);
+      var eff = b && b.metrics ? b.metrics.effectiveMonthly : null;
+      if (!isNum(eff)) return; // solo modelos con oferta real
+      var o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = info.make + ' ' + info.model + ' — ' + fmtMoney(eff) + '/mes';
+      o.dataset.eff = String(Math.round(eff));
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () {
+      var opt = sel.options[sel.selectedIndex];
+      if (opt && opt.dataset.eff) {
+        $('c-lease').value = opt.dataset.eff;
+        $('c-tag').textContent = opt.textContent.split(' — ')[0];
+        renderCoste();
+      }
+    });
+    costeModelFilled = true;
+  }
+
+  function costeNum(id) { var x = parseFloat(($(id) || {}).value); return isFinite(x) && x > 0 ? x : 0; }
+
+  function renderCoste() {
+    if (!$('c-lines')) return;
+    fillCosteModels();
+
+    var miles = costeNum('c-miles'), mpg = costeNum('c-mpg') || 1, gas = costeNum('c-gas');
+    var term = Math.max(1, costeNum('c-term') || 36);
+    var v = {
+      lease: costeNum('c-lease'), ins: costeNum('c-ins'),
+      fuel: (miles / mpg) * gas, park: costeNum('c-park'), toll: costeNum('c-toll'),
+      cong: costeNum('c-cong') * 9, maint: costeNum('c-maint'),
+      reg: costeNum('c-reg') / 12, down: costeNum('c-down') / term
+    };
+    var budget = costeNum('c-budget');
+
+    var parts = COSTE_ITEMS.map(function (it) { return { it: it, amt: it.get(v) }; });
+    var total = parts.reduce(function (s, p) { return s + p.amt; }, 0);
+
+    $('c-lines').innerHTML = parts.map(function (p) {
+      return '<div class="rec-line' + (p.amt <= 0 ? ' rec-zero' : '') + '">' +
+        '<span class="rec-dot" style="background:' + p.it.color + '"></span>' +
+        '<span class="rec-name">' + p.it.name + (p.it.note ? '<small>' + p.it.note + '</small>' : '') + '</span>' +
+        '<span class="rec-amt">' + fmtMoney(p.amt) + '</span></div>';
+    }).join('');
+
+    var vis = parts.filter(function (p) { return p.amt > 0; });
+    $('c-bar').innerHTML = vis.map(function (p) {
+      return '<i style="width:' + (total > 0 ? (p.amt / total * 100).toFixed(2) : 0) + '%;background:' + p.it.color + '"></i>';
+    }).join('');
+    $('c-legend').innerHTML = vis.map(function (p) {
+      return '<span><b style="background:' + p.it.color + '"></b>' + p.it.name + ' ' +
+        (total > 0 ? Math.round(p.amt / total * 100) : 0) + '%</span>';
+    }).join('');
+
+    $('c-total').textContent = fmtMoney(total);
+    $('c-year').textContent = fmtMoney(total * 12) + ' al año';
+    $('c-fuel-out').textContent = fmtMoney(v.fuel) + '/mes';
+    $('c-cong-out').textContent = fmtMoney(v.cong) + '/mes';
+
+    var bs = $('c-bstat'), pill = $('c-bpill'), msg = $('c-bmsg');
+    if (budget <= 0) {
+      bs.className = 'bstat none'; pill.textContent = '—';
+      msg.textContent = 'Pon vuestro tope mensual y te digo si entra.';
+    } else if (total <= budget) {
+      bs.className = 'bstat ok'; pill.textContent = 'ENTRA ✓';
+      msg.textContent = 'Cabe con ' + fmtMoney(budget - total) + '/mes de margen. La cuenta sale.';
+    } else {
+      bs.className = 'bstat no'; pill.textContent = 'SE PASA';
+      msg.textContent = 'Se pasa ' + fmtMoney(total - budget) + '/mes. Baja el lease, el seguro o el aparcamiento para que cuadre.';
+    }
   }
 
   /* ---------------- cálculo en vivo ---------------- */
@@ -1516,6 +1611,13 @@
     // Pestañas
     document.querySelectorAll('.tab').forEach(function (b) {
       b.addEventListener('click', function () { showView(b.dataset.view); });
+    });
+
+    // Coste al mes: recalcula al escribir en cualquier campo de la vista.
+    ['c-lease', 'c-down', 'c-term', 'c-ins', 'c-maint', 'c-miles', 'c-mpg', 'c-gas',
+     'c-park', 'c-toll', 'c-cong', 'c-reg', 'c-budget'].forEach(function (id) {
+      var el = $(id);
+      if (el) el.addEventListener('input', renderCoste);
     });
     var sharedOffer = loadFromHash();
     var savedTab = null;
