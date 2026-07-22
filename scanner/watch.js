@@ -87,6 +87,11 @@ function stampModel(parsed, source, year) {
   parsed.name = (year ? year + ' ' : '') + source.model;
 }
 
+/** Clave del modelo (sin la marca): "Kia Sorento" → "sorento", "Mazda CX-50" → "cx50". */
+function modelKeyOf(label) {
+  return normalizeModel(String(label || '').replace(MAKES_RE, ' '));
+}
+
 /** ¿La oferta menciona alguno de los modelos objetivo? */
 function matchesTarget(parsed, targetModels) {
   if (!targetModels || !targetModels.length) return false;
@@ -288,11 +293,21 @@ function main() {
     results.forEach(function (r) {
       r.offers.forEach(function (parsed) {
         stampModel(parsed, r.source, thisYear); // fuentes por-modelo: atribución fiable
+        // Guardarraíl: una fuente por-modelo aporta SOLO su modelo. Las páginas
+        // de broker cruzan modelos ("ofertas relacionadas"); una oferta con
+        // nombre de OTRO coche (p. ej. un Bronco Sport en la página del Sorento)
+        // se descarta aquí — ya la recogerá la fuente de ESE modelo.
+        if (r.source.model &&
+            offerHaystack(parsed.name, parsed.raw).indexOf(modelKeyOf(r.source.model)) < 0) return;
         var metrics = OfferParser.scoreOffer(parsed);
         if (metrics.monthlyPayment == null) return;
         // Filtro de plausibilidad: mensualidades ínfimas suelen ser ruido
         // (tasas "por cada $1,000 financiados", promociones de accesorios…).
         if (metrics.monthlyPayment < minMonthly) return;
+        // Tope de plausibilidad: ningún SUV compacto/medio de la lista se
+        // leasea por >$950/mes; por encima suele ser un total o un misparse
+        // de las páginas de broker (precios WooCommerce sueltos).
+        if (metrics.monthlyPayment > 950) return;
         if (/per\s+\$?1[,.]?000|por\s+cada\s+\$?1[,.]?000/i.test(parsed.raw || '')) return;
         // Estimaciones de FINANCIACIÓN/compra disfrazadas de lease.
         if (OfferParser.looksLikeFinancing(parsed.raw || '')) return;
