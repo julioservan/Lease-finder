@@ -394,3 +394,5 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .dgrade-q { color: var(--muted); background: var(--hover); }
 .dflag { color: var(--amber); cursor: help; font-size: 0.85rem; }
 #dealers-table .offer-meta { display: block; font-size: 0.72rem; color: var(--faint); max-width: 46ch; }
+.est-chip { font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: var(--hover); padding: 1px 6px; border-radius: 4px; vertical-align: 1px; cursor: help; }
+.bx-offers tr.agg-row td { opacity: 0.62; }
