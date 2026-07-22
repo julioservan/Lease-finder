@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=32">
+  <link rel="stylesheet" href="css/styles.css?v=33">
 </head>
 <body>
   <header class="topbar">
@@ -13,6 +13,7 @@
       <button type="button" class="tab" data-view="board">Tablero</button>
       <button type="button" class="tab" data-view="usados">CPO / Segunda mano</button>
       <button type="button" class="tab" data-view="calc">Calculadora</button>
+      <button type="button" class="tab" data-view="coste">Coste al mes</button>
       <button type="button" class="tab" data-view="decide">¿Lease o compra?</button>
     </nav>
   </header>
@@ -351,16 +352,133 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     </div>
   </section>
 
+  <section class="view" id="view-coste">
+    <div class="view-head">
+      <div>
+        <h2>Coste real de tenerlo — al mes</h2>
+        <p class="hint">No solo el lease: todo lo que cuesta de verdad tener el coche cada mes en Brooklyn. Sin trampas — si sale la cuenta, sale de verdad.</p>
+      </div>
+    </div>
+
+    <div class="coste-grid">
+      <div class="coste-inputs">
+        <div class="card">
+          <h3>El coche</h3>
+          <div class="grid-3">
+            <div class="field">
+              <label for="c-lease">Pago del lease $/mes</label>
+              <input id="c-lease" type="number" inputmode="decimal" min="0" step="5" value="349">
+            </div>
+            <div class="field">
+              <label for="c-down">Entrada al firmar $</label>
+              <input id="c-down" type="number" inputmode="decimal" min="0" step="100" value="2000">
+            </div>
+            <div class="field">
+              <label for="c-term">Plazo del lease (meses)</label>
+              <input id="c-term" type="number" inputmode="numeric" min="1" step="1" value="36">
+            </div>
+          </div>
+          <div class="field full">
+            <label for="c-model">Elegir modelo (pone el mejor precio real que encontró el robot)</label>
+            <select id="c-model"><option value="">— elegir modelo —</option></select>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>En la carretera</h3>
+          <div class="grid-3">
+            <div class="field">
+              <label for="c-ins">Seguro $/mes</label>
+              <input id="c-ins" type="number" inputmode="decimal" min="0" step="10" value="210">
+            </div>
+            <div class="field">
+              <label for="c-maint">Mantenimiento $/mes</label>
+              <input id="c-maint" type="number" inputmode="decimal" min="0" step="5" value="35">
+            </div>
+            <div class="field">
+              <label>Gasolina (calculada)</label>
+              <div class="coste-out" id="c-fuel-out" style="padding-top:8px">$0/mes</div>
+            </div>
+          </div>
+          <div class="grid-3">
+            <div class="field">
+              <label for="c-miles">Millas/mes</label>
+              <input id="c-miles" type="number" inputmode="numeric" min="0" step="50" value="800">
+            </div>
+            <div class="field">
+              <label for="c-mpg">Consumo (mpg)</label>
+              <input id="c-mpg" type="number" inputmode="decimal" min="1" step="1" value="28">
+            </div>
+            <div class="field">
+              <label for="c-gas">Gasolina $/galón</label>
+              <input id="c-gas" type="number" inputmode="decimal" min="0" step="0.10" value="3.60">
+            </div>
+          </div>
+          <p class="hint">Brooklyn tiene de los seguros más caros de EE. UU.; en un lease exigen cobertura completa (~$180–280/mes).</p>
+        </div>
+
+        <div class="card">
+          <h3>Extras de Brooklyn <span class="prio-chip">lo que se olvida</span></h3>
+          <div class="grid-3">
+            <div class="field">
+              <label for="c-park">Aparcamiento $/mes</label>
+              <input id="c-park" type="number" inputmode="decimal" min="0" step="25" value="0">
+            </div>
+            <div class="field">
+              <label for="c-toll">Peajes E-ZPass $/mes</label>
+              <input id="c-toll" type="number" inputmode="decimal" min="0" step="5" value="30">
+            </div>
+            <div class="field">
+              <label for="c-cong">Entradas a Manhattan/mes</label>
+              <input id="c-cong" type="number" inputmode="numeric" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label for="c-reg">Registro + inspección $/año</label>
+              <input id="c-reg" type="number" inputmode="decimal" min="0" step="20" value="280">
+            </div>
+            <div class="field">
+              <label>Peaje de congestión (calculado)</label>
+              <div class="coste-out" id="c-cong-out" style="padding-top:8px">$0/mes</div>
+            </div>
+          </div>
+          <p class="hint">Aparcamiento en la calle: $0 (con el baile del <em>alternate-side</em>). Garaje en 11201: $350–500/mes — el gasto que más se subestima. Peaje de congestión: $9 por entrada a Manhattan bajo la calle 60.</p>
+        </div>
+      </div>
+
+      <div class="coste-receipt">
+        <div class="card">
+          <div class="offers-header"><h3>El recibo</h3><span class="cond-chip nuevo" id="c-tag">todo incluido</span></div>
+          <div id="c-lines"></div>
+          <div class="rec-total-row">
+            <div class="tl">Total al mes<small>todo incluido, sin sorpresas</small></div>
+            <div class="rec-total" id="c-total">$0</div>
+          </div>
+          <div class="rec-year" id="c-year">$0 al año</div>
+          <div class="rec-bar" id="c-bar" aria-hidden="true"></div>
+          <div class="rec-legend" id="c-legend"></div>
+          <div class="budget-box">
+            <div class="field">
+              <label for="c-budget">Lo que podemos permitirnos $/mes</label>
+              <input id="c-budget" type="number" inputmode="decimal" min="0" step="50" value="900">
+            </div>
+            <div class="bstat none" id="c-bstat"><span class="pill" id="c-bpill">—</span><span class="msg" id="c-bmsg">Pon vuestro tope mensual y te digo si entra.</span></div>
+          </div>
+          <p class="coste-note">Cifras para Brooklyn (11201) y ajustables — la idea es que pongáis <em>vuestros</em> números. Esto no es asesoría financiera; es una foto honesta del gasto. Recuerda: el lease trae un tope de millas (típico 10–12k/año); pasarte cuesta $0,15–0,25 por milla al devolverlo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="app-footer">
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=32"></script>
-  <script src="js/offer-parser.js?v=32"></script>
-  <script src="js/vehicles.js?v=32"></script>
-  <script src="js/models.js?v=32"></script>
-  <script src="js/leasedb.js?v=32"></script>
-  <script src="js/decide.js?v=32"></script>
-  <script src="js/app.js?v=32"></script>
+  <script src="js/lease-calc.js?v=33"></script>
+  <script src="js/offer-parser.js?v=33"></script>
+  <script src="js/vehicles.js?v=33"></script>
+  <script src="js/models.js?v=33"></script>
+  <script src="js/leasedb.js?v=33"></script>
+  <script src="js/decide.js?v=33"></script>
+  <script src="js/app.js?v=33"></script>
 </body>
 </html>
