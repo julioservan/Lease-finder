@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T04:16:20.253Z",
+  "updatedAt": "2026-07-22T04:58:59.454Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda hr-v lx awd suv auto (model #: rz2h3tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "ramsey mazda|new lease specials »|36",
@@ -95,7 +95,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — hyundai tucson|last updated: 7/22/2026|36",
@@ -191,7 +191,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — nissan rogue|last updated: 7/22/2026|36",
@@ -255,7 +255,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — subaru forester|last updated: 7/22/2026|36",
@@ -415,7 +415,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — toyota rav4|last updated: 7/22/2026|36",
@@ -479,7 +479,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "hyundai city bay ridge|offer expires 8/3/2026|39",
@@ -511,7 +511,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson se fwd|36",
@@ -575,7 +575,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 sportage lx fwd|36",
@@ -607,7 +607,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|last updated: 7/22/2026|36",
@@ -671,7 +671,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — bronco sport|last updated: 7/22/2026|36",
@@ -706,6 +706,38 @@
       "lastSeen": "2026-07-22T03:53:50.863Z"
     },
     {
+      "key": "lease nyc — nissan rogue|car lease specials 2026 nissan rogue|36",
+      "source": "Lease NYC — Nissan Rogue",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/nissan-lease-specials/nissan-rogue/",
+      "name": "Car Lease Specials 2026 Nissan Rogue",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Nissan Rogue",
+        "monthly": 349,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Nissan Rogue \n \n $ \n349 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 349,
+        "driveOff": 0,
+        "totalCost": 12564,
+        "effectiveMonthly": 349,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
       "key": "carsdirect — subaru forester|subaru forester lease deals near you|36",
       "source": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
@@ -735,7 +767,39 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — mazda cx-50|car lease specials 2026 mazda cx-50|36",
+      "source": "Lease NYC — Mazda CX-50",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/mazda-lease-specials/mazda-cx-50/",
+      "name": "Car Lease Specials 2026 Mazda CX-50",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Mazda CX-50",
+        "monthly": 359,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Mazda CX-50 \n \n $ \n359 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 359,
+        "driveOff": 0,
+        "totalCost": 12924,
+        "effectiveMonthly": 359,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 sportage lx hybrid fwd|36",
@@ -767,7 +831,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — nissan rogue|2026 rogue sv fwd|36",
@@ -834,6 +898,38 @@
       "lastSeen": "2026-07-22T04:16:20.253Z"
     },
     {
+      "key": "lease nyc — hyundai tucson|car lease specials 2026 hyundai tucson|36",
+      "source": "Lease NYC — Hyundai Tucson",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-tucson/",
+      "name": "Car Lease Specials 2026 Hyundai Tucson",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Hyundai Tucson",
+        "monthly": 369,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Hyundai Tucson \n \n $ \n369 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 369,
+        "driveOff": 0,
+        "totalCost": 13284,
+        "effectiveMonthly": 369,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
       "key": "carsdirect — gmc terrain|2026 terrain elevation fwd|36",
       "source": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
@@ -863,7 +959,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 lease deals near you|36",
@@ -895,7 +991,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 awd s select|36",
@@ -927,7 +1023,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — mazda cx-50|2026 cx-50 2.5 s select awd|36",
@@ -960,6 +1056,70 @@
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
       "lastSeen": "2026-07-22T03:53:50.863Z"
+    },
+    {
+      "key": "lease nyc — volkswagen tiguan|car lease specials 2026 volkswagen tiguan|36",
+      "source": "Lease NYC — Volkswagen Tiguan",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/volkswagen-lease-specials/volkswagen-tiguan/",
+      "name": "Car Lease Specials 2026 Volkswagen Tiguan",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Volkswagen Tiguan",
+        "monthly": 385,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Volkswagen Tiguan \n \n $ \n385 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 385,
+        "driveOff": 0,
+        "totalCost": 13860,
+        "effectiveMonthly": 385,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — gmc terrain|2026 volkswagen tiguan|385",
+      "source": "Lease NYC — GMC Terrain",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/gmc-lease-specials/gmc-terrain/",
+      "name": "2026 Volkswagen Tiguan",
+      "parsed": {
+        "name": "2026 Volkswagen Tiguan",
+        "monthly": 385,
+        "term": 385,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Volkswagen Tiguan \n $385 month / $0 down"
+      },
+      "metrics": {
+        "term": 385,
+        "monthlyPayment": 385,
+        "driveOff": 0,
+        "totalCost": 148225,
+        "effectiveMonthly": 385,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — subaru forester|2026 forester base|36",
@@ -1055,7 +1215,39 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T02:55:31.472Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sportage|car lease specials 2026 kia sportage|36",
+      "source": "Lease NYC — Kia Sportage",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sportage/",
+      "name": "Car Lease Specials 2026 Kia Sportage",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Kia Sportage",
+        "monthly": 395,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Kia Sportage \n \n $ \n395 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 395,
+        "driveOff": 0,
+        "totalCost": 14220,
+        "effectiveMonthly": 395,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 tiguan se fwd|36",
@@ -1151,7 +1343,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson blue hybrid se awd|36",
@@ -1215,7 +1407,71 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — mazda cx-50|2026 honda cr-v|409",
+      "source": "Lease NYC — Mazda CX-50",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/mazda-lease-specials/mazda-cx-50/",
+      "name": "2026 Honda CR-V",
+      "parsed": {
+        "name": "2026 Honda CR-V",
+        "monthly": 409,
+        "term": 409,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Honda CR-V \n $409 month / $0 down"
+      },
+      "metrics": {
+        "term": 409,
+        "monthlyPayment": 409,
+        "driveOff": 0,
+        "totalCost": 167281,
+        "effectiveMonthly": 409,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — honda cr-v|car lease specials 2026 honda cr-v|36",
+      "source": "Lease NYC — Honda CR-V",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/honda-lease-specials/honda-cr-v/",
+      "name": "Car Lease Specials 2026 Honda CR-V",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Honda CR-V",
+        "monthly": 409,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Honda CR-V \n \n $ \n409 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 409,
+        "driveOff": 0,
+        "totalCost": 14724,
+        "effectiveMonthly": 409,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 sportage x-line awd plug-in hybrid|36",
@@ -1247,7 +1503,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|36",
@@ -1343,7 +1599,103 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — ford bronco sport|car lease specials 2026 ford bronco sport|36",
+      "source": "Lease NYC — Ford Bronco Sport",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/ford-lease-specials/ford-bronco-sport/",
+      "name": "Car Lease Specials 2026 Ford Bronco Sport",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Ford Bronco Sport",
+        "monthly": 429,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Ford Bronco Sport \n \n $ \n429 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 429,
+        "driveOff": 0,
+        "totalCost": 15444,
+        "effectiveMonthly": 429,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sorento|2026 ford bronco sport|429",
+      "source": "Lease NYC — Kia Sorento",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sorento/",
+      "name": "2026 Ford Bronco Sport",
+      "parsed": {
+        "name": "2026 Ford Bronco Sport",
+        "monthly": 429,
+        "term": 429,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Ford Bronco Sport \n $429 month / $0 down"
+      },
+      "metrics": {
+        "term": 429,
+        "monthlyPayment": 429,
+        "driveOff": 0,
+        "totalCost": 184041,
+        "effectiveMonthly": 429,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — honda cr-v|2026 ford bronco sport|429",
+      "source": "Lease NYC — Honda CR-V",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/honda-lease-specials/honda-cr-v/",
+      "name": "2026 Ford Bronco Sport",
+      "parsed": {
+        "name": "2026 Ford Bronco Sport",
+        "monthly": 429,
+        "term": 429,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Ford Bronco Sport \n $429 month / $0 down"
+      },
+      "metrics": {
+        "term": 429,
+        "monthlyPayment": 429,
+        "driveOff": 0,
+        "totalCost": 184041,
+        "effectiveMonthly": 429,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson sel phev awd|36",
@@ -1376,6 +1728,38 @@
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
       "lastSeen": "2026-07-22T04:16:20.253Z"
+    },
+    {
+      "key": "lease nyc — subaru forester|car lease specials 2026 subaru forester|36",
+      "source": "Lease NYC — Subaru Forester",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/subaru-lease-specials/subaru-forester/",
+      "name": "Car Lease Specials 2026 Subaru Forester",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Subaru Forester",
+        "monthly": 439,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Subaru Forester \n \n $ \n439 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 439,
+        "driveOff": 0,
+        "totalCost": 15804,
+        "effectiveMonthly": 439,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v hybrid awd sport|36",
@@ -1503,7 +1887,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|2026 santa fe se gas|36",
@@ -1536,6 +1920,70 @@
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
       "lastSeen": "2026-07-22T04:16:20.253Z"
+    },
+    {
+      "key": "lease nyc — hyundai santa fe|car lease specials 2026 hyundai santa fe|36",
+      "source": "Lease NYC — Hyundai Santa Fe",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-santa-fe/",
+      "name": "Car Lease Specials 2026 Hyundai Santa Fe",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Hyundai Santa Fe",
+        "monthly": 459,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Hyundai Santa Fe \n \n $ \n459 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 459,
+        "driveOff": 0,
+        "totalCost": 16524,
+        "effectiveMonthly": 459,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — volkswagen tiguan|2026 hyundai santa fe|459",
+      "source": "Lease NYC — Volkswagen Tiguan",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/volkswagen-lease-specials/volkswagen-tiguan/",
+      "name": "2026 Hyundai Santa Fe",
+      "parsed": {
+        "name": "2026 Hyundai Santa Fe",
+        "monthly": 459,
+        "term": 459,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Hyundai Santa Fe \n $459 month / $0 down"
+      },
+      "metrics": {
+        "term": 459,
+        "monthlyPayment": 459,
+        "driveOff": 0,
+        "totalCost": 210681,
+        "effectiveMonthly": 459,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — mazda cx-50|2026 cx-50 hybrid preferred awd|36",
@@ -1599,7 +2047,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|2026 santa fe se hybrid|36",
@@ -1663,7 +2111,71 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — hyundai tucson|2026 kia sorento|495",
+      "source": "Lease NYC — Hyundai Tucson",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-tucson/",
+      "name": "2026 Kia Sorento",
+      "parsed": {
+        "name": "2026 Kia Sorento",
+        "monthly": 495,
+        "term": 495,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Kia Sorento \n $495 month / $0 down"
+      },
+      "metrics": {
+        "term": 495,
+        "monthlyPayment": 495,
+        "driveOff": 0,
+        "totalCost": 245025,
+        "effectiveMonthly": 495,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sorento|car lease specials 2026 kia sorento|36",
+      "source": "Lease NYC — Kia Sorento",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sorento/",
+      "name": "Car Lease Specials 2026 Kia Sorento",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Kia Sorento",
+        "monthly": 495,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Kia Sorento \n \n $ \n495 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 495,
+        "driveOff": 0,
+        "totalCost": 17820,
+        "effectiveMonthly": 495,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "lester glenn gmc|2026 gmc terrain lease special|36",
@@ -1695,7 +2207,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T02:55:31.472Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 hybrid awd preferred|36",
@@ -1727,7 +2239,39 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — toyota rav4|car lease specials 2026 toyota rav4|36",
+      "source": "Lease NYC — Toyota RAV4",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/toyota-lease-specials/toyota-rav4/",
+      "name": "Car Lease Specials 2026 Toyota RAV4",
+      "parsed": {
+        "name": "Car Lease Specials 2026 Toyota RAV4",
+        "monthly": 499,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 Toyota RAV4 \n \n $ \n499 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 499,
+        "driveOff": 0,
+        "totalCost": 17964,
+        "effectiveMonthly": 499,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — kia sorento|2026 sorento ex awd plug-in hybrid|36",
@@ -1759,7 +2303,135 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T03:53:50.863Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — ford bronco sport|2026 jeep grand cherokee|539",
+      "source": "Lease NYC — Ford Bronco Sport",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/ford-lease-specials/ford-bronco-sport/",
+      "name": "2026 Jeep Grand Cherokee",
+      "parsed": {
+        "name": "2026 Jeep Grand Cherokee",
+        "monthly": 539,
+        "term": 539,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "HOT DEAL \n 2026 Jeep Grand Cherokee \n $539 month / $0 down"
+      },
+      "metrics": {
+        "term": 539,
+        "monthlyPayment": 539,
+        "driveOff": 0,
+        "totalCost": 290521,
+        "effectiveMonthly": 539,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — jeep cherokee|can vip auto deliver the 2026 jeep grand cherokee laredo to my locatio|36",
+      "source": "Lease NYC — Jeep Cherokee",
+      "region": "bróker — NYC",
+      "url": "https://viplease.com/best-jeep-lease-deals-nyc/jeep-cherokee/",
+      "name": "Can VIP Auto deliver the 2026 Jeep Grand Cherokee Laredo to my locatio",
+      "parsed": {
+        "name": "Can VIP Auto deliver the 2026 Jeep Grand Cherokee Laredo to my locatio",
+        "monthly": 545,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "565.00 Original price was: 565.00. 545.00 Current price is: 545.00. / Month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 545,
+        "driveOff": 0,
+        "totalCost": 19620,
+        "effectiveMonthly": 545,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — volkswagen tiguan|2026 volkswagen tiguan|565",
+      "source": "Lease NYC — Volkswagen Tiguan",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/volkswagen-lease-specials/volkswagen-tiguan/",
+      "name": "2026 Volkswagen Tiguan",
+      "parsed": {
+        "name": "2026 Volkswagen Tiguan",
+        "monthly": 565,
+        "term": 565,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 INFINITI QX60 \n $565 month / $0 down"
+      },
+      "metrics": {
+        "term": 565,
+        "monthlyPayment": 565,
+        "driveOff": 0,
+        "totalCost": 319225,
+        "effectiveMonthly": 565,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — honda cr-v|2026 honda cr-v|565",
+      "source": "Lease NYC — Honda CR-V",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/honda-lease-specials/honda-cr-v/",
+      "name": "2026 Honda CR-V",
+      "parsed": {
+        "name": "2026 Honda CR-V",
+        "monthly": 565,
+        "term": 565,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 INFINITI QX60 \n $565 month / $0 down"
+      },
+      "metrics": {
+        "term": 565,
+        "monthlyPayment": 565,
+        "driveOff": 0,
+        "totalCost": 319225,
+        "effectiveMonthly": 565,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2027 jeep cherokee deals|36",
@@ -1791,7 +2463,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2027 jeep cherokee finance deals|72",
@@ -1823,7 +2495,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     },
     {
       "key": "lester glenn gmc|gmc terrain lease offer|36",
@@ -1855,7 +2527,711 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-22T04:16:20.253Z"
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — hyundai santa fe|2026 gmc terrain|579",
+      "source": "Lease NYC — Hyundai Santa Fe",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-santa-fe/",
+      "name": "2026 GMC Terrain",
+      "parsed": {
+        "name": "2026 GMC Terrain",
+        "monthly": 579,
+        "term": 579,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 GMC Terrain \n $579 month / $0 down"
+      },
+      "metrics": {
+        "term": 579,
+        "monthlyPayment": 579,
+        "driveOff": 0,
+        "totalCost": 335241,
+        "effectiveMonthly": 579,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — mazda cx-50|2026 gmc terrain|579",
+      "source": "Lease NYC — Mazda CX-50",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/mazda-lease-specials/mazda-cx-50/",
+      "name": "2026 GMC Terrain",
+      "parsed": {
+        "name": "2026 GMC Terrain",
+        "monthly": 579,
+        "term": 579,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 GMC Terrain \n $579 month / $0 down"
+      },
+      "metrics": {
+        "term": 579,
+        "monthlyPayment": 579,
+        "driveOff": 0,
+        "totalCost": 335241,
+        "effectiveMonthly": 579,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — gmc terrain|car lease specials 2026 gmc terrain|36",
+      "source": "Lease NYC — GMC Terrain",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/gmc-lease-specials/gmc-terrain/",
+      "name": "Car Lease Specials 2026 GMC Terrain",
+      "parsed": {
+        "name": "Car Lease Specials 2026 GMC Terrain",
+        "monthly": 579,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Leasing Quote \n \n Car Lease Specials 2026 GMC Terrain \n \n $ \n579 /month"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 579,
+        "driveOff": 0,
+        "totalCost": 20844,
+        "effectiveMonthly": 579,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — subaru forester|2026 subaru forester|665",
+      "source": "Lease NYC — Subaru Forester",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/subaru-lease-specials/subaru-forester/",
+      "name": "2026 Subaru Forester",
+      "parsed": {
+        "name": "2026 Subaru Forester",
+        "monthly": 665,
+        "term": 665,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Mercedes-Benz GLC 300 \n $665 month / $0 down"
+      },
+      "metrics": {
+        "term": 665,
+        "monthlyPayment": 665,
+        "driveOff": 0,
+        "totalCost": 442225,
+        "effectiveMonthly": 665,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — hyundai santa fe|2026 hyundai santa fe|699",
+      "source": "Lease NYC — Hyundai Santa Fe",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-santa-fe/",
+      "name": "2026 Hyundai Santa Fe",
+      "parsed": {
+        "name": "2026 Hyundai Santa Fe",
+        "monthly": 699,
+        "term": 699,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n NEW ARRIVAL \n 2025 Lincoln Nautilus \n $699 month / $0 down"
+      },
+      "metrics": {
+        "term": 699,
+        "monthlyPayment": 699,
+        "driveOff": 0,
+        "totalCost": 488601,
+        "effectiveMonthly": 699,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sorento|2026 kia sorento|699",
+      "source": "Lease NYC — Kia Sorento",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sorento/",
+      "name": "2026 Kia Sorento",
+      "parsed": {
+        "name": "2026 Kia Sorento",
+        "monthly": 699,
+        "term": 699,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Genesis GV80 \n $699 month / $0 down"
+      },
+      "metrics": {
+        "term": 699,
+        "monthlyPayment": 699,
+        "driveOff": 0,
+        "totalCost": 488601,
+        "effectiveMonthly": 699,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — nissan rogue|2026 nissan rogue|699",
+      "source": "Lease NYC — Nissan Rogue",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/nissan-lease-specials/nissan-rogue/",
+      "name": "2026 Nissan Rogue",
+      "parsed": {
+        "name": "2026 Nissan Rogue",
+        "monthly": 699,
+        "term": 699,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Genesis GV80 \n $699 month / $0 down"
+      },
+      "metrics": {
+        "term": 699,
+        "monthlyPayment": 699,
+        "driveOff": 0,
+        "totalCost": 488601,
+        "effectiveMonthly": 699,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — volkswagen tiguan|2026 volkswagen tiguan|699",
+      "source": "Lease NYC — Volkswagen Tiguan",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/volkswagen-lease-specials/volkswagen-tiguan/",
+      "name": "2026 Volkswagen Tiguan",
+      "parsed": {
+        "name": "2026 Volkswagen Tiguan",
+        "monthly": 699,
+        "term": 699,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n NEW ARRIVAL \n 2025 Lincoln Nautilus \n $699 month / $0 down"
+      },
+      "metrics": {
+        "term": 699,
+        "monthlyPayment": 699,
+        "driveOff": 0,
+        "totalCost": 488601,
+        "effectiveMonthly": 699,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — subaru forester|2026 subaru forester|809",
+      "source": "Lease NYC — Subaru Forester",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/subaru-lease-specials/subaru-forester/",
+      "name": "2026 Subaru Forester",
+      "parsed": {
+        "name": "2026 Subaru Forester",
+        "monthly": 809,
+        "term": 809,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2025 Land Rover Discovery Sport \n $809 month / $0 down"
+      },
+      "metrics": {
+        "term": 809,
+        "monthlyPayment": 809,
+        "driveOff": 0,
+        "totalCost": 654481,
+        "effectiveMonthly": 809,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — honda cr-v|2026 honda cr-v|879",
+      "source": "Lease NYC — Honda CR-V",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/honda-lease-specials/honda-cr-v/",
+      "name": "2026 Honda CR-V",
+      "parsed": {
+        "name": "2026 Honda CR-V",
+        "monthly": 879,
+        "term": 879,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Cadillac XT5 \n $879 month / $0 down"
+      },
+      "metrics": {
+        "term": 879,
+        "monthlyPayment": 879,
+        "driveOff": 0,
+        "totalCost": 772641,
+        "effectiveMonthly": 879,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — hyundai santa fe|2026 hyundai santa fe|895",
+      "source": "Lease NYC — Hyundai Santa Fe",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-santa-fe/",
+      "name": "2026 Hyundai Santa Fe",
+      "parsed": {
+        "name": "2026 Hyundai Santa Fe",
+        "monthly": 895,
+        "term": 895,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Mercedes-Benz GLE 350 SUV \n $895 month / $0 down"
+      },
+      "metrics": {
+        "term": 895,
+        "monthlyPayment": 895,
+        "driveOff": 0,
+        "totalCost": 801025,
+        "effectiveMonthly": 895,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sportage|2026 kia sportage|899",
+      "source": "Lease NYC — Kia Sportage",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sportage/",
+      "name": "2026 Kia Sportage",
+      "parsed": {
+        "name": "2026 Kia Sportage",
+        "monthly": 899,
+        "term": 899,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Jaguar F-PACE \n $899 month / $0 down"
+      },
+      "metrics": {
+        "term": 899,
+        "monthlyPayment": 899,
+        "driveOff": 0,
+        "totalCost": 808201,
+        "effectiveMonthly": 899,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — mazda cx-50|2026 mazda cx-50|999",
+      "source": "Lease NYC — Mazda CX-50",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/mazda-lease-specials/mazda-cx-50/",
+      "name": "2026 Mazda CX-50",
+      "parsed": {
+        "name": "2026 Mazda CX-50",
+        "monthly": 999,
+        "term": 999,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2025 Land Rover Defender \n $999 month / $0 down"
+      },
+      "metrics": {
+        "term": 999,
+        "monthlyPayment": 999,
+        "driveOff": 0,
+        "totalCost": 998001,
+        "effectiveMonthly": 999,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — hyundai tucson|2026 hyundai tucson|79",
+      "source": "Lease NYC — Hyundai Tucson",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-tucson/",
+      "name": "2026 Hyundai Tucson",
+      "parsed": {
+        "name": "2026 Hyundai Tucson",
+        "monthly": 1079,
+        "term": 79,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2025 Land Rover Discovery \n $1,079 month / $0 down"
+      },
+      "metrics": {
+        "term": 79,
+        "monthlyPayment": 1079,
+        "driveOff": 0,
+        "totalCost": 85241,
+        "effectiveMonthly": 1079,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sorento|2026 kia sorento|79",
+      "source": "Lease NYC — Kia Sorento",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sorento/",
+      "name": "2026 Kia Sorento",
+      "parsed": {
+        "name": "2026 Kia Sorento",
+        "monthly": 1079,
+        "term": 79,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2025 Land Rover Discovery \n $1,079 month / $0 down"
+      },
+      "metrics": {
+        "term": 79,
+        "monthlyPayment": 1079,
+        "driveOff": 0,
+        "totalCost": 85241,
+        "effectiveMonthly": 1079,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — volkswagen tiguan|2026 volkswagen tiguan|345",
+      "source": "Lease NYC — Volkswagen Tiguan",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/volkswagen-lease-specials/volkswagen-tiguan/",
+      "name": "2026 Volkswagen Tiguan",
+      "parsed": {
+        "name": "2026 Volkswagen Tiguan",
+        "monthly": 1345,
+        "term": 345,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Land Rover Range Rover Sport \n $1,345 month / $0 down"
+      },
+      "metrics": {
+        "term": 345,
+        "monthlyPayment": 1345,
+        "driveOff": 0,
+        "totalCost": 464025,
+        "effectiveMonthly": 1345,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — hyundai tucson|2026 hyundai tucson|399",
+      "source": "Lease NYC — Hyundai Tucson",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-tucson/",
+      "name": "2026 Hyundai Tucson",
+      "parsed": {
+        "name": "2026 Hyundai Tucson",
+        "monthly": 1399,
+        "term": 399,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Porsche Cayenne \n $1,399 month / $0 down"
+      },
+      "metrics": {
+        "term": 399,
+        "monthlyPayment": 1399,
+        "driveOff": 0,
+        "totalCost": 558201,
+        "effectiveMonthly": 1399,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — nissan rogue|2026 nissan rogue|799",
+      "source": "Lease NYC — Nissan Rogue",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/nissan-lease-specials/nissan-rogue/",
+      "name": "2026 Nissan Rogue",
+      "parsed": {
+        "name": "2026 Nissan Rogue",
+        "monthly": 1799,
+        "term": 799,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Cadillac Escalade \n $1,799 month / $0 down"
+      },
+      "metrics": {
+        "term": 799,
+        "monthlyPayment": 1799,
+        "driveOff": 0,
+        "totalCost": 1437401,
+        "effectiveMonthly": 1799,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — gmc terrain|2026 gmc terrain|899",
+      "source": "Lease NYC — GMC Terrain",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/gmc-lease-specials/gmc-terrain/",
+      "name": "2026 GMC Terrain",
+      "parsed": {
+        "name": "2026 GMC Terrain",
+        "monthly": 1899,
+        "term": 899,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n NEW ARRIVAL \n 2025 Lincoln Navigator L \n $1,899 month / $0 down"
+      },
+      "metrics": {
+        "term": 899,
+        "monthlyPayment": 1899,
+        "driveOff": 0,
+        "totalCost": 1707201,
+        "effectiveMonthly": 1899,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sportage|2026 kia sportage|999",
+      "source": "Lease NYC — Kia Sportage",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sportage/",
+      "name": "2026 Kia Sportage",
+      "parsed": {
+        "name": "2026 Kia Sportage",
+        "monthly": 2999,
+        "term": 999,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Mercedes-Benz G 550 \n $2,999 month / $0 down"
+      },
+      "metrics": {
+        "term": 999,
+        "monthlyPayment": 2999,
+        "driveOff": 0,
+        "totalCost": 2996001,
+        "effectiveMonthly": 2999,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — kia sorento|2026 kia sorento|999",
+      "source": "Lease NYC — Kia Sorento",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sorento/",
+      "name": "2026 Kia Sorento",
+      "parsed": {
+        "name": "2026 Kia Sorento",
+        "monthly": 2999,
+        "term": 999,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Mercedes-Benz G 550 \n $2,999 month / $0 down"
+      },
+      "metrics": {
+        "term": 999,
+        "monthlyPayment": 2999,
+        "driveOff": 0,
+        "totalCost": 2996001,
+        "effectiveMonthly": 2999,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
+    },
+    {
+      "key": "lease nyc — nissan rogue|2026 nissan rogue|999",
+      "source": "Lease NYC — Nissan Rogue",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/nissan-lease-specials/nissan-rogue/",
+      "name": "2026 Nissan Rogue",
+      "parsed": {
+        "name": "2026 Nissan Rogue",
+        "monthly": 2999,
+        "term": 999,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Mercedes-Benz G 550 \n $2,999 month / $0 down"
+      },
+      "metrics": {
+        "term": 999,
+        "monthlyPayment": 2999,
+        "driveOff": 0,
+        "totalCost": 2996001,
+        "effectiveMonthly": 2999,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T04:58:59.454Z",
+      "lastSeen": "2026-07-22T04:58:59.454Z"
     }
   ]
 }
