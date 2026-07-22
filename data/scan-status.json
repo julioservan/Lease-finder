@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T03:53:50.863Z",
+  "updatedAt": "2026-07-22T04:16:20.253Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,27 +89,27 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,7 +119,7 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -280,6 +280,56 @@
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
       "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+    },
+    {
+      "name": "Eastchester CJDR",
+      "region": "Bronx, NY",
+      "status": "HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
+    },
+    {
+      "name": "Koeppel Hyundai",
+      "region": "Queens, NY",
+      "status": "HTTP 403 en https://www.koeppelhyundai.com/promotions/new/index.htm · HTTP 403 en https://www.koeppelhyundai.com/lease-specials/ · HTTP 403 en https://www.koeppelhyundai.com/specials/ · HTTP 403 en https://www.koeppelhyundai.com/new-inventory/index.htm · HTTP 403 en https://www.koeppelhyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.koeppelhyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/specials/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelhyundai.com/new-vehicles/"
+    },
+    {
+      "name": "Hyundai City Bay Ridge",
+      "region": "Brooklyn, NY",
+      "status": "ok (6 ofertas)"
+    },
+    {
+      "name": "Star Hyundai",
+      "region": "Bayside, NY",
+      "status": "HTTP 403 en https://www.starhyundai.com/lease-specials/ · HTTP 403 en https://www.starhyundai.com/specials/ · HTTP 403 en https://www.starhyundai.com/new-inventory/index.htm · HTTP 403 en https://www.starhyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.starhyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.starhyundai.com/specials/ · sin ofertas (navegador) en https://www.starhyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starhyundai.com/new-vehicles/"
+    },
+    {
+      "name": "Ramsey Mazda",
+      "region": "Ramsey, NJ",
+      "status": "ok (2 ofertas, con navegador)"
+    },
+    {
+      "name": "Open Road Mazda East Brunswick",
+      "region": "East Brunswick, NJ",
+      "status": "sin ofertas en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/"
+    },
+    {
+      "name": "Open Road Mazda Morristown",
+      "region": "Morristown, NJ",
+      "status": "ok (5 ofertas)"
+    },
+    {
+      "name": "VIP Auto Lease — Jeep",
+      "region": "bróker — Brooklyn, NY",
+      "status": "ok (7 ofertas)"
+    },
+    {
+      "name": "VIP Auto Lease — Kia",
+      "region": "bróker — Brooklyn, NY",
+      "status": "ok (6 ofertas)"
+    },
+    {
+      "name": "VIP Auto Lease — Mazda",
+      "region": "bróker — Brooklyn, NY",
+      "status": "ok (5 ofertas)"
     }
   ]
 }
