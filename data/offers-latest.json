@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T02:34:09.823Z",
+  "updatedAt": "2026-07-22T02:55:31.472Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda hr-v lx awd suv auto (model #: rz2h3tew) for on|39",
@@ -31,7 +31,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — hyundai tucson|last updated: 7/22/2026|36",
@@ -127,7 +127,39 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
+    },
+    {
+      "key": "carsdirect — subaru forester|last updated: 7/22/2026|36",
+      "source": "CarsDirect — Subaru Forester",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/subaru/forester/prices-deals",
+      "name": "Last updated: 7/22/2026",
+      "parsed": {
+        "name": "Last updated: 7/22/2026",
+        "monthly": 279,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": 1.9,
+        "raw": "The 2026 Subaru Forester is now available with lease offers from $279/month and financing as low as 1.9% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/22/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 279,
+        "driveOff": 0,
+        "totalCost": 10044,
+        "effectiveMonthly": 279,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T02:55:31.472Z",
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|last updated: 7/21/2026|36",
@@ -191,7 +223,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson se fwd|36",
@@ -255,7 +287,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T00:12:05.649Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "truecar — bronco sport (lease)|how much does it cost to finance a 2026 ford bronco sport?|36",
@@ -447,7 +479,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T00:12:05.649Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — gmc terrain|2026 terrain elevation fwd|36",
@@ -479,7 +511,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 lease deals near you|36",
@@ -511,7 +543,71 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
+    },
+    {
+      "key": "carsdirect — subaru forester|2026 forester base|36",
+      "source": "CarsDirect — Subaru Forester",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/subaru/forester/prices-deals",
+      "name": "2026 Forester Base",
+      "parsed": {
+        "name": "2026 Forester Base",
+        "monthly": 279,
+        "term": 36,
+        "dueAtSigning": 4278,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Lease Deals Financing & Rebates Payment Calculator Buying Tips Subaru Forester Target Price \n \n Subaru Forester Lease Deals Near You\n Special Lease Offer\n Exp. 7/31/2026\n\n 2026 Forester Base\n $279 Per Month \n 36 Months \n $4,278 Due at Signing \n \n Claim Your Offer Offer Details ›"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 279,
+        "driveOff": 4278,
+        "totalCost": 14043,
+        "effectiveMonthly": 390.0833333333333,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T02:55:31.472Z",
+      "lastSeen": "2026-07-22T02:55:31.472Z"
+    },
+    {
+      "key": "paragon honda|2026 honda cr-v  lx|36",
+      "source": "Paragon Honda",
+      "region": "Queens, NY",
+      "url": "https://www.paragonhonda.com/specials/",
+      "name": "2026 Honda CR-V  LX",
+      "parsed": {
+        "name": "2026 Honda CR-V  LX",
+        "monthly": 289,
+        "term": 36,
+        "dueAtSigning": 4015,
+        "msrp": 33870,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Honda CR-V  LX\nLease this 2026 Honda CR-V LX (Model #: RS4H2TEW) for $289.00 per month for 36 months closed-end lease with approved Excellent Tier 1 credit from Honda Financial Services. Not all customers will qualify. Total Due at signing $4,899.00 includes $4,015.00 down payment and $0.00 security deposit, $289.00 first month&rsquo;s payment, and $595.00 acquisition fee. MSRP $33,870.00 + $175 Dealer Doc Fee. Dealer-applied and other eligible dealer incentives are used to calculate the advertised lease. Total due at signing excludes tax, tag, and registration fees. Lease available through Honda Financial Services. Lessee responsible for auto insurance, maintenance, repairs, excessive wear and tear, and excess mileage over 10000 miles/year at the rate of $0.20/mile and any agreed upon penalties or other charges for payment delinquency. Early lease termination fee may apply. Total monthly payments are $10,404.00. Option to purchase vehicle at lease end is $21,676.80. Offers cannot be combined with any other advertised offer. Vehicle photos are for illustrative purposes only and may not represent the exact vehicle. Offer expires 09/08/2026. NYSDMV #7018652. Paragon Honda Lot DCA #1259957. Paragon Honda Certified Pre-Owned Lot DCA #1262007. Paragon Honda Pre-Owned Lot DCA #1262014."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 289,
+        "driveOff": 4015,
+        "totalCost": 14130,
+        "effectiveMonthly": 392.5,
+        "pctOfMsrp": 1.1588426335990551,
+        "score": 7.191082802547771
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T02:55:31.472Z",
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|2026 cr-v lx|36",
@@ -575,7 +671,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "truecar — gmc terrain (lease)|how much does it cost to finance a 2026 gmc terrain?|36",
@@ -703,7 +799,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|2026 cr-v lx awd|36",
@@ -767,7 +863,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson sel phev awd|36",
@@ -863,39 +959,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
-    },
-    {
-      "key": "carsdirect — jeep cherokee|2026 cherokee laredo hybrid 4x4 w/pkg 23f|42",
-      "source": "CarsDirect — Jeep Cherokee",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/jeep/cherokee/prices-deals",
-      "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
-      "parsed": {
-        "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
-        "monthly": 369,
-        "term": 42,
-        "dueAtSigning": 3529,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "moneyFactor": null,
-        "apr": null,
-        "raw": "2026 Jeep Cherokee Deals \n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F\n $369 Per Month \n 42 Months \n $3,529 Due at Signing \n \n Claim Your Offer Offer Details ›"
-      },
-      "metrics": {
-        "term": 42,
-        "monthlyPayment": 369,
-        "driveOff": 3529,
-        "totalCost": 18658,
-        "effectiveMonthly": 444.23809523809524,
-        "pctOfMsrp": null,
-        "score": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T00:12:05.649Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "truecar — honda cr-v (lease)|how much does it cost to lease a 2026 honda cr-v?|36",
@@ -992,6 +1056,38 @@
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
       "lastSeen": "2026-07-22T00:12:05.649Z"
+    },
+    {
+      "key": "carsdirect — jeep cherokee|2026 cherokee laredo hybrid 4x4 w/pkg 23f|42",
+      "source": "CarsDirect — Jeep Cherokee",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/jeep/cherokee/prices-deals",
+      "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
+      "parsed": {
+        "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
+        "monthly": 369,
+        "term": 42,
+        "dueAtSigning": 3929,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 Jeep Cherokee Deals \n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F\n $369 Per Month \n 42 Months \n $3,929 Due at Signing \n \n Claim Your Offer Offer Details ›"
+      },
+      "metrics": {
+        "term": 42,
+        "monthlyPayment": 369,
+        "driveOff": 3929,
+        "totalCost": 19058,
+        "effectiveMonthly": 453.76190476190476,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T00:12:05.649Z",
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "truecar — honda cr-v (lease)|build & price view inventory|36",
@@ -1119,7 +1215,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|2026 santa fe se hybrid|36",
@@ -1184,6 +1280,38 @@
       "isTarget": true,
       "firstSeen": "2026-07-21T13:30:43.883Z",
       "lastSeen": "2026-07-21T13:30:43.883Z"
+    },
+    {
+      "key": "lester glenn gmc|2026 gmc terrain lease special|36",
+      "source": "Lester Glenn GMC",
+      "region": "Toms River, NJ",
+      "url": "https://www.lesterglenngmc.com/terrain-specials.html",
+      "name": "2026 GMC Terrain Lease Special",
+      "parsed": {
+        "name": "2026 GMC Terrain Lease Special",
+        "monthly": 399,
+        "term": 36,
+        "dueAtSigning": 3999,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "2026 GMC Terrain Lease Special\nLease a new 2026 GMC Terrain for $399/mo for 36 months with $3,999 down."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 399,
+        "driveOff": 3999,
+        "totalCost": 17964,
+        "effectiveMonthly": 499,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T02:55:31.472Z",
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "truecar — gmc terrain (lease)|estimate|36",
@@ -1343,7 +1471,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2027 jeep cherokee finance deals|72",
@@ -1375,7 +1503,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     },
     {
       "key": "lester glenn gmc|gmc terrain lease offer|36",
@@ -1407,7 +1535,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-22T02:34:09.823Z"
+      "lastSeen": "2026-07-22T02:55:31.472Z"
     }
   ]
 }
