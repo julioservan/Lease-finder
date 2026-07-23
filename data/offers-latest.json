@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-23T17:28:44.616Z",
+  "updatedAt": "2026-07-23T21:22:22.920Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda hr-v lx awd suv auto (model #: rz2h3tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "ramsey mazda|new lease specials »|36",
@@ -95,7 +95,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "vip auto lease — mazda|how does vip guarantee the best prices?|60",
@@ -192,6 +192,38 @@
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
       "lastSeen": "2026-07-22T21:23:02.553Z"
+    },
+    {
+      "key": "carsdirect — kia sportage|last updated: 7/23/2026|36",
+      "source": "CarsDirect — Kia Sportage",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/kia/sportage/prices-deals",
+      "name": "Last updated: 7/23/2026",
+      "parsed": {
+        "name": "Last updated: 7/23/2026",
+        "monthly": 239,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": 0,
+        "raw": "The 2027 and 2026 Kia Sportage are now available with lease offers from $239/month and financing as low as 0% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/23/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 239,
+        "driveOff": 0,
+        "totalCost": 8604,
+        "effectiveMonthly": 239,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-23T21:22:22.920Z",
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — hyundai tucson|last updated: 7/22/2026|36",
@@ -383,7 +415,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-23T13:31:10.670Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — mazda cx-50|last updated: 7/22/2026|36",
@@ -543,7 +575,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-23T13:31:10.670Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — kia sorento|last updated: 7/22/2026|36",
@@ -578,6 +610,38 @@
       "lastSeen": "2026-07-22T21:23:02.553Z"
     },
     {
+      "key": "carsdirect — kia sorento|last updated: 7/23/2026|36",
+      "source": "CarsDirect — Kia Sorento",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/kia/sorento/prices-deals",
+      "name": "Last updated: 7/23/2026",
+      "parsed": {
+        "name": "Last updated: 7/23/2026",
+        "monthly": 299,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": 0,
+        "raw": "The 2026 Kia Sorento is now available with lease offers from $299/month and financing as low as 0% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/23/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 299,
+        "driveOff": 0,
+        "totalCost": 10764,
+        "effectiveMonthly": 299,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-23T21:22:22.920Z",
+      "lastSeen": "2026-07-23T21:22:22.920Z"
+    },
+    {
       "key": "hyundai city bay ridge|offer expires 8/3/2026|39",
       "source": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
@@ -607,7 +671,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson se fwd|36",
@@ -671,7 +735,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 sportage lx fwd|36",
@@ -690,7 +754,7 @@
         "residualPct": null,
         "moneyFactor": null,
         "apr": null,
-        "raw": "Lease Deals Financing & Rebates Payment Calculator Kia Sportage Target Price \n \n Kia Sportage Lease Deals Near You\n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Sportage LX FWD\n $239 Per Month \n 36 Months \n $3,999 Due at Signing \n \n Claim Your Offer Offer Details ›"
+        "raw": "2026 Kia Sportage Deals \n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Sportage LX FWD\n $239 Per Month \n 36 Months \n $3,999 Due at Signing \n \n Claim Your Offer Offer Details ›"
       },
       "metrics": {
         "term": 36,
@@ -703,7 +767,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|last updated: 7/22/2026|36",
@@ -767,7 +831,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — bronco sport|last updated: 7/22/2026|36",
@@ -831,7 +895,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|last updated: 7/23/2026|36",
@@ -895,7 +959,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — mazda cx-50|car lease specials 2026 mazda cx-50|36",
@@ -927,7 +991,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — mazda cx-50|mazda cx-50 lease deals near you|36",
@@ -959,7 +1023,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T13:31:14.184Z",
-      "lastSeen": "2026-07-22T13:31:14.184Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 sportage lx hybrid fwd|36",
@@ -991,7 +1055,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — nissan rogue|2026 rogue sv fwd|36",
@@ -1087,7 +1151,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — jeep cherokee|last updated: 7/23/2026|36",
@@ -1151,7 +1215,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 lease deals near you|36",
@@ -1183,7 +1247,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 awd s select|36",
@@ -1215,7 +1279,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — mazda cx-50|2026 cx-50 2.5 s select awd|36",
@@ -1279,7 +1343,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — subaru forester|2026 forester base|36",
@@ -1375,7 +1439,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T02:55:31.472Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — kia sportage|car lease specials 2026 kia sportage|36",
@@ -1407,7 +1471,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 tiguan se fwd|36",
@@ -1503,7 +1567,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson blue hybrid se awd|36",
@@ -1567,7 +1631,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — honda cr-v|car lease specials 2026 honda cr-v|36",
@@ -1599,7 +1663,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 sportage x-line awd plug-in hybrid|36",
@@ -1631,7 +1695,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|36",
@@ -1663,7 +1727,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — cr-v (deals)|2026 cr-v lx awd|36",
@@ -1727,7 +1791,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — ford bronco sport|car lease specials 2026 ford bronco sport|36",
@@ -1759,7 +1823,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson sel phev awd|36",
@@ -1823,7 +1887,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v hybrid awd sport|36",
@@ -1855,7 +1919,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2026 cherokee laredo hybrid 4x4 w/pkg 23f|42",
@@ -2015,7 +2079,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — mazda cx-50|2026 cx-50 hybrid preferred awd|36",
@@ -2079,7 +2143,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|2026 santa fe se hybrid|36",
@@ -2143,7 +2207,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — kia sorento|car lease specials 2026 kia sorento|36",
@@ -2175,7 +2239,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lester glenn gmc|2026 gmc terrain lease special|36",
@@ -2207,7 +2271,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T02:55:31.472Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 hybrid awd preferred|36",
@@ -2239,7 +2303,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — toyota rav4|car lease specials 2026 toyota rav4|36",
@@ -2271,7 +2335,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — kia sorento|2026 sorento ex awd plug-in hybrid|36",
@@ -2303,7 +2367,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — nissan rogue|2026 nissan rogue|529",
@@ -2434,6 +2498,38 @@
       "lastSeen": "2026-07-22T21:23:02.553Z"
     },
     {
+      "key": "lease nyc — ford bronco sport|2026 ford bronco sport|529",
+      "source": "Lease NYC — Ford Bronco Sport",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/ford-lease-specials/ford-bronco-sport/",
+      "name": "2026 Ford Bronco Sport",
+      "parsed": {
+        "name": "2026 Ford Bronco Sport",
+        "monthly": 529,
+        "term": 529,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2025 Lincoln Corsair \n $529 month / $0 down"
+      },
+      "metrics": {
+        "term": 529,
+        "monthlyPayment": 529,
+        "driveOff": 0,
+        "totalCost": 279841,
+        "effectiveMonthly": 529,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-23T21:22:22.920Z",
+      "lastSeen": "2026-07-23T21:22:22.920Z"
+    },
+    {
       "key": "lease nyc — jeep cherokee|can vip auto deliver the 2026 jeep grand cherokee laredo to my locatio|36",
       "source": "Lease NYC — Jeep Cherokee",
       "region": "bróker — NYC",
@@ -2463,7 +2559,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — hyundai santa fe|2026 hyundai santa fe|559",
@@ -2527,7 +2623,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T05:10:13.689Z",
-      "lastSeen": "2026-07-23T13:31:10.670Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — kia sportage|2026 kia sportage|559",
@@ -3039,7 +3135,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2027 jeep cherokee finance deals|72",
@@ -3071,7 +3167,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lester glenn gmc|gmc terrain lease offer|36",
@@ -3103,7 +3199,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — gmc terrain|car lease specials 2026 gmc terrain|36",
@@ -3135,7 +3231,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — toyota rav4|2026 toyota rav4 hybrid|599",
@@ -3167,7 +3263,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T05:10:13.689Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — subaru forester|2026 subaru forester|665",
@@ -3362,6 +3458,70 @@
       "lastSeen": "2026-07-23T13:31:10.670Z"
     },
     {
+      "key": "lease nyc — ford bronco sport|2026 ford bronco sport|665",
+      "source": "Lease NYC — Ford Bronco Sport",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/ford-lease-specials/ford-bronco-sport/",
+      "name": "2026 Ford Bronco Sport",
+      "parsed": {
+        "name": "2026 Ford Bronco Sport",
+        "monthly": 665,
+        "term": 665,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Mercedes-Benz GLC 300 \n $665 month / $0 down"
+      },
+      "metrics": {
+        "term": 665,
+        "monthlyPayment": 665,
+        "driveOff": 0,
+        "totalCost": 442225,
+        "effectiveMonthly": 665,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-23T21:22:22.920Z",
+      "lastSeen": "2026-07-23T21:22:22.920Z"
+    },
+    {
+      "key": "lease nyc — hyundai santa fe|2026 hyundai santa fe|665",
+      "source": "Lease NYC — Hyundai Santa Fe",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/hyundai-lease-specials/hyundai-santa-fe/",
+      "name": "2026 Hyundai Santa Fe",
+      "parsed": {
+        "name": "2026 Hyundai Santa Fe",
+        "monthly": 665,
+        "term": 665,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Mercedes-Benz GLC 300 \n $665 month / $0 down"
+      },
+      "metrics": {
+        "term": 665,
+        "monthlyPayment": 665,
+        "driveOff": 0,
+        "totalCost": 442225,
+        "effectiveMonthly": 665,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-23T21:22:22.920Z",
+      "lastSeen": "2026-07-23T21:22:22.920Z"
+    },
+    {
       "key": "lease nyc — hyundai santa fe|2026 hyundai santa fe|699",
       "source": "Lease NYC — Hyundai Santa Fe",
       "region": "bróker — NYC",
@@ -3378,7 +3538,7 @@
         "residualPct": null,
         "moneyFactor": null,
         "apr": null,
-        "raw": "Get Quote \n \n HOT DEAL \n 2026 Genesis GV80 \n $699 month / $0 down"
+        "raw": "Get Quote \n \n NEW ARRIVAL \n 2025 Lincoln Nautilus \n $699 month / $0 down"
       },
       "metrics": {
         "term": 699,
@@ -3391,7 +3551,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:58:59.454Z",
-      "lastSeen": "2026-07-22T17:28:15.291Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — kia sorento|2026 kia sorento|699",
@@ -3586,6 +3746,38 @@
       "lastSeen": "2026-07-23T17:28:44.616Z"
     },
     {
+      "key": "lease nyc — kia sportage|2026 kia sportage|699",
+      "source": "Lease NYC — Kia Sportage",
+      "region": "bróker — NYC",
+      "url": "https://www.eautolease.com/car-lease-deals/kia-lease-specials/kia-sportage/",
+      "name": "2026 Kia Sportage",
+      "parsed": {
+        "name": "2026 Kia Sportage",
+        "monthly": 699,
+        "term": 699,
+        "dueAtSigning": 0,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "moneyFactor": null,
+        "apr": null,
+        "raw": "Get Quote \n \n HOT DEAL \n 2026 Genesis GV80 \n $699 month / $0 down"
+      },
+      "metrics": {
+        "term": 699,
+        "monthlyPayment": 699,
+        "driveOff": 0,
+        "totalCost": 488601,
+        "effectiveMonthly": 699,
+        "pctOfMsrp": null,
+        "score": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-23T21:22:22.920Z",
+      "lastSeen": "2026-07-23T21:22:22.920Z"
+    },
+    {
       "key": "lease nyc — hyundai tucson|2026 hyundai tucson|785",
       "source": "Lease NYC — Hyundai Tucson",
       "region": "bróker — NYC",
@@ -3615,7 +3807,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T05:17:57.251Z",
-      "lastSeen": "2026-07-23T13:31:10.670Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — honda cr-v|2026 honda cr-v|785",
@@ -3711,7 +3903,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T21:23:02.553Z",
-      "lastSeen": "2026-07-23T17:28:44.616Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — hyundai santa fe|2026 hyundai santa fe|785",
@@ -3903,7 +4095,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T05:17:57.251Z",
-      "lastSeen": "2026-07-22T05:17:57.251Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — hyundai tucson|2026 hyundai tucson|809",
@@ -4095,7 +4287,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T05:17:57.251Z",
-      "lastSeen": "2026-07-22T13:31:14.184Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — mazda cx-50|2026 mazda cx-50|839",
@@ -4127,7 +4319,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T13:31:14.184Z",
-      "lastSeen": "2026-07-22T13:31:14.184Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — volkswagen tiguan|2026 volkswagen tiguan|839",
@@ -4223,7 +4415,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-23T13:31:10.670Z",
-      "lastSeen": "2026-07-23T13:31:10.670Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — gmc terrain|2026 gmc terrain|839",
@@ -4415,7 +4607,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T13:31:14.184Z",
-      "lastSeen": "2026-07-22T13:31:14.184Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — subaru forester|2026 subaru forester|849",
@@ -4511,7 +4703,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T17:28:15.291Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — gmc terrain|2026 gmc terrain|849",
@@ -5087,7 +5279,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T05:10:13.689Z",
-      "lastSeen": "2026-07-22T21:23:02.553Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — kia sorento|2026 kia sorento|899",
@@ -5106,7 +5298,7 @@
         "residualPct": null,
         "moneyFactor": null,
         "apr": null,
-        "raw": "2026 Jaguar F-PACE \n $899 month / $0 down"
+        "raw": "2025 Cadillac XT6 \n $899 month / $0 down"
       },
       "metrics": {
         "term": 899,
@@ -5119,7 +5311,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T13:31:14.184Z",
-      "lastSeen": "2026-07-22T13:31:14.184Z"
+      "lastSeen": "2026-07-23T21:22:22.920Z"
     },
     {
       "key": "lease nyc — subaru forester|2026 subaru forester|899",
