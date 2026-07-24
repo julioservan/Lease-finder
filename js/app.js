@@ -233,10 +233,13 @@
     var parts = COSTE_ITEMS.map(function (it) { return { it: it, amt: it.get(v) }; });
     var total = parts.reduce(function (s, p) { return s + p.amt; }, 0);
 
+    var insurer = ($('c-insurer') && $('c-insurer').value || '').trim();
     $('c-lines').innerHTML = parts.map(function (p) {
+      var note = p.it.note;
+      if (p.it.name === 'Seguro' && insurer) note = escapeHtml(insurer); // aseguradora del usuario
       return '<div class="rec-line' + (p.amt <= 0 ? ' rec-zero' : '') + '">' +
         '<span class="rec-dot" style="background:' + p.it.color + '"></span>' +
-        '<span class="rec-name">' + p.it.name + (p.it.note ? '<small>' + p.it.note + '</small>' : '') + '</span>' +
+        '<span class="rec-name">' + p.it.name + (note ? '<small>' + note + '</small>' : '') + '</span>' +
         '<span class="rec-amt">' + fmtMoney(p.amt) + '</span></div>';
     }).join('');
 
@@ -271,6 +274,84 @@
       bs.className = 'bstat no'; pill.textContent = 'Se pasa';
       msg.textContent = 'Se pasa ' + fmtMoney(total - budget) + '/mes. Baja el lease o el seguro para que cuadre.';
     }
+  }
+
+  /* ---------------- perfiles de coche (Coste al mes) ---------------- */
+
+  var COSTE_PROFILES_KEY = 'lf-coste-profiles-v1';
+  var COSTE_FIELDS = ['c-lease', 'c-down', 'c-term', 'c-ins', 'c-insurer', 'c-park',
+    'c-maint', 'c-miles', 'c-mpg', 'c-gas', 'c-toll', 'c-cong', 'c-reg', 'c-budget'];
+
+  function loadProfiles() {
+    try { return JSON.parse(localStorage.getItem(COSTE_PROFILES_KEY)) || { list: [], activeId: null }; }
+    catch (e) { return { list: [], activeId: null }; }
+  }
+  function saveProfiles(p) { try { localStorage.setItem(COSTE_PROFILES_KEY, JSON.stringify(p)); } catch (e) { /* lleno */ } }
+
+  function costeGather() {
+    var o = {};
+    COSTE_FIELDS.forEach(function (id) { var el = $(id); if (el) o[id] = el.value; });
+    o.tag = $('c-tag') ? $('c-tag').textContent : '';
+    return o;
+  }
+  function costeApply(fields) {
+    COSTE_FIELDS.forEach(function (id) { var el = $(id); if (el && fields[id] != null) el.value = fields[id]; });
+    if (fields.tag && $('c-tag')) $('c-tag').textContent = fields.tag;
+    renderCoste();
+  }
+
+  function refreshProfileSelect(activeId) {
+    var sel = $('c-profile');
+    if (!sel) return;
+    var db = loadProfiles();
+    sel.innerHTML = '<option value="">— Perfil nuevo —</option>' +
+      db.list.map(function (p) { return '<option value="' + p.id + '">' + escapeHtml(p.name) + '</option>'; }).join('');
+    sel.value = activeId || '';
+  }
+
+  function saveCosteProfile() {
+    var db = loadProfiles();
+    var name = ($('c-profile-name').value || '').trim() ||
+      ($('c-tag') && $('c-tag').textContent) || 'Mi coche';
+    var fields = costeGather();
+    // Actualiza si ya existe un perfil activo/con ese nombre; si no, crea.
+    var active = $('c-profile').value;
+    var existing = db.list.filter(function (p) { return p.id === active || p.name.toLowerCase() === name.toLowerCase(); })[0];
+    if (existing) { existing.name = name; existing.fields = fields; db.activeId = existing.id; }
+    else {
+      var id = 'p' + (db.list.length + 1) + '-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 8);
+      db.list.push({ id: id, name: name, fields: fields });
+      db.activeId = id;
+    }
+    saveProfiles(db);
+    refreshProfileSelect(db.activeId);
+    flashSaved($('c-profile-save'));
+  }
+
+  function deleteCosteProfile() {
+    var db = loadProfiles();
+    var active = $('c-profile').value;
+    if (!active) return;
+    db.list = db.list.filter(function (p) { return p.id !== active; });
+    db.activeId = null;
+    saveProfiles(db);
+    $('c-profile-name').value = '';
+    refreshProfileSelect('');
+  }
+
+  function selectCosteProfile() {
+    var db = loadProfiles();
+    var id = $('c-profile').value;
+    var p = db.list.filter(function (x) { return x.id === id; })[0];
+    db.activeId = id || null;
+    saveProfiles(db);
+    if (p) { $('c-profile-name').value = p.name; costeApply(p.fields); }
+  }
+
+  function flashSaved(btn) {
+    if (!btn) return;
+    var t = btn.textContent; btn.textContent = '✅ Guardado';
+    setTimeout(function () { btn.textContent = t; }, 1200);
   }
 
   /* ---------------- cálculo en vivo ---------------- */
@@ -1780,11 +1861,22 @@
     });
 
     // Coste al mes: recalcula al escribir en cualquier campo de la vista.
-    ['c-lease', 'c-down', 'c-term', 'c-ins', 'c-maint', 'c-miles', 'c-mpg', 'c-gas',
+    ['c-lease', 'c-down', 'c-term', 'c-ins', 'c-insurer', 'c-maint', 'c-miles', 'c-mpg', 'c-gas',
      'c-park', 'c-toll', 'c-cong', 'c-reg', 'c-budget'].forEach(function (id) {
       var el = $(id);
       if (el) el.addEventListener('input', renderCoste);
     });
+
+    // Perfiles de coche (guardar/cargar/borrar escenarios completos).
+    if ($('c-profile')) {
+      $('c-profile').addEventListener('change', selectCosteProfile);
+      $('c-profile-save').addEventListener('click', saveCosteProfile);
+      $('c-profile-del').addEventListener('click', deleteCosteProfile);
+      var pdb = loadProfiles();
+      refreshProfileSelect(pdb.activeId);
+      var act = pdb.list.filter(function (p) { return p.id === pdb.activeId; })[0];
+      if (act) { $('c-profile-name').value = act.name; costeApply(act.fields); }
+    }
     var sharedOffer = loadFromHash();
     var savedTab = null;
     try { savedTab = localStorage.getItem(TAB_KEY); } catch (e) { /* default */ }
