@@ -348,6 +348,33 @@
     if (p) { $('c-profile-name').value = p.name; costeApply(p.fields); }
   }
 
+  /** Copia de reserva cuando no hay navigator.clipboard (http, navegadores viejos). */
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    } catch (e) { /* nada que hacer */ }
+  }
+
+  /** Copiar al portapapeles desde un botón con data-copy (VIN, etc.). Global:
+   *  se llama vía onclick inline para que el stopPropagation de los <details>
+   *  del stock no lo bloquee. */
+  function lfCopy(btn) {
+    var val = btn.getAttribute('data-copy') || '';
+    function done() {
+      var t = btn.getAttribute('data-label') || btn.textContent;
+      btn.setAttribute('data-label', t);
+      btn.textContent = '✅ Copiado'; btn.classList.add('ok');
+      setTimeout(function () { btn.textContent = t; btn.classList.remove('ok'); }, 1400);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(val).then(done, function () { fallbackCopy(val); done(); });
+    } else { fallbackCopy(val); done(); }
+  }
+  window.lfCopy = lfCopy;
+
   function flashSaved(btn) {
     if (!btn) return;
     var t = btn.textContent; btn.textContent = '✅ Guardado';
@@ -897,6 +924,14 @@
     if (c.url) links.push('<a href="' + c.url + '" target="_blank" rel="noopener" title="Busca este VIN exacto y su concesionario">buscar VIN ↗</a>');
     if (c.carfax) links.push('<a href="' + c.carfax + '" target="_blank" rel="noopener">Carfax ↗</a>');
 
+    // VIN copiable: para pegarlo en la aseguradora (GEICO, etc. → "añadir por VIN").
+    var vinLine = c.vin
+      ? '<div class="sc-line sc-vin"><span class="sc-vin-label">VIN</span>' +
+        '<code class="sc-vin-code">' + escapeHtml(c.vin) + '</code>' +
+        '<button type="button" class="sc-copy" onclick="lfCopy(this)" data-copy="' + escapeHtml(c.vin) +
+        '" title="Copiar el VIN para pegarlo en la aseguradora">📋 Copiar</button></div>'
+      : '';
+
     return '<div class="stock-card">' + photo +
       '<div class="sc-body">' +
         '<div class="sc-top"><span class="cond-pill ' + cls + '">' + c.condition + '</span>' +
@@ -907,6 +942,7 @@
         (hist.length ? '<div class="sc-line sc-hist">' + hist.join(' · ') + '</div>' : '') +
         (c.dealer ? '<div class="sc-line sc-dealer">🏬 ' + escapeHtml(c.dealer) +
           (c.city ? ' · ' + escapeHtml(c.city) + ', ' + escapeHtml(c.state || '') : '') + '</div>' : '') +
+        vinLine +
         (links.length ? '<div class="sc-line sc-links">' + links.join(' · ') + '</div>' : '') +
       '</div></div>';
   }

@@ -426,3 +426,9 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .coste-profiles .field { flex: 1 1 180px; margin-bottom: 0; }
 .coste-profile-actions { display: flex; gap: 6px; }
 @media (max-width: 480px) { .coste-profiles .field { flex-basis: 100%; } }
+.sc-vin { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.sc-vin-label { font-size: 0.64rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--faint); }
+.sc-vin-code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.78rem; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; letter-spacing: 0.02em; }
+.sc-copy { font: inherit; font-size: 0.72rem; color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px; cursor: pointer; white-space: nowrap; transition: background 0.12s, color 0.12s, border-color 0.12s; }
+.sc-copy:hover { color: var(--text); background: var(--hover); border-color: var(--border-strong); }
+.sc-copy.ok { color: var(--green); border-color: rgba(77,171,109,0.4); }
