@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=40">
+  <link rel="stylesheet" href="css/styles.css?v=41">
 </head>
 <body>
   <header class="topbar">
@@ -376,6 +376,21 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
 
     <div class="coste-grid">
       <div class="coste-inputs">
+        <div class="card coste-profiles">
+          <div class="field">
+            <label for="c-profile">Perfil guardado</label>
+            <select id="c-profile"><option value="">— Perfil nuevo —</option></select>
+          </div>
+          <div class="field">
+            <label for="c-profile-name">Nombre del perfil</label>
+            <input id="c-profile-name" type="text" placeholder="Ej. CR-V — Garden State">
+          </div>
+          <div class="coste-profile-actions">
+            <button type="button" class="btn mini primary" id="c-profile-save">💾 Guardar</button>
+            <button type="button" class="btn mini subtle" id="c-profile-del" title="Borrar este perfil">🗑</button>
+          </div>
+        </div>
+
         <div class="card">
           <h3>El coche</h3>
           <div class="grid-3">
@@ -404,6 +419,16 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
             <div class="field">
               <label for="c-ins">Seguro $/mes</label>
               <input id="c-ins" type="number" inputmode="decimal" min="0" step="10" value="180">
+            </div>
+            <div class="field">
+              <label for="c-insurer">Aseguradora</label>
+              <input id="c-insurer" type="text" list="c-insurers" placeholder="GEICO">
+              <datalist id="c-insurers">
+                <option>GEICO</option><option>Progressive</option><option>State Farm</option>
+                <option>Allstate</option><option>Liberty Mutual</option><option>USAA</option>
+                <option>Travelers</option><option>Nationwide</option><option>NYCM</option>
+                <option>Erie</option><option>Amica</option>
+              </datalist>
             </div>
             <div class="field">
               <label for="c-park">Aparcamiento $/mes</label>
@@ -484,13 +509,13 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=40"></script>
-  <script src="js/offer-parser.js?v=40"></script>
-  <script src="js/vehicles.js?v=40"></script>
-  <script src="js/models.js?v=40"></script>
-  <script src="js/leasedb.js?v=40"></script>
-  <script src="js/dealerscore.js?v=40"></script>
-  <script src="js/decide.js?v=40"></script>
-  <script src="js/app.js?v=40"></script>
+  <script src="js/lease-calc.js?v=41"></script>
+  <script src="js/offer-parser.js?v=41"></script>
+  <script src="js/vehicles.js?v=41"></script>
+  <script src="js/models.js?v=41"></script>
+  <script src="js/leasedb.js?v=41"></script>
+  <script src="js/dealerscore.js?v=41"></script>
+  <script src="js/decide.js?v=41"></script>
+  <script src="js/app.js?v=41"></script>
 </body>
 </html>
