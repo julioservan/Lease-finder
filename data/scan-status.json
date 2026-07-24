@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-23T21:22:22.920Z",
+  "updatedAt": "2026-07-24T13:30:18.574Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,17 +74,17 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -99,27 +99,27 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (34 ofertas)"
+      "status": "ok (31 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -224,7 +224,7 @@
     {
       "name": "Freehold Ford",
       "region": "Freehold, NJ",
-      "status": "ok (2 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.freeholdford.com/bronco-sport-special/ · HTTP 403 en https://www.freeholdford.com/lease-specials/ · HTTP 403 en https://www.freeholdford.com/new-inventory/index.htm · HTTP 403 en https://www.freeholdford.com/new-vehicles/ · sin ofertas (navegador) en https://www.freeholdford.com/bronco-sport-special/ · sin ofertas (navegador) en https://www.freeholdford.com/lease-specials/ · sin ofertas (navegador) en https://www.freeholdford.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.freeholdford.com/new-vehicles/"
     },
     {
       "name": "Lester Glenn Ford",
@@ -279,7 +279,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · fetch failed en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
@@ -324,32 +324,32 @@
     {
       "name": "Lease NYC — Ford Bronco Sport",
       "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Toyota RAV4",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Lease NYC — Hyundai Tucson",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "Lease NYC — Hyundai Santa Fe",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Kia Sportage",
       "region": "bróker — NYC",
-      "status": "ok (8 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Kia Sorento",
       "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Subaru Forester",
@@ -359,27 +359,27 @@
     {
       "name": "Lease NYC — Mazda CX-50",
       "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Lease NYC — Nissan Rogue",
       "region": "bróker — NYC",
-      "status": "ok (9 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Volkswagen Tiguan",
       "region": "bróker — NYC",
-      "status": "ok (9 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Honda CR-V",
       "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Lease NYC — GMC Terrain",
       "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
+      "status": "ok (10 ofertas)"
     }
   ]
 }
