@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T05:10:13.689Z",
+  "updatedAt": "2026-07-24T21:22:16.320Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,42 +74,42 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,12 +119,12 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
       "region": "Brooklyn, NY",
-      "status": "ok (20 ofertas)"
+      "status": "ok (19 ofertas)"
     },
     {
       "name": "Bay Ridge Honda",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (31 ofertas)"
+      "status": "ok (28 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (37 ofertas)"
+      "status": "ok (31 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -199,7 +199,7 @@
     {
       "name": "Manhattan Jeep Chrysler Dodge Ram",
       "region": "Manhattan, NY",
-      "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · sin ofertas (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · page.goto: net::ERR_CONNECTION_RESET at https://www.manhattanjeep.com/lease-specials/\nCall log:\n  - navigating to \"https://www.manhattanjeep.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · page.goto: net::ERR_CONNECTION_RESET at https://www.manhattanjeep.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.manhattanjeep.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.manhattanjeep.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Ford",
@@ -334,17 +334,17 @@
     {
       "name": "Lease NYC — Hyundai Tucson",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Lease NYC — Hyundai Santa Fe",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "Lease NYC — Kia Sportage",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "Lease NYC — Kia Sorento",
@@ -364,12 +364,12 @@
     {
       "name": "Lease NYC — Nissan Rogue",
       "region": "bróker — NYC",
-      "status": "ok (9 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Volkswagen Tiguan",
       "region": "bróker — NYC",
-      "status": "ok (9 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Honda CR-V",

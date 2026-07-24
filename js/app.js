@@ -153,16 +153,17 @@
 
   /* ---------------- Coste real al mes (coste total de tenerlo) ---------------- */
 
+  // Lo básico (siempre visible) + extras opcionales (plegados). La entrada NO
+  // va aquí: es un pago único, no mensual, y se muestra aparte.
   var COSTE_ITEMS = [
     { name: 'Lease', note: 'pago mensual', color: '#6fb2f0', get: function (v) { return v.lease; } },
-    { name: 'Seguro', note: 'cobertura completa', color: '#4dab6d', get: function (v) { return v.ins; } },
+    { name: 'Seguro', note: null, color: '#4dab6d', get: function (v) { return v.ins; } },
     { name: 'Gasolina', note: null, color: '#d9a84b', get: function (v) { return v.fuel; } },
     { name: 'Aparcamiento', note: null, color: '#c58bb0', get: function (v) { return v.park; } },
-    { name: 'Peajes (E-ZPass)', note: null, color: '#8bb45a', get: function (v) { return v.toll; } },
-    { name: 'Peaje de congestión', note: null, color: '#d98a5a', get: function (v) { return v.cong; } },
     { name: 'Mantenimiento', note: null, color: '#9aa4b2', get: function (v) { return v.maint; } },
-    { name: 'Registro + inspección', note: 'anual ÷ 12', color: '#a99adf', get: function (v) { return v.reg; } },
-    { name: 'Entrada repartida', note: '÷ meses del lease', color: '#5fb0c8', get: function (v) { return v.down; } }
+    { name: 'Peajes (E-ZPass)', note: 'opcional', color: '#8bb45a', get: function (v) { return v.toll; } },
+    { name: 'Peaje de congestión', note: 'opcional', color: '#d98a5a', get: function (v) { return v.cong; } },
+    { name: 'Registro + inspección', note: 'DMV NY · anual ÷ 12', color: '#a99adf', get: function (v) { return v.reg; } }
   ];
 
   var costeModelFilled = false;
@@ -220,13 +221,13 @@
     fillCosteModels();
 
     var miles = costeNum('c-miles'), mpg = costeNum('c-mpg') || 1, gas = costeNum('c-gas');
-    var term = Math.max(1, costeNum('c-term') || 36);
     var v = {
       lease: costeNum('c-lease'), ins: costeNum('c-ins'),
       fuel: (miles / mpg) * gas, park: costeNum('c-park'), toll: costeNum('c-toll'),
       cong: costeNum('c-cong') * 9, maint: costeNum('c-maint'),
-      reg: costeNum('c-reg') / 12, down: costeNum('c-down') / term
+      reg: costeNum('c-reg') / 12
     };
+    var down = costeNum('c-down'); // entrada: pago único, aparte del mensual
     var budget = costeNum('c-budget');
 
     var parts = COSTE_ITEMS.map(function (it) { return { it: it, amt: it.get(v) }; });
@@ -253,16 +254,22 @@
     $('c-fuel-out').textContent = fmtMoney(v.fuel) + '/mes';
     $('c-cong-out').textContent = fmtMoney(v.cong) + '/mes';
 
+    // Entrada como pago ÚNICO (no mensual): se muestra aparte, sin sumar al /mes.
+    var oneoff = $('c-oneoff');
+    if (oneoff) oneoff.innerHTML = down > 0
+      ? 'más <strong>' + fmtMoney(down) + '</strong> de entrada al firmar (una sola vez)'
+      : 'sin entrada al firmar ($0)';
+
     var bs = $('c-bstat'), pill = $('c-bpill'), msg = $('c-bmsg');
     if (budget <= 0) {
       bs.className = 'bstat none'; pill.textContent = '—';
-      msg.textContent = 'Pon vuestro tope mensual y te digo si entra.';
+      msg.textContent = 'Pon vuestro tope y te digo si entra.';
     } else if (total <= budget) {
-      bs.className = 'bstat ok'; pill.textContent = 'ENTRA ✓';
+      bs.className = 'bstat ok'; pill.textContent = '✅ Entra';
       msg.textContent = 'Cabe con ' + fmtMoney(budget - total) + '/mes de margen. La cuenta sale.';
     } else {
-      bs.className = 'bstat no'; pill.textContent = 'SE PASA';
-      msg.textContent = 'Se pasa ' + fmtMoney(total - budget) + '/mes. Baja el lease, el seguro o el aparcamiento para que cuadre.';
+      bs.className = 'bstat no'; pill.textContent = 'Se pasa';
+      msg.textContent = 'Se pasa ' + fmtMoney(total - budget) + '/mes. Baja el lease o el seguro para que cuadre.';
     }
   }
 

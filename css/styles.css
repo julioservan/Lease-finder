@@ -419,3 +419,6 @@ details.advanced[open] > summary { margin-bottom: 10px; }
   font-size: 0.76rem; line-height: 1.5; color: var(--muted);
   background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 10px 12px;
 }
+.lbl-soft { color: var(--faint); font-weight: 400; }
+.coste-oneoff { text-align: right; color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
+.coste-oneoff strong { color: var(--text); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
