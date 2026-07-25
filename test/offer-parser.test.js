@@ -180,6 +180,41 @@ check('findVin ignora palabras/códigos que no son VIN', function () {
   assert.strictEqual(OfferParser.findVin('el vin es 1HGCV1F34LA123456 hoy'), '1HGCV1F34LA123456');
 });
 
+check('conditions: detecta restricciones que se muestran siempre', function () {
+  var c = OfferParser.conditions('Lease $299/mo. Requires Honda Loyalty or Conquest. Top Tier credit only.');
+  var keys = c.map(function (x) { return x.key; });
+  assert.ok(keys.indexOf('loyalty') >= 0, 'debe detectar loyalty');
+  assert.ok(keys.indexOf('conquest') >= 0, 'debe detectar conquest');
+  assert.ok(keys.indexOf('toptier') >= 0, 'debe detectar top tier');
+  assert.strictEqual(OfferParser.conditions('Simple lease $299/mo, 36 months').length, 0, 'sin condiciones → vacío');
+});
+
+check('securityDeposit: none/waived → 0, importe → número, sin mención → null', function () {
+  assert.strictEqual(OfferParser.securityDeposit('Security deposit: none'), 0);
+  assert.strictEqual(OfferParser.securityDeposit('Security deposit waived'), 0);
+  close(OfferParser.securityDeposit('Security deposit of $650 due'), 650, 0.001, 'depósito');
+  assert.strictEqual(OfferParser.securityDeposit('$299/mo, 36 months'), null);
+});
+
+check('oneTimeCosts: suma entrada + comisiones + primer pago', function () {
+  var v = OfferParser.oneTimeCosts(
+    { downPayment: 3000, acqFee: 695, dealerFee: 499, securityDeposit: 0 }, 299
+  );
+  assert.strictEqual(v, 3000 + 695 + 499 + 299, 'debe sumar los componentes + primer pago');
+});
+
+check('oneTimeCosts: respaldo a dueAtSigning y null si no hay nada', function () {
+  assert.strictEqual(OfferParser.oneTimeCosts({ dueAtSigning: 4200 }, null), 4200);
+  assert.strictEqual(OfferParser.oneTimeCosts({}, null), null);
+});
+
+check('dealScore: más bajo el % del MSRP, mayor la nota', function () {
+  assert.strictEqual(OfferParser.dealScore(0.6), 100);
+  assert.strictEqual(OfferParser.dealScore(1.0), 78);
+  assert.ok(OfferParser.dealScore(0.6) > OfferParser.dealScore(1.5), 'menor % → mayor score');
+  assert.strictEqual(OfferParser.dealScore(null), null);
+});
+
 console.log('');
 if (failures) {
   console.error(failures + ' test(s) fallaron.');
