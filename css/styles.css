@@ -533,3 +533,29 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 @media (max-width: 520px) {
   .toast-host { right: 10px; left: 10px; bottom: 10px; max-width: none; }
 }
+
+/* --- Transparencia de la oferta (independiente del Deal Score) --- */
+.odx-transp {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin: 10px 0 4px; padding: 10px 12px;
+  border: 1px solid var(--border); border-left-width: 3px; border-radius: var(--radius-s);
+  background: var(--surface);
+}
+.odx-transp-high { border-left-color: var(--green); }
+.odx-transp-mid { border-left-color: var(--amber); }
+.odx-transp-low { border-left-color: var(--pink); }
+.odx-transp-dot { font-size: 1rem; line-height: 1.3; }
+.odx-transp-body { min-width: 0; }
+.odx-transp-h { font-weight: 600; color: var(--text-strong); font-size: 0.9rem; }
+.odx-transp-score { font-weight: 400; color: var(--muted); font-size: 0.76rem; margin-left: 4px; }
+.odx-transp-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+.odx-transp-miss { font-size: 0.78rem; color: var(--amber); margin-top: 4px; }
+
+/* Punto de transparencia en la lista de ofertas (escaneo rápido) */
+.transp-dot {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+  margin-right: 6px; vertical-align: middle; cursor: help;
+}
+.transp-high { background: var(--green); }
+.transp-mid { background: var(--amber); }
+.transp-low { background: var(--pink); }

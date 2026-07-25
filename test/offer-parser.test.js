@@ -215,6 +215,27 @@ check('dealScore: más bajo el % del MSRP, mayor la nota', function () {
   assert.strictEqual(OfferParser.dealScore(null), null);
 });
 
+check('transparency: 🟢 cuando desglosa entrada, residual y millas', function () {
+  var t = OfferParser.transparency({
+    term: 36, dueAtSigning: 3500, downPayment: 2000, acqFee: 695, dealerFee: 499,
+    securityDeposit: 0, milesPerYear: 10000, residualPct: 58, msrp: 38900
+  });
+  assert.strictEqual(t.level, 'high');
+  assert.ok(t.score >= 80, 'score alto, fue ' + t.score);
+  assert.strictEqual(t.missing.length, 0);
+});
+
+check('transparency: 🔴 cuando solo anuncia el mensual', function () {
+  var t = OfferParser.transparency({ monthly: 169, term: 39 });
+  assert.strictEqual(t.level, 'low', 'sin coste de entrada → poco transparente');
+  assert.ok(t.missing.indexOf('Coste de entrada (due at signing)') >= 0);
+});
+
+check('transparency: 🟡 cuando da el due at signing pero sin desglose', function () {
+  var t = OfferParser.transparency({ term: 36, dueAtSigning: 3999, milesPerYear: 10000, msrp: 34000 });
+  assert.strictEqual(t.level, 'mid');
+});
+
 console.log('');
 if (failures) {
   console.error(failures + ' test(s) fallaron.');

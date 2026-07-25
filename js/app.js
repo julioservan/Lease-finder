@@ -1459,6 +1459,14 @@
     return bits.join(' ');
   }
 
+  /** Punto de color de transparencia para la lista de ofertas (escaneo rápido). */
+  var TRANSP_TXT = { high: '🟢 Muy transparente', mid: '🟡 Transparencia media', low: '🔴 Poco transparente — puede ocultar coste de entrada' };
+  function transpDot(parsed) {
+    if (!window.OfferParser || !OfferParser.transparency) return '';
+    var tr = OfferParser.transparency(parsed || {});
+    return '<span class="transp-dot transp-' + tr.level + '" title="' + TRANSP_TXT[tr.level] + ' (' + tr.score + '% revelado). No cambia el Deal Score."></span>';
+  }
+
   function offerDetailHtml(o, info, i) {
     var m = o.metrics || {};
     var p = o.parsed || {};
@@ -1476,6 +1484,27 @@
       '<div class="odx-s"><span>⚠ Restricciones</span><strong class="' + (conds.length ? 'warn' : '') + '">' + escapeHtml(restr) + '</strong></div>' +
       '<div class="odx-s"><span>📊 Deal Score</span><strong>' + (isNum(m.dealScore) ? m.dealScore + '<small>/100</small>' : '—') + '</strong></div>' +
       '</div>';
+
+    // --- Transparencia de la oferta (NO afecta al Deal Score) ---
+    var transpHtml = '';
+    if (window.OfferParser && OfferParser.transparency) {
+      var tr = OfferParser.transparency(p);
+      var TMETA = {
+        high: { dot: '🟢', txt: 'Muy transparente', desc: 'Desglosa los pagos iniciales, el due at signing, el residual y las millas.' },
+        mid: { dot: '🟡', txt: 'Transparencia media', desc: 'Se entiende el coste, pero hay que leer la letra pequeña para verlo todo.' },
+        low: { dot: '🔴', txt: 'Poco transparente', desc: 'Anuncia el mensual pero oculta parte del coste real de entrada.' }
+      };
+      var tm = TMETA[tr.level] || TMETA.mid;
+      var missHtml = tr.missing.length
+        ? '<div class="odx-transp-miss">No aclara: ' + tr.missing.map(function (x) { return escapeHtml(x); }).join(' · ') + '</div>'
+        : '';
+      transpHtml = '<div class="odx-transp odx-transp-' + tr.level + '" ' +
+        'title="Mide qué revela el anuncio sobre el coste real. No cambia el Deal Score.">' +
+        '<span class="odx-transp-dot">' + tm.dot + '</span>' +
+        '<div class="odx-transp-body"><div class="odx-transp-h">' + tm.txt +
+        ' <span class="odx-transp-score">' + tr.score + '% revelado</span></div>' +
+        '<div class="odx-transp-desc">' + tm.desc + '</div>' + missHtml + '</div></div>';
+    }
 
     // --- 💵 Mensual (protagonista) ---
     var hero = '<div class="odx-hero"><div class="odx-monthly">' +
@@ -1536,7 +1565,7 @@
 
     return '<div class="bxd odx">' +
       '<div class="bxd-title">' + escapeHtml(title) + '</div>' + seen +
-      summary + hero +
+      summary + transpHtml + hero +
       '<div class="odx-cols">' + due + details + '</div>' +
       condHtml + eff + explainHtml + vin + raw +
       '<div class="card-actions">' +
@@ -1577,8 +1606,9 @@
         var flagHtml = flags.length
           ? ' <span class="dflag" title="' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '">⚠</span>'
           : '';
+        var tdot = transpDot(o.parsed);
         t += '<tr class="bx-row" data-i="' + i + '" title="Toca para ver la oferta en detalle">' +
-          '<td><span class="brow-chev">▸</span>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml +
+          '<td>' + tdot + '<span class="brow-chev">▸</span>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml +
           (o.region ? '<span class="offer-meta">' + escapeHtml(o.region) + '</span>' : '') + '</td>' +
           '<td>' + fmtMoney2(m.effectiveMonthly) + '</td>' +
           '<td>' + fmtMoney2(m.monthlyPayment) + '</td>' +
