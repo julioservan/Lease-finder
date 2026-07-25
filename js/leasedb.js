@@ -56,26 +56,17 @@
 
   /**
    * ¿Es un broker de lease (eAutoLease/VIP…)? No es un concesionario donde
-   * firmas: es un intermediario que entrega a domicilio. Se ocultan por defecto
-   * (el usuario quiere solo concesionarios reales); un interruptor los recupera.
+   * firmas: es un intermediario que lleva a engaño. Se EXCLUYEN siempre — el
+   * usuario solo quiere concesionarios reales.
    */
   function isBroker(offer) {
     return /br[oó]ker/i.test(offer.region || '') ||
       /lease nyc|eautolease|viplease|vip auto lease|vip lease/i.test(offer.source || '');
   }
 
-  var BROKERS_KEY = 'lf-include-brokers';
-  function includeBrokers() {
-    try { return localStorage.getItem(BROKERS_KEY) === '1'; } catch (e) { return false; }
-  }
-  function setIncludeBrokers(on) {
-    try { localStorage.setItem(BROKERS_KEY, on ? '1' : '0'); } catch (e) { /* noop */ }
-  }
-  /** ¿Se oculta esta oferta del tablero? (agregadores siempre; brokers salvo opt-in) */
+  /** ¿Se oculta esta oferta del tablero? Agregadores y brokers, siempre. */
   function isHidden(offer) {
-    if (isAggregator(offer)) return true;
-    if (isBroker(offer) && !includeBrokers()) return true;
-    return false;
+    return isAggregator(offer) || isBroker(offer);
   }
 
   function offerMatches(offer, info) {
@@ -276,8 +267,6 @@
     modelsWithOffers: modelsWithOffers,
     dealerGroups: dealerGroups,
     isBroker: isBroker,
-    includeBrokers: includeBrokers,
-    setIncludeBrokers: setIncludeBrokers,
     normalizeModel: normalizeModel,
     _load: load
   };

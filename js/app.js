@@ -1441,7 +1441,7 @@
     });
 
     if (!rows.length) {
-      box.innerHTML = '<p class="hint">Todavía no hay ofertas de concesionarios reales (sin brokers). El robot las irá encontrando; mientras, activa “Incluir brokers” arriba para ver intermediarios que entregan a domicilio.</p>';
+      box.innerHTML = '<p class="hint">Todavía no hay ofertas de concesionarios reales. El robot las irá encontrando en sus próximas búsquedas (3×/día); también puedes pegar una oferta en “Añadir una oferta”.</p>';
       return;
     }
     rows.sort(function (a, b) { return b.score - a.score; });
@@ -2375,17 +2375,6 @@
     renderBoard();
 
     $('board-refresh').addEventListener('click', function () { loadOnline(); });
-
-    // Interruptor de brokers (ocultos por defecto; el usuario quiere concesionarios).
-    var brkBox = $('include-brokers');
-    if (brkBox) {
-      brkBox.checked = !!(window.LeaseDB && LeaseDB.includeBrokers && LeaseDB.includeBrokers());
-      brkBox.addEventListener('change', function () {
-        if (window.LeaseDB && LeaseDB.setIncludeBrokers) LeaseDB.setIncludeBrokers(brkBox.checked);
-        renderBoard();
-        toast(brkBox.checked ? 'Mostrando también brokers (entregan a domicilio).' : 'Brokers ocultos. Solo concesionarios reales.', 'info', 3500);
-      });
-    }
     $('usados-load').addEventListener('click', usadosLoadAll);
 
     // Al volver a la pestaña tras un rato, recarga en silencio (se siente vivo).
