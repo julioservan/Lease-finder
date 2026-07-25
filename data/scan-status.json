@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-07-25T23:02:12.878Z",
+  "updatedAt": "2026-07-25T23:38:07.663Z",
   "sources": [
     {
-      "name": "Premier Ford",
+      "name": "Premier Ford of Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "HTTP 403 en https://www.premierfordinc.com/lease-specials/ · HTTP 403 en https://www.premierfordinc.com/specials/ · HTTP 403 en https://www.premierfordinc.com/new-inventory/index.htm · HTTP 403 en https://www.premierfordinc.com/new-vehicles/ · sin ofertas (navegador) en https://www.premierfordinc.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordinc.com/specials/ · sin ofertas (navegador) en https://www.premierfordinc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.premierfordinc.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.premierfordofbayridge.com/lease-specials/ · HTTP 403 en https://www.premierfordofbayridge.com/specials/ · HTTP 403 en https://www.premierfordofbayridge.com/new-inventory/index.htm · HTTP 403 en https://www.premierfordofbayridge.com/new-vehicles/ · fetch failed en https://www.bayridgeford.com/lease-specials/ · HTTP 403 en https://www.premierfordinc.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.premierfordofbayridge.com/new-vehicles/ · page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.bayridgeford.com/lease-specials/\nCall log:\n  - navigating to \"https://www.bayridgeford.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgeford.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordinc.com/lease-specials/"
     },
     {
       "name": "Starks Ford",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,17 +74,17 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -99,27 +99,27 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · HTTP 415 en https://www.bayridgehonda.com/new-inventory/index.htm · HTTP 415 en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -200,11 +200,6 @@
       "name": "Manhattan Jeep Chrysler Dodge Ram",
       "region": "Manhattan, NY",
       "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · sin ofertas (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
-    },
-    {
-      "name": "Bay Ridge Ford",
-      "region": "Brooklyn, NY",
-      "status": "fetch failed en https://www.bayridgeford.com/lease-specials/ · fetch failed en https://www.bayridgeford.com/specials/ · fetch failed en https://www.bayridgeford.com/new-inventory/index.htm · fetch failed en https://www.bayridgeford.com/new-vehicles/ · page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.bayridgeford.com/lease-specials/\nCall log:\n  - navigating to \"https://www.bayridgeford.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgeford.com/lease-specials/ · page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.bayridgeford.com/specials/\nCall log:\n  - navigating to \"https://www.bayridgeford.com/specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgeford.com/specials/ · page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.bayridgeford.com/new-inventory/index.htm\nCall log:\n  - navigating to \"https://www.bayridgeford.com/new-inventory/index.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgeford.com/new-inventory/index.htm · page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.bayridgeford.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.bayridgeford.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgeford.com/new-vehicles/"
     },
     {
       "name": "Koeppel Mazda",
@@ -279,7 +274,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · fetch failed en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
@@ -315,71 +310,6 @@
       "name": "Open Road Mazda Morristown",
       "region": "Morristown, NJ",
       "status": "ok (5 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Jeep Cherokee",
-      "region": "bróker — NYC",
-      "status": "ok (5 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Ford Bronco Sport",
-      "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Toyota RAV4",
-      "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Hyundai Tucson",
-      "region": "bróker — NYC",
-      "status": "ok (13 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Hyundai Santa Fe",
-      "region": "bróker — NYC",
-      "status": "ok (9 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Kia Sportage",
-      "region": "bróker — NYC",
-      "status": "ok (10 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Kia Sorento",
-      "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Subaru Forester",
-      "region": "bróker — NYC",
-      "status": "ok (10 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Mazda CX-50",
-      "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Nissan Rogue",
-      "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Volkswagen Tiguan",
-      "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
-    },
-    {
-      "name": "Lease NYC — Honda CR-V",
-      "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
-    },
-    {
-      "name": "Lease NYC — GMC Terrain",
-      "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
     }
   ]
 }
