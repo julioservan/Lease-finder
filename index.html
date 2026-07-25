@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=42">
+  <link rel="stylesheet" href="css/styles.css?v=43">
 </head>
 <body>
   <header class="topbar">
@@ -69,9 +69,14 @@
       </div>
     </details>
 
-    <!-- Descubrir: escanear un anuncio pegado -> alimenta la base de datos -->
+    <!-- Descubrir: importar/pegar un anuncio -> alimenta la base de datos -->
     <details class="card collapse" id="scanner-card">
-      <summary>🔍 Añadir una oferta: pega un anuncio (correo, WhatsApp, web…)</summary>
+      <summary>🔍 Añadir una oferta: importa un PDF, HTML o captura — o pega el texto</summary>
+      <div class="import-zone" id="import-zone">
+        <input type="file" id="import-file-offer" accept=".pdf,.html,.htm,.txt,image/*" multiple hidden>
+        <button type="button" class="btn" id="import-pick">📎 Importar archivo(s)</button>
+        <span class="import-hint" id="import-status">PDF, HTML o captura de pantalla — o arrástralos aquí. Autorrellena la oferta.</span>
+      </div>
       <textarea id="scan-input" rows="6" placeholder="2026 Ford Bronco Sport Big Bend
 $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
 ---
@@ -509,13 +514,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=42"></script>
-  <script src="js/offer-parser.js?v=42"></script>
-  <script src="js/vehicles.js?v=42"></script>
-  <script src="js/models.js?v=42"></script>
-  <script src="js/leasedb.js?v=42"></script>
-  <script src="js/dealerscore.js?v=42"></script>
-  <script src="js/decide.js?v=42"></script>
-  <script src="js/app.js?v=42"></script>
+  <script src="js/lease-calc.js?v=43"></script>
+  <script src="js/offer-parser.js?v=43"></script>
+  <script src="js/importer.js?v=43"></script>
+  <script src="js/vehicles.js?v=43"></script>
+  <script src="js/models.js?v=43"></script>
+  <script src="js/leasedb.js?v=43"></script>
+  <script src="js/dealerscore.js?v=43"></script>
+  <script src="js/decide.js?v=43"></script>
+  <script src="js/app.js?v=43"></script>
 </body>
 </html>
