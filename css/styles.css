@@ -570,12 +570,6 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .geo-far { color: var(--muted); background: var(--hover); }
 .odx-geo { margin-top: 4px; }
 
-/* --- Interruptor de brokers --- */
-.brk-toggle {
-  display: inline-flex; align-items: center; gap: 6px; margin-top: 6px;
-  font-size: 0.8rem; color: var(--muted); cursor: pointer; user-select: none;
-}
-.brk-toggle input { accent-color: var(--accent); cursor: pointer; }
 
 /* --- 🏆 Top concesionarios --- */
 #top-dealers-card { margin: 14px 0; }
