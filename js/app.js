@@ -663,7 +663,12 @@
     scored.forEach(function (r, i) {
       var tr = document.createElement('tr');
       var name = r.parsed.name || 'Oferta ' + (i + 1);
-      tr.appendChild(cell('<span class="offer-name">' + escapeHtml(name) + '</span>', true));
+      var vinHtml = r.parsed.vin
+        ? '<div class="sc-vin"><span class="sc-vin-label">VIN</span><code class="sc-vin-code">' +
+          escapeHtml(r.parsed.vin) + '</code><button type="button" class="sc-copy" onclick="lfCopy(this)" data-copy="' +
+          escapeHtml(r.parsed.vin) + '" title="Copiar el VIN para la aseguradora">📋</button></div>'
+        : '';
+      tr.appendChild(cell('<span class="offer-name">' + escapeHtml(name) + '</span>' + vinHtml, true));
       tr.appendChild(numCell(fmtMoney2(r.m.monthlyPayment), false));
       tr.appendChild(cell(r.m.term + ' m'));
       tr.appendChild(numCell(fmtMoney(r.m.driveOff), false));
@@ -1404,6 +1409,13 @@
       ? '<div class="bxd-conds">⚠ Condiciones: ' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '</div>'
       : '<div class="bxd-conds ok">✓ Sin condiciones escondidas detectadas</div>';
 
+    var vin = (o.vin || p.vin)
+      ? '<div class="sc-vin" style="margin-bottom:8px"><span class="sc-vin-label">VIN</span>' +
+        '<code class="sc-vin-code">' + escapeHtml(o.vin || p.vin) + '</code>' +
+        '<button type="button" class="sc-copy" onclick="lfCopy(this)" data-copy="' + escapeHtml(o.vin || p.vin) +
+        '" title="Copiar el VIN para la aseguradora">📋 Copiar</button></div>'
+      : '';
+
     var seen = '<div class="offer-meta">' + escapeHtml(o.source || '') + (o.region ? ' · ' + escapeHtml(o.region) : '') +
       (o.firstSeen ? ' · descubierta el ' + new Date(o.firstSeen).toLocaleDateString('es') : '') +
       (o.lastSeen ? ' · vista por última vez el ' + new Date(o.lastSeen).toLocaleDateString('es') : '') + '</div>';
@@ -1414,7 +1426,7 @@
 
     return '<div class="bxd">' +
       '<div class="bxd-title">' + escapeHtml(title) + '</div>' + seen +
-      '<div class="bxd-grid">' + cells + '</div>' + conds + raw +
+      '<div class="bxd-grid">' + cells + '</div>' + vin + conds + raw +
       '<div class="card-actions">' +
         '<a class="btn mini primary" href="' + link + '" target="_blank" rel="noopener">' + (o.url ? 'Abrir la fuente ↗' : 'Buscar esta oferta ↗') + '</a>' +
         '<button type="button" class="btn mini bx-coste" data-i="' + i + '">💸 ¿Cuánto al mes?</button>' +

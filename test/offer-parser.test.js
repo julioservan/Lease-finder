@@ -169,6 +169,17 @@ check('texto sin ofertas → lista vacía', function () {
   assert.strictEqual(OfferParser.scanText('').length, 0);
 });
 
+check('detecta el VIN de una oferta importada', function () {
+  var o = OfferParser.scanText('2026 Honda CR-V LX AWD  VIN: 5J6RS6H52TL032241\n$319/mo 36 months, $3,499 due at signing, MSRP $36,000')[0];
+  assert.strictEqual(o.vin, '5J6RS6H52TL032241');
+});
+
+check('findVin ignora palabras/códigos que no son VIN', function () {
+  assert.strictEqual(OfferParser.findVin('Model #: RS4H2TEW oferta especial'), null); // corto
+  assert.strictEqual(OfferParser.findVin('ABCDEFGHJKLMNPRST'), null); // 17 letras, sin dígitos
+  assert.strictEqual(OfferParser.findVin('el vin es 1HGCV1F34LA123456 hoy'), '1HGCV1F34LA123456');
+});
+
 console.log('');
 if (failures) {
   console.error(failures + ' test(s) fallaron.');

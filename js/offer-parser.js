@@ -145,6 +145,20 @@
     return null;
   }
 
+  /**
+   * Busca un VIN (17 caracteres, sin I/O/Q) en el texto. Exige al menos un
+   * dígito para no confundirlo con palabras de 17 letras. Devuelve el primero.
+   */
+  function findVin(text) {
+    var re = /\b[A-HJ-NPR-Z0-9]{17}\b/gi;
+    var s = String(text || ''), m;
+    while ((m = re.exec(s)) !== null) {
+      var v = m[0].toUpperCase();
+      if (/[0-9]/.test(v) && /[A-Z]/.test(v)) return v; // VIN real: mezcla letras y números
+    }
+    return null;
+  }
+
   /** Extrae los datos de UNA oferta a partir de un bloque de texto. */
   function parseBlock(block) {
     var das = ZERO_DOWN.test(block) ? 0 : firstMatch(block, DAS_PATTERNS);
@@ -159,6 +173,7 @@
       residualPct: firstMatch(block, RESIDUAL_PATTERNS),
       moneyFactor: firstMatch(block, MF_PATTERNS),
       apr: firstMatch(block, APR_PATTERNS),
+      vin: findVin(block),
       raw: block.trim()
     };
   }
@@ -268,6 +283,7 @@
         if (parsed[k] == null && back[k] != null) parsed[k] = back[k];
       });
       parsed.name = pickNameNear(backward) || parsed.name;
+      if (parsed.vin == null) parsed.vin = findVin(backward); // el VIN suele ir antes del precio
       parsed.raw = (backward + forward).trim();
 
       var key = [parsed.monthly, parsed.term, parsed.dueAtSigning, parsed.msrp].join('|');
@@ -355,6 +371,7 @@
     scanLoose: scanLoose,
     scanText: scanText,
     scoreOffer: scoreOffer,
+    findVin: findVin,
     looksLikeFinancing: looksLikeFinancing,
     htmlToText: htmlToText,
     splitBlocks: splitBlocks
