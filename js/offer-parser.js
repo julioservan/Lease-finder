@@ -439,6 +439,54 @@
     return Math.max(1, Math.min(100, Math.round(s)));
   }
 
+  /**
+   * Transparencia de la oferta: ¿cuánta información de coste revela el anuncio?
+   * NO cambia la puntuación del deal — solo ayuda a distinguir quién juega
+   * limpio (desglosa entrada, due at signing, residual y millas) de quien solo
+   * anuncia "$169/mes" y esconde miles en costes iniciales.
+   *
+   *   🟢 high  desglosa los pagos iniciales + due at signing + residual + millas
+   *   🟡 mid   se entiende el coste, pero falta desglose o algún dato clave
+   *   🔴 low   solo el mensual; oculta el coste de entrada
+   *
+   * Devuelve { level, score(0–100), disclosed[], missing[] }.
+   */
+  function transparency(p) {
+    p = p || {};
+    function hasNum(v) { return typeof v === 'number' && isFinite(v); }
+    var upfrontKnown = hasNum(p.dueAtSigning) || hasNum(p.downPayment);
+    var feeCount = ['acqFee', 'dealerFee', 'docFee'].filter(function (k) { return hasNum(p[k]); }).length;
+    var itemized = (hasNum(p.downPayment) && (feeCount >= 1 || p.securityDeposit != null)) || feeCount >= 2;
+    var milesKnown = hasNum(p.milesPerYear);
+    var residualKnown = hasNum(p.residualAmount) || hasNum(p.residualPct);
+    var msrpKnown = hasNum(p.msrp);
+    var termKnown = hasNum(p.term);
+
+    var checks = [
+      { ok: termKnown, label: 'Plazo del lease' },
+      { ok: upfrontKnown, label: 'Coste de entrada (due at signing)' },
+      { ok: itemized, label: 'Pagos iniciales desglosados' },
+      { ok: milesKnown, label: 'Millas por año' },
+      { ok: residualKnown, label: 'Valor residual' },
+      { ok: msrpKnown, label: 'MSRP' }
+    ];
+    var disclosed = checks.filter(function (c) { return c.ok; });
+    var score = Math.round(disclosed.length / checks.length * 100);
+
+    var level;
+    if (!upfrontKnown) level = 'low';                                 // esconde el coste de entrada
+    else if (itemized && milesKnown && residualKnown) level = 'high'; // lo enseña todo
+    else if (disclosed.length >= 3) level = 'mid';
+    else level = 'low';
+
+    return {
+      level: level,
+      score: score,
+      disclosed: disclosed.map(function (c) { return c.label; }),
+      missing: checks.filter(function (c) { return !c.ok; }).map(function (c) { return c.label; })
+    };
+  }
+
   /** Convierte HTML a texto plano para poder escanearlo. */
   function htmlToText(html) {
     return String(html || '')
@@ -464,6 +512,7 @@
     securityDeposit: securityDeposit,
     oneTimeCosts: oneTimeCosts,
     dealScore: dealScore,
+    transparency: transparency,
     looksLikeFinancing: looksLikeFinancing,
     htmlToText: htmlToText,
     splitBlocks: splitBlocks
