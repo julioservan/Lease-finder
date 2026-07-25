@@ -320,6 +320,9 @@ function main() {
           key: offerKey(r.source.name, parsed, metrics),
           source: r.source.name,
           region: r.source.region || '',
+          dist: r.source.dist != null ? r.source.dist : null, // millas desde 1 City Point
+          toll: r.source.toll != null ? r.source.toll : null,  // false | 'Verrazzano' | 'túnel + peaje' | 'lejos'
+          addr: r.source.addr || '',
           url: r.url || '',
           name: parsed.name,
           parsed: parsed,

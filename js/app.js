@@ -1282,6 +1282,47 @@
     return '<span class="dgrade dgrade-' + cls + '" title="' + escapeHtml(title || GRADE_TXT[grade] || '') + '">' + grade + '</span>';
   }
 
+  /**
+   * Distancia y peaje de cada concesionario desde 1 City Point (Downtown
+   * Brooklyn, 11201). Direcciones verificadas por búsqueda; distancias/tiempos
+   * son estimaciones (dependen del tráfico). Las ofertas nuevas del robot ya
+   * traen dist/toll; para las históricas se resuelve aquí por el nombre.
+   */
+  var DEALER_GEO = [
+    { m: ['premier ford', 'bay ridge ford'], dist: 8.5, toll: false, addr: '612 86th St, Brooklyn 11228' },
+    { m: ['starks ford'], dist: 9, toll: false, addr: '57-01 Northern Blvd, Woodside 11377' },
+    { m: ['dana ford'], dist: 15, toll: 'Verrazzano', addr: '266 W Service Rd, Staten Island 10314' },
+    { m: ['stevens'], dist: 13, toll: 'túnel + peaje', addr: '740 Route 440, Jersey City 07304' },
+    { m: ['freehold ford'], dist: 40, toll: 'lejos', addr: 'Freehold, NJ' },
+    { m: ['bical'], dist: 7.5, toll: false, addr: '2859 Flatbush Ave, Brooklyn 11234' },
+    { m: ['island buick gmc'], dist: 13, toll: 'Verrazzano', addr: '1855 Hylan Blvd, Staten Island 10305' },
+    { m: ['north bergen'], dist: 16, toll: 'túnel + peaje', addr: '7027 JFK Blvd, North Bergen 07047' },
+    { m: ['lester glenn'], dist: 65, toll: 'lejos', addr: 'Toms River, NJ' }
+  ];
+  function dealerGeo(offerOrName) {
+    var o = offerOrName;
+    if (o && typeof o === 'object') {
+      if (o.dist != null || o.toll != null) return { dist: o.dist, toll: o.toll, addr: o.addr || '' };
+      o = o.source || o.name || '';
+    }
+    var name = String(o || '').toLowerCase();
+    for (var i = 0; i < DEALER_GEO.length; i++) {
+      if (DEALER_GEO[i].m.some(function (s) { return name.indexOf(s) >= 0; })) return DEALER_GEO[i];
+    }
+    return null;
+  }
+  /** Chip visual "📍 ~7,5 mi · sin peaje" (verde cerca / ámbar peaje / rojo lejos). */
+  function dealerGeoChip(offerOrName) {
+    var g = dealerGeo(offerOrName);
+    if (!g || g.dist == null) return '';
+    var far = typeof g.dist === 'number' && g.dist > 20;
+    var cls = g.toll === false ? 'geo-near' : (far || g.toll === 'lejos' ? 'geo-far' : 'geo-mid');
+    var tollTxt = g.toll === false ? 'sin peaje' : (g.toll === 'lejos' ? 'muy lejos' : '⚠ ' + g.toll);
+    var n = typeof g.dist === 'number' ? g.dist.toLocaleString('es') : g.dist;
+    return '<span class="geo-chip ' + cls + '" title="' + escapeHtml((g.addr ? g.addr + ' · ' : '') +
+      'distancia aprox. en coche desde 1 City Point (según tráfico)') + '">📍 ~' + n + ' mi · ' + tollTxt + '</span>';
+  }
+
   function renderDealers() {
     var body = $('dealers-body');
     if (!body) return;
@@ -1298,7 +1339,7 @@
           }).join(', ')
         : '—';
       return '<tr><td>' + gradeChip(d.grade, d.reasons.join(' · ')) + '</td>' +
-        '<td>' + escapeHtml(d.name) + '<span class="offer-meta">' + escapeHtml(d.region) + ' · ' + escapeHtml(d.reasons.join(' · ')) + '</span></td>' +
+        '<td>' + escapeHtml(d.name) + ' ' + dealerGeoChip(d.name) + '<span class="offer-meta">' + escapeHtml(d.region) + ' · ' + escapeHtml(d.reasons.join(' · ')) + '</span></td>' +
         '<td>' + d.offers + '</td>' +
         '<td>' + Math.round(d.dasPct * 100) + '%' + (d.zeroDown ? ' <span class="offer-meta">(' + d.zeroDown + ' con $0)</span>' : '') + '</td>' +
         '<td>' + (d.avgRatio != null ? '+' + Math.round((d.avgRatio - 1) * 100) + '%' : '—') + '</td>' +
@@ -1557,7 +1598,8 @@
       : '';
 
     var seen = '<div class="offer-meta">' + escapeHtml(o.source || '') + (o.region ? ' · ' + escapeHtml(o.region) : '') +
-      (o.firstSeen ? ' · vista el ' + new Date(o.firstSeen).toLocaleDateString('es') : '') + '</div>';
+      (o.firstSeen ? ' · vista el ' + new Date(o.firstSeen).toLocaleDateString('es') : '') + '</div>' +
+      (dealerGeoChip(o) ? '<div class="odx-geo">' + dealerGeoChip(o) + '</div>' : '');
 
     var raw = p.raw
       ? '<details class="bxd-rawbox"><summary>Ver el anuncio original (letra pequeña)</summary><div class="bxd-raw">' + escapeHtml(p.raw) + '</div></details>'
@@ -1608,7 +1650,7 @@
           : '';
         var tdot = transpDot(o.parsed);
         t += '<tr class="bx-row" data-i="' + i + '" title="Toca para ver la oferta en detalle">' +
-          '<td>' + tdot + '<span class="brow-chev">▸</span>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml +
+          '<td>' + tdot + '<span class="brow-chev">▸</span>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml + ' ' + dealerGeoChip(o) +
           (o.region ? '<span class="offer-meta">' + escapeHtml(o.region) + '</span>' : '') + '</td>' +
           '<td>' + fmtMoney2(m.effectiveMonthly) + '</td>' +
           '<td>' + fmtMoney2(m.monthlyPayment) + '</td>' +

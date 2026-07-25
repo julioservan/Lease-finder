@@ -26,14 +26,19 @@
   },
   "sources": [
     {
-      "name": "Premier Ford",
+      "name": "Premier Ford of Bay Ridge",
       "region": "Brooklyn, NY",
       "urls": [
-        "https://www.premierfordinc.com/lease-specials/",
-        "https://www.premierfordinc.com/specials/",
-        "https://www.premierfordinc.com/new-inventory/index.htm",
-        "https://www.premierfordinc.com/new-vehicles/"
-      ]
+        "https://www.premierfordofbayridge.com/lease-specials/",
+        "https://www.premierfordofbayridge.com/specials/",
+        "https://www.premierfordofbayridge.com/new-inventory/index.htm",
+        "https://www.premierfordofbayridge.com/new-vehicles/",
+        "https://www.bayridgeford.com/lease-specials/",
+        "https://www.premierfordinc.com/lease-specials/"
+      ],
+      "addr": "612 86th St, Brooklyn, NY 11228",
+      "dist": 8.5,
+      "toll": false
     },
     {
       "name": "Starks Ford",
@@ -43,7 +48,10 @@
         "https://www.starksfordofqueens.com/specials/",
         "https://www.starksfordofqueens.com/new-inventory/index.htm",
         "https://www.starksfordofqueens.com/new-vehicles/"
-      ]
+      ],
+      "addr": "57-01 Northern Blvd, Woodside, NY 11377",
+      "dist": 9,
+      "toll": false
     },
     {
       "name": "Dana Ford",
@@ -53,7 +61,10 @@
         "https://www.drivedanaford.com/specials/",
         "https://www.drivedanaford.com/new-inventory/index.htm",
         "https://www.drivedanaford.com/new-vehicles/"
-      ]
+      ],
+      "addr": "266 W Service Rd, Staten Island, NY 10314",
+      "dist": 15,
+      "toll": "Verrazzano"
     },
     {
       "name": "Stevens Jersey City Ford",
@@ -63,7 +74,10 @@
         "https://www.stevensjerseycityford.com/specials/",
         "https://www.stevensjerseycityford.com/new-inventory/index.htm",
         "https://www.stevensjerseycityford.com/new-vehicles/"
-      ]
+      ],
+      "addr": "740 Route 440, Jersey City, NJ 07304",
+      "dist": 13,
+      "toll": "túnel + peaje"
     },
     {
       "name": "Brooklyn CDJR",
@@ -103,7 +117,10 @@
         "https://www.bicalbuickgmc.com/specials/",
         "https://www.bicalbuickgmc.com/new-inventory/index.htm",
         "https://www.bicalbuickgmc.com/new-vehicles/"
-      ]
+      ],
+      "addr": "2859 Flatbush Ave, Brooklyn, NY 11234",
+      "dist": 7.5,
+      "toll": false
     },
     {
       "name": "Island Buick GMC",
@@ -113,7 +130,10 @@
         "https://www.myislandgmc.com/specials/",
         "https://www.myislandgmc.com/new-inventory/index.htm",
         "https://www.myislandgmc.com/new-vehicles/"
-      ]
+      ],
+      "addr": "1855 Hylan Blvd, Staten Island, NY 10305",
+      "dist": 13,
+      "toll": "Verrazzano"
     },
     {
       "name": "North Bergen Buick GMC",
@@ -123,7 +143,10 @@
         "https://www.northbergenbuickgmc.com/specials/",
         "https://www.northbergenbuickgmc.com/new-inventory/index.htm",
         "https://www.northbergenbuickgmc.com/new-vehicles/"
-      ]
+      ],
+      "addr": "7027 JFK Blvd, North Bergen, NJ 07047",
+      "dist": 16,
+      "toll": "túnel + peaje"
     },
     {
       "name": "Plaza Honda",
@@ -401,16 +424,6 @@
       ]
     },
     {
-      "name": "Bay Ridge Ford",
-      "region": "Brooklyn, NY",
-      "urls": [
-        "https://www.bayridgeford.com/lease-specials/",
-        "https://www.bayridgeford.com/specials/",
-        "https://www.bayridgeford.com/new-inventory/index.htm",
-        "https://www.bayridgeford.com/new-vehicles/"
-      ]
-    },
-    {
       "name": "Koeppel Mazda",
       "region": "Queens, NY",
       "urls": [
@@ -448,7 +461,10 @@
         "https://www.freeholdford.com/lease-specials/",
         "https://www.freeholdford.com/new-inventory/index.htm",
         "https://www.freeholdford.com/new-vehicles/"
-      ]
+      ],
+      "addr": "Freehold, NJ",
+      "dist": 40,
+      "toll": "lejos"
     },
     {
       "name": "Lester Glenn Ford",
@@ -458,7 +474,10 @@
         "https://www.lesterglennford.net/lease-specials.htm",
         "https://www.lesterglennford.net/new-inventory/index.htm",
         "https://www.lesterglennford.net/new-vehicles/"
-      ]
+      ],
+      "addr": "Toms River, NJ",
+      "dist": 65,
+      "toll": "lejos"
     },
     {
       "name": "Lester Glenn GMC",
@@ -468,7 +487,10 @@
         "https://www.lesterglenngmc.com/lease-specials.html",
         "https://www.lesterglenngmc.com/new-inventory/index.htm",
         "https://www.lesterglenngmc.com/new-vehicles/"
-      ]
+      ],
+      "addr": "Toms River, NJ",
+      "dist": 65,
+      "toll": "lejos"
     },
     {
       "name": "Bay Ridge Subaru",

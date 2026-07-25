@@ -156,11 +156,11 @@
   /** Concesionarios reales cerca de Downtown Brooklyn (5 boroughs + NJ cercano). */
   var DEALERS = {
     Ford: [
-      { n: 'Premier Ford (Brooklyn)', u: 'https://www.premierfordinc.com/' },
-      { n: 'Bay Ridge Ford (Brooklyn)', u: 'https://www.bayridgeford.com/' },
-      { n: 'Starks Ford (Queens)', u: 'https://www.starksfordofqueens.com/' },
-      { n: 'Dana Ford (Staten Island)', u: 'https://www.drivedanaford.com/' },
-      { n: 'Stevens Ford (Jersey City, NJ)', u: 'https://www.stevensjerseycityford.com/' }
+      { n: 'Premier Ford of Bay Ridge (Brooklyn)', u: 'https://www.premierfordofbayridge.com/', addr: '612 86th St, Brooklyn 11228', dist: 8.5, toll: false },
+      { n: 'Starks Ford (Queens)', u: 'https://www.starksfordofqueens.com/', addr: '57-01 Northern Blvd, Woodside 11377', dist: 9, toll: false },
+      { n: 'Dana Ford (Staten Island)', u: 'https://www.drivedanaford.com/', addr: '266 W Service Rd, Staten Island 10314', dist: 15, toll: 'Verrazzano' },
+      { n: 'Stevens Ford (Jersey City, NJ)', u: 'https://www.stevensjerseycityford.com/', addr: '740 Route 440, Jersey City 07304', dist: 13, toll: 'túnel + peaje' },
+      { n: 'Freehold Ford (NJ, lejos)', u: 'https://www.freeholdford.com/', addr: 'Freehold, NJ', dist: 40, toll: 'lejos' }
     ],
     Mazda: [
       { n: 'Koeppel Mazda (Queens)', u: 'https://www.koeppelmazda.com/' },
@@ -196,10 +196,10 @@
       { n: 'Lynnes Hyundai (Bloomfield, NJ)', u: 'https://www.lynneshyundai.com/' }
     ],
     GMC: [
-      { n: 'Bical Buick GMC (Brooklyn)', u: 'https://www.bicalbuickgmc.com/' },
-      { n: 'Island Buick GMC (Staten Island)', u: 'https://www.myislandgmc.com/' },
-      { n: 'Milea Buick GMC (Bronx)', u: 'https://www.mileabuickgmc.com/' },
-      { n: 'North Bergen Buick GMC (NJ)', u: 'https://www.northbergenbuickgmc.com/' }
+      { n: 'Bical Buick GMC (Brooklyn)', u: 'https://www.bicalbuickgmc.com/', addr: '2859 Flatbush Ave, Brooklyn 11234', dist: 7.5, toll: false },
+      { n: 'Island Buick GMC (Staten Island)', u: 'https://www.myislandgmc.com/', addr: '1855 Hylan Blvd, Staten Island 10305', dist: 13, toll: 'Verrazzano' },
+      { n: 'North Bergen Buick GMC (NJ)', u: 'https://www.northbergenbuickgmc.com/', addr: '7027 JFK Blvd, North Bergen 07047', dist: 16, toll: 'túnel + peaje' },
+      { n: 'Milea Buick GMC (Bronx)', u: 'https://www.mileabuickgmc.com/', addr: 'Bronx, NY', dist: 16, toll: false }
     ],
     Nissan: [
       { n: 'Bay Ridge Nissan (Brooklyn)', u: 'https://www.bayridgenissan.com/' },
