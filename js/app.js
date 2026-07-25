@@ -1383,50 +1383,110 @@
   }
 
   /** Ficha completa de una oferta descubierta (números, condiciones, letra pequeña, enlace). */
+  /** Importe conocido → $X; desconocido → "Desconocido". */
+  function fmtKnown(v) { return isNum(v) && v > 0 ? fmtMoney(v) : '<span class="unk">Desconocido</span>'; }
+
+  /**
+   * Explicación equilibrada de una oferta (qué la hace atractiva y qué
+   * compromisos tiene) — generada a partir de los datos, no un veredicto seco.
+   */
+  function explainOffer(o, info, m, p, conds) {
+    var model = (info.make + ' ' + info.model);
+    var bits = [];
+    var ds = m.dealScore;
+    if (isNum(m.monthlyPayment)) {
+      var q = ds == null ? 'Precio mensual' : (ds >= 85 ? 'Excelente precio mensual' : ds >= 70 ? 'Buen precio mensual' : ds >= 50 ? 'Precio mensual correcto' : 'Precio mensual algo alto');
+      bits.push(q + ' para un ' + model + ' (' + fmtMoney2(m.monthlyPayment) + '/mes' + (m.term ? ' a ' + m.term + ' meses' : '') + ').');
+    }
+    if (isNum(m.oneTimeCosts) && m.oneTimeCosts > 0) {
+      bits.push('Necesitas ~' + fmtMoney(m.oneTimeCosts) + ' al firmar (entrada, primer pago y comisiones)' +
+        (isNum(m.effectiveMonthly) ? ', que repartidos dejan el coste real en ~' + fmtMoney2(m.effectiveMonthly) + '/mes.' : '.'));
+    }
+    if (p.milesPerYear && p.milesPerYear <= 7500) bits.push('Ojo: solo ' + p.milesPerYear.toLocaleString('es') + ' millas/año — ajustado si conduces poco, caro si te pasas.');
+    if (conds && conds.length) bits.push('Requiere ' + conds.map(function (c) { return c.label.replace(/^Requires\s+/i, ''); }).join(' + ') + ', así que no todos podrán acceder.');
+    return bits.join(' ');
+  }
+
   function offerDetailHtml(o, info, i) {
     var m = o.metrics || {};
     var p = o.parsed || {};
-    var flags = DealerScore.offerFlags(p.raw);
+    var conds = (window.OfferParser && OfferParser.conditions) ? OfferParser.conditions(p.raw) : [];
     var title = o.name || (info.make + ' ' + info.model);
-
-    // Enlace a la fuente; si la oferta vieja no guardó URL, búsqueda exacta.
     var link = o.url ||
       ('https://www.google.com/search?q=' + encodeURIComponent('"' + title + '" ' + (o.source || '') + ' lease'));
 
-    function cell(l, v, warn) {
-      return '<div class="bxd-cell' + (warn ? ' warn' : '') + '"><span>' + l + '</span><strong>' + v + '</strong></div>';
-    }
-    var cells =
-      cell('Mensual', isNum(m.monthlyPayment) ? fmtMoney2(m.monthlyPayment) : '—') +
-      cell('Plazo', (m.term || '—') + ' meses') +
-      cell('Entrada', m.driveOff != null ? fmtMoney(m.driveOff) : 'no declarada ⚠', m.driveOff == null) +
-      cell('Efectivo/mes', isNum(m.effectiveMonthly) ? fmtMoney2(m.effectiveMonthly) : '—') +
-      (p.msrp ? cell('MSRP', fmtMoney(p.msrp)) : '') +
-      (isNum(m.pctOfMsrp) ? cell('Regla 1%', m.pctOfMsrp.toFixed(2) + '%') : '') +
-      (p.milesPerYear ? cell('Millas/año', p.milesPerYear.toLocaleString('es')) : '');
+    // --- Tarjeta resumen visual (5 s) ---
+    var restr = conds.length ? conds.slice(0, 2).map(function (c) { return c.label.replace(/^Requires\s+/i, ''); }).join(' + ') + (conds.length > 2 ? '…' : '') : 'Ninguna';
+    var summary = '<div class="odx-summary">' +
+      '<div class="odx-s"><span>💵 Mensual</span><strong>' + (isNum(m.monthlyPayment) ? fmtMoney2(m.monthlyPayment) + '<small>/mes</small>' : '—') + '</strong></div>' +
+      '<div class="odx-s"><span>💳 Al firmar</span><strong>' + (isNum(m.oneTimeCosts) ? '~' + fmtMoney(m.oneTimeCosts) : '—') + '</strong></div>' +
+      '<div class="odx-s"><span>🚗 Millas</span><strong>' + (p.milesPerYear ? p.milesPerYear.toLocaleString('es') + '<small>/año</small>' : '—') + '</strong></div>' +
+      '<div class="odx-s"><span>⚠ Restricciones</span><strong class="' + (conds.length ? 'warn' : '') + '">' + escapeHtml(restr) + '</strong></div>' +
+      '<div class="odx-s"><span>📊 Deal Score</span><strong>' + (isNum(m.dealScore) ? m.dealScore + '<small>/100</small>' : '—') + '</strong></div>' +
+      '</div>';
 
-    var conds = flags.length
-      ? '<div class="bxd-conds">⚠ Condiciones: ' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '</div>'
-      : '<div class="bxd-conds ok">✓ Sin condiciones escondidas detectadas</div>';
+    // --- 💵 Mensual (protagonista) ---
+    var hero = '<div class="odx-hero"><div class="odx-monthly">' +
+      (isNum(m.monthlyPayment) ? '<span class="big">' + fmtMoney2(m.monthlyPayment) + '</span><span class="u">/mes</span>' : '—') +
+      '</div><div class="odx-term">' + (m.term ? m.term + ' meses' : 'plazo n/d') + '</div></div>';
+
+    // --- 💳 Due at signing (desglose) ---
+    var sd = p.securityDeposit;
+    var due = '<div class="odx-sec"><div class="odx-h">💳 Al firmar' +
+      (isNum(m.oneTimeCosts) ? ' · <strong>' + fmtMoney(m.oneTimeCosts) + '</strong>' : '') + '</div><ul class="odx-list">' +
+      '<li>Entrada (down): <b>' + fmtKnown(p.downPayment) + '</b></li>' +
+      '<li>Primer pago: <b>' + (isNum(m.monthlyPayment) ? fmtMoney(m.monthlyPayment) : '<span class="unk">Desconocido</span>') + '</b></li>' +
+      '<li>Comisión de adquisición: <b>' + fmtKnown(p.acqFee) + '</b></li>' +
+      '<li>Comisión del concesionario: <b>' + fmtKnown(p.dealerFee) + '</b></li>' +
+      (p.docFee ? '<li>Documentación: <b>' + fmtKnown(p.docFee) + '</b></li>' : '') +
+      '<li>Depósito de seguridad: <b>' + (sd === 0 ? 'Ninguno' : fmtKnown(sd)) + '</b></li>' +
+      (p.accessories ? '<li>Accesorios obligatorios: <b>' + fmtKnown(p.accessories) + '</b></li>' : '') +
+      '</ul></div>';
+
+    // --- 🚗 Detalles del lease ---
+    var resid = p.residualAmount ? fmtMoney(p.residualAmount) : (p.residualPct ? p.residualPct + '%' : null);
+    var details = '<div class="odx-sec"><div class="odx-h">🚗 Detalles</div><ul class="odx-list">' +
+      '<li>Millas: <b>' + (p.milesPerYear ? p.milesPerYear.toLocaleString('es') + '/año' : '<span class="unk">Desconocido</span>') + '</b></li>' +
+      (resid ? '<li>Residual: <b>' + resid + '</b></li>' : '') +
+      '<li>MSRP: <b>' + fmtKnown(p.msrp) + '</b></li>' +
+      '</ul></div>';
+
+    // --- ⚠ Condiciones (siempre visibles) ---
+    var condHtml = '<div class="odx-sec"><div class="odx-h">⚠ Condiciones</div>' +
+      (conds.length
+        ? '<div class="odx-conds">' + conds.map(function (c) { return '<span class="odx-cond">' + escapeHtml(c.label) + '</span>'; }).join('') + '</div>'
+        : '<div class="odx-conds-none">Sin restricciones detectadas en el anuncio</div>') +
+      '</div>';
+
+    // --- Efectivo (secundario, con tooltip) ---
+    var eff = isNum(m.effectiveMonthly)
+      ? '<div class="odx-eff" title="Incluye los costes únicos repartidos a lo largo del lease. No incluye impuestos, DMV ni exceso de millas.">' +
+        'Efectivo/mes ≈ <strong>' + fmtMoney2(m.effectiveMonthly) + '</strong>' +
+        (isNum(m.pctOfMsrp) ? ' · ' + m.pctOfMsrp.toFixed(2) + '% del MSRP' : '') + ' <span class="odx-i">ⓘ</span></div>'
+      : '';
+
+    var explain = explainOffer(o, info, m, p, conds);
+    var explainHtml = explain ? '<div class="odx-explain">' + escapeHtml(explain) + '</div>' : '';
 
     var vin = (o.vin || p.vin)
-      ? '<div class="sc-vin" style="margin-bottom:8px"><span class="sc-vin-label">VIN</span>' +
+      ? '<div class="sc-vin" style="margin-top:6px"><span class="sc-vin-label">VIN</span>' +
         '<code class="sc-vin-code">' + escapeHtml(o.vin || p.vin) + '</code>' +
         '<button type="button" class="sc-copy" onclick="lfCopy(this)" data-copy="' + escapeHtml(o.vin || p.vin) +
         '" title="Copiar el VIN para la aseguradora">📋 Copiar</button></div>'
       : '';
 
     var seen = '<div class="offer-meta">' + escapeHtml(o.source || '') + (o.region ? ' · ' + escapeHtml(o.region) : '') +
-      (o.firstSeen ? ' · descubierta el ' + new Date(o.firstSeen).toLocaleDateString('es') : '') +
-      (o.lastSeen ? ' · vista por última vez el ' + new Date(o.lastSeen).toLocaleDateString('es') : '') + '</div>';
+      (o.firstSeen ? ' · vista el ' + new Date(o.firstSeen).toLocaleDateString('es') : '') + '</div>';
 
     var raw = p.raw
       ? '<details class="bxd-rawbox"><summary>Ver el anuncio original (letra pequeña)</summary><div class="bxd-raw">' + escapeHtml(p.raw) + '</div></details>'
       : '';
 
-    return '<div class="bxd">' +
+    return '<div class="bxd odx">' +
       '<div class="bxd-title">' + escapeHtml(title) + '</div>' + seen +
-      '<div class="bxd-grid">' + cells + '</div>' + vin + conds + raw +
+      summary + hero +
+      '<div class="odx-cols">' + due + details + '</div>' +
+      condHtml + eff + explainHtml + vin + raw +
       '<div class="card-actions">' +
         '<a class="btn mini primary" href="' + link + '" target="_blank" rel="noopener">' + (o.url ? 'Abrir la fuente ↗' : 'Buscar esta oferta ↗') + '</a>' +
         '<button type="button" class="btn mini bx-coste" data-i="' + i + '">💸 ¿Cuánto al mes?</button>' +

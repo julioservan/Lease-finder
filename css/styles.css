@@ -412,6 +412,52 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .bxd-cell.warn strong { color: var(--amber); font-size: 0.83rem; }
 .bxd-conds { font-size: 0.82rem; color: var(--amber); margin-bottom: 8px; }
 .bxd-conds.ok { color: var(--green); }
+
+/* --- Ficha de oferta rediseñada (.odx) --- */
+.odx .unk { color: var(--faint); font-weight: 400; font-style: italic; }
+/* Tarjeta resumen visual (escaneo de 5 s) */
+.odx-summary {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  margin: 12px 0; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-s); padding: 10px 8px;
+}
+.odx-s { display: flex; flex-direction: column; gap: 3px; text-align: center; padding: 0 4px; min-width: 0; }
+.odx-s + .odx-s { border-left: 1px solid var(--border); }
+.odx-s span { font-size: 0.66rem; color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.odx-s strong { font-size: 0.92rem; color: var(--text-strong); font-variant-numeric: tabular-nums; line-height: 1.2; word-break: break-word; }
+.odx-s strong small { font-size: 0.66rem; color: var(--muted); font-weight: 400; }
+.odx-s strong.warn { color: var(--amber); font-size: 0.8rem; }
+/* Mensual protagonista */
+.odx-hero { display: flex; align-items: baseline; gap: 12px; margin: 4px 0 12px; flex-wrap: wrap; }
+.odx-monthly .big { font-size: 2.2rem; font-weight: 700; color: var(--text-strong); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.odx-monthly .u { font-size: 1rem; color: var(--muted); margin-left: 2px; }
+.odx-term { font-size: 0.95rem; color: var(--text); font-weight: 500; }
+/* Columnas de desglose */
+.odx-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.odx-sec { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 10px 12px; }
+.odx-h { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 7px; font-weight: 600; }
+.odx-h strong { color: var(--text-strong); font-variant-numeric: tabular-nums; }
+.odx-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.odx-list li { display: flex; justify-content: space-between; gap: 10px; font-size: 0.82rem; color: var(--muted); }
+.odx-list li b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+/* Condiciones (siempre visibles) */
+.odx-conds { display: flex; flex-wrap: wrap; gap: 6px; }
+.odx-cond { font-size: 0.78rem; font-weight: 600; color: var(--amber); background: var(--amber-bg); border: 1px solid rgba(217, 168, 75, 0.3); border-radius: 5px; padding: 3px 9px; }
+.odx-conds-none { font-size: 0.82rem; color: var(--green); }
+/* Efectivo (secundario, con tooltip) */
+.odx-eff { margin: 10px 0 4px; font-size: 0.84rem; color: var(--muted); cursor: help; }
+.odx-eff strong { color: var(--text); font-variant-numeric: tabular-nums; }
+.odx-i { color: var(--faint); font-size: 0.78rem; }
+/* Explicación equilibrada */
+.odx-explain { margin: 8px 0 4px; font-size: 0.86rem; line-height: 1.55; color: var(--text); }
+@media (max-width: 560px) {
+  .odx-summary { grid-template-columns: repeat(2, 1fr); gap: 10px 8px; }
+  .odx-s + .odx-s { border-left: none; }
+  .odx-s:nth-child(odd) { border-right: 1px solid var(--border); }
+  .odx-cols { grid-template-columns: 1fr; }
+  .odx-monthly .big { font-size: 1.9rem; }
+}
+
 .bxd-rawbox summary { cursor: pointer; font-size: 0.82rem; color: var(--muted); }
 .bxd-rawbox summary:hover { color: var(--text); }
 .bxd-raw {

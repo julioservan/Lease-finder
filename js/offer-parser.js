@@ -81,6 +81,54 @@
     /([\d.,]+)\s*%\s*(?:apr|tae)/i
   ];
 
+  // --- Desglose del pago inicial (due at signing) ---
+  var DOWN_PATTERNS = [
+    new RegExp('(?:down\\s*payment|cash\\s*down|customer\\s*cash|cash\\s*(?:due|at\\s*signing)|cap(?:italized)?\\s*cost\\s*reduction|enganche)\\s*(?:of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i'),
+    new RegExp(CUR + '\\s*' + NUM + '\\s*(?:cash\\s+)?down\\b', 'i')
+  ];
+  var ACQ_PATTERNS = [
+    new RegExp('(?:acquisition|bank|acq\\.?)\\s*fee\\s*(?:of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
+  ];
+  var DEALER_FEE_PATTERNS = [
+    new RegExp('(?:dealer|processing)\\s*(?:fee|charge)\\s*(?:of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
+  ];
+  var DOC_FEE_PATTERNS = [
+    new RegExp('(?:documentation|doc)\\s*fee\\s*(?:of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
+  ];
+  var ACCESSORY_PATTERNS = [
+    new RegExp('(?:mandatory|required)\\s+(?:accessor\\w+|add[- ]?ons?|equipment|package)\\s*(?:of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
+  ];
+  var RESIDUAL_AMT_PATTERNS = [
+    new RegExp('residual\\s*(?:value)?\\s*(?:of|:)?\\s*' + CUR + '\\s*' + NUM, 'i')
+  ];
+
+  /** Depósito de seguridad: 0 si "none/waived", número si hay importe, null si no se menciona. */
+  function securityDeposit(text) {
+    var t = String(text || '');
+    if (/security\s+deposit[^.\n$]*\b(?:none|waived|no\b|\$?\s*0\b)/i.test(t)) return 0;
+    var m = t.match(new RegExp('security\\s+deposit\\s*(?:of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i'));
+    return m ? parseAmount(m[1]) : null;
+  }
+
+  // Condiciones/restricciones de la oferta (se muestran SIEMPRE, no en letra pequeña).
+  var COND_DEFS = [
+    { key: 'loyalty', label: 'Requires Loyalty', re: /\bloyalty\b/i },
+    { key: 'conquest', label: 'Requires Conquest', re: /\bconquest\b/i },
+    { key: 'chargeup', label: 'Charge Up NJ', re: /charge\s*up\s*nj/i },
+    { key: 'residents', label: 'NJ/NY residents only', re: /(?:nj|ny|new\s+jersey|new\s+york)\s+residents?\s+only/i },
+    { key: 'toptier', label: 'Top-tier credit', re: /top[- ]?tier|well[- ]?qualified|tier\s*1\b|excellent\s+credit|800\+?\s*(?:fico|credit)/i },
+    { key: 'finance', label: 'Must finance with dealer', re: /must\s+finance|finance\s+through|financing\s+required|when\s+financed/i },
+    { key: 'tradein', label: 'Requires trade-in', re: /trade-?in\s+(?:required|assist)|must\s+trade/i },
+    { key: 'military', label: 'Military / first responder', re: /\bmilitary\b|first\s+responder/i },
+    { key: 'grad', label: 'College grad', re: /college\s+grad|recent\s+grad/i }
+  ];
+  /** Lista de condiciones detectadas en el texto de la oferta. */
+  function conditions(text) {
+    var t = String(text || '');
+    return COND_DEFS.filter(function (c) { return c.re.test(t); })
+      .map(function (c) { return { key: c.key, label: c.label }; });
+  }
+
   /** Convierte "45,000", "45.000", "1.234,56", "$399", "10k" → número. */
   function parseAmount(raw) {
     if (raw == null) return null;
@@ -171,8 +219,16 @@
       price: firstMatch(block, PRICE_PATTERNS),
       milesPerYear: firstMatch(block, MILES_PATTERNS),
       residualPct: firstMatch(block, RESIDUAL_PATTERNS),
+      residualAmount: firstMatch(block, RESIDUAL_AMT_PATTERNS),
       moneyFactor: firstMatch(block, MF_PATTERNS),
       apr: firstMatch(block, APR_PATTERNS),
+      downPayment: firstMatch(block, DOWN_PATTERNS),
+      acqFee: firstMatch(block, ACQ_PATTERNS),
+      dealerFee: firstMatch(block, DEALER_FEE_PATTERNS),
+      docFee: firstMatch(block, DOC_FEE_PATTERNS),
+      accessories: firstMatch(block, ACCESSORY_PATTERNS),
+      securityDeposit: securityDeposit(block),
+      conditions: conditions(block),
       vin: findVin(block),
       raw: block.trim()
     };
@@ -332,7 +388,8 @@
     if (monthly == null || monthly <= 0) {
       return {
         term: term, monthlyPayment: monthly, driveOff: p.dueAtSigning,
-        totalCost: null, effectiveMonthly: null, pctOfMsrp: null, score: null
+        totalCost: null, effectiveMonthly: null, pctOfMsrp: null, score: null,
+        oneTimeCosts: oneTimeCosts(p, null), dealScore: null
       };
     }
     var das = p.dueAtSigning == null ? 0 : p.dueAtSigning;
@@ -340,15 +397,46 @@
     var total = das >= monthly ? das + monthly * (term - 1) : das + monthly * term;
     var effective = total / term;
     var hasMsrp = p.msrp != null && p.msrp > 0;
+    var pct = hasMsrp ? (effective / p.msrp) * 100 : null;
     return {
       term: term,
       monthlyPayment: monthly,
       driveOff: das,
       totalCost: total,
       effectiveMonthly: effective,
-      pctOfMsrp: hasMsrp ? (effective / p.msrp) * 100 : null,
-      score: hasMsrp ? p.msrp / (effective * 12) : null
+      pctOfMsrp: pct,
+      score: hasMsrp ? p.msrp / (effective * 12) : null,
+      oneTimeCosts: oneTimeCosts(p, monthly),
+      dealScore: dealScore(pct)
     };
+  }
+
+  /**
+   * Coste único al firmar: suma de lo que sale del bolsillo el día 1
+   * (entrada + comisiones + primer pago + depósito + accesorios). Si no hay
+   * desglose pero sí un total "due at signing", usa ese total.
+   */
+  function oneTimeCosts(p, monthly) {
+    p = p || {};
+    var comps = [p.downPayment, p.acqFee, p.dealerFee, p.docFee, p.accessories,
+      (p.securityDeposit && p.securityDeposit > 0) ? p.securityDeposit : null];
+    if (monthly && monthly > 0) comps.push(monthly); // primer pago
+    var sum = 0, any = false;
+    comps.forEach(function (v) { if (typeof v === 'number' && isFinite(v) && v > 0) { sum += v; any = true; } });
+    if (any) return Math.round(sum);
+    if (p.dueAtSigning && p.dueAtSigning > 0) return Math.round(p.dueAtSigning); // respaldo: total
+    return null;
+  }
+
+  /**
+   * Deal Score 0–100 a partir del efectivo/mes como % del MSRP (más bajo =
+   * mejor). Sirve para comparar/ordenar, NO para "castigar": un buen mensual
+   * puntúa alto aunque pida bastante al firmar. Sin MSRP → null.
+   */
+  function dealScore(pctOfMsrp) {
+    if (pctOfMsrp == null || !isFinite(pctOfMsrp)) return null;
+    var s = 100 - (pctOfMsrp - 0.6) * 55; // 0.6%→100, 1%→78, 1.5%→50, 2%→23
+    return Math.max(1, Math.min(100, Math.round(s)));
   }
 
   /** Convierte HTML a texto plano para poder escanearlo. */
@@ -372,6 +460,10 @@
     scanText: scanText,
     scoreOffer: scoreOffer,
     findVin: findVin,
+    conditions: conditions,
+    securityDeposit: securityDeposit,
+    oneTimeCosts: oneTimeCosts,
+    dealScore: dealScore,
     looksLikeFinancing: looksLikeFinancing,
     htmlToText: htmlToText,
     splitBlocks: splitBlocks
