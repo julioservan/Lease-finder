@@ -54,7 +54,30 @@ function getBrowser() {
   return browserPromise;
 }
 
-/** Abre la URL en Chromium, espera el JavaScript y devuelve el HTML final. */
+/** Hace scroll por la página en pasos para disparar la carga diferida (lazy). */
+async function autoScroll(page) {
+  try {
+    await page.evaluate(function () {
+      return new Promise(function (resolve) {
+        var total = 0, step = 700;
+        var timer = setInterval(function () {
+          window.scrollBy(0, step);
+          total += step;
+          var done = total >= (document.body ? document.body.scrollHeight : 0) - window.innerHeight;
+          if (done || total > 15000) { clearInterval(timer); window.scrollTo(0, 0); resolve(); }
+        }, 200);
+      });
+    });
+  } catch (e) { /* ignora */ }
+}
+
+/**
+ * Abre la URL en Chromium, ejecuta el JavaScript y devuelve el HTML final.
+ * Los concesionarios (DealerOn/Dealer.com/DealerInspire) pintan sus
+ * lease-specials con JS, a menudo en IFRAMES de terceros y con carga diferida
+ * al hacer scroll. Por eso: hacemos scroll, esperamos señales de oferta y
+ * reunimos el HTML del marco principal MÁS el de todos los iframes.
+ */
 async function renderPage(url, timeoutMs) {
   var browser = await getBrowser();
   var context = await browser.newContext({
@@ -83,17 +106,46 @@ async function renderPage(url, timeoutMs) {
   });
   try {
     var page = await context.newPage();
-    // Sin imágenes/fuentes/videos: solo necesitamos el texto.
+    // Sin imágenes/fuentes/videos: solo necesitamos el texto (y va más rápido).
     await page.route('**/*', function (route) {
       var type = route.request().resourceType();
       if (type === 'image' || type === 'font' || type === 'media') return route.abort();
       return route.continue();
     });
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: timeoutMs || 25000 });
-    await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(function () {});
-    // Deja resolver retos JS ligeros (algunos anti-bot tardan un par de segundos).
-    await page.waitForTimeout(1500).catch(function () {});
-    return await page.content();
+    await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(function () {});
+    // Dispara los widgets de specials con carga diferida.
+    await autoScroll(page);
+    // Espera hasta ~7 s a que aparezca una señal de oferta de lease
+    // (un precio + una palabra tipo mo/month/lease) en cualquier marco.
+    await page.waitForFunction(function () {
+      function hit(doc) {
+        try {
+          var t = (doc.body && doc.body.innerText) || '';
+          return /\$\s?\d/.test(t) && /(per mo\b|\/mo\b|\bmonth|\blease|\bmes\b)/i.test(t);
+        } catch (e) { return false; }
+      }
+      if (hit(document)) return true;
+      var ifr = document.querySelectorAll('iframe');
+      for (var i = 0; i < ifr.length; i++) {
+        try { if (hit(ifr[i].contentDocument)) return true; } catch (e) { /* cross-origin */ }
+      }
+      return false;
+    }, { timeout: 7000 }).catch(function () {});
+    await page.waitForTimeout(700).catch(function () {});
+
+    // Reúne el HTML del marco principal + TODOS los iframes (specials de terceros).
+    // Playwright sí puede leer iframes cross-origin (controla el navegador).
+    var parts = [];
+    var frames = page.frames();
+    for (var i = 0; i < frames.length; i++) {
+      try {
+        var html = await frames[i].content();
+        if (html) parts.push(html);
+      } catch (e) { /* marco inaccesible: lo saltamos */ }
+    }
+    if (!parts.length) parts.push(await page.content());
+    return parts.join('\n<!-- frame -->\n');
   } finally {
     await context.close().catch(function () {});
   }
