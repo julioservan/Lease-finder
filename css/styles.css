@@ -432,3 +432,6 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .sc-copy { font: inherit; font-size: 0.72rem; color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px; cursor: pointer; white-space: nowrap; transition: background 0.12s, color 0.12s, border-color 0.12s; }
 .sc-copy:hover { color: var(--text); background: var(--hover); border-color: var(--border-strong); }
 .sc-copy.ok { color: var(--green); border-color: rgba(77,171,109,0.4); }
+.import-zone { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border: 1px dashed var(--border-strong); border-radius: var(--radius-s); padding: 12px 14px; margin-bottom: 12px; transition: border-color 0.12s, background 0.12s; }
+.import-zone.drag { border-color: var(--accent); background: var(--blue-bg); }
+.import-hint { font-size: 0.82rem; color: var(--muted); }

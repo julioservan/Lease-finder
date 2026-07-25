@@ -594,6 +594,42 @@
     renderScanResults();
   }
 
+  /** Importa archivos (PDF/HTML/imagen/texto), extrae el texto y autorrellena. */
+  function importOfferFiles(fileList) {
+    var files = Array.prototype.slice.call(fileList || []);
+    if (!files.length || !window.LeaseImport) return;
+    var status = $('import-status');
+    function setStatus(t) { if (status) status.textContent = t; }
+    var acc = [];
+    var i = 0;
+    (function next() {
+      if (i >= files.length) {
+        // Vuelca el texto extraído en el área y lánzalo por el parser.
+        var joined = acc.join('\n---\n').trim();
+        if (joined) {
+          var prev = $('scan-input').value.trim();
+          $('scan-input').value = prev ? (prev + '\n---\n' + joined) : joined;
+          runScan();
+          var n = state.scanResults.length;
+          setStatus(n ? '✅ ' + n + ' oferta(s) detectada(s) — revísalas abajo y guarda.'
+                      : '⚠ No se detectó ninguna mensualidad. Revisa el texto extraído abajo.');
+        } else {
+          setStatus('⚠ No se pudo extraer texto de ese archivo. Prueba con otro o pega el texto.');
+        }
+        return;
+      }
+      var f = files[i++];
+      setStatus('Procesando ' + (f.name || 'archivo') + '…');
+      window.LeaseImport.fromFile(f, setStatus).then(function (res) {
+        if (res && res.text) acc.push(res.text);
+        next();
+      }, function (err) {
+        setStatus('⚠ ' + (err && err.message ? err.message : 'No se pudo leer ' + (f.name || 'el archivo')));
+        next();
+      });
+    })();
+  }
+
   function saveScanned(parsed) {
     state.offers.push({
       id: genId(),
@@ -2027,6 +2063,23 @@
       renderScanResults();
       $('offers-table').scrollIntoView({ behavior: 'smooth' });
     });
+
+    // Importar ofertas desde archivo (PDF / HTML / captura / texto).
+    if ($('import-pick')) {
+      var fileInput = $('import-file-offer');
+      $('import-pick').addEventListener('click', function () { fileInput.click(); });
+      fileInput.addEventListener('change', function () { importOfferFiles(fileInput.files); fileInput.value = ''; });
+      var zone = $('import-zone');
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.add('drag'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.remove('drag'); });
+      });
+      zone.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files) importOfferFiles(e.dataTransfer.files);
+      });
+    }
 
     document.querySelectorAll('#offers-table th.sortable').forEach(function (th) {
       th.addEventListener('click', function () {
