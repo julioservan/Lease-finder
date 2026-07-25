@@ -54,6 +54,30 @@
       /carsdirect|edmunds|truecar/i.test(offer.source || '');
   }
 
+  /**
+   * ¿Es un broker de lease (eAutoLease/VIP…)? No es un concesionario donde
+   * firmas: es un intermediario que entrega a domicilio. Se ocultan por defecto
+   * (el usuario quiere solo concesionarios reales); un interruptor los recupera.
+   */
+  function isBroker(offer) {
+    return /br[oó]ker/i.test(offer.region || '') ||
+      /lease nyc|eautolease|viplease|vip auto lease|vip lease/i.test(offer.source || '');
+  }
+
+  var BROKERS_KEY = 'lf-include-brokers';
+  function includeBrokers() {
+    try { return localStorage.getItem(BROKERS_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setIncludeBrokers(on) {
+    try { localStorage.setItem(BROKERS_KEY, on ? '1' : '0'); } catch (e) { /* noop */ }
+  }
+  /** ¿Se oculta esta oferta del tablero? (agregadores siempre; brokers salvo opt-in) */
+  function isHidden(offer) {
+    if (isAggregator(offer)) return true;
+    if (isBroker(offer) && !includeBrokers()) return true;
+    return false;
+  }
+
   function offerMatches(offer, info) {
     // Si el nombre ya identifica el vehículo (año + marca), manda el nombre:
     // el texto crudo arrastra modelos vecinos de la misma página y provocaba
@@ -124,7 +148,7 @@
     var out = [];
     for (var k in db.offers) {
       var o = db.offers[k];
-      if (!o || isAggregator(o)) continue; // solo concesionarios/brokers reales
+      if (!o || isHidden(o)) continue; // agregadores siempre fuera; brokers salvo opt-in
       if (offerMatches(o, info) && o.metrics && isNum(o.metrics.effectiveMonthly)) out.push(o);
     }
     out.sort(function (a, b) { return a.metrics.effectiveMonthly - b.metrics.effectiveMonthly; });
@@ -226,6 +250,20 @@
     return (infos || []).filter(function (info) { return offersFor(db, info).length > 0; }).length;
   }
 
+  /** Ofertas de concesionarios reales agrupadas por dealer (respeta el filtro de brokers). */
+  function dealerGroups() {
+    var db = load();
+    var by = {};
+    for (var k in db.offers) {
+      var o = db.offers[k];
+      if (!o || isHidden(o)) continue;
+      if (!o.metrics || !isNum(o.metrics.effectiveMonthly)) continue;
+      var name = o.source || o.name || '—';
+      (by[name] = by[name] || []).push(o);
+    }
+    return by;
+  }
+
   // API pública: recibe la BD internamente (load) para simplificar el uso.
   return {
     ingest: ingest,
@@ -236,6 +274,10 @@
     assess: function (info, intel) { return assess(load(), info, intel); },
     markNewSeen: markNewSeen,
     modelsWithOffers: modelsWithOffers,
+    dealerGroups: dealerGroups,
+    isBroker: isBroker,
+    includeBrokers: includeBrokers,
+    setIncludeBrokers: setIncludeBrokers,
     normalizeModel: normalizeModel,
     _load: load
   };

@@ -569,3 +569,24 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .geo-mid { color: var(--amber); background: var(--amber-bg); border-color: rgba(217, 168, 75, 0.3); }
 .geo-far { color: var(--muted); background: var(--hover); }
 .odx-geo { margin-top: 4px; }
+
+/* --- Interruptor de brokers --- */
+.brk-toggle {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 6px;
+  font-size: 0.8rem; color: var(--muted); cursor: pointer; user-select: none;
+}
+.brk-toggle input { accent-color: var(--accent); cursor: pointer; }
+
+/* --- 🏆 Top concesionarios --- */
+#top-dealers-card { margin: 14px 0; }
+.topd { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.topd-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); }
+.topd-row:nth-child(1) { border-color: rgba(217, 168, 75, 0.4); }
+.topd-rank { font-size: 1.15rem; font-weight: 700; color: var(--muted); min-width: 26px; text-align: center; font-variant-numeric: tabular-nums; }
+.topd-main { min-width: 0; flex: 1; }
+.topd-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.topd-name { font-weight: 600; color: var(--text-strong); }
+.topd-sub { font-size: 0.82rem; color: var(--muted); margin-top: 3px; }
+.topd-sub b { color: var(--text); font-variant-numeric: tabular-nums; }
+.topd-models { font-size: 0.78rem; color: var(--faint); margin-top: 3px; }
+.topd-reasons { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
