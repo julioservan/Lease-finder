@@ -559,3 +559,13 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .transp-high { background: var(--green); }
 .transp-mid { background: var(--amber); }
 .transp-low { background: var(--pink); }
+
+/* --- Chip de distancia/peaje del concesionario (desde 1 City Point) --- */
+.geo-chip {
+  display: inline-block; font-size: 0.7rem; font-weight: 600; white-space: nowrap;
+  padding: 1px 7px; border-radius: 5px; border: 1px solid var(--border); vertical-align: middle;
+}
+.geo-near { color: var(--green); background: var(--green-bg); border-color: rgba(77, 171, 109, 0.3); }
+.geo-mid { color: var(--amber); background: var(--amber-bg); border-color: rgba(217, 168, 75, 0.3); }
+.geo-far { color: var(--muted); background: var(--hover); }
+.odx-geo { margin-top: 4px; }
