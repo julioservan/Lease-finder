@@ -696,6 +696,58 @@
 
   var onlineData = { latest: null, status: null, history: [], intel: null };
 
+  /* ---------------- avisos (toasts) + barra de carga ---------------- */
+
+  /** Muestra un aviso flotante. type: info | success | warn | error. */
+  function toast(msg, type, ms) {
+    var host = document.getElementById('toast-host');
+    if (!host) {
+      host = document.createElement('div');
+      host.id = 'toast-host';
+      host.className = 'toast-host';
+      document.body.appendChild(host);
+    }
+    var el = document.createElement('div');
+    el.className = 'toast toast-' + (type || 'info');
+    el.setAttribute('role', 'status');
+    el.innerHTML = msg;
+    var close = document.createElement('button');
+    close.type = 'button'; close.className = 'toast-x'; close.textContent = '×';
+    close.setAttribute('aria-label', 'Cerrar');
+    close.addEventListener('click', function () { dismiss(); });
+    el.appendChild(close);
+    host.appendChild(el);
+    requestAnimationFrame(function () { el.classList.add('show'); });
+    var timer = setTimeout(dismiss, ms || 5000);
+    function dismiss() {
+      clearTimeout(timer);
+      el.classList.remove('show');
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 260);
+    }
+    return el;
+  }
+
+  /** Barra de progreso indeterminada arriba del todo (varios trabajos a la vez). */
+  var loadingJobs = 0;
+  function loadingStart() {
+    loadingJobs++;
+    var bar = document.getElementById('load-bar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'load-bar';
+      bar.innerHTML = '<div class="load-bar-fill"></div>';
+      document.body.appendChild(bar);
+    }
+    bar.classList.add('on');
+  }
+  function loadingDone() {
+    loadingJobs = Math.max(0, loadingJobs - 1);
+    if (loadingJobs === 0) {
+      var bar = document.getElementById('load-bar');
+      if (bar) bar.classList.remove('on');
+    }
+  }
+
   /* ---------------- seguimiento de modelos ---------------- */
 
   function loadWatchlist() {
@@ -1727,9 +1779,13 @@
 
   /* ---------------- ofertas online ---------------- */
 
-  function loadOnline() {
+  var lastLoadAt = 0;
+  function loadOnline(opts) {
+    opts = opts || {};
+    lastLoadAt = Date.now();
     var meta = $('board-meta');
-    if (meta) meta.textContent = 'Cargando…';
+    if (meta) meta.innerHTML = '<span class="spin"></span> Buscando ofertas en concesionarios y brokers…';
+    loadingStart();
     Promise.all([
       fetch('data/offers-latest.json', { cache: 'no-store' }).then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -1749,14 +1805,32 @@
       onlineData.status = res[1];
       onlineData.history = Array.isArray(res[2]) ? res[2] : [];
       onlineData.intel = res[3];
+      var offers = onlineData.latest.offers || [];
       // Acumula en la base de datos local (crece con cada carga).
-      try { LeaseDB.ingest(onlineData.latest.offers || [], onlineData.history, RankedModels); } catch (e) { /* noop */ }
+      try { LeaseDB.ingest(offers, onlineData.history, RankedModels); } catch (e) { /* noop */ }
       renderSources(onlineData.status);
       renderBoard();
+      loadingDone();
+
+      // --- Avisos de actualización ---
+      var withOffers = 0;
+      try { withOffers = LeaseDB.modelsWithOffers(RankedModels); } catch (e) { /* noop */ }
+      var total = RankedModels.length;
+      var news = { firstRun: false, fresh: [] };
+      try { news = LeaseDB.markNewSeen(offers); } catch (e) { /* noop */ }
+      if (news.firstRun) {
+        toast('✅ Base de datos cargada · <b>' + offers.length + '</b> ofertas en <b>' + withOffers + '/' + total + '</b> modelos', 'success');
+      } else if (news.fresh.length) {
+        toast('🔔 <b>' + news.fresh.length + '</b> oferta' + (news.fresh.length > 1 ? 's' : '') + ' nueva' + (news.fresh.length > 1 ? 's' : '') + ' desde tu última visita', 'success', 6500);
+      } else if (!opts.silent) {
+        toast('✔ Actualizado · ' + offers.length + ' ofertas · ' + withOffers + '/' + total + ' modelos con leases', 'info');
+      }
     }).catch(function () {
       try { LeaseDB.ingest([], onlineData.history, RankedModels); } catch (e) { /* noop */ }
       renderBoard();
-      if (meta) meta.textContent = 'Aún no hay resultados del robot. Puedes lanzarlo con “▶ Buscar ahora”. La base de datos crece con cada búsqueda.';
+      loadingDone();
+      if (meta) meta.textContent = 'No se pudo cargar la base de datos (¿sin conexión?). Pulsa ↻ para reintentar, o “▶ Buscar ahora” para lanzar el robot.';
+      if (!opts.silent) toast('⚠️ No se pudieron cargar las ofertas. Pulsa ↻ para reintentar.', 'error', 6000);
     });
   }
 
@@ -1880,11 +1954,13 @@
     }).then(function (r) {
       if (r.status === 200 && r.data && r.data.ok) {
         btn.textContent = '⏳ Buscando…';
-        ($('board-meta')||{}).textContent = '🔎 ' + r.data.message + ' La página se actualizará sola.';
+        ($('board-meta')||{}).innerHTML = '<span class="spin"></span> ' + escapeHtml(r.data.message || 'Robot lanzado.') + ' La página se actualizará sola.';
+        loadingStart();
+        toast('🔎 Robot lanzado. Rastreando concesionarios… (~3-4 min). Te aviso al terminar.', 'info', 6000);
         pollForUpdate();
       } else if (r.status === 429 && r.data) {
         resetScanBtn();
-        alert(r.data.message);
+        toast('⏳ ' + escapeHtml(r.data.message || 'Espera un poco antes de volver a buscar.'), 'warn', 6000);
       } else {
         // Sin función o sin token: plan B, lanzar desde GitHub a mano.
         showGithubFallback(r.data && r.data.message);
@@ -1896,11 +1972,13 @@
 
   function showGithubFallback(reason) {
     resetScanBtn();
+    loadingDone();
     ($('board-meta')||{}).innerHTML =
       '⚠️ El lanzamiento directo no está disponible' +
       (reason ? ' (' + escapeHtml(reason) + ')' : '') + '. Plan B: ' +
       '<a href="' + SCAN_WORKFLOW_URL + '" target="_blank" rel="noopener">abre GitHub aquí</a>, ' +
       'presiona “Run workflow”, espera ~3 minutos y dale a ↻.';
+    toast('⚠️ No pude lanzar el robot directamente. Mira el aviso del Tablero para el plan B.', 'warn', 7000);
   }
 
   /** Espera a que el escaneo publique datos nuevos y refresca la página sola. */
@@ -1915,11 +1993,15 @@
           if (d.updatedAt && d.updatedAt !== startedWith) {
             clearInterval(timer);
             resetScanBtn();
+            loadingDone();
+            toast('✅ ¡Búsqueda terminada! Cargando los resultados nuevos…', 'success');
             loadOnline();
           } else if (tries >= 20) { // ~10 minutos
             clearInterval(timer);
             resetScanBtn();
+            loadingDone();
             ($('board-meta')||{}).textContent = 'La búsqueda tarda más de lo normal; presiona ↻ en un rato.';
+            toast('La búsqueda tarda más de lo normal. Pulsa ↻ en un rato.', 'warn', 6000);
           }
         })
         .catch(function () { /* reintenta en el siguiente tick */ });
@@ -2105,8 +2187,15 @@
 
     renderBoard();
 
-    $('board-refresh').addEventListener('click', loadOnline);
+    $('board-refresh').addEventListener('click', function () { loadOnline(); });
     $('usados-load').addEventListener('click', usadosLoadAll);
+
+    // Al volver a la pestaña tras un rato, recarga en silencio (se siente vivo).
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible' && Date.now() - lastLoadAt > 120000) {
+        loadOnline({ silent: true });
+      }
+    });
 
     // Comparador ¿lease, CPO o compra?
     var decideSel = $('decide-model');
