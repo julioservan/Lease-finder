@@ -200,6 +200,32 @@
     return { level: level, label: label, pct: pct, best: best, trend: trend, offers: offers.length, reason: bits.join(' · ') };
   }
 
+  /**
+   * Marca como "vistas" las ofertas dadas y devuelve las que NO se habían
+   * visto nunca (para avisar de novedades desde la última visita). En la
+   * PRIMERA visita no hay nada previo: siembra el registro y devuelve [] para
+   * no soltar un aviso de "203 nuevas" sin sentido.
+   */
+  var SEEN_KEY = 'lf-seen-v1';
+  function markNewSeen(offers) {
+    var raw = null, seen = {};
+    try { raw = localStorage.getItem(SEEN_KEY); seen = raw ? JSON.parse(raw) : {}; } catch (e) { seen = {}; }
+    var firstRun = !raw;
+    var fresh = [];
+    (offers || []).forEach(function (o) {
+      if (!o || !o.key) return;
+      if (!seen[o.key]) { if (!firstRun) fresh.push(o); seen[o.key] = 1; }
+    });
+    try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch (e) { /* lleno */ }
+    return { firstRun: firstRun, fresh: fresh };
+  }
+
+  /** Cuántos modelos del ranking tienen al menos una oferta mostrable. */
+  function modelsWithOffers(infos) {
+    var db = load();
+    return (infos || []).filter(function (info) { return offersFor(db, info).length > 0; }).length;
+  }
+
   // API pública: recibe la BD internamente (load) para simplificar el uso.
   return {
     ingest: ingest,
@@ -208,6 +234,8 @@
     seriesFor: function (info) { return seriesFor(load(), info); },
     trendFor: function (info) { return trendFor(load(), info); },
     assess: function (info, intel) { return assess(load(), info, intel); },
+    markNewSeen: markNewSeen,
+    modelsWithOffers: modelsWithOffers,
     normalizeModel: normalizeModel,
     _load: load
   };
