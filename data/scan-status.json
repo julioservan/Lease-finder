@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-25T01:02:09.830Z",
+  "updatedAt": "2026-07-25T03:31:37.068Z",
   "sources": [
     {
       "name": "Premier Ford",
@@ -324,12 +324,12 @@
     {
       "name": "Lease NYC — Ford Bronco Sport",
       "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Toyota RAV4",
       "region": "bróker — NYC",
-      "status": "ok (12 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Lease NYC — Hyundai Tucson",
@@ -339,37 +339,37 @@
     {
       "name": "Lease NYC — Hyundai Santa Fe",
       "region": "bróker — NYC",
-      "status": "ok (10 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "Lease NYC — Kia Sportage",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "Lease NYC — Kia Sorento",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Subaru Forester",
       "region": "bróker — NYC",
-      "status": "ok (10 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Mazda CX-50",
       "region": "bróker — NYC",
-      "status": "ok (14 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Lease NYC — Nissan Rogue",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Lease NYC — Volkswagen Tiguan",
       "region": "bróker — NYC",
-      "status": "ok (10 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "Lease NYC — Honda CR-V",
@@ -379,7 +379,7 @@
     {
       "name": "Lease NYC — GMC Terrain",
       "region": "bróker — NYC",
-      "status": "ok (11 ofertas)"
+      "status": "ok (10 ofertas)"
     }
   ]
 }
