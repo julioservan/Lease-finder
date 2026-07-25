@@ -1259,6 +1259,7 @@
     });
 
     boardPreload(); // rellena foto + Nuevos de los modelos que aún no tienen stock
+    renderTopDealers();
     renderDealers();
   }
 
@@ -1297,7 +1298,27 @@
     { m: ['bical'], dist: 7.5, toll: false, addr: '2859 Flatbush Ave, Brooklyn 11234' },
     { m: ['island buick gmc'], dist: 13, toll: 'Verrazzano', addr: '1855 Hylan Blvd, Staten Island 10305' },
     { m: ['north bergen'], dist: 16, toll: 'túnel + peaje', addr: '7027 JFK Blvd, North Bergen 07047' },
-    { m: ['lester glenn'], dist: 65, toll: 'lejos', addr: 'Toms River, NJ' }
+    { m: ['milea'], dist: 16, toll: false, addr: 'Bronx, NY' },
+    { m: ['lester glenn'], dist: 65, toll: 'lejos', addr: 'Toms River, NJ' },
+    // Otros concesionarios reales que ya producen ofertas (direcciones verificadas)
+    { m: ['bay ridge honda'], dist: 9, toll: false, addr: '8801 4th Ave, Brooklyn 11209' },
+    { m: ['hyundai city'], dist: 9, toll: false, addr: '9013 4th Ave, Brooklyn 11209' },
+    { m: ['paragon honda'], dist: 9, toll: false, addr: '57-02 Northern Blvd, Woodside 11377' },
+    { m: ['plaza honda'], dist: 6, toll: false, addr: '2721 Nostrand Ave, Brooklyn 11210' },
+    { m: ['plaza toyota'], dist: 6.5, toll: false, addr: '2721 Nostrand Ave, Brooklyn 11210' },
+    { m: ['plaza kia'], dist: 6.5, toll: false, addr: '2740 Nostrand Ave, Brooklyn 11210' },
+    { m: ['plaza hyundai'], dist: 6.5, toll: false, addr: 'Nostrand Ave, Brooklyn' },
+    { m: ['bay ridge subaru'], dist: 9, toll: false, addr: 'Brooklyn 11209' },
+    { m: ['bay ridge nissan'], dist: 9, toll: false, addr: 'Brooklyn 11209' },
+    { m: ['bay ridge toyota'], dist: 9, toll: false, addr: 'Brooklyn' },
+    { m: ['bay ridge vw', 'bay ridge volkswagen'], dist: 9, toll: false, addr: 'Brooklyn 11209' },
+    { m: ['garden state honda'], dist: 16, toll: 'túnel + peaje', addr: 'Clifton, NJ' },
+    { m: ['garden state'], dist: 16, toll: 'túnel + peaje', addr: 'NJ' },
+    { m: ['open road mazda'], dist: 30, toll: 'lejos', addr: 'Morristown, NJ' },
+    { m: ['ramsey mazda'], dist: 30, toll: 'lejos', addr: 'Ramsey, NJ' },
+    { m: ['koeppel'], dist: 10, toll: false, addr: 'Woodside/Jackson Heights, Queens' },
+    { m: ['metro honda'], dist: 12, toll: 'túnel + peaje', addr: 'Jersey City, NJ' },
+    { m: ['hudson toyota'], dist: 12, toll: 'túnel + peaje', addr: 'Jersey City, NJ' }
   ];
   function dealerGeo(offerOrName) {
     var o = offerOrName;
@@ -1351,6 +1372,100 @@
   function dealerGradeFor(source) {
     var d = dealerCards().filter(function (x) { return x.name === source; })[0];
     return d ? gradeChip(d.grade, d.reasons.join(' · ')) : '';
+  }
+
+  /** ¿Broker o agregador? (para excluirlos SIEMPRE del top de concesionarios). */
+  function isBrokerOrAgg(o) {
+    return (window.LeaseDB && LeaseDB.isBroker && LeaseDB.isBroker(o)) ||
+      /agregador|por modelo/i.test(o.region || '') || /carsdirect|edmunds|truecar/i.test(o.source || '');
+  }
+
+  var TD_MAKES = /honda|toyota|ford|gmc|hyundai|kia|mazda|subaru|nissan|jeep|volkswagen|chevrolet|buick|bmw/i;
+  /** Modelo del ranking al que corresponde una oferta (nombre limpio, no el título crudo). */
+  function offerModelName(o) {
+    if (!window.LeaseDB || !LeaseDB.normalizeModel) return null;
+    var name = o.name || '';
+    var useName = /\b20\d{2}\b/.test(name) && TD_MAKES.test(name);
+    var hay = LeaseDB.normalizeModel(useName ? name : name + ' ' + ((o.parsed && o.parsed.raw) || ''));
+    for (var i = 0; i < RankedModels.length; i++) {
+      if (hay.indexOf(LeaseDB.normalizeModel(RankedModels[i].model)) >= 0) {
+        return RankedModels[i].make + ' ' + RankedModels[i].model;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * 🏆 Top de concesionarios REALES (nunca brokers/agregadores), ordenados por
+   * un compuesto transparente: cercanía a 1 City Point + peaje + nota de
+   * honestidad + transparencia de sus anuncios + nº de ofertas.
+   */
+  function renderTopDealers() {
+    var box = $('top-dealers');
+    if (!box) return;
+    var offers = (onlineData.latest && onlineData.latest.offers) || [];
+    var groups = {};
+    offers.forEach(function (o) {
+      if (!o || !o.source || isBrokerOrAgg(o)) return;
+      var m = o.metrics || {};
+      if (!isNum(m.effectiveMonthly)) return;
+      (groups[o.source] = groups[o.source] || []).push(o);
+    });
+    var gradeBy = {};
+    dealerCards().forEach(function (c) { gradeBy[c.name] = c; });
+
+    var rows = Object.keys(groups).map(function (name) {
+      var offs = groups[name];
+      var geo = dealerGeo(name) || {};
+      var card = gradeBy[name];
+      var grade = (card && card.grade) || '?';
+      var tscores = offs.map(function (o) {
+        return (window.OfferParser && OfferParser.transparency) ? OfferParser.transparency(o.parsed || {}).score : 0;
+      });
+      var tavg = tscores.reduce(function (a, b) { return a + b; }, 0) / (tscores.length || 1);
+      var bestEff = Math.min.apply(null, offs.map(function (o) { return o.metrics.effectiveMonthly; }));
+      var models = [];
+      offs.forEach(function (o) {
+        var nm = offerModelName(o);
+        if (nm && models.indexOf(nm) < 0) models.push(nm);
+      });
+      // Compuesto (0–100 aprox.)
+      var s = 0, d = geo.dist;
+      if (d != null) s += d <= 10 ? 40 : d <= 16 ? 28 : d <= 25 ? 15 : d <= 40 ? 6 : 0;
+      else s += 12; // distancia desconocida: neutral
+      if (geo.toll && geo.toll !== false && geo.toll !== 'lejos') s -= 8;
+      s += ({ A: 30, B: 22, C: 12, D: 2, '?': 10 })[grade] || 10;
+      s += Math.round(tavg / 100 * 18);
+      s += Math.min(offs.length, 5) * 2;
+      return { name: name, offs: offs, geo: geo, grade: grade, card: card, tavg: tavg, bestEff: bestEff, models: models, score: s };
+    });
+
+    if (!rows.length) {
+      box.innerHTML = '<p class="hint">Todavía no hay ofertas de concesionarios reales (sin brokers). El robot las irá encontrando; mientras, activa “Incluir brokers” arriba para ver intermediarios que entregan a domicilio.</p>';
+      return;
+    }
+    rows.sort(function (a, b) { return b.score - a.score; });
+
+    var MEDAL = ['🥇', '🥈', '🥉'];
+    box.innerHTML = '<ol class="topd">' + rows.map(function (r, i) {
+      var tlevel = r.tavg >= 70 ? 'high' : r.tavg >= 45 ? 'mid' : 'low';
+      var tlabel = tlevel === 'high' ? 'muy transparente' : tlevel === 'mid' ? 'transparencia media' : 'poco transparente';
+      var reasons = (r.card && r.card.reasons && r.card.reasons.length) ? r.card.reasons.slice(0, 2).join(' · ') : '';
+      return '<li class="topd-row">' +
+        '<div class="topd-rank">' + (MEDAL[i] || (i + 1)) + '</div>' +
+        '<div class="topd-main">' +
+          '<div class="topd-head">' + gradeChip(r.grade, (r.card && r.card.reasons.join(' · ')) || '') +
+            ' <span class="topd-name">' + escapeHtml(r.name) + '</span> ' + dealerGeoChip(r.name) + '</div>' +
+          '<div class="topd-sub">' +
+            '<span class="transp-dot transp-' + tlevel + '" title="' + tlabel + ' (' + Math.round(r.tavg) + '% revelado)"></span>' +
+            escapeHtml(String(r.offs.length)) + ' oferta' + (r.offs.length > 1 ? 's' : '') +
+            ' · desde <b>' + fmtMoney2(r.bestEff) + '</b>/mes efectivo' +
+            (r.geo.addr ? ' · ' + escapeHtml(r.geo.addr) : '') +
+          '</div>' +
+          (r.models.length ? '<div class="topd-models">' + r.models.slice(0, 4).map(escapeHtml).join(' · ') + '</div>' : '') +
+          (reasons ? '<div class="topd-reasons">' + escapeHtml(reasons) + '</div>' : '') +
+        '</div></li>';
+    }).join('') + '</ol>';
   }
 
   // Precarga CONTROLADA del inventario para que el tablero se llene solo:
@@ -2260,6 +2375,17 @@
     renderBoard();
 
     $('board-refresh').addEventListener('click', function () { loadOnline(); });
+
+    // Interruptor de brokers (ocultos por defecto; el usuario quiere concesionarios).
+    var brkBox = $('include-brokers');
+    if (brkBox) {
+      brkBox.checked = !!(window.LeaseDB && LeaseDB.includeBrokers && LeaseDB.includeBrokers());
+      brkBox.addEventListener('change', function () {
+        if (window.LeaseDB && LeaseDB.setIncludeBrokers) LeaseDB.setIncludeBrokers(brkBox.checked);
+        renderBoard();
+        toast(brkBox.checked ? 'Mostrando también brokers (entregan a domicilio).' : 'Brokers ocultos. Solo concesionarios reales.', 'info', 3500);
+      });
+    }
     $('usados-load').addEventListener('click', usadosLoadAll);
 
     // Al volver a la pestaña tras un rato, recarga en silencio (se siente vivo).
