@@ -2824,5 +2824,239 @@
   "model": "Volkswagen Tiguan",
   "best": null,
   "count": 0
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Ford Bronco Sport",
+  "best": 339,
+  "count": 2
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Mazda CX-50",
+  "best": 199,
+  "count": 3
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Subaru Forester",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Jeep Cherokee",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Kia Sportage",
+  "best": 229,
+  "count": 3
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Kia Sorento",
+  "best": 289,
+  "count": 2
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Toyota RAV4",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Hyundai Tucson",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Hyundai Santa Fe",
+  "best": 320.15,
+  "count": 1
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "GMC Terrain",
+  "best": 499,
+  "count": 2
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Nissan Rogue",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Honda CR-V",
+  "best": 169,
+  "count": 4
+ },
+ {
+  "t": "2026-07-26T05:34:56.884Z",
+  "model": "Volkswagen Tiguan",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Ford Bronco Sport",
+  "best": 339,
+  "count": 3
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Mazda CX-50",
+  "best": 199,
+  "count": 3
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Subaru Forester",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Jeep Cherokee",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Kia Sportage",
+  "best": 229,
+  "count": 4
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Kia Sorento",
+  "best": 289,
+  "count": 5
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Toyota RAV4",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Hyundai Tucson",
+  "best": 270.15,
+  "count": 1
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Hyundai Santa Fe",
+  "best": 320.15,
+  "count": 2
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "GMC Terrain",
+  "best": 499,
+  "count": 2
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Nissan Rogue",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Honda CR-V",
+  "best": 169,
+  "count": 6
+ },
+ {
+  "t": "2026-07-26T13:28:55.930Z",
+  "model": "Volkswagen Tiguan",
+  "best": 299,
+  "count": 1
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Ford Bronco Sport",
+  "best": 339,
+  "count": 3
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Mazda CX-50",
+  "best": 199,
+  "count": 3
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Subaru Forester",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Jeep Cherokee",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Kia Sportage",
+  "best": 229,
+  "count": 4
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Kia Sorento",
+  "best": 289,
+  "count": 5
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Toyota RAV4",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Hyundai Tucson",
+  "best": 270.15,
+  "count": 1
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Hyundai Santa Fe",
+  "best": 320.15,
+  "count": 2
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "GMC Terrain",
+  "best": 499,
+  "count": 2
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Nissan Rogue",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Honda CR-V",
+  "best": 169,
+  "count": 6
+ },
+ {
+  "t": "2026-07-26T17:20:34.890Z",
+  "model": "Volkswagen Tiguan",
+  "best": 299,
+  "count": 1
  }
 ]
