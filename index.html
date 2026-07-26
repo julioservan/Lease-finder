@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=51">
+  <link rel="stylesheet" href="css/styles.css?v=52">
 </head>
 <body>
   <header class="topbar">
@@ -388,6 +388,17 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
 
     <div class="coste-grid">
       <div class="coste-inputs">
+        <!-- Importar una oferta: rellena el lease/entrada/plazo y valora la oferta -->
+        <div class="card">
+          <h3>📎 Importar una oferta</h3>
+          <div class="import-zone" id="c-import-zone">
+            <input type="file" id="c-import-file" accept=".pdf,.html,.htm,.txt,image/*" multiple hidden>
+            <button type="button" class="btn" id="c-import-pick">📎 Subir PDF / HTML / captura</button>
+            <span class="import-hint" id="c-import-status">Sube la hoja de la oferta (o arrástrala aquí): relleno el lease, la entrada y el plazo, y te digo qué tal es.</span>
+          </div>
+          <div id="c-import-verdict" hidden></div>
+        </div>
+
         <div class="card coste-profiles">
           <div class="field">
             <label for="c-profile">Perfil guardado</label>
@@ -521,14 +532,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=51"></script>
-  <script src="js/offer-parser.js?v=51"></script>
-  <script src="js/importer.js?v=51"></script>
-  <script src="js/vehicles.js?v=51"></script>
-  <script src="js/models.js?v=51"></script>
-  <script src="js/leasedb.js?v=51"></script>
-  <script src="js/dealerscore.js?v=51"></script>
-  <script src="js/decide.js?v=51"></script>
-  <script src="js/app.js?v=51"></script>
+  <script src="js/lease-calc.js?v=52"></script>
+  <script src="js/offer-parser.js?v=52"></script>
+  <script src="js/importer.js?v=52"></script>
+  <script src="js/vehicles.js?v=52"></script>
+  <script src="js/models.js?v=52"></script>
+  <script src="js/leasedb.js?v=52"></script>
+  <script src="js/dealerscore.js?v=52"></script>
+  <script src="js/decide.js?v=52"></script>
+  <script src="js/app.js?v=52"></script>
 </body>
 </html>
