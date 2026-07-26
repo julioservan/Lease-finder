@@ -1514,11 +1514,34 @@
    * Bajo demanda (botón) para no gastar cuota de la API.
    */
   var oemLoading = false;
-  function loadIncentives() {
+  // Caché de 24 h: el plan gratuito de MarketCheck son 500 llamadas/mes (no
+  // acumulables) y cada pulsación consulta los 13 modelos. Sin caché, unas
+  // pocas pulsaciones al día se comerían la cuota.
+  var OEM_KEY = 'lf-oem-v1';
+  var OEM_TTL = 24 * 60 * 60 * 1000;
+  function oemCacheGet() {
+    try {
+      var c = JSON.parse(localStorage.getItem(OEM_KEY) || 'null');
+      if (c && c.t && (Date.now() - c.t) < OEM_TTL && c.rows && c.rows.length) return c;
+    } catch (e) { /* noop */ }
+    return null;
+  }
+  function oemCacheSet(rows) {
+    try { localStorage.setItem(OEM_KEY, JSON.stringify({ t: Date.now(), rows: rows })); } catch (e) { /* noop */ }
+  }
+
+  function loadIncentives(force) {
     if (oemLoading) return;
     var box = $('oem-results');
     var btn = $('oem-load');
     if (!box) return;
+    if (!force) {
+      var cached = oemCacheGet();
+      if (cached) {
+        renderOemRows(cached.rows, new Date(cached.t));
+        return;
+      }
+    }
     oemLoading = true;
     if (btn) { btn.disabled = true; btn.textContent = '⏳ Consultando…'; }
     box.innerHTML = '<p class="hint"><span class="spin"></span> Pidiendo los programas del fabricante para tus modelos…</p>';
@@ -1534,6 +1557,11 @@
         .then(function (r) { return r.json().then(function (d) { return { status: r.status, d: d }; }); })
         .then(function (res) {
           if (res.status === 501 && res.d && res.d.needsKey) { needsKey = true; return done(); }
+          // Fallo de cuenta (clave, plan sin incentivos, cuota): no tiene
+          // sentido seguir con los otros 12 modelos — abortamos y avisamos.
+          if (res.d && res.d.status && [401, 403, 429].indexOf(res.d.status) >= 0) {
+            errMsg = res.d.message; return done();
+          }
           if (res.d && res.d.ok && res.d.best && isNum(res.d.best.monthly)) {
             rows.push({ info: m, best: res.d.best });
           } else if (res.d && res.d.message && !errMsg) {
@@ -1555,19 +1583,31 @@
         return;
       }
       rows.sort(function (a, b) { return a.best.monthly - b.best.monthly; });
-      box.innerHTML = '<div class="table-wrap"><table class="offers-table"><thead><tr>' +
-        '<th>Modelo</th><th>Mensual (ref.)</th><th>Plazo</th><th>Residual</th><th>Money factor</th><th>Lease cash</th></tr></thead><tbody>' +
-        rows.map(function (r) {
-          var b = r.best;
-          return '<tr><td>' + escapeHtml(r.info.make + ' ' + r.info.model) + '</td>' +
-            '<td><b>' + fmtMoney(b.monthly) + '</b>/mes' + (b.estimated ? ' <span class="offer-meta">estimado</span>' : '') + '</td>' +
-            '<td>' + (b.term || '—') + 'm</td>' +
-            '<td>' + (isNum(b.residualPct) ? b.residualPct + '%' : '—') + '</td>' +
-            '<td>' + (isNum(b.moneyFactor) ? b.moneyFactor : '—') + '</td>' +
-            '<td>' + (isNum(b.leaseCash) ? fmtMoney(b.leaseCash) : '—') + '</td></tr>';
-        }).join('') + '</tbody></table></div>' +
-        '<p class="hint">«Ref.» = mensualidad orientativa del programa OEM (impuestos/DMV aparte). Compárala con lo que te ofrezca un concesionario: si te piden bastante más, hay margen para negociar.</p>';
+      oemCacheSet(rows.map(function (r) { return { name: r.info.make + ' ' + r.info.model, best: r.best }; }));
+      renderOemRows(rows.map(function (r) { return { name: r.info.make + ' ' + r.info.model, best: r.best }; }), new Date());
     }
+  }
+
+  /** Pinta la tabla del benchmark OEM (desde la API o desde la caché de 24 h). */
+  function renderOemRows(rows, when) {
+    var box = $('oem-results');
+    if (!box) return;
+    box.innerHTML = '<div class="table-wrap"><table class="offers-table"><thead><tr>' +
+      '<th>Modelo</th><th>Mensual (ref.)</th><th>Plazo</th><th>Residual</th><th>Money factor</th><th>Lease cash</th></tr></thead><tbody>' +
+      rows.map(function (r) {
+        var b = r.best;
+        return '<tr><td>' + escapeHtml(r.name) + '</td>' +
+          '<td><b>' + fmtMoney(b.monthly) + '</b>/mes' + (b.estimated ? ' <span class="offer-meta">estimado</span>' : '') + '</td>' +
+          '<td>' + (b.term || '—') + 'm</td>' +
+          '<td>' + (isNum(b.residualPct) ? b.residualPct + '%' : '—') + '</td>' +
+          '<td>' + (isNum(b.moneyFactor) ? b.moneyFactor : '—') + '</td>' +
+          '<td>' + (isNum(b.leaseCash) ? fmtMoney(b.leaseCash) : '—') + '</td></tr>';
+      }).join('') + '</tbody></table></div>' +
+      '<p class="hint">«Ref.» = mensualidad orientativa del programa OEM (impuestos/DMV aparte). Compárala con lo que te ofrezca un concesionario: si te piden bastante más, hay margen para negociar.' +
+      (when ? ' <span class="offer-meta">Consultado el ' + when.toLocaleString('es') + ' · se guarda 24 h para no gastar cuota.</span>' : '') + '</p>' +
+      '<button type="button" class="btn mini subtle" id="oem-refresh">🔄 Forzar actualización (gasta cuota)</button>';
+    var rb = $('oem-refresh');
+    if (rb) rb.addEventListener('click', function () { loadIncentives(true); });
   }
 
   /** Nota del concesionario de UNA oferta (para el desplegable del Tablero). */

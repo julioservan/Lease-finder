@@ -121,10 +121,15 @@ module.exports = async function handler(req, res) {
     var r = await fetch(url, { headers: { 'Accept': 'application/json' } });
     if (!r.ok) {
       var body = await r.text().catch(function () { return ''; });
+      // Mensajes distinguibles: así se sabe SIN adivinar si el plan gratuito
+      // da acceso a los incentivos, si la clave está mal o si se agotó cuota.
+      var msg;
+      if (r.status === 401) msg = 'Clave rechazada (401): revisa MARKETCHECK_API_KEY en Vercel.';
+      else if (r.status === 403) msg = 'Tu plan de MarketCheck NO incluye los incentivos OEM (403). Hace falta añadir ese dataset al plan.';
+      else if (r.status === 429) msg = 'Cuota agotada (429): el plan gratuito son 500 llamadas/mes y no acumulan.';
+      else msg = 'MarketCheck respondió ' + r.status + '.';
       return res.status(r.status === 401 || r.status === 403 ? 502 : r.status).json({
-        ok: false,
-        message: 'MarketCheck respondió ' + r.status + (r.status === 401 ? ' (clave inválida o plan sin Incentives).' : '.'),
-        detail: body.slice(0, 300)
+        ok: false, status: r.status, message: msg, detail: body.slice(0, 300)
       });
     }
     var data = await r.json();
