@@ -662,6 +662,134 @@
         "https://www.openroadmazdaofmorristown.com/new-inventory/index.htm",
         "https://www.openroadmazdaofmorristown.com/new-vehicles/"
       ]
+    },
+    {
+      "name": "Westbury Toyota",
+      "region": "Westbury, LI",
+      "addr": "1121 Old Country Rd, Westbury 11590",
+      "dist": 22,
+      "toll": false,
+      "urls": [
+        "https://www.westburytoyota.com/toyota-incentives/",
+        "https://www.westburytoyota.com/new-vehicle-specials/",
+        "https://www.westburytoyota.com/new-inventory/index.htm"
+      ]
+    },
+    {
+      "name": "Penn Toyota",
+      "region": "Greenvale, LI",
+      "addr": "2400 Northern Blvd, Greenvale 11548",
+      "dist": 18,
+      "toll": false,
+      "urls": [
+        "https://www.penntoyota.com/new-specials/",
+        "https://www.penntoyota.com/current-ads/",
+        "https://www.penntoyota.com/new-inventory/index.htm"
+      ]
+    },
+    {
+      "name": "Star Subaru",
+      "region": "Bayside, Queens",
+      "addr": "206-26 Northern Blvd, Bayside 11361",
+      "dist": 14,
+      "toll": false,
+      "urls": [
+        "https://www.starsubaru.com/new-vehicle-specials/",
+        "https://www.starsubaru.com/lease-specials/",
+        "https://www.starsubaru.com/specials/",
+        "https://www.starsubaru.com/new-inventory/index.htm"
+      ]
+    },
+    {
+      "name": "Kings Nissan",
+      "region": "Brooklyn, NY",
+      "addr": "2758 Coney Island Ave, Brooklyn 11235",
+      "dist": 7,
+      "toll": false,
+      "urls": [
+        "https://www.kingsnissan.com/specials/",
+        "https://www.kingsnissan.com/inventory/new/"
+      ]
+    },
+    {
+      "name": "Star Nissan of Bayside",
+      "region": "Bayside, Queens",
+      "addr": "Bayside 11361",
+      "dist": 14,
+      "toll": false,
+      "urls": [
+        "https://www.starnissanofbayside.com/specials/",
+        "https://www.starnissanofbayside.com/new-inventory/index.htm"
+      ]
+    },
+    {
+      "name": "Teddy Volkswagen",
+      "region": "Bronx, NY",
+      "addr": "Bronx 10466",
+      "dist": 15,
+      "toll": "puente RFK/Whitestone",
+      "urls": [
+        "https://www.teddyvolkswagen.com/volkswagen-lease-deals-the-bronx-ny",
+        "https://www.teddyvolkswagen.com/volkswagen-tiguan-lease-deals-the-bronx-ny",
+        "https://www.teddyvolkswagen.com/inventory/new/volkswagen/tiguan"
+      ]
+    },
+    {
+      "name": "Westbury Jeep CDJR",
+      "region": "Westbury, LI",
+      "addr": "100 Jericho Tpke, Westbury 11590",
+      "dist": 22,
+      "toll": false,
+      "urls": [
+        "https://www.westburyjeep.com/jeep-lease-deals.htm",
+        "https://westburydeals.com/jeep-deals/",
+        "https://www.westburyjeep.com/jeepdeals.htm"
+      ]
+    },
+    {
+      "name": "Garden City Jeep CDJR",
+      "region": "Garden City, LI",
+      "addr": "Garden City 11530",
+      "dist": 20,
+      "toll": false,
+      "urls": [
+        "https://www.gardencityjeepchryslerdodge.com/jeep-lease-deals.htm",
+        "https://www.gardencityjeepchryslerdodge.com/lease-specials/"
+      ]
+    },
+    {
+      "name": "Yonkers Kia",
+      "region": "Yonkers, NY",
+      "addr": "1850 Central Park Ave, Yonkers 10710",
+      "dist": 20,
+      "toll": "puente RFK",
+      "urls": [
+        "https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/",
+        "https://www.yonkerskia.com/new-vehicles/"
+      ]
+    },
+    {
+      "name": "Autoworld Kia",
+      "region": "East Meadow, LI",
+      "addr": "2520 Hempstead Tpke, East Meadow 11554",
+      "dist": 25,
+      "toll": false,
+      "urls": [
+        "https://www.autoworldkia.net/new-kia-specials/",
+        "https://www.autoworldkia.net/new-inventory/index.htm"
+      ]
+    },
+    {
+      "name": "Milea Buick GMC",
+      "region": "Bronx, NY",
+      "addr": "3211 E Tremont Ave, Bronx 10461",
+      "dist": 16,
+      "toll": "puente RFK/Whitestone",
+      "urls": [
+        "https://www.mileabuickgmc.com/lease-specials/",
+        "https://www.mileabuickgmc.com/specials/",
+        "https://www.mileabuickgmc.com/new-inventory/index.htm"
+      ]
     }
   ]
 }
