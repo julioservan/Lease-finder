@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-25T23:38:07.663Z",
+  "updatedAt": "2026-07-26T04:28:39.289Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,27 +89,27 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,7 +119,7 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (40 ofertas, con navegador)"
+      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · HTTP 415 en https://www.bayridgehonda.com/new-inventory/index.htm · HTTP 415 en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -274,7 +274,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · fetch failed en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
@@ -310,6 +310,61 @@
       "name": "Open Road Mazda Morristown",
       "region": "Morristown, NJ",
       "status": "ok (5 ofertas)"
+    },
+    {
+      "name": "Westbury Toyota",
+      "region": "Westbury, LI",
+      "status": "ok (7 ofertas, con navegador)"
+    },
+    {
+      "name": "Penn Toyota",
+      "region": "Greenvale, LI",
+      "status": "ok (6 ofertas, con navegador)"
+    },
+    {
+      "name": "Star Subaru",
+      "region": "Bayside, Queens",
+      "status": "HTTP 403 en https://www.starsubaru.com/new-vehicle-specials/ · HTTP 403 en https://www.starsubaru.com/lease-specials/ · HTTP 403 en https://www.starsubaru.com/specials/ · HTTP 403 en https://www.starsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starsubaru.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/specials/ · sin ofertas (navegador) en https://www.starsubaru.com/new-inventory/index.htm"
+    },
+    {
+      "name": "Kings Nissan",
+      "region": "Brooklyn, NY",
+      "status": "sin ofertas en https://www.kingsnissan.com/specials/ · sin ofertas en https://www.kingsnissan.com/inventory/new/ · sin ofertas (navegador) en https://www.kingsnissan.com/specials/ · sin ofertas (navegador) en https://www.kingsnissan.com/inventory/new/"
+    },
+    {
+      "name": "Star Nissan of Bayside",
+      "region": "Bayside, Queens",
+      "status": "ok (11 ofertas)"
+    },
+    {
+      "name": "Teddy Volkswagen",
+      "region": "Bronx, NY",
+      "status": "ok (33 ofertas)"
+    },
+    {
+      "name": "Westbury Jeep CDJR",
+      "region": "Westbury, LI",
+      "status": "ok (3 ofertas, con navegador)"
+    },
+    {
+      "name": "Garden City Jeep CDJR",
+      "region": "Garden City, LI",
+      "status": "ok (1 ofertas, con navegador)"
+    },
+    {
+      "name": "Yonkers Kia",
+      "region": "Yonkers, NY",
+      "status": "ok (6 ofertas, con navegador)"
+    },
+    {
+      "name": "Autoworld Kia",
+      "region": "East Meadow, LI",
+      "status": "ok (12 ofertas, con navegador)"
+    },
+    {
+      "name": "Milea Buick GMC",
+      "region": "Bronx, NY",
+      "status": "HTTP 403 en https://www.mileabuickgmc.com/lease-specials/ · HTTP 403 en https://www.mileabuickgmc.com/specials/ · HTTP 403 en https://www.mileabuickgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.mileabuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.mileabuickgmc.com/specials/ · sin ofertas (navegador) en https://www.mileabuickgmc.com/new-inventory/index.htm"
     }
   ]
 }

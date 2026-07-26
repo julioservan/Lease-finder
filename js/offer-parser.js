@@ -297,6 +297,38 @@
     return null;
   }
 
+  // Marcas conocidas: una línea que las menciona es casi seguro el encabezado
+  // del modelo (no letra pequeña). Sirve para atribuir el modelo en páginas de
+  // concesionario donde un título va seguido de varias filas de precio.
+  var LOOSE_MAKES = /\b(honda|toyota|ford|gmc|hyundai|kia|mazda|subaru|nissan|jeep|volkswagen|vw|chevrolet|chevy|buick|bmw|acura|lexus|audi|volvo|dodge|ram|chrysler|cadillac|infiniti|mitsubishi|genesis)\b/i;
+  // Letra pequeña/legal que MENCIONA una marca pero NO es el título del modelo
+  // (p. ej. "financing through VW Credit", "Toyota Financial Services").
+  var HEADING_BOILERPLATE = /financ|\bcredit\b|qualif|\bapr\b|lease options|not responsible|stock photo|excludes|acquisition|security deposit|due at signing|per month|\/mo\b|\bmsrp\b|see dealer|dealer for|\btier\b|approved|lessee|copyright|through \w+ (credit|financial)/i;
+  function vehicleHeading(line) {
+    var c = nameCandidate(line);
+    if (!c || !LOOSE_MAKES.test(c) || HEADING_BOILERPLATE.test(c)) return null;
+    return c;
+  }
+  /**
+   * Mejor encabezado de modelo dentro de un texto: prefiere títulos tipo
+   * "Volkswagen Tiguan Lease Deals" o con año, sobre menciones sueltas; a
+   * igualdad, el más cercano al precio (el último).
+   */
+  function lastVehicleHeading(text) {
+    var lines = String(text || '').split('\n');
+    var best = null, bestScore = -1;
+    for (var i = 0; i < lines.length; i++) {
+      var v = vehicleHeading(lines[i]);
+      if (!v) continue;
+      var score = 0;
+      if (/lease|deal|special/i.test(v)) score += 3;
+      if (/\b20\d{2}\b/.test(v)) score += 2;
+      if (v.search(LOOSE_MAKES) < 20) score += 1;
+      if (score >= bestScore) { bestScore = score; best = v; } // >= : gana el más reciente en empate
+    }
+    return best;
+  }
+
   /**
    * Escaneo "suelto" para páginas largas (HTML convertido a texto) sin
    * separadores: cada mención de mensualidad abre un segmento. Los demás
@@ -322,6 +354,7 @@
 
     var results = [];
     var seen = {};
+    var carryName = null; // último encabezado de modelo visto (se arrastra hacia abajo)
     var MERGE_KEYS = ['dueAtSigning', 'msrp', 'price', 'term', 'milesPerYear', 'residualPct', 'moneyFactor', 'apr'];
 
     matches.forEach(function (mt, i) {
@@ -338,7 +371,15 @@
       MERGE_KEYS.forEach(function (k) {
         if (parsed[k] == null && back[k] != null) parsed[k] = back[k];
       });
-      parsed.name = pickNameNear(backward) || parsed.name;
+      // Atribución del modelo: en las webs de concesionario el título del
+      // modelo aparece UNA vez y debajo van varias filas de precio. Busca un
+      // encabezado con marca en TODO el hueco desde la oferta anterior; si esta
+      // fila no trae encabezado, hereda el último visto. Así el modelo (Tiguan,
+      // Rogue, RAV4…) no se pierde y la oferta no se descarta por no atribuirse.
+      var gap = text.slice(i > 0 ? matches[i - 1].end : 0, mt.index);
+      var veh = lastVehicleHeading(gap);
+      if (veh) carryName = veh;
+      parsed.name = veh || carryName || pickNameNear(backward) || parsed.name;
       if (parsed.vin == null) parsed.vin = findVin(backward); // el VIN suele ir antes del precio
       parsed.raw = (backward + forward).trim();
 
