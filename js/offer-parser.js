@@ -269,12 +269,28 @@
 
     // El mismo pago suele repetirse en el resumen ("36 mos. $429/mo") sin
     // nombre: descartar los anónimos que duplican una oferta ya nombrada.
-    return offers.filter(function (o) {
+    offers = offers.filter(function (o) {
       if (o.name) return true;
       return !offers.some(function (other) {
         return other.name && other.monthly === o.monthly && other.term === o.term;
       });
     });
+
+    // Atribución del modelo (páginas de concesionario: un título de modelo y
+    // debajo varias filas de precio con nombre genérico/basura). Si el nombre
+    // de la oferta NO identifica la marca, hereda el encabezado de modelo más
+    // cercano hacia arriba. Se hace DESPUÉS del dedup para no revivir los
+    // resúmenes anónimos ya descartados.
+    offers.forEach(function (o) {
+      if (LOOSE_MAKES.test(o.name || '')) return;
+      var idx = parsed.indexOf(o);
+      for (var j = idx; j >= 0; j--) {
+        var head = (j < idx ? vehicleHeading(parsed[j].name || '') : null) ||
+          lastVehicleHeading(parsed[j].raw || '');
+        if (head) { o.name = head; break; }
+      }
+    });
+    return offers;
   }
 
   function looksLikeData(line) {
