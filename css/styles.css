@@ -584,3 +584,10 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .topd-sub b { color: var(--text); font-variant-numeric: tabular-nums; }
 .topd-models { font-size: 0.78rem; color: var(--faint); margin-top: 3px; }
 .topd-reasons { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+/* Etiqueta de oferta oficial del fabricante (no es un concesionario) */
+.oem-tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 600; white-space: nowrap;
+  color: var(--blue); background: var(--blue-bg); border: 1px solid rgba(35,131,226,0.3);
+  border-radius: 5px; padding: 1px 6px; vertical-align: middle; cursor: help;
+}

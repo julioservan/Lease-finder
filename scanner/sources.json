@@ -790,6 +790,94 @@
         "https://www.mileabuickgmc.com/specials/",
         "https://www.mileabuickgmc.com/new-inventory/index.htm"
       ]
+    },
+    {
+      "name": "Toyota — ofertas Greater NY",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.toyota.com/greaterny/deals-incentives/",
+        "https://www.toyota.com/deals/"
+      ]
+    },
+    {
+      "name": "Subaru — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.subaru.com/special-offers.html",
+        "https://www.subaru.com/deals-coupons.html"
+      ]
+    },
+    {
+      "name": "Hyundai — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.hyundaiusa.com/us/en/special-offers",
+        "https://www.hyundaiusa.com/us/en/lease-deals"
+      ]
+    },
+    {
+      "name": "Nissan — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.nissanusa.com/shopping-tools/special-offers.html",
+        "https://www.nissanusa.com/shopping-tools/special-offers/rogue.html"
+      ]
+    },
+    {
+      "name": "Volkswagen — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.vw.com/en/offers.html",
+        "https://www.vw.com/en/models/tiguan/offers.html"
+      ]
+    },
+    {
+      "name": "Jeep — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.jeep.com/current-offers.html",
+        "https://www.jeep.com/bmo/package/offers.html"
+      ]
+    },
+    {
+      "name": "Kia — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.kia.com/us/en/special-offers",
+        "https://www.kia.com/us/en/local-offers"
+      ]
+    },
+    {
+      "name": "Ford — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.ford.com/deals/",
+        "https://www.ford.com/suvs/bronco-sport/offers/"
+      ]
+    },
+    {
+      "name": "GMC — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.gmc.com/current-deals",
+        "https://www.gmc.com/suvs/terrain/offers"
+      ]
+    },
+    {
+      "name": "Mazda — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://www.mazdausa.com/shopping-tools/special-offers",
+        "https://www.mazdausa.com/vehicles/cx-50/offers"
+      ]
+    },
+    {
+      "name": "Honda — ofertas oficiales",
+      "region": "fabricante — oficial",
+      "urls": [
+        "https://automobiles.honda.com/tools/current-offers",
+        "https://automobiles.honda.com/cr-v#offers"
+      ]
     }
   ]
 }

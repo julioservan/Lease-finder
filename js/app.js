@@ -1616,10 +1616,20 @@
     return d ? gradeChip(d.grade, d.reasons.join(' · ')) : '';
   }
 
-  /** ¿Broker o agregador? (para excluirlos SIEMPRE del top de concesionarios). */
+  /** ¿Oferta oficial del fabricante? (no es un concesionario: es el precio de fábrica). */
+  function isOemOffer(o) {
+    return /fabricante/i.test((o && o.region) || '') || /—\s*ofertas oficiales|ofertas Greater NY/i.test((o && o.source) || '');
+  }
+
+  /**
+   * ¿Excluir del TOP de concesionarios? Brokers y agregadores siempre; también
+   * las ofertas oficiales de fabricante (son la referencia, no un dealer donde
+   * firmas). Ojo: sí cuentan en la cobertura por modelo del Tablero.
+   */
   function isBrokerOrAgg(o) {
     return (window.LeaseDB && LeaseDB.isBroker && LeaseDB.isBroker(o)) ||
-      /agregador|por modelo/i.test(o.region || '') || /carsdirect|edmunds|truecar/i.test(o.source || '');
+      /agregador|por modelo/i.test(o.region || '') || /carsdirect|edmunds|truecar/i.test(o.source || '') ||
+      isOemOffer(o);
   }
 
   var TD_MAKES = /honda|toyota|ford|gmc|hyundai|kia|mazda|subaru|nissan|jeep|volkswagen|chevrolet|buick|bmw/i;
@@ -2006,8 +2016,11 @@
           ? ' <span class="dflag" title="' + escapeHtml(flags.map(function (f) { return f.label; }).join(' · ')) + '">⚠</span>'
           : '';
         var tdot = transpDot(o.parsed);
+        var oemTag = isOemOffer(o)
+          ? ' <span class="oem-tag" title="Oferta oficial del fabricante: es la referencia publicada por la marca, no un concesionario donde firmes. Llévala a tu dealer.">🏷️ fabricante</span>'
+          : '';
         t += '<tr class="bx-row" data-i="' + i + '" title="Toca para ver la oferta en detalle">' +
-          '<td>' + tdot + '<span class="brow-chev">▸</span>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml + ' ' + dealerGeoChip(o) +
+          '<td>' + tdot + '<span class="brow-chev">▸</span>' + dealerGradeFor(o.source) + ' ' + escapeHtml(o.source || o.name || '—') + flagHtml + oemTag + ' ' + dealerGeoChip(o) +
           (o.region ? '<span class="offer-meta">' + escapeHtml(o.region) + '</span>' : '') + '</td>' +
           '<td>' + fmtMoney2(m.effectiveMonthly) + '</td>' +
           '<td>' + fmtMoney2(m.monthlyPayment) + '</td>' +
