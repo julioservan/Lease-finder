@@ -183,6 +183,22 @@ check('atribuye el modelo del encabezado a varias filas de precio (páginas de d
   });
 });
 
+check('atribuye el modelo aunque la página venga en bloques (parseOffers)', function () {
+  // HTML→texto de un dealer: título en bloque propio, filas de precio en
+  // bloques separados por línea en blanco, con basura entre medias.
+  var offers = OfferParser.scanText(
+    'Volkswagen Tiguan Lease Deals in the Bronx\n\n' +
+    'Stock photos shown. Not responsible for typographical errors.\n\n' +
+    'Lease for $319/mo for 36 months\n$3,499 due at signing. MSRP $32,600.\n\n' +
+    '$349/mo for 39 months\n$2,999 due at signing. MSRP $34,100.'
+  );
+  assert.ok(offers.length >= 2, 'al menos 2 filas, hubo ' + offers.length);
+  offers.forEach(function (o) {
+    assert.ok(/tiguan/i.test((o.name || '') + ' ' + (o.raw || '')),
+      'cada fila atribuida al Tiguan, name=' + JSON.stringify(o.name));
+  });
+});
+
 check('no contamina entre modelos distintos de la misma página', function () {
   var offers = OfferParser.scanText(
     '2026 Nissan Rogue SV AWD\n$289/mo for 36 months, $3,299 due at signing, MSRP $31,900\n' +
