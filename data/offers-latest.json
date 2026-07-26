@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-25T23:38:07.663Z",
+  "updatedAt": "2026-07-26T04:28:39.289Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda hr-v lx awd suv auto (model #: rz2h3tew) for on|39",
@@ -95,7 +95,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "ramsey mazda|new lease specials »|36",
@@ -138,7 +138,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — hyundai tucson|last updated: 7/23/2026|36",
@@ -171,6 +171,92 @@
       "isTarget": true,
       "firstSeen": "2026-07-23T13:31:10.670Z",
       "lastSeen": "2026-07-23T17:28:44.616Z"
+    },
+    {
+      "key": "carsdirect — hyundai tucson|last updated: 7/26/2026|36",
+      "source": "CarsDirect — Hyundai Tucson",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/hyundai/tucson/prices-deals",
+      "name": "Last updated: 7/26/2026",
+      "parsed": {
+        "name": "Last updated: 7/26/2026",
+        "monthly": 229,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": 0,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "The 2026 Hyundai Tucson is now available with lease offers from $229/month and financing as low as 0% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/26/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 229,
+        "driveOff": 0,
+        "totalCost": 8244,
+        "effectiveMonthly": 229,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 229,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
+      "key": "autoworld kia|s/n|229|36",
+      "source": "Autoworld Kia",
+      "region": "East Meadow, LI",
+      "url": "https://www.autoworldkia.net/new-kia-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 229,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "2026 KIA SPORTAGE LX $229 PER MONTH"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 229,
+        "driveOff": 0,
+        "totalCost": 8244,
+        "effectiveMonthly": 229,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 229,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — kia sportage|last updated: 7/22/2026|36",
@@ -492,6 +578,49 @@
       "isTarget": true,
       "firstSeen": "2026-07-25T17:19:45.178Z",
       "lastSeen": "2026-07-25T23:38:07.663Z"
+    },
+    {
+      "key": "yonkers kia|2026 kia sportage ex|36",
+      "source": "Yonkers Kia",
+      "region": "Yonkers, NY",
+      "url": "https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/",
+      "name": "2026 Kia Sportage EX",
+      "parsed": {
+        "name": "2026 Kia Sportage EX",
+        "monthly": 259,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "PRE-TRADE® FOR $259 PER MONTH"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 259,
+        "driveOff": 0,
+        "totalCost": 9324,
+        "effectiveMonthly": 259,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 259,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — nissan rogue|last updated: 7/24/2026|36",
@@ -879,6 +1008,49 @@
       "lastSeen": "2026-07-25T23:38:07.663Z"
     },
     {
+      "key": "carsdirect — gmc terrain|last updated: 7/26/2026|36",
+      "source": "CarsDirect — GMC Terrain",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/gmc/terrain/prices-deals",
+      "name": "Last updated: 7/26/2026",
+      "parsed": {
+        "name": "Last updated: 7/26/2026",
+        "monthly": 279,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": 5.79,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "The 2027 and 2026 GMC Terrain are now available with lease offers from $279/month and financing as low as 5.79% APR with a financing bonus up to $1,750. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/26/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 279,
+        "driveOff": 0,
+        "totalCost": 10044,
+        "effectiveMonthly": 279,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 279,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
       "key": "carsdirect — mazda cx-50|last updated: 7/22/2026|36",
       "source": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
@@ -1264,6 +1436,92 @@
       "lastSeen": "2026-07-25T23:38:07.663Z"
     },
     {
+      "key": "carsdirect — cr-v|last updated: 7/26/2026|36",
+      "source": "CarsDirect — CR-V",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/honda/cr-v/prices-deals",
+      "name": "Last updated: 7/26/2026",
+      "parsed": {
+        "name": "Last updated: 7/26/2026",
+        "monthly": 289,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": 2.49,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "The 2026 Honda CR-V is now available with lease offers from $289/month and financing as low as 2.49% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/26/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 289,
+        "driveOff": 0,
+        "totalCost": 10404,
+        "effectiveMonthly": 289,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 289,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
+      "key": "autoworld kia|s/n|289|36",
+      "source": "Autoworld Kia",
+      "region": "East Meadow, LI",
+      "url": "https://www.autoworldkia.net/new-kia-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 289,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "2026 KIA SORENTO LX $289 PER MONTH"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 289,
+        "driveOff": 0,
+        "totalCost": 10404,
+        "effectiveMonthly": 289,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 289,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
       "key": "carsdirect — kia sorento|last updated: 7/22/2026|36",
       "source": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
@@ -1448,7 +1706,50 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
+      "key": "carsdirect — hyundai tucson|2026 tucson se fwd|36",
+      "source": "CarsDirect — Hyundai Tucson",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/hyundai/tucson/prices-deals",
+      "name": "2026 Tucson SE FWD",
+      "parsed": {
+        "name": "2026 Tucson SE FWD",
+        "monthly": 229,
+        "term": 36,
+        "dueAtSigning": 3999,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "Lease Deals Financing & Rebates Payment Calculator Hyundai Tucson Target Price \n \n Hyundai Tucson Lease Deals Near You\n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Tucson SE FWD\n $229 Per Month \n 36 Months \n $3,999 Due at Signing \n \n Claim Your Offer Offer Details ›"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 229,
+        "driveOff": 3999,
+        "totalCost": 12014,
+        "effectiveMonthly": 333.72222222222223,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 229,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T00:12:05.649Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "freehold ford|view|36",
@@ -1491,7 +1792,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 sportage lx fwd|36",
@@ -1609,7 +1910,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:02:12.878Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — bronco sport|last updated: 7/22/2026|36",
@@ -1826,6 +2127,49 @@
       "lastSeen": "2026-07-25T23:38:07.663Z"
     },
     {
+      "key": "carsdirect — hyundai santa fe|last updated: 7/26/2026|36",
+      "source": "CarsDirect — Hyundai Santa Fe",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/hyundai/santa-fe/prices-deals",
+      "name": "Last updated: 7/26/2026",
+      "parsed": {
+        "name": "Last updated: 7/26/2026",
+        "monthly": 349,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": 0,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "The 2026 Hyundai Santa Fe is now available with lease offers from $349/month, up to $3,000 in cash back, and financing as low as 0% APR with a financing bonus up to $1,500. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/26/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 349,
+        "driveOff": 0,
+        "totalCost": 12564,
+        "effectiveMonthly": 349,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 349,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
       "key": "carsdirect — subaru forester|subaru forester lease deals near you|36",
       "source": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
@@ -1866,50 +2210,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:02:12.878Z"
-    },
-    {
-      "key": "carsdirect — hyundai tucson|2026 tucson se fwd|36",
-      "source": "CarsDirect — Hyundai Tucson",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/hyundai/tucson/prices-deals",
-      "name": "2026 Tucson SE FWD",
-      "parsed": {
-        "name": "2026 Tucson SE FWD",
-        "monthly": 249,
-        "term": 36,
-        "dueAtSigning": 3999,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "Lease Deals Financing & Rebates Payment Calculator Hyundai Tucson Target Price \n \n Hyundai Tucson Lease Deals Near You\n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Tucson SE FWD\n $249 Per Month \n 36 Months \n $3,999 Due at Signing \n \n Claim Your Offer Offer Details ›"
-      },
-      "metrics": {
-        "term": 36,
-        "monthlyPayment": 249,
-        "driveOff": 3999,
-        "totalCost": 12714,
-        "effectiveMonthly": 353.1666666666667,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 249,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — mazda cx-50|mazda cx-50 lease deals near you|36",
@@ -2169,6 +2470,49 @@
       "lastSeen": "2026-07-25T23:38:07.663Z"
     },
     {
+      "key": "carsdirect — jeep cherokee|last updated: 7/26/2026|36",
+      "source": "CarsDirect — Jeep Cherokee",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/jeep/cherokee/prices-deals",
+      "name": "Last updated: 7/26/2026",
+      "parsed": {
+        "name": "Last updated: 7/26/2026",
+        "monthly": 369,
+        "term": null,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": 4.9,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "The 2027 and 2026 Jeep Cherokee are now available with lease offers from $369/month, up to $2,500 in cash back, and financing as low as 4.9% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 7/26/2026"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 369,
+        "driveOff": 0,
+        "totalCost": 13284,
+        "effectiveMonthly": 369,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 369,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
       "key": "carsdirect — gmc terrain|2026 terrain elevation fwd|36",
       "source": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
@@ -2209,7 +2553,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 lease deals near you|36",
@@ -2252,7 +2596,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:02:12.878Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 awd s select|36",
@@ -2300,7 +2644,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — mazda cx-50|2026 cx-50 2.5 s select awd|36",
@@ -2344,6 +2688,54 @@
       "isTarget": true,
       "firstSeen": "2026-07-22T03:53:50.863Z",
       "lastSeen": "2026-07-25T23:38:07.663Z"
+    },
+    {
+      "key": "autoworld kia|s/n|229|24",
+      "source": "Autoworld Kia",
+      "region": "East Meadow, LI",
+      "url": "https://www.autoworldkia.net/new-kia-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 229,
+        "term": 24,
+        "dueAtSigning": 3999,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [
+          {
+            "key": "toptier",
+            "label": "Top-tier credit"
+          }
+        ],
+        "vin": null,
+        "raw": "2026 Sportage LX $229 per month | 24-month lease. $3,999 due at signing. For FWD Only. $3,999 due at Signing. Offer shown based on $3,999 due at signing including $229 first monthly payment, $3,120 ca pitalized cost reduction, $650 acquisition fee, plus tax, title, license and registration fees, dealer conveyance fee, processing fee or optional service fee and any emission testing charge. Lease offer is only available to well-qualified lessees that lease a 2026 Sportage (Model #4AC2225). No security deposit required. Actual payments may vary. Purchase option at lease end is $21,199.50. Subject to credit approval by Kia Finance. Lessee is responsible for insurance, maintenance, repairs, $0.20 per mile over 10,000 miles/year, excess wear, and a termination fee of up to $400. Subject to dealer participation. Offers may not be combined except where specified. Must take delivery by 08/03/2026. See dealer for warranty and lease details or go to kia.com. Limited inventory available. More ..."
+      },
+      "metrics": {
+        "term": 24,
+        "monthlyPayment": 229,
+        "driveOff": 3999,
+        "totalCost": 9266,
+        "effectiveMonthly": 386.0833333333333,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 229,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — subaru forester|2026 forester base|36",
@@ -2477,7 +2869,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T02:55:31.472Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 tiguan se fwd|36",
@@ -2595,7 +2987,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson blue hybrid se awd|36",
@@ -2638,7 +3030,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — kia sorento|2026 sorento lx gas|36",
@@ -2842,7 +3234,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 tucson sel phev awd|36",
@@ -2885,7 +3277,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v hybrid awd sport|36",
@@ -2929,6 +3321,97 @@
       "isTarget": true,
       "firstSeen": "2026-07-20T20:04:57.108Z",
       "lastSeen": "2026-07-25T23:38:07.663Z"
+    },
+    {
+      "key": "autoworld kia|s/n|289|24",
+      "source": "Autoworld Kia",
+      "region": "East Meadow, LI",
+      "url": "https://www.autoworldkia.net/new-kia-specials/",
+      "name": null,
+      "parsed": {
+        "name": null,
+        "monthly": 289,
+        "term": 24,
+        "dueAtSigning": 3999,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [
+          {
+            "key": "toptier",
+            "label": "Top-tier credit"
+          }
+        ],
+        "vin": null,
+        "raw": "2026 Sorento LX $289 per month | 24-month lease. $3,999 due at signing. For FWD Only. $3,999 due at Signing. Offer shown based on $3,999 due at signing including $289 first monthly payment, $3,060 cap italized cost reduction, $650 acquisition fee, plus tax, title, license and registration fees, dealer conveyance fee, processing fee or optional service fee and any emission testing charge. Lease offer is only available to well-qualified lessees that lease a 2026 Sorento (Model #7AC3225). No security deposit required. Actual payments may vary. Purchase option at lease end is $22,364.10. Subject to credit approval by Kia Finance. Lessee is responsible for insurance, maintenance, repairs, $0.20 per mile over 10,000 miles/year, excess wear, and a termination fee of up to $400. Subject to dealer participation. Offers may not be combined except where specified. Must take delivery by 08/03/2026. See dealer for warranty and lease details or go to kia.com. Limited inventory available. More ..."
+      },
+      "metrics": {
+        "term": 24,
+        "monthlyPayment": 289,
+        "driveOff": 3999,
+        "totalCost": 10646,
+        "effectiveMonthly": 443.5833333333333,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 289,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T04:28:39.289Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
+    },
+    {
+      "key": "carsdirect — jeep cherokee|2026 cherokee laredo hybrid 4x4 w/pkg 23f|42",
+      "source": "CarsDirect — Jeep Cherokee",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/jeep/cherokee/prices-deals",
+      "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
+      "parsed": {
+        "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
+        "monthly": 369,
+        "term": 42,
+        "dueAtSigning": 3529,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "2026 Jeep Cherokee Deals \n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F\n $369 Per Month \n 42 Months \n $3,529 Due at Signing \n \n Claim Your Offer Offer Details ›"
+      },
+      "metrics": {
+        "term": 42,
+        "monthlyPayment": 369,
+        "driveOff": 3529,
+        "totalCost": 18658,
+        "effectiveMonthly": 444.23809523809524,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 369,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T00:12:05.649Z",
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — bronco sport|2026 bronco sport big bend w/pkg 200a|36",
@@ -3014,7 +3497,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:02:12.878Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|2026 santa fe se gas|36",
@@ -3057,50 +3540,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
-    },
-    {
-      "key": "carsdirect — jeep cherokee|2026 cherokee laredo hybrid 4x4 w/pkg 23f|42",
-      "source": "CarsDirect — Jeep Cherokee",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/jeep/cherokee/prices-deals",
-      "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
-      "parsed": {
-        "name": "2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F",
-        "monthly": 369,
-        "term": 42,
-        "dueAtSigning": 3929,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "2026 Jeep Cherokee Deals \n Special Lease Offer\n Exp. 8/3/2026\n\n 2026 Cherokee Laredo Hybrid 4x4 w/Pkg 23F\n $369 Per Month \n 42 Months \n $3,929 Due at Signing \n \n Claim Your Offer Offer Details ›"
-      },
-      "metrics": {
-        "term": 42,
-        "monthlyPayment": 369,
-        "driveOff": 3929,
-        "totalCost": 19058,
-        "effectiveMonthly": 453.76190476190476,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 369,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — mazda cx-50|2026 cx-50 hybrid preferred awd|36",
@@ -3186,7 +3626,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — hyundai santa fe|2026 santa fe se hybrid|36",
@@ -3229,7 +3669,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — kia sorento|2026 sorento ex hybrid fwd|36",
@@ -3315,7 +3755,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T02:55:31.472Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 hybrid awd preferred|36",
@@ -3363,7 +3803,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — kia sorento|2026 sorento ex awd plug-in hybrid|36",
@@ -3449,7 +3889,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2027 jeep cherokee finance deals|72",
@@ -3492,7 +3932,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     },
     {
       "key": "lester glenn gmc|gmc terrain lease offer|36",
@@ -3535,7 +3975,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-07-25T23:38:07.663Z"
+      "lastSeen": "2026-07-26T04:28:39.289Z"
     }
   ]
 }
