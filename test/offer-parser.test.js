@@ -164,6 +164,37 @@ check('hereda el nombre del bloque anterior (páginas de agencias)', function ()
   assert.strictEqual(anon.length, 0, 'no debe haber duplicados sin nombre');
 });
 
+check('atribuye el modelo del encabezado a varias filas de precio (páginas de dealer)', function () {
+  // Estructura real de muchos concesionarios: UN título de modelo y debajo
+  // varias filas de precio, con letra pequeña (incluso con la marca) entre
+  // medias. El modelo debe heredarse hacia abajo, no perderse.
+  var offers = OfferParser.scanText(
+    'Volkswagen Tiguan Lease Deals in the Bronx\n' +
+    'Financing and leasing options available through VW Credit.\n' +
+    'Stock photos shown. Not responsible for typographical errors.\n' +
+    '$319/mo for 36 months\n$3,499 due at signing. MSRP $32,600.\n' +
+    'See dealer for complete details.\n' +
+    '$349/mo for 39 months\n$2,999 due at signing. MSRP $34,100.'
+  );
+  assert.strictEqual(offers.length, 2, 'debe detectar 2 filas de precio');
+  offers.forEach(function (o) {
+    assert.ok(/tiguan/i.test((o.name || '') + ' ' + (o.raw || '')),
+      'cada fila debe atribuirse al Tiguan, name=' + JSON.stringify(o.name));
+  });
+});
+
+check('no contamina entre modelos distintos de la misma página', function () {
+  var offers = OfferParser.scanText(
+    '2026 Nissan Rogue SV AWD\n$289/mo for 36 months, $3,299 due at signing, MSRP $31,900\n' +
+    '2026 Nissan Sentra SR\n$239/mo for 36 months, $2,999 due at signing'
+  );
+  var rogue = offers.filter(function (o) { return /rogue/i.test(o.name); });
+  var sentra = offers.filter(function (o) { return /sentra/i.test(o.name); });
+  assert.strictEqual(rogue.length, 1, 'un Rogue');
+  assert.strictEqual(sentra.length, 1, 'un Sentra');
+  assert.ok(!/rogue/i.test(sentra[0].name), 'el Sentra no debe heredar Rogue');
+});
+
 check('texto sin ofertas → lista vacía', function () {
   assert.strictEqual(OfferParser.scanText('Hola, ¿cómo estás? Nos vemos mañana.').length, 0);
   assert.strictEqual(OfferParser.scanText('').length, 0);
