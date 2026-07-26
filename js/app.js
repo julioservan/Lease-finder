@@ -1318,7 +1318,18 @@
     { m: ['ramsey mazda'], dist: 30, toll: 'lejos', addr: 'Ramsey, NJ' },
     { m: ['koeppel'], dist: 10, toll: false, addr: 'Woodside/Jackson Heights, Queens' },
     { m: ['metro honda'], dist: 12, toll: 'túnel + peaje', addr: 'Jersey City, NJ' },
-    { m: ['hudson toyota'], dist: 12, toll: 'túnel + peaje', addr: 'Jersey City, NJ' }
+    { m: ['hudson toyota'], dist: 12, toll: 'túnel + peaje', addr: 'Jersey City, NJ' },
+    // Tanda nueva: dealers scrapeables para los modelos que estaban vacíos
+    { m: ['westbury toyota'], dist: 22, toll: false, addr: '1121 Old Country Rd, Westbury 11590' },
+    { m: ['penn toyota'], dist: 18, toll: false, addr: '2400 Northern Blvd, Greenvale 11548' },
+    { m: ['star subaru'], dist: 14, toll: false, addr: '206-26 Northern Blvd, Bayside 11361' },
+    { m: ['kings nissan'], dist: 7, toll: false, addr: '2758 Coney Island Ave, Brooklyn 11235' },
+    { m: ['star nissan'], dist: 14, toll: false, addr: 'Bayside, Queens 11361' },
+    { m: ['teddy volkswagen', 'teddy vw'], dist: 15, toll: 'puente RFK/Whitestone', addr: 'Bronx 10466' },
+    { m: ['westbury jeep'], dist: 22, toll: false, addr: '100 Jericho Tpke, Westbury 11590' },
+    { m: ['garden city jeep'], dist: 20, toll: false, addr: 'Garden City, LI 11530' },
+    { m: ['yonkers kia'], dist: 20, toll: 'puente RFK', addr: '1850 Central Park Ave, Yonkers 10710' },
+    { m: ['autoworld kia'], dist: 25, toll: false, addr: '2520 Hempstead Tpke, East Meadow 11554' }
   ];
   function dealerGeo(offerOrName) {
     var o = offerOrName;
