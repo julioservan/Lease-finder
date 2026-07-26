@@ -630,6 +630,135 @@
     })();
   }
 
+  /**
+   * "Coste al mes": importa la hoja de una oferta (PDF/HTML/captura), rellena
+   * pago/entrada/plazo y muestra un veredicto honesto de qué tal es la oferta.
+   */
+  function importCosteFiles(fileList) {
+    var files = Array.prototype.slice.call(fileList || []);
+    if (!files.length || !window.LeaseImport) return;
+    var status = $('c-import-status');
+    function setStatus(t) { if (status) status.textContent = t; }
+    var acc = [];
+    var i = 0;
+    (function next() {
+      if (i >= files.length) {
+        var joined = acc.join('\n---\n').trim();
+        if (!joined) { setStatus('⚠ No se pudo extraer texto. Prueba con otro archivo o usa la pestaña Tablero → Añadir una oferta.'); return; }
+        var offers = OfferParser.scanText(joined);
+        if (!offers.length) { setStatus('⚠ No encontré ninguna mensualidad en el archivo. ¿Es la hoja de la oferta?'); return; }
+        // La oferta más completa (más campos conocidos) es la que se aplica.
+        offers.sort(function (a, b) { return costeCompleteness(b) - costeCompleteness(a); });
+        var best = offers[0];
+        // Una hoja subida = UNA oferta: la letra pequeña (MSRP, millas,
+        // residual, comisiones, condiciones) suele quedar en otro bloque del
+        // documento. Rellena los huecos parseando el documento entero.
+        var whole = OfferParser.parseBlock(joined);
+        ['msrp', 'milesPerYear', 'residualPct', 'residualAmount', 'dueAtSigning', 'downPayment',
+         'acqFee', 'dealerFee', 'docFee', 'accessories', 'securityDeposit', 'term', 'vin'].forEach(function (k) {
+          if (best[k] == null && whole[k] != null) best[k] = whole[k];
+        });
+        best.raw = joined; // condiciones y transparencia miran TODO el texto
+        applyImportedOffer(best);
+        setStatus('✅ Oferta importada' + (offers.length > 1 ? ' (la más completa de ' + offers.length + ' detectadas)' : '') + '. Revisa el veredicto y el recibo.');
+        return;
+      }
+      var f = files[i++];
+      setStatus('Procesando ' + (f.name || 'archivo') + '…');
+      window.LeaseImport.fromFile(f, setStatus).then(function (res) {
+        if (res && res.text) acc.push(res.text);
+        next();
+      }, function (err) {
+        setStatus('⚠ ' + (err && err.message ? err.message : 'No se pudo leer ' + (f.name || 'el archivo')));
+        next();
+      });
+    })();
+  }
+
+  function costeCompleteness(p) {
+    return ['monthly', 'term', 'dueAtSigning', 'downPayment', 'msrp', 'milesPerYear', 'residualPct', 'acqFee'].reduce(function (n, k) {
+      return n + (p[k] != null ? 1 : 0);
+    }, 0);
+  }
+
+  function applyImportedOffer(parsed) {
+    var m = OfferParser.scoreOffer(parsed);
+    if (isNum(m.monthlyPayment)) $('c-lease').value = Math.round(m.monthlyPayment);
+    // La "entrada al firmar" del recibo es TODO el dinero del día uno.
+    var upfront = isNum(m.oneTimeCosts) ? m.oneTimeCosts : (isNum(m.driveOff) ? m.driveOff : null);
+    if (upfront != null) $('c-down').value = Math.round(upfront);
+    if (m.term) $('c-term').value = m.term;
+    $('c-tag').textContent = (parsed.name || 'Oferta importada').slice(0, 40);
+    renderCoste();
+    var box = $('c-import-verdict');
+    if (box) { box.innerHTML = costeVerdictHtml(parsed, m); box.hidden = false; }
+  }
+
+  /** Veredicto de la oferta importada: qué tal es, qué revela y sus condiciones. */
+  function costeVerdictHtml(p, m) {
+    var conds = OfferParser.conditions ? OfferParser.conditions(p.raw) : [];
+    var ds = m.dealScore;
+    var pill = ds == null ? { cls: 'none', txt: 'Sin MSRP — puntuación parcial' }
+      : ds >= 85 ? { cls: 'good', txt: 'Muy buena oferta · ' + ds + '/100' }
+      : ds >= 70 ? { cls: 'good', txt: 'Buena oferta · ' + ds + '/100' }
+      : ds >= 50 ? { cls: 'ok', txt: 'Correcta · ' + ds + '/100' }
+      : { cls: 'pricey', txt: 'Floja · ' + ds + '/100' };
+
+    var summary = '<div class="odx-summary">' +
+      '<div class="odx-s"><span>💵 Mensual</span><strong>' + (isNum(m.monthlyPayment) ? fmtMoney2(m.monthlyPayment) + '<small>/mes</small>' : '—') + '</strong></div>' +
+      '<div class="odx-s"><span>💳 Al firmar</span><strong>' + (isNum(m.oneTimeCosts) ? '~' + fmtMoney(m.oneTimeCosts) : (isNum(m.driveOff) ? '~' + fmtMoney(m.driveOff) : '—')) + '</strong></div>' +
+      '<div class="odx-s"><span>🚗 Millas</span><strong>' + (p.milesPerYear ? p.milesPerYear.toLocaleString('es') + '<small>/año</small>' : '—') + '</strong></div>' +
+      '<div class="odx-s"><span>📉 Efectivo</span><strong>' + (isNum(m.effectiveMonthly) ? fmtMoney2(m.effectiveMonthly) + '<small>/mes</small>' : '—') + '</strong></div>' +
+      '<div class="odx-s"><span>📊 Deal Score</span><strong>' + (ds != null ? ds + '<small>/100</small>' : '—') + '</strong></div>' +
+      '</div>';
+
+    var transpHtml = '';
+    if (OfferParser.transparency) {
+      var tr = OfferParser.transparency(p);
+      var TM = {
+        high: { dot: '🟢', txt: 'Muy transparente', desc: 'La hoja desglosa los pagos iniciales, el residual y las millas.' },
+        mid: { dot: '🟡', txt: 'Transparencia media', desc: 'Se entiende el coste, pero faltan datos — pregunta lo que no aclara antes de firmar.' },
+        low: { dot: '🔴', txt: 'Poco transparente', desc: 'Solo se ve el mensual; pide el desglose completo del "due at signing" antes de firmar.' }
+      };
+      var tm = TM[tr.level];
+      transpHtml = '<div class="odx-transp odx-transp-' + tr.level + '"><span class="odx-transp-dot">' + tm.dot + '</span>' +
+        '<div class="odx-transp-body"><div class="odx-transp-h">' + tm.txt + ' <span class="odx-transp-score">' + tr.score + '% revelado</span></div>' +
+        '<div class="odx-transp-desc">' + tm.desc + '</div>' +
+        (tr.missing.length ? '<div class="odx-transp-miss">No aclara: ' + tr.missing.map(escapeHtml).join(' · ') + '</div>' : '') +
+        '</div></div>';
+    }
+
+    var condHtml = conds.length
+      ? '<div class="odx-conds" style="margin-top:8px">' + conds.map(function (c) { return '<span class="odx-cond">' + escapeHtml(c.label) + '</span>'; }).join('') + '</div>'
+      : '';
+
+    // Explicación equilibrada, con el modelo del ranking si lo reconocemos.
+    var info = null;
+    for (var i = 0; i < RankedModels.length && !info; i++) {
+      var hay = LeaseDB.normalizeModel((p.name || '') + ' ' + (p.raw || ''));
+      if (hay.indexOf(LeaseDB.normalizeModel(RankedModels[i].model)) >= 0) info = RankedModels[i];
+    }
+    var explain = explainOffer({}, info || { make: (p.name || 'este coche'), model: '' }, m, p, conds);
+    var cmp = '';
+    if (info) {
+      var best = LeaseDB.bestOffer(info);
+      if (best && isNum(best.metrics.effectiveMonthly) && isNum(m.effectiveMonthly)) {
+        var diff = m.effectiveMonthly - best.metrics.effectiveMonthly;
+        cmp = Math.abs(diff) < 5
+          ? ' Está a la par del mejor ' + info.model + ' que ha visto el robot.'
+          : diff < 0
+            ? ' Es ' + fmtMoney(Math.abs(diff)) + '/mes MÁS BARATA (en efectivo) que el mejor ' + info.model + ' que ha visto el robot — muy fuerte.'
+            : ' El robot ha visto un ' + info.model + ' por ' + fmtMoney(Math.abs(diff)) + '/mes menos en efectivo (' + escapeHtml(best.source || '') + ').';
+      }
+    }
+
+    return '<div class="odx" style="margin-top:12px">' +
+      '<div style="margin-bottom:8px"><span class="sent ' + pill.cls + '">' + pill.txt + '</span></div>' +
+      summary + transpHtml + condHtml +
+      (explain || cmp ? '<div class="odx-explain">' + escapeHtml(explain) + escapeHtml(cmp) + '</div>' : '') +
+      '</div>';
+  }
+
   function saveScanned(parsed) {
     state.offers.push({
       id: genId(),
@@ -2437,6 +2566,23 @@
       });
       zone.addEventListener('drop', function (e) {
         if (e.dataTransfer && e.dataTransfer.files) importOfferFiles(e.dataTransfer.files);
+      });
+    }
+
+    // Importador del "Coste al mes": rellena y valora la oferta subida.
+    if ($('c-import-pick')) {
+      var cFile = $('c-import-file');
+      $('c-import-pick').addEventListener('click', function () { cFile.click(); });
+      cFile.addEventListener('change', function () { importCosteFiles(cFile.files); cFile.value = ''; });
+      var cZone = $('c-import-zone');
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        cZone.addEventListener(ev, function (e) { e.preventDefault(); cZone.classList.add('drag'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        cZone.addEventListener(ev, function (e) { e.preventDefault(); cZone.classList.remove('drag'); });
+      });
+      cZone.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files) importCosteFiles(e.dataTransfer.files);
       });
     }
 
