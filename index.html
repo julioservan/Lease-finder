@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=53">
+  <link rel="stylesheet" href="css/styles.css?v=54">
 </head>
 <body>
   <header class="topbar">
@@ -60,6 +60,18 @@
     <details class="advanced" id="online-status-box" hidden>
       <summary>Estado de las fuentes del robot</summary>
       <ul id="online-status" class="hint"></ul>
+    </details>
+
+    <!-- Benchmark del fabricante (MarketCheck): NO es un concesionario, es la
+         referencia OEM (residual/money factor/lease cash) para saber si una
+         oferta de dealer es buena — útil sobre todo donde el scraping da 403. -->
+    <details class="card collapse" id="oem-card">
+      <summary>🏷️ Benchmark del fabricante (MarketCheck)</summary>
+      <p class="hint">Mensualidad estimada a partir del programa oficial de cada marca (residual, money factor y lease cash por zona 11201). No es una oferta firmable de un concesionario: es la <b>referencia</b> para saber si un lease que te ofrezcan es bueno o caro.</p>
+      <div class="row" style="margin-bottom:10px">
+        <button type="button" class="btn primary" id="oem-load">🏷️ Cargar programas OEM</button>
+      </div>
+      <div id="oem-results"></div>
     </details>
 
     <!-- Nota del concesionario: quién juega limpio, no solo quién es más barato -->
@@ -532,14 +544,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=53"></script>
-  <script src="js/offer-parser.js?v=53"></script>
-  <script src="js/importer.js?v=53"></script>
-  <script src="js/vehicles.js?v=53"></script>
-  <script src="js/models.js?v=53"></script>
-  <script src="js/leasedb.js?v=53"></script>
-  <script src="js/dealerscore.js?v=53"></script>
-  <script src="js/decide.js?v=53"></script>
-  <script src="js/app.js?v=53"></script>
+  <script src="js/lease-calc.js?v=54"></script>
+  <script src="js/offer-parser.js?v=54"></script>
+  <script src="js/importer.js?v=54"></script>
+  <script src="js/vehicles.js?v=54"></script>
+  <script src="js/models.js?v=54"></script>
+  <script src="js/leasedb.js?v=54"></script>
+  <script src="js/dealerscore.js?v=54"></script>
+  <script src="js/decide.js?v=54"></script>
+  <script src="js/app.js?v=54"></script>
 </body>
 </html>

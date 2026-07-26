@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-26T04:28:39.289Z",
+  "updatedAt": "2026-07-26T05:12:52.710Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 415 en https://www.bayridgehonda.com/lease-specials/ · HTTP 415 en https://www.bayridgehonda.com/specials/ · HTTP 415 en https://www.bayridgehonda.com/new-inventory/index.htm · HTTP 415 en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",

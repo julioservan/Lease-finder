@@ -1508,6 +1508,68 @@
     }).join('');
   }
 
+  /**
+   * Benchmark del fabricante vía MarketCheck (api/incentives). NO es un
+   * concesionario: es la referencia OEM para juzgar si un lease es bueno.
+   * Bajo demanda (botón) para no gastar cuota de la API.
+   */
+  var oemLoading = false;
+  function loadIncentives() {
+    if (oemLoading) return;
+    var box = $('oem-results');
+    var btn = $('oem-load');
+    if (!box) return;
+    oemLoading = true;
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Consultando…'; }
+    box.innerHTML = '<p class="hint"><span class="spin"></span> Pidiendo los programas del fabricante para tus modelos…</p>';
+
+    var models = RankedModels.slice();
+    var rows = [];
+    var needsKey = false, errMsg = '';
+    var i = 0;
+    (function next() {
+      if (i >= models.length) return done();
+      var m = models[i++];
+      fetch('api/incentives?make=' + encodeURIComponent(m.make) + '&model=' + encodeURIComponent(m.model) + '&zip=11201')
+        .then(function (r) { return r.json().then(function (d) { return { status: r.status, d: d }; }); })
+        .then(function (res) {
+          if (res.status === 501 && res.d && res.d.needsKey) { needsKey = true; return done(); }
+          if (res.d && res.d.ok && res.d.best && isNum(res.d.best.monthly)) {
+            rows.push({ info: m, best: res.d.best });
+          } else if (res.d && res.d.message && !errMsg) {
+            errMsg = res.d.message;
+          }
+          next();
+        }, function () { next(); });
+    })();
+
+    function done() {
+      oemLoading = false;
+      if (btn) { btn.disabled = false; btn.textContent = '🔄 Actualizar programas OEM'; }
+      if (needsKey) {
+        box.innerHTML = '<p class="hint">🔑 Falta configurar la clave <code>MARKETCHECK_API_KEY</code> en Vercel (proyecto → Settings → Environment Variables). Consíguela en <a href="https://www.marketcheck.com/apis" target="_blank" rel="noopener">marketcheck.com/apis</a> (plan con «Incentives») y pégala ahí — <b>nunca</b> en el repo. Luego pulsa «Cargar programas OEM».</p>';
+        return;
+      }
+      if (!rows.length) {
+        box.innerHTML = '<p class="hint">No se obtuvieron programas' + (errMsg ? ' (' + escapeHtml(errMsg) + ')' : '') + '. Revisa que el plan de MarketCheck incluya incentivos de lease.</p>';
+        return;
+      }
+      rows.sort(function (a, b) { return a.best.monthly - b.best.monthly; });
+      box.innerHTML = '<div class="table-wrap"><table class="offers-table"><thead><tr>' +
+        '<th>Modelo</th><th>Mensual (ref.)</th><th>Plazo</th><th>Residual</th><th>Money factor</th><th>Lease cash</th></tr></thead><tbody>' +
+        rows.map(function (r) {
+          var b = r.best;
+          return '<tr><td>' + escapeHtml(r.info.make + ' ' + r.info.model) + '</td>' +
+            '<td><b>' + fmtMoney(b.monthly) + '</b>/mes' + (b.estimated ? ' <span class="offer-meta">estimado</span>' : '') + '</td>' +
+            '<td>' + (b.term || '—') + 'm</td>' +
+            '<td>' + (isNum(b.residualPct) ? b.residualPct + '%' : '—') + '</td>' +
+            '<td>' + (isNum(b.moneyFactor) ? b.moneyFactor : '—') + '</td>' +
+            '<td>' + (isNum(b.leaseCash) ? fmtMoney(b.leaseCash) : '—') + '</td></tr>';
+        }).join('') + '</tbody></table></div>' +
+        '<p class="hint">«Ref.» = mensualidad orientativa del programa OEM (impuestos/DMV aparte). Compárala con lo que te ofrezca un concesionario: si te piden bastante más, hay margen para negociar.</p>';
+    }
+  }
+
   /** Nota del concesionario de UNA oferta (para el desplegable del Tablero). */
   function dealerGradeFor(source) {
     var d = dealerCards().filter(function (x) { return x.name === source; })[0];
@@ -2515,6 +2577,7 @@
     renderBoard();
 
     $('board-refresh').addEventListener('click', function () { loadOnline(); });
+    if ($('oem-load')) $('oem-load').addEventListener('click', loadIncentives);
     $('usados-load').addEventListener('click', usadosLoadAll);
 
     // Al volver a la pestaña tras un rato, recarga en silencio (se siente vivo).
