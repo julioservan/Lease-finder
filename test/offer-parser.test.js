@@ -290,3 +290,16 @@ if (failures) {
 } else {
   console.log('Todos los tests pasaron ✅');
 }
+
+check('oneTimeCosts: manda el due at signing si es mayor que el desglose', function () {
+  // "$0 down, $2,836 due at signing": el desglose (solo el primer mes) está
+  // incompleto — debe ganar el total declarado.
+  assert.strictEqual(OfferParser.oneTimeCosts({ downPayment: 0, dueAtSigning: 2836 }, 299), 2836);
+  // pero si el desglose conocido supera el due declarado, gana el desglose
+  assert.strictEqual(OfferParser.oneTimeCosts({ downPayment: 3000, acqFee: 695, dueAtSigning: 2000 }, 300), 3995);
+});
+
+check('"$0 down" NO pisa un "due at signing" explícito (estilo PND)', function () {
+  var p = OfferParser.parseBlock('$299 per month\n36 months\n$0 down\n$2,836 due at signing with est. upfront taxes and fees.');
+  close(p.dueAtSigning, 2836, 0.001, 'manda el due at signing declarado');
+});

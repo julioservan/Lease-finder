@@ -537,15 +537,37 @@
     var lo = LeaseCalc.impliedMF(Object.assign({}, input, { residualPct: 60 }));
     var hi = LeaseCalc.impliedMF(Object.assign({}, input, { residualPct: 55 }));
     if (lo && hi) {
-      out.innerHTML = '<div class="mf-out"><span class="sent wait">MF entre ' + lo.moneyFactor.toFixed(5) +
+      var negNote = hi.moneyFactor < 0
+        ? ' La cuota queda por DEBAJO de la depreciación estimada: hay lease cash / descuento fuerte sin publicar (buena señal), o falta el precio real.'
+        : '';
+      out.innerHTML = '<div class="mf-out"><span class="sent ' + (hi.moneyFactor < 0 ? 'good' : 'wait') + '">MF entre ' + lo.moneyFactor.toFixed(5) +
         ' y ' + hi.moneyFactor.toFixed(5) + ' (≈' + lo.aprEquivalent.toFixed(1) + '–' + hi.aprEquivalent.toFixed(1) + '% TAE)</span>' +
-        '<div class="hint" style="margin-top:4px">La hoja no trae el residual (estimado 55–60%). Pídeselo al vendedor para clavar el número.</div></div>';
+        '<div class="hint" style="margin-top:4px">La hoja no trae el residual (estimado 55–60%). Pídeselo al vendedor para clavar el número.' + negNote + '</div></div>';
     } else {
       out.innerHTML = '<p class="hint">Me faltan datos para despejarlo: necesito al menos MSRP, plazo y cuota (y mejor precio + residual).</p>';
     }
   }
 
   /* ---------- 📸 foto → veredicto (importador de la calculadora) ---------- */
+
+  /** Texto plano de una oferta → autorrellenar la calculadora (con fusión de la letra pequeña). */
+  function ingestCalcText(joined, setStatus) {
+    joined = String(joined || '').trim();
+    if (!joined) { setStatus('⚠ No se pudo extraer texto. Prueba con una foto más nítida o el PDF.'); return; }
+    var offers = OfferParser.scanText(joined);
+    if (!offers.length) { setStatus('⚠ No encontré una mensualidad. ¿Se ve bien el precio en la página/hoja?'); return; }
+    offers.sort(function (a, b) { return costeCompleteness(b) - costeCompleteness(a); });
+    var best = offers[0];
+    // Una hoja/página = UNA oferta: rellena huecos con el documento entero.
+    var whole = OfferParser.parseBlock(joined);
+    ['msrp', 'price', 'milesPerYear', 'residualPct', 'residualAmount', 'dueAtSigning', 'downPayment',
+     'acqFee', 'dealerFee', 'docFee', 'securityDeposit', 'term', 'moneyFactor', 'apr', 'vin'].forEach(function (k) {
+      if (best[k] == null && whole[k] != null) best[k] = whole[k];
+    });
+    best.raw = joined;
+    applyCalcImport(best);
+    setStatus('✅ Oferta leída. Revisa los campos, el MF implícito y el veredicto de abajo.');
+  }
 
   function importCalcFiles(fileList) {
     var files = Array.prototype.slice.call(fileList || []);
@@ -555,24 +577,7 @@
     var acc = [];
     var i = 0;
     (function next() {
-      if (i >= files.length) {
-        var joined = acc.join('\n---\n').trim();
-        if (!joined) { setStatus('⚠ No se pudo extraer texto. Prueba con una foto más nítida o el PDF.'); return; }
-        var offers = OfferParser.scanText(joined);
-        if (!offers.length) { setStatus('⚠ No encontré una mensualidad en la hoja. ¿Se ve bien el precio?'); return; }
-        offers.sort(function (a, b) { return costeCompleteness(b) - costeCompleteness(a); });
-        var best = offers[0];
-        // Una hoja = UNA oferta: rellena huecos con el documento entero.
-        var whole = OfferParser.parseBlock(joined);
-        ['msrp', 'price', 'milesPerYear', 'residualPct', 'residualAmount', 'dueAtSigning', 'downPayment',
-         'acqFee', 'dealerFee', 'docFee', 'securityDeposit', 'term', 'moneyFactor', 'apr', 'vin'].forEach(function (k) {
-          if (best[k] == null && whole[k] != null) best[k] = whole[k];
-        });
-        best.raw = joined;
-        applyCalcImport(best);
-        setStatus('✅ Hoja leída. Revisa los campos, el MF implícito y el veredicto de abajo.');
-        return;
-      }
+      if (i >= files.length) { ingestCalcText(acc.join('\n---\n'), setStatus); return; }
       var f = files[i++];
       setStatus('Leyendo ' + (f.name || 'archivo') + '…');
       window.LeaseImport.fromFile(f, setStatus).then(function (res) {
@@ -583,6 +588,27 @@
         next();
       });
     })();
+  }
+
+  /** 🔗 Pegar URL (Leasehackr PND, etc.) → descargar vía api/fetch-page → autorrellenar. */
+  function importCalcUrl() {
+    var inp = $('calc-url');
+    var status = $('calc-import-status');
+    function setStatus(t) { if (status) status.textContent = t; }
+    var url = (inp && inp.value || '').trim();
+    if (!url) { setStatus('Pega primero una URL (p. ej. una oferta de pnd.leasehackr.com).'); return; }
+    setStatus('🔗 Descargando la página…');
+    fetch('api/fetch-page?url=' + encodeURIComponent(url))
+      .then(function (r) { return r.json().catch(function () { return null; }).then(function (d) { return { status: r.status, d: d }; }); })
+      .then(function (res) {
+        if (!res.d || !res.d.ok || !res.d.html) {
+          setStatus('⚠ ' + ((res.d && res.d.message) || ('No pude leer la URL (HTTP ' + res.status + ').')) );
+          return;
+        }
+        ingestCalcText(OfferParser.htmlToText(res.d.html), setStatus);
+      }, function () {
+        setStatus('⚠ Sin conexión con api/fetch-page (¿estás en la versión de Vercel?). Plan B: guarda la página con Ctrl+S y súbela como .mhtml.');
+      });
   }
 
   function applyCalcImport(p) {
@@ -2908,6 +2934,10 @@
       });
     }
     if ($('quotedMonthly')) $('quotedMonthly').addEventListener('input', updateImpliedMF);
+    if ($('calc-url-btn')) {
+      $('calc-url-btn').addEventListener('click', importCalcUrl);
+      $('calc-url').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); importCalcUrl(); } });
+    }
 
     // Importador del "Coste al mes": rellena y valora la oferta subida.
     if ($('c-import-pick')) {
