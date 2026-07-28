@@ -550,22 +550,41 @@
 
   /* ---------- 📸 foto → veredicto (importador de la calculadora) ---------- */
 
-  /** Texto plano de una oferta → autorrellenar la calculadora (con fusión de la letra pequeña). */
-  function ingestCalcText(joined, setStatus) {
+  /**
+   * Una hoja/página = UNA oferta. El HTML crudo de muchas webs (p. ej. PND de
+   * Leasehackr) trocea cada dato en su propia línea/bloque ("$", "299",
+   * "per month"…), así que la oferta elegida se completa parseando el
+   * documento ENTERO — incluida la cuota — y con dos reglas de honestidad:
+   * el "due at signing" declarado manda sobre un "$0 down" suelto.
+   */
+  function mergedOfferFromText(joined) {
     joined = String(joined || '').trim();
-    if (!joined) { setStatus('⚠ No se pudo extraer texto. Prueba con una foto más nítida o el PDF.'); return; }
+    if (!joined) return null;
     var offers = OfferParser.scanText(joined);
-    if (!offers.length) { setStatus('⚠ No encontré una mensualidad. ¿Se ve bien el precio en la página/hoja?'); return; }
-    offers.sort(function (a, b) { return costeCompleteness(b) - costeCompleteness(a); });
-    var best = offers[0];
-    // Una hoja/página = UNA oferta: rellena huecos con el documento entero.
     var whole = OfferParser.parseBlock(joined);
-    ['msrp', 'price', 'milesPerYear', 'residualPct', 'residualAmount', 'dueAtSigning', 'downPayment',
+    if (!offers.length && whole.monthly == null) return null;
+    // Prefiere ofertas que traen mensualidad; sin ninguna, parte del doc entero.
+    var withMonthly = offers.filter(function (o) { return o.monthly != null; });
+    var pool = withMonthly.length ? withMonthly : offers;
+    pool.sort(function (a, b) { return costeCompleteness(b) - costeCompleteness(a); });
+    var best = pool[0] || whole;
+    ['monthly', 'msrp', 'price', 'milesPerYear', 'residualPct', 'residualAmount', 'dueAtSigning', 'downPayment',
      'acqFee', 'dealerFee', 'docFee', 'securityDeposit', 'term', 'moneyFactor', 'apr', 'vin'].forEach(function (k) {
       if (best[k] == null && whole[k] != null) best[k] = whole[k];
     });
+    // "$0 down" en un bloque no anula el "due at signing" declarado en otro.
+    if (best.dueAtSigning === 0 && whole.dueAtSigning > 0 && /due\s+at\s+signing|al\s+firmar/i.test(joined)) {
+      best.dueAtSigning = whole.dueAtSigning;
+    }
     best.raw = joined;
-    applyCalcImport(best);
+    return best;
+  }
+
+  /** Texto plano de una oferta → autorrellenar la calculadora. */
+  function ingestCalcText(joined, setStatus, srcLabel) {
+    var best = mergedOfferFromText(joined);
+    if (!best) { setStatus('⚠ No encontré una mensualidad. ¿Se ve bien el precio en la página/hoja?'); return; }
+    applyCalcImport(best, srcLabel);
     setStatus('✅ Oferta leída. Revisa los campos, el MF implícito y el veredicto de abajo.');
   }
 
@@ -605,13 +624,30 @@
           setStatus('⚠ ' + ((res.d && res.d.message) || ('No pude leer la URL (HTTP ' + res.status + ').')) );
           return;
         }
-        ingestCalcText(OfferParser.htmlToText(res.d.html), setStatus);
+        var host = '';
+        try { host = new URL(url).hostname; } catch (e) { /* noop */ }
+        ingestCalcText(OfferParser.htmlToText(res.d.html), setStatus, host);
       }, function () {
         setStatus('⚠ Sin conexión con api/fetch-page (¿estás en la versión de Vercel?). Plan B: guarda la página con Ctrl+S y súbela como .mhtml.');
       });
   }
 
-  function applyCalcImport(p) {
+  /** Trim buscado SOLO cerca de la mención del modelo (la página entera
+   *  arrastra trims de otras ofertas, p. ej. un "Hybrid" lejano). */
+  function findTrimNear(info, name, raw) {
+    var inName = findTrimIn(info, name || '');
+    if (inName) return inName;
+    var t = String(raw || '');
+    var idx = t.toLowerCase().indexOf(String(info.model).toLowerCase());
+    if (idx < 0) return '';
+    // Primero HACIA DELANTE ("Sportage EX AWD"): el trim va tras el modelo.
+    // Solo si no hay nada, mira un poco hacia atrás (evita que un "Hybrid"
+    // de los filtros de la página, antes del título, gane al trim real).
+    return findTrimIn(info, t.slice(idx, idx + 300)) ||
+      findTrimIn(info, t.slice(Math.max(0, idx - 120), idx));
+  }
+
+  function applyCalcImport(p, srcLabel) {
     function set(id, v) { var el = $(id); if (el && v != null && v !== '') el.value = v; }
     // Marca / modelo / trim: si la hoja identifica un modelo del ranking,
     // rellena los selects y detecta el trim con la lista de ese modelo.
@@ -622,10 +658,13 @@
       populateModels($('model'), info.make, '— Modelo —');
       $('model').value = info.model;
       populateTrims();
-      var trim = findTrimIn(info, (p.name || '') + ' ' + (p.raw || ''));
+      var trim = findTrimNear(info, p.name, p.raw);
       if (trim) set('trim', trim);
     }
-    set('name', p.name);
+    // Detalle: el nombre parseado solo si aporta algo ("Kia" a secas no);
+    // si vino de una URL, la fuente (p. ej. pnd.leasehackr.com) es más útil.
+    var meaningfulName = p.name && (/\b20\d{2}\b/.test(p.name) || p.name.trim().indexOf(' ') > 0);
+    set('name', meaningfulName ? p.name : (srcLabel || p.name));
     set('msrp', p.msrp);
     set('price', p.price);
     set('term', p.term);
@@ -875,22 +914,12 @@
       if (i >= files.length) {
         var joined = acc.join('\n---\n').trim();
         if (!joined) { setStatus('⚠ No se pudo extraer texto. Prueba con otro archivo o usa la pestaña Tablero → Añadir una oferta.'); return; }
-        var offers = OfferParser.scanText(joined);
-        if (!offers.length) { setStatus('⚠ No encontré ninguna mensualidad en el archivo. ¿Es la hoja de la oferta?'); return; }
-        // La oferta más completa (más campos conocidos) es la que se aplica.
-        offers.sort(function (a, b) { return costeCompleteness(b) - costeCompleteness(a); });
-        var best = offers[0];
-        // Una hoja subida = UNA oferta: la letra pequeña (MSRP, millas,
-        // residual, comisiones, condiciones) suele quedar en otro bloque del
-        // documento. Rellena los huecos parseando el documento entero.
-        var whole = OfferParser.parseBlock(joined);
-        ['msrp', 'milesPerYear', 'residualPct', 'residualAmount', 'dueAtSigning', 'downPayment',
-         'acqFee', 'dealerFee', 'docFee', 'accessories', 'securityDeposit', 'term', 'vin'].forEach(function (k) {
-          if (best[k] == null && whole[k] != null) best[k] = whole[k];
-        });
-        best.raw = joined; // condiciones y transparencia miran TODO el texto
+        // Misma lógica robusta que la Calculadora (fusiona el doc entero,
+        // incluida la cuota, y respeta el due-at-signing declarado).
+        var best = mergedOfferFromText(joined);
+        if (!best) { setStatus('⚠ No encontré ninguna mensualidad en el archivo. ¿Es la hoja de la oferta?'); return; }
         applyImportedOffer(best);
-        setStatus('✅ Oferta importada' + (offers.length > 1 ? ' (la más completa de ' + offers.length + ' detectadas)' : '') + '. Revisa el veredicto y el recibo.');
+        setStatus('✅ Oferta importada. Revisa el veredicto y el recibo.');
         return;
       }
       var f = files[i++];
