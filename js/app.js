@@ -713,14 +713,19 @@
     if (!files.length || !window.LeaseImport) return;
     var status = $('calc-import-status');
     function setStatus(t) { if (status) status.textContent = t; }
-    var acc = [];
     var i = 0;
     (function next() {
-      if (i >= files.length) { ingestCalcText(acc.join('\n---\n'), setStatus); return; }
+      if (i >= files.length) {
+        var ok = ingestCalcText(calcImportTexts.join('\n\n'), setStatus);
+        if (ok && calcImportTexts.length > 1) {
+          setStatus('✅ ' + calcImportTexts.length + ' capturas/archivos combinados. ¿Falta algo? Añade otra foto y se suma. (“Limpiar” empieza de cero.)');
+        }
+        return;
+      }
       var f = files[i++];
       setStatus('Leyendo ' + (f.name || 'archivo') + '…');
       window.LeaseImport.fromFile(f, setStatus).then(function (res) {
-        if (res && res.text) acc.push(res.text);
+        if (res && res.text) calcImportTexts.push(res.text);
         next();
       }, function (err) {
         setStatus('⚠ ' + (err && err.message ? err.message : 'No se pudo leer el archivo'));
@@ -746,7 +751,8 @@
         }
         var host = '';
         try { host = new URL(url).hostname; } catch (e) { /* noop */ }
-        if (ingestCalcText(OfferParser.htmlToText(res.d.html) + '\nURL: ' + url, setStatus, host)) {
+        calcImportTexts.push(OfferParser.htmlToText(res.d.html) + '\nURL: ' + url);
+        if (ingestCalcText(calcImportTexts.join('\n\n'), setStatus, host)) {
           if ($('sourceUrl')) $('sourceUrl').value = url; // queda guardada con la oferta
           updateSourceLink();
         }
@@ -773,6 +779,9 @@
   // Última oferta importada en la Calculadora (para el modo "oferta directa"
   // de Resultados: la página trae cuota y al firmar, no residual/MF/precio).
   var calcImportOffer = null;
+  // Textos acumulados de la importación: una oferta suele no caber en UNA
+  // captura — cada foto/PDF/URL nueva se SUMA a las anteriores hasta Limpiar.
+  var calcImportTexts = [];
 
   /**
    * Estimación honesta de la cuota cuando solo tenemos el PRECIO (ficha de
@@ -3004,6 +3013,7 @@
     $('lease-form').reset();
     state.editingId = null;
     calcImportOffer = null; // limpiar también la oferta importada
+    calcImportTexts = [];    // y las capturas acumuladas
     if ($('quotedMonthly')) $('quotedMonthly').value = '';
     if ($('calc-url')) $('calc-url').value = '';
     // form.reset() NO toca los inputs ocultos: limpiarlos a mano.
