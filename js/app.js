@@ -12,10 +12,11 @@
   var VIEWS = ['board', 'usados', 'calc', 'coste', 'decide'];
 
   var FIELDS = [
-    'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'term',
+    'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'tradeIn',
+    'zeroDriveOff', 'term',
     'milesPerYear', 'residualPct', 'rateType', 'rate', 'acqFee',
     'capitalizeAcq', 'dispositionFee', 'upfrontFees', 'capFees',
-    'taxPct', 'taxMethod', 'notes'
+    'taxPct', 'taxMethod', 'capitalizeTaxes', 'postIncentives', 'notes'
   ];
 
   var $ = function (id) { return document.getElementById(id); };
@@ -393,11 +394,17 @@
     var r = LeaseCalc.computeLease(input);
     var hasData = LeaseCalc.num(input.msrp) > 0 && LeaseCalc.num(input.price) > 0;
 
+    $('r-pretax').textContent = hasData ? fmtMoney2(r.basePayment) : '—';
     $('r-monthly').textContent = hasData ? fmtMoney2(r.monthlyPayment) : '—';
     $('r-dep').textContent = hasData ? fmtMoney2(r.monthlyDepreciation) : '—';
     $('r-rent').textContent = hasData ? fmtMoney2(r.monthlyRent) : '—';
     $('r-tax').textContent = hasData ? fmtMoney2(r.monthlyTax) : '—';
     $('r-driveoff').textContent = hasData ? fmtMoney2(r.driveOff) : '—';
+    var dob = r.driveOffBreakdown || {};
+    $('r-do-down').textContent = hasData ? fmtMoney2(dob.downPayment || 0) : '—';
+    $('r-do-first').textContent = hasData ? fmtMoney2(dob.firstMonth || 0) : '—';
+    $('r-do-fees').textContent = hasData ? fmtMoney2(dob.fees || 0) : '—';
+    $('r-do-tax').textContent = hasData ? fmtMoney2(dob.upfrontTax || 0) : '—';
     $('r-total').textContent = hasData ? fmtMoney(r.totalCost) : '—';
     $('r-effective').textContent = hasData ? fmtMoney2(r.effectiveMonthly) : '—';
     $('r-permile').textContent = hasData && r.costPerMile > 0 ? fmtMoney2(r.costPerMile) : '—';

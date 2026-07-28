@@ -57,6 +57,7 @@
     var price = num(input.price);
     var incentives = num(input.incentives);
     var downPayment = num(input.downPayment);
+    var tradeIn = num(input.tradeIn); // equity de permuta aplicada (reduce cap. cost)
     var term = Math.max(1, Math.round(num(input.term)) || 36);
     var residualPct = num(input.residualPct);
     var residual = msrp * residualPct / 100;
@@ -68,33 +69,58 @@
     var taxPct = num(input.taxPct);
     var taxMethod = input.taxMethod || 'monthly';
     var dispositionFee = num(input.dispositionFee);
+    var postIncentives = num(input.postIncentives); // bonos post-venta (llegan después)
+    var capitalizeTaxes = !!input.capitalizeTaxes;  // impuesto inicial → a la cuota
+    var zeroDriveOff = !!input.zeroDriveOff;        // $0 al firmar: capitaliza TODO
     var milesPerYear = num(input.milesPerYear);
 
     var grossCap = price + capFees + (capitalizeAcq ? acqFee : 0);
-    var capReduction = downPayment + incentives;
+    var capReduction = downPayment + incentives + tradeIn;
     var adjustedCap = grossCap - capReduction;
 
-    var monthlyDepreciation = (adjustedCap - residual) / term;
-    var monthlyRent = (adjustedCap + residual) * moneyFactor;
+    function pay(cap) {
+      return { dep: (cap - residual) / term, rent: (cap + residual) * moneyFactor };
+    }
+
+    // Extras que pueden capitalizarse (sumarse a la cuota en vez de pagarse
+    // al firmar). El impuesto inicial depende del propio pago, así que se
+    // resuelve por iteración (converge en pocas vueltas). El primer mes NO se
+    // capitaliza: en un "cero al firmar" solo se APLAZA (se factura con el
+    // mes 1), no es deuda adicional.
+    var extraFees = zeroDriveOff ? (capitalizeAcq ? 0 : acqFee) + upfrontFees : 0;
+    var rollTax = (capitalizeTaxes || zeroDriveOff) && taxMethod === 'upfront';
+    var taxCap = 0;
+    var p = pay(adjustedCap + extraFees);
+    for (var it = 0; it < 8 && rollTax; it++) {
+      p = pay(adjustedCap + extraFees + taxCap);
+      taxCap = (p.dep + p.rent) * term * taxPct / 100;
+    }
+    p = pay(adjustedCap + extraFees + taxCap);
+    var adjustedCapEff = adjustedCap + extraFees + taxCap;
+    var monthlyDepreciation = p.dep;
+    var monthlyRent = p.rent;
     var basePayment = monthlyDepreciation + monthlyRent;
 
     var monthlyTax = 0;
     var upfrontTax = 0;
     if (taxMethod === 'monthly') {
       monthlyTax = basePayment * taxPct / 100;
-    } else if (taxMethod === 'upfront') {
+    } else if (taxMethod === 'upfront' && !rollTax) {
       upfrontTax = basePayment * term * taxPct / 100;
     }
     var monthlyPayment = basePayment + monthlyTax;
 
-    // Pago inicial (drive-off): enganche + primer mes + adquisición no
-    // capitalizada + otras tarifas iniciales + impuesto pagado por adelantado.
-    var driveOff = downPayment + monthlyPayment +
-      (capitalizeAcq ? 0 : acqFee) + upfrontFees + upfrontTax;
+    // Pago inicial (drive-off). Con "cero al firmar", tarifas + impuesto +
+    // primer mes van dentro de la cuota y solo queda el enganche (si lo hay).
+    var firstMonthAtSigning = zeroDriveOff ? 0 : monthlyPayment;
+    var feesUpfront = zeroDriveOff ? 0 : (capitalizeAcq ? 0 : acqFee) + upfrontFees;
+    var driveOff = downPayment + firstMonthAtSigning + feesUpfront + upfrontTax;
 
-    // Costo total: drive-off (ya incluye el primer mes) + los pagos restantes
-    // + tarifa de devolución. Los incentivos no son dinero del cliente.
-    var totalCost = driveOff + monthlyPayment * (term - 1) + dispositionFee;
+    // Costo total: con cero al firmar se pagan los `term` meses por cuota;
+    // si no, el primer mes ya va dentro del drive-off. Los bonos post-venta
+    // vuelven al bolsillo después de firmar.
+    var paymentsAfterSigning = zeroDriveOff ? term : term - 1;
+    var totalCost = driveOff + monthlyPayment * paymentsAfterSigning + dispositionFee - postIncentives;
 
     var effectiveMonthly = totalCost / term;
     var pctOfMsrp = msrp > 0 ? (effectiveMonthly / msrp) * 100 : 0;
@@ -109,7 +135,14 @@
       aprEquivalent: moneyFactor * 2400,
       grossCap: grossCap,
       capReduction: capReduction,
-      adjustedCap: adjustedCap,
+      adjustedCap: adjustedCapEff,
+      // Desglose del pago inicial (para mostrarlo, no solo el total)
+      driveOffBreakdown: {
+        downPayment: downPayment,
+        firstMonth: firstMonthAtSigning,
+        fees: feesUpfront,
+        upfrontTax: upfrontTax
+      },
       monthlyDepreciation: monthlyDepreciation,
       monthlyRent: monthlyRent,
       basePayment: basePayment,
