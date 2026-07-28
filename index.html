@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=57">
+  <link rel="stylesheet" href="css/styles.css?v=58">
 </head>
 <body>
   <header class="topbar">
@@ -441,7 +441,12 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
               <label for="c-term">Plazo (meses)</label>
               <input id="c-term" type="number" inputmode="numeric" min="1" step="1" value="36">
             </div>
+            <div class="field">
+              <label for="c-tax">Impuesto %<span class="lbl-soft"> (NYC 9,375)</span></label>
+              <input id="c-tax" type="number" inputmode="decimal" min="0" step="0.125" value="9.375">
+            </div>
           </div>
+          <p class="hint">El impuesto va aparte: los anuncios ponen «$339/mes <b>+ tax</b>». En Brooklyn son 8,875% + 0,5% de recargo estatal sobre leases = <b>9,375%</b>. Si registras el coche en otro condado, ajústalo.</p>
           <div class="field full">
             <label for="c-model">Elegir modelo (pone el mejor precio real que encontró el robot)</label>
             <select id="c-model"><option value="">— elegir modelo —</option></select>
@@ -544,14 +549,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=57"></script>
-  <script src="js/offer-parser.js?v=57"></script>
-  <script src="js/importer.js?v=57"></script>
-  <script src="js/vehicles.js?v=57"></script>
-  <script src="js/models.js?v=57"></script>
-  <script src="js/leasedb.js?v=57"></script>
-  <script src="js/dealerscore.js?v=57"></script>
-  <script src="js/decide.js?v=57"></script>
-  <script src="js/app.js?v=57"></script>
+  <script src="js/lease-calc.js?v=58"></script>
+  <script src="js/offer-parser.js?v=58"></script>
+  <script src="js/importer.js?v=58"></script>
+  <script src="js/vehicles.js?v=58"></script>
+  <script src="js/models.js?v=58"></script>
+  <script src="js/leasedb.js?v=58"></script>
+  <script src="js/dealerscore.js?v=58"></script>
+  <script src="js/decide.js?v=58"></script>
+  <script src="js/app.js?v=58"></script>
 </body>
 </html>

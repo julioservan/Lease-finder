@@ -157,6 +157,9 @@
   // va aquí: es un pago único, no mensual, y se muestra aparte.
   var COSTE_ITEMS = [
     { name: 'Lease', note: 'pago mensual', color: '#6fb2f0', get: function (v) { return v.lease; } },
+    // En NY el impuesto va SOBRE la cuota del lease: los anuncios dicen
+    // "$339/mes + tax", así que sin esta línea el total sale corto.
+    { name: 'Impuesto de NY', note: 'sobre la cuota (los anuncios ponen «+ tax»)', color: '#e0808a', get: function (v) { return v.tax; } },
     { name: 'Seguro', note: null, color: '#4dab6d', get: function (v) { return v.ins; } },
     { name: 'Gasolina', note: null, color: '#d9a84b', get: function (v) { return v.fuel; } },
     { name: 'Aparcamiento', note: null, color: '#c58bb0', get: function (v) { return v.park; } },
@@ -221,8 +224,10 @@
     fillCosteModels();
 
     var miles = costeNum('c-miles'), mpg = costeNum('c-mpg') || 1, gas = costeNum('c-gas');
+    var leaseAmt = costeNum('c-lease');
+    var taxRate = costeNum('c-tax'); // % (Brooklyn/NYC: 8,875 + 0,5 de recargo)
     var v = {
-      lease: costeNum('c-lease'), ins: costeNum('c-ins'),
+      lease: leaseAmt, tax: leaseAmt * (taxRate / 100), ins: costeNum('c-ins'),
       fuel: (miles / mpg) * gas, park: costeNum('c-park'), toll: costeNum('c-toll'),
       cong: costeNum('c-cong') * 9, maint: costeNum('c-maint'),
       reg: costeNum('c-reg') / 12
@@ -279,7 +284,7 @@
   /* ---------------- perfiles de coche (Coste al mes) ---------------- */
 
   var COSTE_PROFILES_KEY = 'lf-coste-profiles-v1';
-  var COSTE_FIELDS = ['c-lease', 'c-down', 'c-term', 'c-ins', 'c-insurer', 'c-park',
+  var COSTE_FIELDS = ['c-lease', 'c-tax', 'c-down', 'c-term', 'c-ins', 'c-insurer', 'c-park',
     'c-maint', 'c-miles', 'c-mpg', 'c-gas', 'c-toll', 'c-cong', 'c-reg', 'c-budget'];
 
   function loadProfiles() {
@@ -2529,7 +2534,7 @@
     });
 
     // Coste al mes: recalcula al escribir en cualquier campo de la vista.
-    ['c-lease', 'c-down', 'c-term', 'c-ins', 'c-insurer', 'c-maint', 'c-miles', 'c-mpg', 'c-gas',
+    ['c-lease', 'c-tax', 'c-down', 'c-term', 'c-ins', 'c-insurer', 'c-maint', 'c-miles', 'c-mpg', 'c-gas',
      'c-park', 'c-toll', 'c-cong', 'c-reg', 'c-budget'].forEach(function (id) {
       var el = $(id);
       if (el) el.addEventListener('input', renderCoste);
