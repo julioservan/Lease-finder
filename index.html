@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=60">
+  <link rel="stylesheet" href="css/styles.css?v=61">
 </head>
 <body>
   <header class="topbar">
@@ -134,7 +134,9 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
         <table class="offers-table" id="offers-table">
           <thead>
             <tr>
-              <th>Oferta</th>
+              <th>Modelo</th>
+              <th>Trim</th>
+              <th>Fecha</th>
               <th>Plazo</th>
               <th data-sort="monthlyPayment" class="sortable">Mensual</th>
               <th data-sort="driveOff" class="sortable">Inicial</th>
@@ -186,9 +188,16 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
               <select id="model" disabled></select>
             </div>
           </div>
-          <div class="field full">
-            <label for="name">Detalle (versión, agencia…)</label>
-            <input id="name" type="text" placeholder="Ej. Select AWD — Koeppel Mazda">
+          <div class="grid-2">
+            <div class="field">
+              <label for="trim">Trim / acabado</label>
+              <input id="trim" type="text" list="trim-list" placeholder="Ej. EX-L, XLE, Select…">
+              <datalist id="trim-list"></datalist>
+            </div>
+            <div class="field">
+              <label for="name">Detalle (agencia, vendedor…)</label>
+              <input id="name" type="text" placeholder="Ej. Bay Ridge Honda — Alex">
+            </div>
           </div>
 
           <fieldset>
@@ -586,14 +595,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=60"></script>
-  <script src="js/offer-parser.js?v=60"></script>
-  <script src="js/importer.js?v=60"></script>
-  <script src="js/vehicles.js?v=60"></script>
-  <script src="js/models.js?v=60"></script>
-  <script src="js/leasedb.js?v=60"></script>
-  <script src="js/dealerscore.js?v=60"></script>
-  <script src="js/decide.js?v=60"></script>
-  <script src="js/app.js?v=60"></script>
+  <script src="js/lease-calc.js?v=61"></script>
+  <script src="js/offer-parser.js?v=61"></script>
+  <script src="js/importer.js?v=61"></script>
+  <script src="js/vehicles.js?v=61"></script>
+  <script src="js/models.js?v=61"></script>
+  <script src="js/leasedb.js?v=61"></script>
+  <script src="js/dealerscore.js?v=61"></script>
+  <script src="js/decide.js?v=61"></script>
+  <script src="js/app.js?v=61"></script>
 </body>
 </html>
