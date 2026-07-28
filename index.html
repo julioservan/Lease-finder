@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=59">
+  <link rel="stylesheet" href="css/styles.css?v=60">
 </head>
 <body>
   <header class="topbar">
@@ -92,9 +92,9 @@
     <details class="card collapse" id="scanner-card">
       <summary>🔍 Añadir una oferta: importa un PDF, HTML o captura — o pega el texto</summary>
       <div class="import-zone" id="import-zone">
-        <input type="file" id="import-file-offer" accept=".pdf,.html,.htm,.txt,image/*" multiple hidden>
+        <input type="file" id="import-file-offer" accept=".pdf,.html,.htm,.mhtml,.mht,.txt,image/*" multiple hidden>
         <button type="button" class="btn" id="import-pick">📎 Importar archivo(s)</button>
-        <span class="import-hint" id="import-status">PDF, HTML o captura de pantalla — o arrástralos aquí. Autorrellena la oferta.</span>
+        <span class="import-hint" id="import-status">PDF, HTML o .mhtml (web guardada con Ctrl+S), captura o foto — o arrástralos aquí. Autorrellena la oferta.</span>
       </div>
       <textarea id="scan-input" rows="6" placeholder="2026 Ford Bronco Sport Big Bend
 $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
@@ -169,6 +169,12 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <main class="layout">
       <div class="card form-card">
         <h2>Datos de la oferta</h2>
+        <!-- 📸 Foto → veredicto: la hoja del dealer rellena la calculadora -->
+        <div class="import-zone" id="calc-import-zone">
+          <input type="file" id="calc-import-file" accept=".pdf,.html,.htm,.mhtml,.mht,.txt,image/*" multiple hidden>
+          <button type="button" class="btn" id="calc-import-pick">📸 Foto / PDF de la hoja del dealer</button>
+          <span class="import-hint" id="calc-import-status">Foto, PDF, captura o la web guardada (.html/.mhtml): relleno la calculadora y te digo qué money factor te están cobrando.</span>
+        </div>
         <form id="lease-form" autocomplete="off">
           <div class="grid-2">
             <div class="field">
@@ -333,6 +339,20 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
             <tr><td>TAE equivalente</td><td id="r-apr">—</td></tr>
           </tbody>
         </table>
+
+        <!-- 🔍 Detector: ¿qué money factor te están cobrando? -->
+        <div class="mfdet" id="mfdet">
+          <h3 style="margin:14px 0 4px">🔍 ¿Qué money factor te están cobrando?</h3>
+          <p class="hint" style="margin:0 0 8px">Pon la cuota que te ofrece el vendedor (sin impuesto) y lo despejo con los datos de arriba. El MF es donde esconden el margen — nunca lo enseñan.</p>
+          <div class="field">
+            <label for="quotedMonthly">Cuota ofrecida $/mes <span class="lbl-soft">(pre-tax)</span></label>
+            <input id="quotedMonthly" type="number" step="any" min="0" placeholder="459">
+          </div>
+          <div id="mf-result" class="hint"></div>
+        </div>
+
+        <!-- Veredicto de la hoja importada -->
+        <div id="calc-verdict" hidden></div>
       </div>
     </main>
   </section>
@@ -421,9 +441,9 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
         <div class="card">
           <h3>📎 Importar una oferta</h3>
           <div class="import-zone" id="c-import-zone">
-            <input type="file" id="c-import-file" accept=".pdf,.html,.htm,.txt,image/*" multiple hidden>
+            <input type="file" id="c-import-file" accept=".pdf,.html,.htm,.mhtml,.mht,.txt,image/*" multiple hidden>
             <button type="button" class="btn" id="c-import-pick">📎 Subir PDF / HTML / captura</button>
-            <span class="import-hint" id="c-import-status">Sube la hoja de la oferta (o arrástrala aquí): relleno el lease, la entrada y el plazo, y te digo qué tal es.</span>
+            <span class="import-hint" id="c-import-status">Sube la hoja de la oferta: PDF, foto/captura o la web guardada (.html/.mhtml). Relleno el lease, la entrada y el plazo, y te digo qué tal es.</span>
           </div>
           <div id="c-import-verdict" hidden></div>
         </div>
@@ -566,14 +586,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=59"></script>
-  <script src="js/offer-parser.js?v=59"></script>
-  <script src="js/importer.js?v=59"></script>
-  <script src="js/vehicles.js?v=59"></script>
-  <script src="js/models.js?v=59"></script>
-  <script src="js/leasedb.js?v=59"></script>
-  <script src="js/dealerscore.js?v=59"></script>
-  <script src="js/decide.js?v=59"></script>
-  <script src="js/app.js?v=59"></script>
+  <script src="js/lease-calc.js?v=60"></script>
+  <script src="js/offer-parser.js?v=60"></script>
+  <script src="js/importer.js?v=60"></script>
+  <script src="js/vehicles.js?v=60"></script>
+  <script src="js/models.js?v=60"></script>
+  <script src="js/leasedb.js?v=60"></script>
+  <script src="js/dealerscore.js?v=60"></script>
+  <script src="js/decide.js?v=60"></script>
+  <script src="js/app.js?v=60"></script>
 </body>
 </html>
