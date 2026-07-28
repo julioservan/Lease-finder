@@ -605,3 +605,8 @@ details.advanced[open] > summary { margin-bottom: 10px; }
   padding: 6px 10px;
 }
 .url-row input:focus { outline: none; border-color: var(--accent); }
+
+/* Enlaces del Top de concesionarios */
+a.topd-name { font-weight: 600; color: var(--text-strong); text-decoration: none; border-bottom: 1px dotted var(--border-strong); }
+a.topd-name:hover { color: var(--blue); border-bottom-color: var(--blue); }
+.topd-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }

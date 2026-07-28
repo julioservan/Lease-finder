@@ -2026,11 +2026,25 @@
       var tlevel = r.tavg >= 70 ? 'high' : r.tavg >= 45 ? 'mid' : 'low';
       var tlabel = tlevel === 'high' ? 'muy transparente' : tlevel === 'mid' ? 'transparencia media' : 'poco transparente';
       var reasons = (r.card && r.card.reasons && r.card.reasons.length) ? r.card.reasons.slice(0, 2).join(' · ') : '';
+
+      // Enlaces: la MEJOR oferta del dealer conserva la URL exacta donde el
+      // robot la encontró (su página de specials); el nombre → la portada.
+      var bestOff = r.offs.reduce(function (a, b) { return b.metrics.effectiveMonthly < a.metrics.effectiveMonthly ? b : a; });
+      var offerUrl = bestOff.url || (r.offs.filter(function (o) { return o.url; })[0] || {}).url || '';
+      var homeUrl = '';
+      try { if (offerUrl) homeUrl = new URL(offerUrl).origin; } catch (e) { /* noop */ }
+      if (!offerUrl) offerUrl = 'https://www.google.com/search?q=' + encodeURIComponent(r.name + ' lease specials');
+      var mapsUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent('1 City Point, Brooklyn, NY 11201') +
+        '&destination=' + encodeURIComponent(r.geo.addr ? r.name + ', ' + r.geo.addr : r.name);
+      var nameHtml = homeUrl
+        ? '<a class="topd-name" href="' + homeUrl + '" target="_blank" rel="noopener" title="Abrir la web del concesionario">' + escapeHtml(r.name) + ' ↗</a>'
+        : '<span class="topd-name">' + escapeHtml(r.name) + '</span>';
+
       return '<li class="topd-row">' +
         '<div class="topd-rank">' + (MEDAL[i] || (i + 1)) + '</div>' +
         '<div class="topd-main">' +
           '<div class="topd-head">' + gradeChip(r.grade, (r.card && r.card.reasons.join(' · ')) || '') +
-            ' <span class="topd-name">' + escapeHtml(r.name) + '</span> ' + dealerGeoChip(r.name) + '</div>' +
+            ' ' + nameHtml + ' ' + dealerGeoChip(r.name) + '</div>' +
           '<div class="topd-sub">' +
             '<span class="transp-dot transp-' + tlevel + '" title="' + tlabel + ' (' + Math.round(r.tavg) + '% revelado)"></span>' +
             escapeHtml(String(r.offs.length)) + ' oferta' + (r.offs.length > 1 ? 's' : '') +
@@ -2039,6 +2053,10 @@
           '</div>' +
           (r.models.length ? '<div class="topd-models">' + r.models.slice(0, 4).map(escapeHtml).join(' · ') + '</div>' : '') +
           (reasons ? '<div class="topd-reasons">' + escapeHtml(reasons) + '</div>' : '') +
+          '<div class="topd-actions">' +
+            '<a class="btn mini primary" href="' + offerUrl + '" target="_blank" rel="noopener" title="La página de ofertas donde el robot encontró la más barata">🔗 Ver la oferta ↗</a>' +
+            '<a class="btn mini" href="' + mapsUrl + '" target="_blank" rel="noopener">📍 Cómo llegar</a>' +
+          '</div>' +
         '</div></li>';
     }).join('') + '</ol>';
   }
