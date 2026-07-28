@@ -16,7 +16,7 @@
     'zeroDriveOff', 'term',
     'milesPerYear', 'residualPct', 'rateType', 'rate', 'acqFee',
     'capitalizeAcq', 'dispositionFee', 'upfrontFees', 'capFees',
-    'taxPct', 'taxMethod', 'capitalizeTaxes', 'postIncentives', 'notes'
+    'taxPct', 'taxMethod', 'capitalizeTaxes', 'postIncentives', 'quotedMonthly', 'importedDAS', 'notes'
   ];
 
   var $ = function (id) { return document.getElementById(id); };
@@ -64,7 +64,27 @@
   /** Métricas comparables para cualquier tipo de oferta guardada. */
   function metricsFor(offer) {
     if (offer.kind === 'scanned') return OfferParser.scoreOffer(offer.parsed || {});
-    return LeaseCalc.computeLease(offer.input);
+    var input = offer.input || {};
+    var fullMode = LeaseCalc.num(input.msrp) > 0 && LeaseCalc.num(input.price) > 0 &&
+      LeaseCalc.num(input.residualPct) > 0;
+    var quoted = LeaseCalc.num(input.quotedMonthly);
+    if (!fullMode && quoted > 0 && window.OfferParser) {
+      // Oferta directa (importada): cuota + al firmar reales, sin programa.
+      var das = LeaseCalc.num(input.importedDAS) > 0 ? LeaseCalc.num(input.importedDAS) : LeaseCalc.num(input.downPayment);
+      var msrpN = LeaseCalc.num(input.msrp);
+      var m = OfferParser.scoreOffer({
+        monthly: quoted, term: LeaseCalc.num(input.term) || 36,
+        dueAtSigning: das, msrp: msrpN > 0 ? msrpN : null
+      });
+      return {
+        monthlyPayment: m.monthlyPayment, driveOff: das,
+        effectiveMonthly: m.effectiveMonthly, totalCost: m.totalCost,
+        pctOfMsrp: m.pctOfMsrp,
+        score: msrpN > 0 && m.effectiveMonthly > 0 ? msrpN / (m.effectiveMonthly * 12) : null,
+        term: m.term
+      };
+    }
+    return LeaseCalc.computeLease(input);
   }
 
   function isNum(v) { return v != null && isFinite(v); }
@@ -451,7 +471,8 @@
   function recalc() {
     var input = readForm();
     var r = LeaseCalc.computeLease(input);
-    var hasData = LeaseCalc.num(input.msrp) > 0 && LeaseCalc.num(input.price) > 0;
+    var hasData = LeaseCalc.num(input.msrp) > 0 && LeaseCalc.num(input.price) > 0 &&
+      LeaseCalc.num(input.residualPct) > 0; // sin residual, el modo completo inventa
 
     $('r-pretax').textContent = hasData ? fmtMoney2(r.basePayment) : '—';
     $('r-monthly').textContent = hasData ? fmtMoney2(r.monthlyPayment) : '—';
@@ -497,9 +518,11 @@
     var quoted = LeaseCalc.num($('quotedMonthly') ? $('quotedMonthly').value : 0);
     var msrpN = LeaseCalc.num(input.msrp);
     if (!hasData && quoted > 0 && window.OfferParser) {
-      var das = (calcImportOffer && isNum(calcImportOffer.dueAtSigning))
-        ? calcImportOffer.dueAtSigning
-        : LeaseCalc.num(input.downPayment);
+      var das = LeaseCalc.num(input.importedDAS) > 0
+        ? LeaseCalc.num(input.importedDAS)
+        : ((calcImportOffer && isNum(calcImportOffer.dueAtSigning))
+          ? calcImportOffer.dueAtSigning
+          : LeaseCalc.num(input.downPayment));
       var m2 = OfferParser.scoreOffer({
         monthly: quoted,
         term: LeaseCalc.num(input.term) || 36,
@@ -721,6 +744,8 @@
     var otherFees = (p.dealerFee || 0) + (p.docFee || 0);
     if (otherFees > 0) set('upfrontFees', otherFees);
     set('quotedMonthly', p.monthly);
+    var dasEl = $('importedDAS');
+    if (dasEl) dasEl.value = p.dueAtSigning != null ? p.dueAtSigning : '';
     recalc();
     updateImpliedMF();
     // Veredicto completo (transparencia, condiciones, comparación con el robot).
@@ -743,7 +768,7 @@
     }
     // Muchas hojas no traen el precio negociado: asume MSRP (peor caso) y
     // dilo, en vez de bloquear el guardado.
-    if (!(LeaseCalc.num(input.price) > 0)) {
+    if (!(LeaseCalc.num(input.price) > 0) && !(LeaseCalc.num(input.quotedMonthly) > 0)) {
       input.price = input.msrp;
       toast('Sin precio negociado: guardada asumiendo precio = MSRP (peor caso). Edítala cuando lo tengas.', 'warn', 5000);
     }
