@@ -759,9 +759,26 @@
       state.offers.push(offer);
     }
     state.editingId = null;
-    $('save-btn').textContent = '💾 Guardar oferta';
     persistOffers();
     renderOffers();
+    // Confirmación visible: sin esto, la oferta "desaparece" hacia otra
+    // pestaña (Tablero → Ofertas guardadas) y parece que no se guardó.
+    var btn = $('save-btn');
+    btn.textContent = '✅ Guardada';
+    setTimeout(function () { btn.textContent = '💾 Guardar oferta'; }, 1800);
+    var vc = offerVehicleCells(offer);
+    toast('💾 Guardada: <b>' + escapeHtml([vc.model, vc.trim].filter(Boolean).join(' ')) +
+      '</b> · ya tienes ' + state.offers.length + '. Ábrelas con “📂 Ver guardadas”.', 'success', 5000);
+  }
+
+  /** Salta a la lista de guardadas (Tablero) y la abre. */
+  function goToSaved() {
+    showView('board');
+    var card = $('saved-card');
+    if (card) {
+      card.open = true;
+      setTimeout(function () { card.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+    }
   }
 
   function deleteOffer(id) {
@@ -871,6 +888,10 @@
       tr.addEventListener('click', function () { loadOfferIntoForm(r.offer.id); });
       body.appendChild(tr);
     });
+
+    // contador del botón "Ver guardadas" de la Calculadora
+    var vsb = $('view-saved-btn');
+    if (vsb) vsb.textContent = '📂 Ver guardadas' + (state.offers.length ? ' (' + state.offers.length + ')' : '');
 
     // indicador de orden en encabezados
     var ths = document.querySelectorAll('#offers-table th.sortable');
@@ -2861,6 +2882,7 @@
     $('lease-form').addEventListener('change', recalc);
     $('lease-form').addEventListener('submit', saveOffer);
     $('clear-btn').addEventListener('click', clearForm);
+    if ($('view-saved-btn')) $('view-saved-btn').addEventListener('click', goToSaved);
     $('share-btn').addEventListener('click', shareLink);
     $('export-btn').addEventListener('click', exportOffers);
     $('import-btn').addEventListener('click', function () { $('import-file').click(); });
