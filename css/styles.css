@@ -596,3 +596,12 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 .mfdet { border-top: 1px solid var(--border); padding-top: 4px; }
 .mf-out { margin-top: 6px; font-size: 0.86rem; color: var(--text); }
 .mf-out .sent { margin-right: 6px; }
+
+/* Fila "pegar URL" del importador de la calculadora */
+.url-row { display: flex; gap: 6px; flex: 1 1 100%; min-width: 0; }
+.url-row input {
+  flex: 1; min-width: 0; font: inherit; font-size: 0.84rem; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-s);
+  padding: 6px 10px;
+}
+.url-row input:focus { outline: none; border-color: var(--accent); }

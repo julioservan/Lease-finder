@@ -51,6 +51,12 @@
     // "enganche de $25,000", "due at signing: $3,500", "pago inicial de 30,000"
     new RegExp('(?:enganche|pago\\s+inicial|down\\s+payment|due\\s+at\\s+signing|drive[- ]?off|al\\s+firmar)\\s*(?:de|of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
   ];
+  // "due at signing" EXPLÍCITO: manda sobre "$0 down" — un anuncio puede ser
+  // "$0 down" y aun así pedir $2,836 al firmar (primer mes + tarifas + impuestos).
+  var DAS_EXPLICIT = [
+    new RegExp(CUR + '?\\s*' + NUM + '\\s*(?:due\\s+at\\s+signing|drive[- ]?off|al\\s+firmar)', 'i'),
+    new RegExp('(?:due\\s+at\\s+signing|drive[- ]?off|al\\s+firmar)\\s*(?:de|of|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
+  ];
 
   var MSRP_PATTERNS = [
     new RegExp('(?:msrp|precio\\s+de\\s+lista|p\\.?v\\.?p\\.?)\\s*(?:de|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
@@ -209,7 +215,8 @@
 
   /** Extrae los datos de UNA oferta a partir de un bloque de texto. */
   function parseBlock(block) {
-    var das = ZERO_DOWN.test(block) ? 0 : firstMatch(block, DAS_PATTERNS);
+    var das = firstMatch(block, DAS_EXPLICIT);
+    if (das == null) das = ZERO_DOWN.test(block) ? 0 : firstMatch(block, DAS_PATTERNS);
     return {
       name: pickName(block),
       monthly: firstMatch(block, MONTHLY_PATTERNS),
@@ -480,8 +487,10 @@
     if (monthly && monthly > 0) comps.push(monthly); // primer pago
     var sum = 0, any = false;
     comps.forEach(function (v) { if (typeof v === 'number' && isFinite(v) && v > 0) { sum += v; any = true; } });
+    // Si el anuncio declara un "due at signing" MAYOR que el desglose que
+    // conocemos, manda el total declarado (el desglose está incompleto).
+    if (p.dueAtSigning && p.dueAtSigning > sum) return Math.round(p.dueAtSigning);
     if (any) return Math.round(sum);
-    if (p.dueAtSigning && p.dueAtSigning > 0) return Math.round(p.dueAtSigning); // respaldo: total
     return null;
   }
 
