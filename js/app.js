@@ -489,6 +489,44 @@
         ? 'Money factor: ' + r.moneyFactor.toFixed(5)
         : '');
 
+    // MODO "OFERTA DIRECTA": sin precio/residual/MF (p. ej. una URL de PND
+    // importada) la calculadora hacia-delante no puede construir la cuota,
+    // pero la cuota YA la sabemos. Calcula Resultados directo de la cuota +
+    // el "al firmar" importado, y dilo claramente.
+    var modeEl = $('r-mode');
+    var quoted = LeaseCalc.num($('quotedMonthly') ? $('quotedMonthly').value : 0);
+    var msrpN = LeaseCalc.num(input.msrp);
+    if (!hasData && quoted > 0 && window.OfferParser) {
+      var das = (calcImportOffer && isNum(calcImportOffer.dueAtSigning))
+        ? calcImportOffer.dueAtSigning
+        : LeaseCalc.num(input.downPayment);
+      var m2 = OfferParser.scoreOffer({
+        monthly: quoted,
+        term: LeaseCalc.num(input.term) || 36,
+        dueAtSigning: das,
+        msrp: msrpN > 0 ? msrpN : null
+      });
+      $('r-pretax').textContent = fmtMoney2(quoted);
+      $('r-monthly').textContent = fmtMoney2(quoted) + ' + tax';
+      $('r-driveoff').textContent = fmtMoney(das);
+      $('r-total').textContent = fmtMoney(m2.totalCost);
+      $('r-effective').textContent = fmtMoney2(m2.effectiveMonthly);
+      var milesN = LeaseCalc.num(input.milesPerYear);
+      var totalMiles = milesN > 0 ? milesN * (m2.term / 12) : 0;
+      $('r-permile').textContent = totalMiles > 0 ? fmtMoney2(m2.totalCost / totalMiles) : '—';
+      var lhScore = msrpN > 0 && m2.effectiveMonthly > 0 ? msrpN / (m2.effectiveMonthly * 12) : null;
+      $('r-score').textContent = lhScore != null ? lhScore.toFixed(1) : '—';
+      $('r-pct').textContent = isNum(m2.pctOfMsrp) ? m2.pctOfMsrp.toFixed(2) + ' %' : '—';
+      setScoreClass($('score-box'), lhScore != null ? (lhScore >= 8 ? 'good' : lhScore >= 6 ? 'warn' : 'bad') : '');
+      setScoreClass($('pct-box'), isNum(m2.pctOfMsrp) ? (m2.pctOfMsrp <= 1 ? 'good' : m2.pctOfMsrp <= 1.25 ? 'warn' : 'bad') : '');
+      if (modeEl) {
+        modeEl.hidden = false;
+        modeEl.textContent = 'Modo oferta directa: calculado con la cuota anunciada y el "al firmar" importados (la página no trae precio, residual ni MF). El impuesto va aparte.';
+      }
+    } else if (modeEl) {
+      modeEl.hidden = true;
+    }
+
     if ($('mf-result')) updateImpliedMF(); // el detector usa los mismos campos
 
     return r;
@@ -647,7 +685,12 @@
       findTrimIn(info, t.slice(Math.max(0, idx - 120), idx));
   }
 
+  // Última oferta importada en la Calculadora (para el modo "oferta directa"
+  // de Resultados: la página trae cuota y al firmar, no residual/MF/precio).
+  var calcImportOffer = null;
+
   function applyCalcImport(p, srcLabel) {
+    calcImportOffer = p;
     function set(id, v) { var el = $(id); if (el && v != null && v !== '') el.value = v; }
     // Marca / modelo / trim: si la hoja identifica un modelo del ranking,
     // rellena los selects y detecta el trim con la lista de ese modelo.
@@ -2774,6 +2817,11 @@
   function clearForm() {
     $('lease-form').reset();
     state.editingId = null;
+    calcImportOffer = null; // limpiar también la oferta importada
+    if ($('quotedMonthly')) $('quotedMonthly').value = '';
+    if ($('calc-url')) $('calc-url').value = '';
+    var cv = $('calc-verdict');
+    if (cv) { cv.hidden = true; cv.innerHTML = ''; }
     $('save-btn').textContent = '💾 Guardar oferta';
     history.replaceState(null, '', location.pathname);
     recalc();
