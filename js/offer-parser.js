@@ -63,7 +63,11 @@
   ];
 
   var PRICE_PATTERNS = [
-    new RegExp('(?:selling\\s+price|sale\\s+price|precio\\s+(?:de\\s+venta|negociado|final))\\s*(?:de|:)?\\s*' + CUR + '?\\s*' + NUM, 'i')
+    new RegExp('(?:selling\\s+price|sale\\s+price|precio\\s+(?:de\\s+venta|negociado|final))\\s*(?:de|:)?\\s*' + CUR + '?\\s*' + NUM, 'i'),
+    // Fichas de inventario de dealers: "Internet Price", "Our Price",
+    // "Autoworld Price", "Dealer Price", "Final Price", "eScore Price"…
+    new RegExp('(?:internet|our|dealer|final|market|e[- ]?price|discounted)\\s*price\\s*(?:de|:)?\\s*' + CUR + '?\\s*' + NUM, 'i'),
+    new RegExp('\\b[A-Z][a-z]+\\s+Price\\s*:?\\s*' + CUR + '\\s*' + NUM)
   ];
 
   var MILES_PATTERNS = [
