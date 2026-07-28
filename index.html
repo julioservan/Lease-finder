@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=58">
+  <link rel="stylesheet" href="css/styles.css?v=59">
 </head>
 <body>
   <header class="topbar">
@@ -205,6 +205,13 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
                 <label for="downPayment">Enganche</label>
                 <input id="downPayment" type="number" step="any" min="0" value="0">
               </div>
+              <div class="field">
+                <label for="tradeIn">Permuta (trade-in) aplicada</label>
+                <input id="tradeIn" type="number" step="any" min="0" value="0">
+              </div>
+              <div class="field">
+                <label class="checkbox" style="margin-top:26px"><input id="zeroDriveOff" type="checkbox"> Cero al firmar <span class="lbl-soft">(capitaliza tarifas e impuestos)</span></label>
+              </div>
             </div>
           </fieldset>
 
@@ -258,16 +265,21 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
                 <input id="capFees" type="number" step="any" min="0" value="0">
               </div>
               <div class="field">
-                <label for="taxPct">Impuesto %</label>
-                <input id="taxPct" type="number" step="any" min="0" value="0">
+                <label for="taxPct">Impuesto % <span class="lbl-soft">(NYC 8,875)</span></label>
+                <input id="taxPct" type="number" step="any" min="0" value="8.875">
               </div>
               <div class="field">
                 <label for="taxMethod">Método de impuesto</label>
                 <select id="taxMethod">
-                  <option value="monthly">Sobre cada pago</option>
-                  <option value="upfront">Sobre la suma, al inicio</option>
+                  <option value="upfront" selected>Sobre la suma, al inicio (NY, NJ…)</option>
+                  <option value="monthly">Sobre cada pago (la mayoría de estados)</option>
                   <option value="none">Sin impuesto / incluido</option>
                 </select>
+                <label class="checkbox"><input id="capitalizeTaxes" type="checkbox"> Capitalizarlo (va a la cuota)</label>
+              </div>
+              <div class="field">
+                <label for="postIncentives">Bonos post-venta <span class="lbl-soft">(llegan después)</span></label>
+                <input id="postIncentives" type="number" step="any" min="0" value="0">
               </div>
             </div>
             </fieldset>
@@ -303,11 +315,16 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
 
         <table class="results-table">
           <tbody>
+            <tr><td>Pago sin impuesto</td><td id="r-pretax">—</td></tr>
             <tr class="highlight"><td>Pago mensual</td><td id="r-monthly">—</td></tr>
             <tr><td class="indent">Depreciación</td><td id="r-dep">—</td></tr>
             <tr><td class="indent">Cargo financiero</td><td id="r-rent">—</td></tr>
             <tr><td class="indent">Impuesto mensual</td><td id="r-tax">—</td></tr>
             <tr><td>Pago inicial (drive-off)</td><td id="r-driveoff">—</td></tr>
+            <tr><td class="indent">Enganche</td><td id="r-do-down">—</td></tr>
+            <tr><td class="indent">Primer mes</td><td id="r-do-first">—</td></tr>
+            <tr><td class="indent">Tarifas al inicio</td><td id="r-do-fees">—</td></tr>
+            <tr><td class="indent">Impuesto al inicio</td><td id="r-do-tax">—</td></tr>
             <tr><td>Costo total del lease</td><td id="r-total">—</td></tr>
             <tr class="highlight"><td>Costo efectivo mensual</td><td id="r-effective">—</td></tr>
             <tr><td>Costo por milla</td><td id="r-permile">—</td></tr>
@@ -549,14 +566,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=58"></script>
-  <script src="js/offer-parser.js?v=58"></script>
-  <script src="js/importer.js?v=58"></script>
-  <script src="js/vehicles.js?v=58"></script>
-  <script src="js/models.js?v=58"></script>
-  <script src="js/leasedb.js?v=58"></script>
-  <script src="js/dealerscore.js?v=58"></script>
-  <script src="js/decide.js?v=58"></script>
-  <script src="js/app.js?v=58"></script>
+  <script src="js/lease-calc.js?v=59"></script>
+  <script src="js/offer-parser.js?v=59"></script>
+  <script src="js/importer.js?v=59"></script>
+  <script src="js/vehicles.js?v=59"></script>
+  <script src="js/models.js?v=59"></script>
+  <script src="js/leasedb.js?v=59"></script>
+  <script src="js/dealerscore.js?v=59"></script>
+  <script src="js/decide.js?v=59"></script>
+  <script src="js/app.js?v=59"></script>
 </body>
 </html>

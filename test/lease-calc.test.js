@@ -146,3 +146,44 @@ if (failures) {
 } else {
   console.log('Todos los tests pasaron ✅');
 }
+
+check('trade-in reduce el cap. cost igual que el enganche', function () {
+  var a = LeaseCalc.computeLease({ msrp: 40000, price: 36000, term: 36, residualPct: 60, rateType: 'mf', rate: 0.00125, taxMethod: 'none', downPayment: 2000 });
+  var b = LeaseCalc.computeLease({ msrp: 40000, price: 36000, term: 36, residualPct: 60, rateType: 'mf', rate: 0.00125, taxMethod: 'none', tradeIn: 2000 });
+  close(a.monthlyPayment, b.monthlyPayment, 0.001, 'misma cuota');
+});
+
+check('capitalizar impuestos: el impuesto inicial pasa a la cuota', function () {
+  var base = { msrp: 40000, price: 36000, term: 36, residualPct: 60, rateType: 'mf', rate: 0.00125, taxPct: 8.875, taxMethod: 'upfront' };
+  var cash = LeaseCalc.computeLease(base);
+  var rolled = LeaseCalc.computeLease(Object.assign({ capitalizeTaxes: true }, base));
+  assert.ok(cash.upfrontTax > 1000, 'al contado hay impuesto inicial');
+  close(rolled.upfrontTax, 0, 0.001, 'capitalizado no hay impuesto inicial');
+  assert.ok(rolled.monthlyPayment > cash.monthlyPayment, 'la cuota sube al capitalizar');
+  assert.ok(rolled.driveOff < cash.driveOff - 1000, 'el drive-off baja en ~el impuesto');
+  // el total apenas cambia (solo el cargo financiero sobre lo capitalizado)
+  assert.ok(Math.abs(rolled.totalCost - cash.totalCost) < 250, 'total similar, fue ' + (rolled.totalCost - cash.totalCost));
+});
+
+check('cero al firmar: drive-off $0 y total similar', function () {
+  var base = { msrp: 40000, price: 36000, term: 36, residualPct: 60, rateType: 'mf', rate: 0.00125, taxPct: 8.875, taxMethod: 'upfront', acqFee: 695, upfrontFees: 400 };
+  var normal = LeaseCalc.computeLease(base);
+  var zero = LeaseCalc.computeLease(Object.assign({ zeroDriveOff: true }, base));
+  close(zero.driveOff, 0, 0.001, 'nada al firmar');
+  close(zero.driveOffBreakdown.firstMonth, 0, 0.001, 'primer mes capitalizado');
+  assert.ok(zero.monthlyPayment > normal.monthlyPayment, 'cuota más alta');
+  assert.ok(Math.abs(zero.totalCost - normal.totalCost) < 400, 'total similar, dif=' + (zero.totalCost - normal.totalCost));
+});
+
+check('bonos post-venta reducen el costo total, no la cuota', function () {
+  var a = LeaseCalc.computeLease({ msrp: 40000, price: 36000, term: 36, residualPct: 60, rateType: 'mf', rate: 0.00125, taxMethod: 'none' });
+  var b = LeaseCalc.computeLease({ msrp: 40000, price: 36000, term: 36, residualPct: 60, rateType: 'mf', rate: 0.00125, taxMethod: 'none', postIncentives: 1000 });
+  close(a.monthlyPayment, b.monthlyPayment, 0.001, 'misma cuota');
+  close(a.totalCost - b.totalCost, 1000, 0.01, 'total 1000 menos');
+});
+
+check('desglose del drive-off suma el total', function () {
+  var r = LeaseCalc.computeLease({ msrp: 40000, price: 36000, term: 36, residualPct: 60, rateType: 'mf', rate: 0.00125, taxPct: 8.875, taxMethod: 'upfront', downPayment: 1500, acqFee: 695, upfrontFees: 300 });
+  var b = r.driveOffBreakdown;
+  close(b.downPayment + b.firstMonth + b.fees + b.upfrontTax, r.driveOff, 0.01, 'desglose = total');
+});
