@@ -430,12 +430,127 @@
         ? 'Money factor: ' + r.moneyFactor.toFixed(5)
         : '');
 
+    if ($('mf-result')) updateImpliedMF(); // el detector usa los mismos campos
+
     return r;
   }
 
   function setScoreClass(el, cls) {
     el.classList.remove('good', 'warn', 'bad');
     if (cls) el.classList.add(cls);
+  }
+
+  /* ---------- 🔍 detector de money factor implícito (calculadora) ---------- */
+
+  /** Nivel del MF: dónde suelen moverse los bancos de marca. */
+  function mfLevel(mf) {
+    if (mf < 0) return { cls: 'good', txt: 'Mejor que 0% — hay incentivos fuertes detrás' };
+    if (mf <= 0.0015) return { cls: 'good', txt: 'Bajo / promocional — buen tipo' };
+    if (mf <= 0.0025) return { cls: 'ok', txt: 'Normal para bancos de marca' };
+    if (mf <= 0.0035) return { cls: 'wait', txt: 'Alto — pide el buy rate al vendedor' };
+    return { cls: 'pricey', txt: 'Muy alto — probablemente inflado (markup)' };
+  }
+
+  function mfLine(r, note) {
+    var lvl = mfLevel(r.moneyFactor);
+    return '<div class="mf-out">' +
+      '<span class="sent ' + lvl.cls + '">MF ' + r.moneyFactor.toFixed(5) + ' · ≈' + r.aprEquivalent.toFixed(2) + '% TAE</span> ' +
+      '<span>' + escapeHtml(lvl.txt) + '</span>' +
+      '<div class="hint" style="margin-top:4px">Interés implícito: <b>' + fmtMoney2(Math.max(0, r.monthlyRent)) + '</b>/mes' +
+      (note ? ' · ' + note : '') + '</div></div>';
+  }
+
+  function updateImpliedMF() {
+    var out = $('mf-result');
+    if (!out) return;
+    var input = readForm();
+    input.quotedMonthly = $('quotedMonthly') ? $('quotedMonthly').value : '';
+    if (!(LeaseCalc.num(input.quotedMonthly) > 0)) { out.innerHTML = ''; return; }
+    var r = LeaseCalc.impliedMF(input);
+    if (r) {
+      var note = LeaseCalc.num(input.price) > 0
+        ? null
+        : 'sin precio negociado (asumí MSRP): el MF real será ≥ este — pide el selling price';
+      out.innerHTML = mfLine(r, note);
+      return;
+    }
+    // Sin residual en la hoja: rango honesto con residuales típicos de SUV.
+    var lo = LeaseCalc.impliedMF(Object.assign({}, input, { residualPct: 60 }));
+    var hi = LeaseCalc.impliedMF(Object.assign({}, input, { residualPct: 55 }));
+    if (lo && hi) {
+      out.innerHTML = '<div class="mf-out"><span class="sent wait">MF entre ' + lo.moneyFactor.toFixed(5) +
+        ' y ' + hi.moneyFactor.toFixed(5) + ' (≈' + lo.aprEquivalent.toFixed(1) + '–' + hi.aprEquivalent.toFixed(1) + '% TAE)</span>' +
+        '<div class="hint" style="margin-top:4px">La hoja no trae el residual (estimado 55–60%). Pídeselo al vendedor para clavar el número.</div></div>';
+    } else {
+      out.innerHTML = '<p class="hint">Me faltan datos para despejarlo: necesito al menos MSRP, plazo y cuota (y mejor precio + residual).</p>';
+    }
+  }
+
+  /* ---------- 📸 foto → veredicto (importador de la calculadora) ---------- */
+
+  function importCalcFiles(fileList) {
+    var files = Array.prototype.slice.call(fileList || []);
+    if (!files.length || !window.LeaseImport) return;
+    var status = $('calc-import-status');
+    function setStatus(t) { if (status) status.textContent = t; }
+    var acc = [];
+    var i = 0;
+    (function next() {
+      if (i >= files.length) {
+        var joined = acc.join('\n---\n').trim();
+        if (!joined) { setStatus('⚠ No se pudo extraer texto. Prueba con una foto más nítida o el PDF.'); return; }
+        var offers = OfferParser.scanText(joined);
+        if (!offers.length) { setStatus('⚠ No encontré una mensualidad en la hoja. ¿Se ve bien el precio?'); return; }
+        offers.sort(function (a, b) { return costeCompleteness(b) - costeCompleteness(a); });
+        var best = offers[0];
+        // Una hoja = UNA oferta: rellena huecos con el documento entero.
+        var whole = OfferParser.parseBlock(joined);
+        ['msrp', 'price', 'milesPerYear', 'residualPct', 'residualAmount', 'dueAtSigning', 'downPayment',
+         'acqFee', 'dealerFee', 'docFee', 'securityDeposit', 'term', 'moneyFactor', 'apr', 'vin'].forEach(function (k) {
+          if (best[k] == null && whole[k] != null) best[k] = whole[k];
+        });
+        best.raw = joined;
+        applyCalcImport(best);
+        setStatus('✅ Hoja leída. Revisa los campos, el MF implícito y el veredicto de abajo.');
+        return;
+      }
+      var f = files[i++];
+      setStatus('Leyendo ' + (f.name || 'archivo') + '…');
+      window.LeaseImport.fromFile(f, setStatus).then(function (res) {
+        if (res && res.text) acc.push(res.text);
+        next();
+      }, function (err) {
+        setStatus('⚠ ' + (err && err.message ? err.message : 'No se pudo leer el archivo'));
+        next();
+      });
+    })();
+  }
+
+  function applyCalcImport(p) {
+    function set(id, v) { var el = $(id); if (el && v != null && v !== '') el.value = v; }
+    set('name', p.name);
+    set('msrp', p.msrp);
+    set('price', p.price);
+    set('term', p.term);
+    set('milesPerYear', p.milesPerYear);
+    if (p.residualPct != null) set('residualPct', p.residualPct);
+    else if (p.residualAmount != null && p.msrp) set('residualPct', Math.round(p.residualAmount / p.msrp * 1000) / 10);
+    if (p.moneyFactor != null) { set('rateType', 'mf'); set('rate', p.moneyFactor); }
+    else if (p.apr != null) { set('rateType', 'apr'); set('rate', p.apr); }
+    set('acqFee', p.acqFee);
+    set('downPayment', p.downPayment);
+    var otherFees = (p.dealerFee || 0) + (p.docFee || 0);
+    if (otherFees > 0) set('upfrontFees', otherFees);
+    set('quotedMonthly', p.monthly);
+    recalc();
+    updateImpliedMF();
+    // Veredicto completo (transparencia, condiciones, comparación con el robot).
+    var box = $('calc-verdict');
+    if (box) {
+      var m = OfferParser.scoreOffer(p);
+      box.innerHTML = costeVerdictHtml(p, m);
+      box.hidden = false;
+    }
   }
 
   /* ---------------- ofertas ---------------- */
@@ -2696,6 +2811,24 @@
         if (e.dataTransfer && e.dataTransfer.files) importOfferFiles(e.dataTransfer.files);
       });
     }
+
+    // 📸 Importador de la Calculadora (foto/PDF de la hoja del dealer).
+    if ($('calc-import-pick')) {
+      var kFile = $('calc-import-file');
+      $('calc-import-pick').addEventListener('click', function () { kFile.click(); });
+      kFile.addEventListener('change', function () { importCalcFiles(kFile.files); kFile.value = ''; });
+      var kZone = $('calc-import-zone');
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        kZone.addEventListener(ev, function (e) { e.preventDefault(); kZone.classList.add('drag'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        kZone.addEventListener(ev, function (e) { e.preventDefault(); kZone.classList.remove('drag'); });
+      });
+      kZone.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files) importCalcFiles(e.dataTransfer.files);
+      });
+    }
+    if ($('quotedMonthly')) $('quotedMonthly').addEventListener('input', updateImpliedMF);
 
     // Importador del "Coste al mes": rellena y valora la oferta subida.
     if ($('c-import-pick')) {

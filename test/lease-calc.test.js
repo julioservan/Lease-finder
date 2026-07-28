@@ -187,3 +187,39 @@ check('desglose del drive-off suma el total', function () {
   var b = r.driveOffBreakdown;
   close(b.downPayment + b.firstMonth + b.fees + b.upfrontTax, r.driveOff, 0.01, 'desglose = total');
 });
+
+check('impliedMF recupera el money factor de una cuota conocida', function () {
+  // Genera una cuota con MF conocido y comprueba que el inverso lo despeja.
+  var fwd = LeaseCalc.computeLease({
+    msrp: 38900, price: 36500, term: 36, residualPct: 61,
+    rateType: 'mf', rate: 0.00173, taxMethod: 'none'
+  });
+  var inv = LeaseCalc.impliedMF({
+    quotedMonthly: fwd.basePayment, msrp: 38900, price: 36500,
+    term: 36, residualPct: 61
+  });
+  close(inv.moneyFactor, 0.00173, 0.000001, 'MF recuperado');
+  close(inv.aprEquivalent, 0.00173 * 2400, 0.01, 'TAE equivalente');
+});
+
+check('impliedMF: enganche e incentivos reducen el cap antes de despejar', function () {
+  var fwd = LeaseCalc.computeLease({
+    msrp: 38900, price: 36500, term: 36, residualPct: 61,
+    rateType: 'mf', rate: 0.002, taxMethod: 'none', downPayment: 2000, incentives: 1000
+  });
+  var inv = LeaseCalc.impliedMF({
+    quotedMonthly: fwd.basePayment, msrp: 38900, price: 36500,
+    term: 36, residualPct: 61, downPayment: 2000, incentives: 1000
+  });
+  close(inv.moneyFactor, 0.002, 0.000001, 'MF con reducciones');
+});
+
+check('impliedMF devuelve null si falta el residual o la cuota', function () {
+  assert.strictEqual(LeaseCalc.impliedMF({ quotedMonthly: 400, msrp: 38900, term: 36 }), null);
+  assert.strictEqual(LeaseCalc.impliedMF({ msrp: 38900, term: 36, residualPct: 61 }), null);
+});
+
+check('impliedMF con residual en dólares (residualAmount)', function () {
+  var inv = LeaseCalc.impliedMF({ quotedMonthly: 459, msrp: 38900, price: 36500, term: 36, residualAmount: 23729 });
+  close(inv.moneyFactor, 0.001731, 0.00002, 'MF de la hoja del dealer');
+});

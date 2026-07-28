@@ -160,5 +160,46 @@
     };
   }
 
-  return { computeLease: computeLease, num: num };
+  /**
+   * MONEY FACTOR IMPLÍCITO: despeja el MF que el concesionario está cobrando
+   * a partir de la cuota que te ofrece. El dealer nunca lo enseña — ahí
+   * esconde el margen — pero es álgebra:
+   *
+   *   cuota = (cap - residual)/plazo + (cap + residual) × MF
+   *   →  MF = (cuota - (cap - residual)/plazo) / (cap + residual)
+   *
+   * `quotedMonthly` debe ser la cuota SIN impuesto (en NY el impuesto va
+   * aparte, así que la cuota cotizada suele ser pre-tax).
+   * Devuelve null si faltan datos (MSRP+residual y precio).
+   */
+  function impliedMF(input) {
+    input = input || {};
+    var quoted = num(input.quotedMonthly);
+    var msrp = num(input.msrp);
+    var price = num(input.price) || msrp; // sin precio negociado, asume MSRP (peor caso honesto)
+    var term = Math.max(1, Math.round(num(input.term)) || 36);
+    var residual = num(input.residualAmount);
+    if (!residual && num(input.residualPct) > 0 && msrp > 0) {
+      residual = msrp * num(input.residualPct) / 100;
+    }
+    if (quoted <= 0 || price <= 0 || residual <= 0) return null;
+
+    var acqFee = num(input.acqFee);
+    var cap = price + num(input.capFees) + (input.capitalizeAcq ? acqFee : 0) -
+      num(input.downPayment) - num(input.incentives) - num(input.tradeIn);
+
+    var depreciation = (cap - residual) / term;
+    var rent = quoted - depreciation;               // $ de interés/mes implícito
+    var mf = rent / (cap + residual);
+    return {
+      moneyFactor: mf,
+      aprEquivalent: mf * 2400,
+      monthlyRent: rent,
+      monthlyDepreciation: depreciation,
+      cap: cap,
+      residual: residual
+    };
+  }
+
+  return { computeLease: computeLease, impliedMF: impliedMF, num: num };
 });

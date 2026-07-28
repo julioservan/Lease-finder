@@ -81,10 +81,40 @@
     return (res && res.data && res.data.text) || '';
   }
 
+  /* ---- MHTML: "Guardar como…" de Chrome guarda la web en UN archivo ---- */
+
+  /** Decodifica quoted-printable (=3D → '=', '=\n' une líneas partidas). */
+  function decodeQP(s) {
+    return String(s || '')
+      .replace(/=\r?\n/g, '')
+      .replace(/=([0-9A-F]{2})/gi, function (_, h) { return String.fromCharCode(parseInt(h, 16)); });
+  }
+
+  /** Extrae la parte text/html de un archivo MHTML y la decodifica. */
+  function mhtmlToHtml(raw) {
+    raw = String(raw || '');
+    var ct = raw.search(/Content-Type:\s*text\/html/i);
+    if (ct < 0) return raw; // no parece MHTML: trátalo como HTML normal
+    var afterCt = raw.slice(ct);
+    var blank = afterCt.match(/\r?\n\r?\n/); // línea en blanco = fin de cabeceras
+    if (!blank) return raw;
+    var bodyStart = ct + blank.index + blank[0].length;
+    var boundary = (raw.match(/boundary="?([^";\r\n]+)"?/i) || [])[1];
+    var bodyEnd = boundary ? raw.indexOf('--' + boundary, bodyStart) : -1;
+    var body = raw.slice(bodyStart, bodyEnd > 0 ? bodyEnd : raw.length);
+    var partHead = raw.slice(Math.max(0, ct - 300), bodyStart);
+    if (/Content-Transfer-Encoding:\s*quoted-printable/i.test(partHead)) body = decodeQP(body);
+    else if (/Content-Transfer-Encoding:\s*base64/i.test(partHead)) {
+      try { body = atob(body.replace(/\s+/g, '')); } catch (e) { /* se queda como está */ }
+    }
+    return body;
+  }
+
   function kindOf(file) {
     var name = (file.name || '').toLowerCase(), type = file.type || '';
     if (/\.pdf$/.test(name) || /pdf/.test(type)) return 'pdf';
     if (/^image\//.test(type) || /\.(png|jpe?g|webp|gif|bmp|heic)$/.test(name)) return 'image';
+    if (/\.mht(ml)?$/.test(name) || /multipart\/related/.test(type)) return 'mhtml';
     if (/\.(html?|htm)$/.test(name) || /html/.test(type)) return 'html';
     return 'text';
   }
@@ -93,9 +123,10 @@
     var kind = kindOf(file);
     if (kind === 'pdf') return pdfText(file, prog).then(function (t) { return { kind: 'pdf', text: t }; });
     if (kind === 'image') return imageText(file, prog).then(function (t) { return { kind: 'image', text: t }; });
+    if (kind === 'mhtml') return readText(file).then(function (r) { return { kind: 'mhtml', text: htmlToText(mhtmlToHtml(r)) }; });
     if (kind === 'html') return readText(file).then(function (h) { return { kind: 'html', text: htmlToText(h) }; });
     return readText(file).then(function (t) { return { kind: 'text', text: t }; });
   }
 
-  return { fromFile: fromFile, kindOf: kindOf };
+  return { fromFile: fromFile, kindOf: kindOf, _mhtmlToHtml: mhtmlToHtml, _decodeQP: decodeQP };
 }));
