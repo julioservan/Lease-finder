@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=67">
+  <link rel="stylesheet" href="css/styles.css?v=68">
 </head>
 <body>
   <header class="topbar">
@@ -178,12 +178,15 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
           <div class="url-row">
             <input id="calc-url" type="url" placeholder="…o pega una URL de Leasehackr (pnd.leasehackr.com/d/…)">
             <button type="button" class="btn" id="calc-url-btn">🔗 Leer URL</button>
+            <a id="source-link" class="btn mini" target="_blank" rel="noopener" title="La página original de esta oferta (guardada con ella)" hidden>↗ Abrir la fuente</a>
           </div>
           <span class="import-hint" id="calc-import-status">Foto, PDF, captura, la web guardada (.html/.mhtml) o una URL de Leasehackr: relleno la calculadora y te digo qué money factor te están cobrando.</span>
         </div>
         <form id="lease-form" autocomplete="off">
           <!-- "Al firmar" de la oferta importada (modo directo): se persiste con la oferta -->
           <input type="hidden" id="importedDAS" value="">
+          <!-- URL de origen de la oferta (se guarda y se puede visitar) -->
+          <input type="hidden" id="sourceUrl" value="">
           <div class="grid-2">
             <div class="field">
               <label for="make">Marca</label>
@@ -603,14 +606,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=67"></script>
-  <script src="js/offer-parser.js?v=67"></script>
-  <script src="js/importer.js?v=67"></script>
-  <script src="js/vehicles.js?v=67"></script>
-  <script src="js/models.js?v=67"></script>
-  <script src="js/leasedb.js?v=67"></script>
-  <script src="js/dealerscore.js?v=67"></script>
-  <script src="js/decide.js?v=67"></script>
-  <script src="js/app.js?v=67"></script>
+  <script src="js/lease-calc.js?v=68"></script>
+  <script src="js/offer-parser.js?v=68"></script>
+  <script src="js/importer.js?v=68"></script>
+  <script src="js/vehicles.js?v=68"></script>
+  <script src="js/models.js?v=68"></script>
+  <script src="js/leasedb.js?v=68"></script>
+  <script src="js/dealerscore.js?v=68"></script>
+  <script src="js/decide.js?v=68"></script>
+  <script src="js/app.js?v=68"></script>
 </body>
 </html>
