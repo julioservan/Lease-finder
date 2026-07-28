@@ -735,6 +735,39 @@
   // de Resultados: la página trae cuota y al firmar, no residual/MF/precio).
   var calcImportOffer = null;
 
+  /**
+   * Estimación honesta de la cuota cuando solo tenemos el PRECIO (ficha de
+   * inventario): banda con supuestos típicos de SUV a 36 meses — residual
+   * 55–60% y MF 0.0015–0.0025. No es una oferta: es para saber qué esperar
+   * antes de que el vendedor te dé su número.
+   */
+  var EST = { resLo: 55, resHi: 60, mfLo: 0.0015, mfHi: 0.0025, resTipico: 57.5, mfTipico: 0.002 };
+  function estimateHtml(p, info) {
+    var msrp = p.msrp, price = p.price != null ? p.price : p.msrp;
+    if (!(msrp > 0) && !(price > 0)) return '';
+    var term = p.term || 36;
+    var best = LeaseCalc.computeLease({ msrp: msrp || price, price: price, term: term, residualPct: EST.resHi, rateType: 'mf', rate: EST.mfLo, taxMethod: 'none' });
+    var worst = LeaseCalc.computeLease({ msrp: msrp || price, price: price, term: term, residualPct: EST.resLo, rateType: 'mf', rate: EST.mfHi, taxMethod: 'none' });
+    var robot = '';
+    if (info && window.LeaseDB) {
+      var b = LeaseDB.bestOffer(info);
+      if (b && isNum(b.metrics.effectiveMonthly)) {
+        robot = '<div class="hint" style="margin-top:4px">📡 Referencia real: el mejor ' + escapeHtml(info.model) +
+          ' que ha visto el robot sale a <b>' + fmtMoney2(b.metrics.effectiveMonthly) + '</b>/mes efectivo (' + escapeHtml(b.source || '') +
+          '). Los programas con lease cash pueden quedar por debajo de la banda.</div>';
+      }
+    }
+    return '<div class="odx" style="margin-top:12px">' +
+      '<div style="margin-bottom:6px"><span class="sent wait">🧮 Estimación (sin cuota del dealer)</span></div>' +
+      '<div class="odx-explain">Con este precio (' + fmtMoney(price) + (msrp ? ', MSRP ' + fmtMoney(msrp) : '') + ') y supuestos típicos de SUV a ' + term +
+      ' meses (residual ' + EST.resLo + '–' + EST.resHi + '%, MF ' + EST.mfLo + '–' + EST.mfHi + '), la cuota rondaría ' +
+      '<b>' + fmtMoney(best.basePayment) + '–' + fmtMoney(worst.basePayment) + '/mes + impuestos</b>. ' +
+      'Es una banda orientativa, no una oferta: el número real depende del programa del banco ese mes.</div>' + robot +
+      '<div class="card-actions" style="margin-top:8px">' +
+      '<button type="button" class="btn mini" id="est-fill">🧮 Rellenar con supuestos típicos (residual ' + EST.resTipico + '%, MF ' + EST.mfTipico + ')</button>' +
+      '</div></div>';
+  }
+
   function applyCalcImport(p, srcLabel) {
     calcImportOffer = p;
     function set(id, v) { var el = $(id); if (el && v != null && v !== '') el.value = v; }
@@ -775,12 +808,28 @@
     if (dasEl) dasEl.value = p.dueAtSigning != null ? p.dueAtSigning : '';
     recalc();
     updateImpliedMF();
-    // Veredicto completo (transparencia, condiciones, comparación con el robot).
+    // Con cuota → veredicto completo; sin cuota (ficha de coche) → estimación
+    // honesta en banda + botón para rellenar supuestos típicos.
     var box = $('calc-verdict');
     if (box) {
-      var m = OfferParser.scoreOffer(p);
-      box.innerHTML = costeVerdictHtml(p, m);
-      box.hidden = false;
+      if (p.monthly != null) {
+        var m = OfferParser.scoreOffer(p);
+        box.innerHTML = costeVerdictHtml(p, m);
+      } else {
+        box.innerHTML = estimateHtml(p, info);
+        var fillBtn = box.querySelector('#est-fill');
+        if (fillBtn) fillBtn.addEventListener('click', function () {
+          // Los supuestos van al FORMULARIO, a la vista — nada oculto.
+          if (!(LeaseCalc.num($('residualPct').value) > 0)) $('residualPct').value = EST.resTipico;
+          if (!(LeaseCalc.num($('rate').value) > 0)) { $('rateType').value = 'mf'; $('rate').value = EST.mfTipico; }
+          if (!(LeaseCalc.num($('price').value) > 0) && LeaseCalc.num($('msrp').value) > 0) $('price').value = $('msrp').value;
+          recalc();
+          toast('🧮 Supuestos típicos aplicados (residual ' + EST.resTipico + '%, MF ' + EST.mfTipico + '). Son editables — ajusta cuando tengas los reales.', 'info', 5500);
+          fillBtn.textContent = '✅ Supuestos aplicados — edítalos en el formulario';
+          fillBtn.disabled = true;
+        });
+      }
+      box.hidden = !box.innerHTML;
     }
   }
 
