@@ -16,7 +16,7 @@
     'zeroDriveOff', 'term',
     'milesPerYear', 'residualPct', 'rateType', 'rate', 'acqFee',
     'capitalizeAcq', 'dispositionFee', 'upfrontFees', 'capFees',
-    'taxPct', 'taxMethod', 'capitalizeTaxes', 'postIncentives', 'quotedMonthly', 'importedDAS', 'notes'
+    'taxPct', 'taxMethod', 'capitalizeTaxes', 'postIncentives', 'quotedMonthly', 'importedDAS', 'sourceUrl', 'notes'
   ];
 
   var $ = function (id) { return document.getElementById(id); };
@@ -551,8 +551,18 @@
     }
 
     if ($('mf-result')) updateImpliedMF(); // el detector usa los mismos campos
+    updateSourceLink();
 
     return r;
+  }
+
+  /** Muestra/oculta el enlace a la fuente guardada de la oferta. */
+  function updateSourceLink() {
+    var a = $('source-link');
+    if (!a) return;
+    var u = $('sourceUrl') ? $('sourceUrl').value.trim() : '';
+    if (u && /^https?:\/\//i.test(u)) { a.href = u; a.hidden = false; }
+    else { a.hidden = true; a.removeAttribute('href'); }
   }
 
   function setScoreClass(el, cls) {
@@ -644,9 +654,10 @@
   /** Texto plano de una oferta → autorrellenar la calculadora. */
   function ingestCalcText(joined, setStatus, srcLabel) {
     var best = mergedOfferFromText(joined);
-    if (!best) { setStatus('⚠ No encontré una mensualidad. ¿Se ve bien el precio en la página/hoja?'); return; }
+    if (!best) { setStatus('⚠ No encontré una mensualidad. ¿Se ve bien el precio en la página/hoja?'); return false; }
     applyCalcImport(best, srcLabel);
     setStatus('✅ Oferta leída. Revisa los campos, el MF implícito y el veredicto de abajo.');
+    return true;
   }
 
   function importCalcFiles(fileList) {
@@ -687,7 +698,10 @@
         }
         var host = '';
         try { host = new URL(url).hostname; } catch (e) { /* noop */ }
-        ingestCalcText(OfferParser.htmlToText(res.d.html), setStatus, host);
+        if (ingestCalcText(OfferParser.htmlToText(res.d.html), setStatus, host)) {
+          if ($('sourceUrl')) $('sourceUrl').value = url; // queda guardada con la oferta
+          updateSourceLink();
+        }
       }, function () {
         setStatus('⚠ Sin conexión con api/fetch-page (¿estás en la versión de Vercel?). Plan B: guarda la página con Ctrl+S y súbela como .mhtml.');
       });
@@ -885,8 +899,12 @@
       var tr = document.createElement('tr');
       tr.dataset.id = r.offer.id;
       var vc = offerVehicleCells(r.offer);
+      var srcUrl = (r.offer.input && r.offer.input.sourceUrl) || '';
+      var srcA = /^https?:\/\//i.test(srcUrl)
+        ? ' <a class="offer-src" href="' + escapeHtml(srcUrl) + '" target="_blank" rel="noopener" title="Abrir la oferta original">↗</a>'
+        : '';
       tr.appendChild(cell(
-        '<span class="offer-name">' + escapeHtml(vc.model) + '</span>' +
+        '<span class="offer-name">' + escapeHtml(vc.model) + srcA + '</span>' +
         (vc.detail ? '<span class="offer-meta">' + escapeHtml(vc.detail) + '</span>' : ''), true));
       tr.appendChild(cell(vc.trim || '—'));
       tr.appendChild(cell(vc.date));
@@ -910,7 +928,10 @@
       del.appendChild(btn);
       tr.appendChild(del);
 
-      tr.addEventListener('click', function () { loadOfferIntoForm(r.offer.id); });
+      tr.addEventListener('click', function (ev) {
+        if (ev.target.closest && ev.target.closest('a,button')) return; // el enlace ↗ no debe abrir la oferta
+        loadOfferIntoForm(r.offer.id);
+      });
       body.appendChild(tr);
     });
 
@@ -2884,6 +2905,9 @@
     calcImportOffer = null; // limpiar también la oferta importada
     if ($('quotedMonthly')) $('quotedMonthly').value = '';
     if ($('calc-url')) $('calc-url').value = '';
+    // form.reset() NO toca los inputs ocultos: limpiarlos a mano.
+    if ($('sourceUrl')) $('sourceUrl').value = '';
+    if ($('importedDAS')) $('importedDAS').value = '';
     var cv = $('calc-verdict');
     if (cv) { cv.hidden = true; cv.innerHTML = ''; }
     $('save-btn').textContent = '💾 Guardar oferta';

@@ -610,3 +610,8 @@ details.advanced[open] > summary { margin-bottom: 10px; }
 a.topd-name { font-weight: 600; color: var(--text-strong); text-decoration: none; border-bottom: 1px dotted var(--border-strong); }
 a.topd-name:hover { color: var(--blue); border-bottom-color: var(--blue); }
 .topd-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+/* Enlace a la fuente de una oferta guardada */
+.offer-src { color: var(--blue); text-decoration: none; font-weight: 600; padding: 0 3px; }
+.offer-src:hover { text-decoration: underline; }
+#source-link { align-self: center; white-space: nowrap; }
