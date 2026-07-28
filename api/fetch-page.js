@@ -11,9 +11,28 @@
  */
 'use strict';
 
-var ALLOWED_HOSTS = [
-  /(^|\.)leasehackr\.com$/i
-];
+// Lista blanca dinámica: leasehackr + TODOS los concesionarios que ya rastrea
+// el robot (scanner/sources.json). Así puedes pegar la ficha de un coche de
+// Autoworld Kia, Bay Ridge Honda, etc., sin abrir un proxy libre (SSRF).
+var sources = { sources: [] };
+try { sources = require('../scanner/sources.json'); } catch (e) { /* sin fuentes */ }
+
+var ALLOWED = new Set(['leasehackr.com']);
+(sources.sources || []).forEach(function (s) {
+  (s.urls || []).forEach(function (u) {
+    try { ALLOWED.add(new URL(u).hostname.replace(/^www\./i, '').toLowerCase()); } catch (e) { /* url mala */ }
+  });
+});
+
+function hostAllowed(hostname) {
+  var h = String(hostname || '').replace(/^www\./i, '').toLowerCase();
+  if (ALLOWED.has(h)) return true;
+  // subdominios de un dominio permitido (p. ej. pnd.leasehackr.com)
+  for (var it = ALLOWED.values(), n = it.next(); !n.done; n = it.next()) {
+    if (h.endsWith('.' + n.value)) return true;
+  }
+  return false;
+}
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://julioservan.github.io');
@@ -25,11 +44,10 @@ module.exports = async function handler(req, res) {
   if (!target || target.protocol !== 'https:') {
     return res.status(400).json({ ok: false, message: 'Pega una URL https válida.' });
   }
-  var allowed = ALLOWED_HOSTS.some(function (re) { return re.test(target.hostname); });
-  if (!allowed) {
+  if (!hostAllowed(target.hostname)) {
     return res.status(400).json({
       ok: false,
-      message: 'De momento solo leo URLs de leasehackr.com. Para otras webs: guarda la página (Ctrl+S) y súbela como .html/.mhtml.'
+      message: 'Solo leo URLs de Leasehackr y de los concesionarios que rastrea el robot. Para otras webs: guarda la página (Ctrl+S) y súbela como .html/.mhtml.'
     });
   }
 

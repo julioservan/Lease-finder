@@ -628,12 +628,19 @@
    * documento ENTERO — incluida la cuota — y con dos reglas de honestidad:
    * el "due at signing" declarado manda sobre un "$0 down" suelto.
    */
-  function mergedOfferFromText(joined) {
+  function mergedOfferFromText(joined, requireMonthly) {
     joined = String(joined || '').trim();
     if (!joined) return null;
     var offers = OfferParser.scanText(joined);
     var whole = OfferParser.parseBlock(joined);
-    if (!offers.length && whole.monthly == null) return null;
+    if (!offers.length && whole.monthly == null) {
+      // Ficha de inventario (VDP): sin cuota pero con MSRP/precio/VIN útiles.
+      if (!requireMonthly && (whole.msrp != null || whole.price != null || whole.vin != null)) {
+        whole.raw = joined;
+        return whole;
+      }
+      return null;
+    }
     // Prefiere ofertas que traen mensualidad; sin ninguna, parte del doc entero.
     var withMonthly = offers.filter(function (o) { return o.monthly != null; });
     var pool = withMonthly.length ? withMonthly : offers;
@@ -654,9 +661,11 @@
   /** Texto plano de una oferta → autorrellenar la calculadora. */
   function ingestCalcText(joined, setStatus, srcLabel) {
     var best = mergedOfferFromText(joined);
-    if (!best) { setStatus('⚠ No encontré una mensualidad. ¿Se ve bien el precio en la página/hoja?'); return false; }
+    if (!best) { setStatus('⚠ No encontré una mensualidad ni una ficha de coche legible. ¿Se ve bien el precio?'); return false; }
     applyCalcImport(best, srcLabel);
-    setStatus('✅ Oferta leída. Revisa los campos, el MF implícito y el veredicto de abajo.');
+    setStatus(best.monthly != null
+      ? '✅ Oferta leída. Revisa los campos, el MF implícito y el veredicto de abajo.'
+      : '✅ Ficha del coche leída (sin cuota de lease): MSRP/precio/VIN rellenados. Añade el residual y el MF — o la cuota que te ofrezcan — y calculo el resto.');
     return true;
   }
 
@@ -698,7 +707,7 @@
         }
         var host = '';
         try { host = new URL(url).hostname; } catch (e) { /* noop */ }
-        if (ingestCalcText(OfferParser.htmlToText(res.d.html), setStatus, host)) {
+        if (ingestCalcText(OfferParser.htmlToText(res.d.html) + '\nURL: ' + url, setStatus, host)) {
           if ($('sourceUrl')) $('sourceUrl').value = url; // queda guardada con la oferta
           updateSourceLink();
         }
@@ -745,6 +754,10 @@
     // si vino de una URL, la fuente (p. ej. pnd.leasehackr.com) es más útil.
     var meaningfulName = p.name && (/\b20\d{2}\b/.test(p.name) || p.name.trim().indexOf(' ') > 0);
     set('name', meaningfulName ? p.name : (srcLabel || p.name));
+    // El VIN (muchas fichas lo llevan hasta en la URL) se guarda en Notas.
+    if (p.vin && $('notes') && $('notes').value.indexOf(p.vin) < 0) {
+      $('notes').value = ($('notes').value ? $('notes').value + '\n' : '') + 'VIN: ' + p.vin;
+    }
     set('msrp', p.msrp);
     set('price', p.price);
     set('term', p.term);
@@ -1026,7 +1039,7 @@
         if (!joined) { setStatus('⚠ No se pudo extraer texto. Prueba con otro archivo o usa la pestaña Tablero → Añadir una oferta.'); return; }
         // Misma lógica robusta que la Calculadora (fusiona el doc entero,
         // incluida la cuota, y respeta el due-at-signing declarado).
-        var best = mergedOfferFromText(joined);
+        var best = mergedOfferFromText(joined, true); // el recibo necesita cuota
         if (!best) { setStatus('⚠ No encontré ninguna mensualidad en el archivo. ¿Es la hoja de la oferta?'); return; }
         applyImportedOffer(best);
         setStatus('✅ Oferta importada. Revisa el veredicto y el recibo.');
