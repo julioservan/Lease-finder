@@ -12,7 +12,7 @@
   var VIEWS = ['board', 'usados', 'calc', 'coste', 'decide'];
 
   var FIELDS = [
-    'make', 'model', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'tradeIn',
+    'make', 'model', 'trim', 'name', 'msrp', 'price', 'incentives', 'downPayment', 'tradeIn',
     'zeroDriveOff', 'term',
     'milesPerYear', 'residualPct', 'rateType', 'rate', 'acqFee',
     'capitalizeAcq', 'dispositionFee', 'upfrontFees', 'capFees',
@@ -72,9 +72,66 @@
   function offerName(offer) {
     if (offer.kind === 'scanned') return (offer.parsed && offer.parsed.name) || 'Oferta sin nombre';
     var input = offer.input || {};
-    var vehicle = [input.make, input.model].filter(Boolean).join(' ');
+    var vehicle = [input.make, input.model, input.trim].filter(Boolean).join(' ');
     if (vehicle && input.name) return vehicle + ' — ' + input.name;
     return vehicle || input.name || 'Oferta sin nombre';
+  }
+
+  /** Modelo del ranking (info) al que corresponde "Make Model", o null. */
+  function rankedByLabel(label) {
+    for (var i = 0; i < RankedModels.length; i++) {
+      if (RankedModels[i].make + ' ' + RankedModels[i].model === label) return RankedModels[i];
+    }
+    return null;
+  }
+
+  /** Detecta el trim dentro de un texto usando la lista de trims del modelo.
+   *  Prueba primero los más largos: "EX-L" debe ganar a "EX". */
+  function findTrimIn(info, text) {
+    if (!info || !info.trims || !text) return '';
+    var t = String(text);
+    var byLen = info.trims.slice().sort(function (a, b) { return b.length - a.length; });
+    for (var i = 0; i < byLen.length; i++) {
+      var re = new RegExp('\\b' + byLen[i].replace(/[.*+?^${}()|[\]\\-]/g, '\\$&') + '\\b', 'i');
+      if (re.test(t)) return byLen[i];
+    }
+    return '';
+  }
+
+  /** Rellena el datalist de trims según la marca/modelo elegidos. */
+  function populateTrims() {
+    var dl = $('trim-list');
+    if (!dl) return;
+    dl.innerHTML = '';
+    var info = findRanked($('make').value, $('model').value);
+    ((info && info.trims) || []).forEach(function (t) {
+      var o = document.createElement('option');
+      o.value = t;
+      dl.appendChild(o);
+    });
+  }
+
+  /** Modelo / trim / fecha de una oferta guardada (manual o escaneada). */
+  function offerVehicleCells(o) {
+    var date = o.savedAt ? new Date(o.savedAt).toLocaleDateString('es') : '—';
+    if (o.kind === 'scanned') {
+      var p = o.parsed || {};
+      var label = offerModelName({ name: p.name || '', parsed: p });
+      var info = label ? rankedByLabel(label) : null;
+      return {
+        model: label || p.name || '—',
+        detail: label ? (p.name || '') : '🔍 escaneada',
+        trim: info ? findTrimIn(info, (p.name || '') + ' ' + (p.raw || '')) : '',
+        date: date
+      };
+    }
+    var input = o.input || {};
+    return {
+      model: [input.make, input.model].filter(Boolean).join(' ') || input.name || '—',
+      detail: input.name || '',
+      trim: input.trim || '',
+      date: date
+    };
   }
 
   /* ---------------- utilidades ---------------- */
@@ -134,6 +191,8 @@
     // El select de modelos depende de la marca: repoblarlo y reaplicar el valor.
     populateModels($('model'), $('make').value, '— Modelo —');
     if (input.model != null) $('model').value = input.model;
+    populateTrims();
+    if (input.trim != null && $('trim')) $('trim').value = input.trim;
   }
 
   /* ---------------- pestañas ---------------- */
@@ -528,6 +587,18 @@
 
   function applyCalcImport(p) {
     function set(id, v) { var el = $(id); if (el && v != null && v !== '') el.value = v; }
+    // Marca / modelo / trim: si la hoja identifica un modelo del ranking,
+    // rellena los selects y detecta el trim con la lista de ese modelo.
+    var label = offerModelName({ name: p.name || '', parsed: p });
+    var info = label ? rankedByLabel(label) : null;
+    if (info) {
+      $('make').value = info.make;
+      populateModels($('model'), info.make, '— Modelo —');
+      $('model').value = info.model;
+      populateTrims();
+      var trim = findTrimIn(info, (p.name || '') + ' ' + (p.raw || ''));
+      if (trim) set('trim', trim);
+    }
     set('name', p.name);
     set('msrp', p.msrp);
     set('price', p.price);
@@ -558,9 +629,15 @@
   function saveOffer(ev) {
     ev.preventDefault();
     var input = readForm();
-    if (!(LeaseCalc.num(input.msrp) > 0 && LeaseCalc.num(input.price) > 0)) {
-      alert('Captura al menos el MSRP y el precio negociado antes de guardar.');
+    if (!(LeaseCalc.num(input.msrp) > 0)) {
+      alert('Captura al menos el MSRP antes de guardar.');
       return;
+    }
+    // Muchas hojas no traen el precio negociado: asume MSRP (peor caso) y
+    // dilo, en vez de bloquear el guardado.
+    if (!(LeaseCalc.num(input.price) > 0)) {
+      input.price = input.msrp;
+      toast('Sin precio negociado: guardada asumiendo precio = MSRP (peor caso). Edítala cuando lo tengas.', 'warn', 5000);
     }
     var offer = {
       id: state.editingId || genId(),
@@ -657,12 +734,12 @@
     rows.forEach(function (r) {
       var tr = document.createElement('tr');
       tr.dataset.id = r.offer.id;
-      var isScanned = r.offer.kind === 'scanned';
-      var date = r.offer.savedAt ? new Date(r.offer.savedAt).toLocaleDateString('es') : '';
-      var meta = (isScanned ? '🔍 escaneada · ' : '') + date;
+      var vc = offerVehicleCells(r.offer);
       tr.appendChild(cell(
-        '<span class="offer-name">' + escapeHtml(offerName(r.offer)) + '</span>' +
-        '<span class="offer-meta">' + escapeHtml(meta) + '</span>', true));
+        '<span class="offer-name">' + escapeHtml(vc.model) + '</span>' +
+        (vc.detail ? '<span class="offer-meta">' + escapeHtml(vc.detail) + '</span>' : ''), true));
+      tr.appendChild(cell(vc.trim || '—'));
+      tr.appendChild(cell(vc.date));
       tr.appendChild(cell(r.calc.term + ' m'));
       tr.appendChild(numCell(fmtMoney2(r.calc.monthlyPayment), isBest('monthlyPayment', r.calc.monthlyPayment)));
       tr.appendChild(numCell(fmtMoney(r.calc.driveOff), isBest('driveOff', r.calc.driveOff)));
@@ -2704,8 +2781,10 @@
     populateModels($('model'), '', '— Modelo —');
     makeSel.addEventListener('change', function () {
       populateModels($('model'), makeSel.value, '— Modelo —');
+      populateTrims();
       recalc();
     });
+    $('model').addEventListener('change', populateTrims);
 
     // Filtros por selector en el comparador de guardadas
     var filterMake = $('filter-make');
