@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lease Finder</title>
-  <link rel="stylesheet" href="css/styles.css?v=68">
+  <link rel="stylesheet" href="css/styles.css?v=69">
 </head>
 <body>
   <header class="topbar">
@@ -528,18 +528,23 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
               </datalist>
             </div>
             <div class="field">
-              <label for="c-park">Aparcamiento $/mes</label>
+              <label for="c-park">Aparcamiento $/mes <span class="lbl-soft">(calle $0 · garaje ~$350+)</span></label>
               <input id="c-park" type="number" inputmode="decimal" min="0" step="25" value="0">
             </div>
+          </div>
+          <input id="c-gas" type="hidden" value="3.60">
+        </div>
+
+        <details class="card collapse">
+          <summary>Extras opcionales (si aplican)</summary>
+          <div class="grid-3" style="margin-top:12px">
             <div class="field">
               <label for="c-maint">Mantenimiento $/mes</label>
-              <input id="c-maint" type="number" inputmode="decimal" min="0" step="5" value="35">
+              <input id="c-maint" type="number" inputmode="decimal" min="0" step="5" value="0">
             </div>
-          </div>
-          <div class="grid-3">
             <div class="field">
               <label for="c-miles">Millas/mes</label>
-              <input id="c-miles" type="number" inputmode="numeric" min="0" step="50" value="800">
+              <input id="c-miles" type="number" inputmode="numeric" min="0" step="50" value="0">
             </div>
             <div class="field">
               <label for="c-mpg">Consumo (mpg)</label>
@@ -549,13 +554,6 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
               <label>Gasolina (calculada)</label>
               <div class="coste-out" id="c-fuel-out" style="padding-top:8px">$0/mes</div>
             </div>
-          </div>
-          <p class="hint">Aparcamiento: en la calle $0; garaje en 11201 ~$350–500/mes. Ajusta el seguro a vuestra póliza real. <input id="c-gas" type="hidden" value="3.60"></p>
-        </div>
-
-        <details class="card collapse">
-          <summary>Extras opcionales (si aplican)</summary>
-          <div class="grid-3" style="margin-top:12px">
             <div class="field">
               <label for="c-toll">Peajes E-ZPass $/mes</label>
               <input id="c-toll" type="number" inputmode="decimal" min="0" step="5" value="0">
@@ -606,14 +604,14 @@ $299/mes, 36 meses, $2,999 due at signing, MSRP $31,500
     <p>Tus datos viven en tu navegador · inspirado en <a href="https://leasehackr.com/calculator" target="_blank" rel="noopener">Leasehackr</a></p>
   </footer>
 
-  <script src="js/lease-calc.js?v=68"></script>
-  <script src="js/offer-parser.js?v=68"></script>
-  <script src="js/importer.js?v=68"></script>
-  <script src="js/vehicles.js?v=68"></script>
-  <script src="js/models.js?v=68"></script>
-  <script src="js/leasedb.js?v=68"></script>
-  <script src="js/dealerscore.js?v=68"></script>
-  <script src="js/decide.js?v=68"></script>
-  <script src="js/app.js?v=68"></script>
+  <script src="js/lease-calc.js?v=69"></script>
+  <script src="js/offer-parser.js?v=69"></script>
+  <script src="js/importer.js?v=69"></script>
+  <script src="js/vehicles.js?v=69"></script>
+  <script src="js/models.js?v=69"></script>
+  <script src="js/leasedb.js?v=69"></script>
+  <script src="js/dealerscore.js?v=69"></script>
+  <script src="js/decide.js?v=69"></script>
+  <script src="js/app.js?v=69"></script>
 </body>
 </html>
