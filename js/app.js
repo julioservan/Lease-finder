@@ -252,9 +252,31 @@
   var costeModelFilled = false;
 
   function fillCosteModels() {
-    if (costeModelFilled) return;
     var sel = $('c-model');
     if (!sel) return;
+
+    // 💾 Tus ofertas guardadas: SIEMPRE al día (se reconstruye en cada
+    // visita a la pestaña, porque puedes haber guardado algo nuevo).
+    var old = sel.querySelector('#c-model-saved');
+    if (old) old.remove();
+    if (state.offers.length) {
+      var grp = document.createElement('optgroup');
+      grp.id = 'c-model-saved';
+      grp.label = '💾 Tus ofertas guardadas';
+      state.offers.forEach(function (o) {
+        var m = metricsFor(o);
+        if (!isNum(m.monthlyPayment)) return; // sin cuota no hay nada que rellenar
+        var vc = offerVehicleCells(o);
+        var opt = document.createElement('option');
+        opt.value = 'saved:' + o.id;
+        opt.textContent = [vc.model, vc.trim].filter(Boolean).join(' ') +
+          ' — ' + fmtMoney(m.monthlyPayment) + '/mes (' + vc.date + ')';
+        grp.appendChild(opt);
+      });
+      if (grp.children.length) sel.insertBefore(grp, sel.options[1] || null);
+    }
+
+    if (costeModelFilled) return;
     RankedModels.forEach(function (info, i) {
       var b = LeaseDB.bestOffer(info);
       var eff = b && b.metrics ? b.metrics.effectiveMonthly : null;
@@ -267,7 +289,24 @@
     });
     sel.addEventListener('change', function () {
       var opt = sel.options[sel.selectedIndex];
-      if (opt && opt.dataset.eff) {
+      if (!opt) return;
+      // Oferta guardada → autocompleta cuota, entrada al firmar y plazo.
+      if (opt.value && opt.value.indexOf('saved:') === 0) {
+        var off = state.offers.find(function (x) { return 'saved:' + x.id === opt.value; });
+        if (!off) return;
+        var m = metricsFor(off);
+        var input = off.input || {};
+        if (isNum(m.monthlyPayment)) $('c-lease').value = Math.round(m.monthlyPayment);
+        var upfront = LeaseCalc.num(input.importedDAS) > 0 ? LeaseCalc.num(input.importedDAS)
+          : (isNum(m.driveOff) ? m.driveOff : 0);
+        $('c-down').value = Math.round(upfront);
+        if (isNum(m.term)) $('c-term').value = m.term;
+        var vc = offerVehicleCells(off);
+        $('c-tag').textContent = [vc.model, vc.trim].filter(Boolean).join(' ').slice(0, 40);
+        renderCoste();
+        return;
+      }
+      if (opt.dataset.eff) {
         $('c-lease').value = opt.dataset.eff;
         $('c-tag').textContent = opt.textContent.split(' — ')[0];
         renderCoste();
