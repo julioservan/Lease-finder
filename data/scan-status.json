@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-29T21:17:14.458Z",
+  "updatedAt": "2026-07-30T13:31:43.317Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -159,7 +159,7 @@
     {
       "name": "Paragon Honda",
       "region": "Queens, NY",
-      "status": "ok (14 ofertas)"
+      "status": "ok (16 ofertas)"
     },
     {
       "name": "BMW of Manhattan",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (19 ofertas)"
+      "status": "ok (42 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (28 ofertas)"
+      "status": "ok (48 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -199,7 +199,7 @@
     {
       "name": "Manhattan Jeep Chrysler Dodge Ram",
       "region": "Manhattan, NY",
-      "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · page.goto: net::ERR_CONNECTION_RESET at https://www.manhattanjeep.com/lease-specials/\nCall log:\n  - navigating to \"https://www.manhattanjeep.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · sin ofertas (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
     },
     {
       "name": "Koeppel Mazda",
