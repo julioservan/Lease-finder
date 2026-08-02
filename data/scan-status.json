@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02T17:20:11.041Z",
+  "updatedAt": "2026-08-02T21:15:57.998Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,12 +89,12 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -104,12 +104,12 @@
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,7 +119,7 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -134,7 +134,7 @@
     {
       "name": "Bay Ridge Toyota",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · page.goto: net::ERR_CONNECTION_RESET at https://www.bayridgetoyota.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.bayridgetoyota.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
     },
     {
       "name": "Plaza Toyota",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (42 ofertas)"
+      "status": "ok (41 ofertas)"
     },
     {
       "name": "Metro Honda",
