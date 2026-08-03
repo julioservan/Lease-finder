@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-03T13:50:23.898Z",
+  "updatedAt": "2026-08-03T17:32:09.565Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (40 ofertas, con navegador)"
+      "status": "sin ofertas en https://www.bayridgehonda.com/lease-specials/ · sin ofertas en https://www.bayridgehonda.com/specials/ · sin ofertas en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -269,7 +269,7 @@
     {
       "name": "Koeppel Nissan",
       "region": "Queens, NY",
-      "status": "HTTP 404 en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · HTTP 404 en https://www.koeppelnissan.com/new-vehicles/ · page.goto: net::ERR_CONNECTION_RESET at https://www.koeppelnissan.com/specials/index.htm\nCall log:\n  - navigating to \"https://www.koeppelnissan.com/specials/index.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.koeppelnissan.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · HTTP 404 en https://www.koeppelnissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
     },
     {
       "name": "Brooklyn Volkswagen",
@@ -304,7 +304,7 @@
     {
       "name": "Open Road Mazda East Brunswick",
       "region": "East Brunswick, NJ",
-      "status": "sin ofertas en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/"
+      "status": "ok (1 ofertas)"
     },
     {
       "name": "Open Road Mazda Morristown",
