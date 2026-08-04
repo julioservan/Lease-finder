@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-03T21:22:27.727Z",
+  "updatedAt": "2026-08-04T13:32:15.622Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -104,7 +104,7 @@
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bayridgehonda.com/lease-specials/ · sin ofertas en https://www.bayridgehonda.com/specials/ · sin ofertas en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (42 ofertas)"
+      "status": "ok (36 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -274,7 +274,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · fetch failed en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (6 ofertas)"
+      "status": "sin ofertas en https://www.hyundaicityny.com/promotions/new/index.htm · HTTP 404 en https://www.hyundaicityny.com/lease-specials/ · sin ofertas en https://www.hyundaicityny.com/specials/ · sin ofertas en https://www.hyundaicityny.com/new-inventory/index.htm · HTTP 404 en https://www.hyundaicityny.com/new-vehicles/ · sin ofertas (navegador) en https://www.hyundaicityny.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/lease-specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/new-vehicles/"
     },
     {
       "name": "Star Hyundai",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "ok (6 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
     },
     {
       "name": "Star Subaru",
@@ -334,7 +334,7 @@
     {
       "name": "Star Nissan of Bayside",
       "region": "Bayside, Queens",
-      "status": "ok (11 ofertas)"
+      "status": "sin ofertas en https://www.starnissanofbayside.com/specials/ · sin ofertas en https://www.starnissanofbayside.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starnissanofbayside.com/specials/ · sin ofertas (navegador) en https://www.starnissanofbayside.com/new-inventory/index.htm"
     },
     {
       "name": "Teddy Volkswagen",
@@ -359,7 +359,7 @@
     {
       "name": "Autoworld Kia",
       "region": "East Meadow, LI",
-      "status": "ok (12 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.autoworldkia.net/new-kia-specials/ · HTTP 403 en https://www.autoworldkia.net/new-inventory/index.htm · sin ofertas (navegador) en https://www.autoworldkia.net/new-kia-specials/ · sin ofertas (navegador) en https://www.autoworldkia.net/new-inventory/index.htm"
     },
     {
       "name": "Milea Buick GMC",
@@ -369,7 +369,7 @@
     {
       "name": "Toyota — ofertas Greater NY",
       "region": "fabricante — oficial",
-      "status": "ok (15 ofertas)"
+      "status": "ok (25 ofertas)"
     },
     {
       "name": "Subaru — ofertas oficiales",
