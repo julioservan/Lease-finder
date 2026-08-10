@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-10T17:16:58.742Z",
+  "updatedAt": "2026-08-10T21:14:17.494Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -19,7 +19,7 @@
     {
       "name": "Stevens Jersey City Ford",
       "region": "Jersey City, NJ",
-      "status": "HTTP 404 en https://www.stevensjerseycityford.com/lease-specials/ · sin ofertas en https://www.stevensjerseycityford.com/specials/ · sin ofertas en https://www.stevensjerseycityford.com/new-inventory/index.htm · HTTP 404 en https://www.stevensjerseycityford.com/new-vehicles/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/lease-specials/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/specials/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.stevensjerseycityford.com/new-vehicles/"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "Brooklyn CDJR",
@@ -274,7 +274,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "sin ofertas en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas en https://www.brooklynvolkswagenny.com/lease-specials/ · fetch failed en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
