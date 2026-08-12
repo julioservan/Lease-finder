@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-11T21:15:00.903Z",
+  "updatedAt": "2026-08-12T13:28:23.187Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -59,7 +59,7 @@
     {
       "name": "CarsDirect — CR-V",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (10 ofertas, con navegador)"
     },
     {
       "name": "CarsDirect — Bronco Sport",
@@ -74,12 +74,12 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (6 ofertas, con navegador)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (5 ofertas, con navegador)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
@@ -89,7 +89,7 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (5 ofertas, con navegador)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas, con navegador)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -159,7 +159,7 @@
     {
       "name": "Paragon Honda",
       "region": "Queens, NY",
-      "status": "ok (18 ofertas)"
+      "status": "ok (16 ofertas)"
     },
     {
       "name": "BMW of Manhattan",
