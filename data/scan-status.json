@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-12T13:28:23.187Z",
+  "updatedAt": "2026-08-12T17:18:39.234Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -59,7 +59,7 @@
     {
       "name": "CarsDirect — CR-V",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas, con navegador)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Bronco Sport",
@@ -74,12 +74,12 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas, con navegador)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas, con navegador)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
@@ -89,7 +89,7 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas, con navegador)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas, con navegador)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -334,7 +334,7 @@
     {
       "name": "Star Nissan of Bayside",
       "region": "Bayside, Queens",
-      "status": "ok (12 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Teddy Volkswagen",
