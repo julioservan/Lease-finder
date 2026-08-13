@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-12T21:14:36.328Z",
+  "updatedAt": "2026-08-13T13:28:15.738Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -159,7 +159,7 @@
     {
       "name": "Paragon Honda",
       "region": "Queens, NY",
-      "status": "sin ofertas en https://www.paragonhonda.com/lease-specials/ · sin ofertas en https://www.paragonhonda.com/specials/ [20 vehículos en JSON-LD] · sin ofertas en https://www.paragonhonda.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas en https://www.paragonhonda.com/new-vehicles/ [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.paragonhonda.com/lease-specials/ · sin ofertas (navegador) en https://www.paragonhonda.com/specials/ [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.paragonhonda.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.paragonhonda.com/new-vehicles/ [20 vehículos en JSON-LD]"
+      "status": "ok (16 ofertas)"
     },
     {
       "name": "BMW of Manhattan",
@@ -369,7 +369,7 @@
     {
       "name": "Toyota — ofertas Greater NY",
       "region": "fabricante — oficial",
-      "status": "ok (25 ofertas)"
+      "status": "ok (15 ofertas)"
     },
     {
       "name": "Subaru — ofertas oficiales",
