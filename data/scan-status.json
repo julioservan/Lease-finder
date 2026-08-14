@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-13T21:15:04.118Z",
+  "updatedAt": "2026-08-14T13:26:44.002Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,27 +74,27 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (16 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -104,12 +104,12 @@
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,7 +119,7 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -159,7 +159,7 @@
     {
       "name": "Paragon Honda",
       "region": "Queens, NY",
-      "status": "ok (16 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "BMW of Manhattan",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (41 ofertas)"
+      "status": "ok (42 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (42 ofertas)"
+      "status": "ok (43 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -329,7 +329,7 @@
     {
       "name": "Kings Nissan",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.kingsnissan.com/specials/ · sin ofertas en https://www.kingsnissan.com/inventory/new/ · sin ofertas (navegador) en https://www.kingsnissan.com/specials/ · sin ofertas (navegador) en https://www.kingsnissan.com/inventory/new/"
+      "status": "sin ofertas en https://www.kingsnissan.com/specials/ · sin ofertas en https://www.kingsnissan.com/inventory/new/ [10 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.kingsnissan.com/specials/ · sin ofertas (navegador) en https://www.kingsnissan.com/inventory/new/ [10 vehículos en JSON-LD]"
     },
     {
       "name": "Star Nissan of Bayside",
