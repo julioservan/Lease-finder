@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-16T21:03:21.854Z",
+  "updatedAt": "2026-08-17T13:15:35.025Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -114,7 +114,7 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
@@ -124,7 +124,7 @@
     {
       "name": "BMW of Brooklyn",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas en https://www.bmwofbrooklyn.com/new-vehicles/ · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-vehicles/"
+      "status": "sin ofertas en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-inventory/index.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-vehicles/ · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Honda",
@@ -159,7 +159,7 @@
     {
       "name": "Paragon Honda",
       "region": "Queens, NY",
-      "status": "ok (18 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Manhattan",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (42 ofertas)"
+      "status": "ok (29 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (45 ofertas)"
+      "status": "ok (31 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
