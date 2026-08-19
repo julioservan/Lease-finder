@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T21:05:49.245Z",
+  "updatedAt": "2026-08-19T13:17:44.898Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,7 +114,7 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "Star Hyundai",
