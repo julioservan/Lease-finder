@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-21T13:18:05.141Z",
+  "updatedAt": "2026-08-21T17:07:24.451Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -19,7 +19,7 @@
     {
       "name": "Stevens Jersey City Ford",
       "region": "Jersey City, NJ",
-      "status": "HTTP 404 en https://www.stevensjerseycityford.com/lease-specials/ · sin ofertas en https://www.stevensjerseycityford.com/specials/ · sin ofertas en https://www.stevensjerseycityford.com/new-inventory/index.htm · HTTP 404 en https://www.stevensjerseycityford.com/new-vehicles/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/lease-specials/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/specials/ · sin ofertas (navegador) en https://www.stevensjerseycityford.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.stevensjerseycityford.com/new-vehicles/"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "Brooklyn CDJR",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,42 +74,42 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (17 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,7 +119,7 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "Star Hyundai",
@@ -309,7 +309,7 @@
     {
       "name": "Open Road Mazda Morristown",
       "region": "Morristown, NJ",
-      "status": "sin ofertas en https://www.openroadmazdaofmorristown.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofmorristown.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-vehicles/"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "Westbury Toyota",
