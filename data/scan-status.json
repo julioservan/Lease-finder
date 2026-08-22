@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-21T21:04:36.864Z",
+  "updatedAt": "2026-08-22T13:12:06.854Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -89,12 +89,12 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (17 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (30 ofertas)"
+      "status": "ok (31 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "Star Hyundai",
