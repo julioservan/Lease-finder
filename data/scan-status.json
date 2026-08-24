@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-23T21:03:55.421Z",
+  "updatedAt": "2026-08-24T13:19:17.508Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -89,17 +89,17 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (17 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (30 ofertas)"
+      "status": "ok (31 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "ok (6 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
     },
     {
       "name": "Star Subaru",
