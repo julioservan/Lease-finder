@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T13:18:17.715Z",
+  "updatedAt": "2026-08-25T17:09:47.829Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -339,7 +339,7 @@
     {
       "name": "Teddy Volkswagen",
       "region": "Bronx, NY",
-      "status": "ok (33 ofertas)"
+      "status": "ok (36 ofertas)"
     },
     {
       "name": "Westbury Jeep CDJR",
