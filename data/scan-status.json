@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T00:04:02.544Z",
+  "updatedAt": "2026-08-28T17:00:32.107Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -89,12 +89,12 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (17 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -104,7 +104,7 @@
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -199,7 +199,7 @@
     {
       "name": "Manhattan Jeep Chrysler Dodge Ram",
       "region": "Manhattan, NY",
-      "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · sin ofertas (navegador) en https://www.manhattanjeep.com/lease-specials/ · page.goto: net::ERR_CONNECTION_RESET at https://www.manhattanjeep.com/specials/\nCall log:\n  - navigating to \"https://www.manhattanjeep.com/specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · sin ofertas (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
     },
     {
       "name": "Koeppel Mazda",
@@ -234,12 +234,12 @@
     {
       "name": "Bay Ridge Subaru",
       "region": "Brooklyn, NY",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.bayridgesubaru.com/lease-specials/ · HTTP 403 en https://www.bayridgesubaru.com/specials/ · HTTP 403 en https://www.bayridgesubaru.com/new-inventory/index.htm · HTTP 403 en https://www.bayridgesubaru.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgesubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgesubaru.com/specials/ · sin ofertas (navegador) en https://www.bayridgesubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgesubaru.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Nissan",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · page.goto: net::ERR_CONNECTION_RESET at https://www.bayridgenissan.com/specials/\nCall log:\n  - navigating to \"https://www.bayridgenissan.com/specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgenissan.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgenissan.com/new-vehicles/"
     },
     {
       "name": "Plaza Kia",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (5 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "Star Hyundai",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "HTTP 403 en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
+      "status": "ok (6 ofertas, con navegador)"
     },
     {
       "name": "Star Subaru",
