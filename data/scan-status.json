@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T20:56:40.652Z",
+  "updatedAt": "2026-08-28T22:06:10.716Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -354,7 +354,7 @@
     {
       "name": "Yonkers Kia",
       "region": "Yonkers, NY",
-      "status": "ok (6 ofertas, con navegador)"
+      "status": "ok (3 ofertas, con navegador)"
     },
     {
       "name": "Autoworld Kia",
@@ -399,7 +399,7 @@
     {
       "name": "Kia — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 504 en https://www.kia.com/us/en/special-offers · timeout en https://www.kia.com/us/en/local-offers · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.kia.com/us/en/special-offers\", waiting until \"domcontentloaded\"\n (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
+      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
     },
     {
       "name": "Ford — ofertas oficiales",
