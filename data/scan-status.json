@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T17:01:45.331Z",
+  "updatedAt": "2026-08-29T21:01:49.021Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,27 +89,27 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (17 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,12 +119,12 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-inventory/index.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-vehicles/ · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-vehicles/"
+      "status": "sin ofertas en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-inventory/index.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-vehicles/ · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-inventory/index.htm [21 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (31 ofertas)"
+      "status": "ok (30 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (5 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "Star Hyundai",
