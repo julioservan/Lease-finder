@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T17:01:58.833Z",
+  "updatedAt": "2026-08-31T21:01:46.566Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bayridgehonda.com/lease-specials/ · sin ofertas en https://www.bayridgehonda.com/specials/ · sin ofertas en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (31 ofertas)"
+      "status": "ok (30 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -399,7 +399,7 @@
     {
       "name": "Kia — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "timeout en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
+      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
     },
     {
       "name": "Ford — ofertas oficiales",
