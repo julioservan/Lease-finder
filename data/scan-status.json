@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T21:01:46.566Z",
+  "updatedAt": "2026-09-01T13:02:43.376Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -89,7 +89,7 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
@@ -179,12 +179,12 @@
     {
       "name": "Metro Honda",
       "region": "Jersey City, NJ",
-      "status": "ok (2 ofertas)"
+      "status": "sin ofertas en https://www.metrohonda.com/lease-specials/ · sin ofertas en https://www.metrohonda.com/specials/ · HTTP 404 en https://www.metrohonda.com/new-inventory/index.htm · HTTP 404 en https://www.metrohonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.metrohonda.com/lease-specials/ · sin ofertas (navegador) en https://www.metrohonda.com/specials/ · sin ofertas (navegador) en https://www.metrohonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.metrohonda.com/new-vehicles/"
     },
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (30 ofertas)"
+      "status": "ok (29 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -264,7 +264,7 @@
     {
       "name": "Koeppel Subaru",
       "region": "Long Island City, NY",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.koeppelsubaru.com/specials/index.htm · HTTP 403 en https://www.koeppelsubaru.com/lease-specials/ · HTTP 403 en https://www.koeppelsubaru.com/specials/ · HTTP 403 en https://www.koeppelsubaru.com/new-inventory/index.htm · HTTP 403 en https://www.koeppelsubaru.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelsubaru.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelsubaru.com/specials/ · sin ofertas (navegador) en https://www.koeppelsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelsubaru.com/new-vehicles/"
     },
     {
       "name": "Koeppel Nissan",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (6 ofertas)"
+      "status": "sin ofertas en https://www.hyundaicityny.com/promotions/new/index.htm · HTTP 404 en https://www.hyundaicityny.com/lease-specials/ · sin ofertas en https://www.hyundaicityny.com/specials/ · sin ofertas en https://www.hyundaicityny.com/new-inventory/index.htm · HTTP 404 en https://www.hyundaicityny.com/new-vehicles/ · sin ofertas (navegador) en https://www.hyundaicityny.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/lease-specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/new-vehicles/"
     },
     {
       "name": "Star Hyundai",
@@ -304,12 +304,12 @@
     {
       "name": "Open Road Mazda East Brunswick",
       "region": "East Brunswick, NJ",
-      "status": "ok (1 ofertas)"
+      "status": "sin ofertas en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/"
     },
     {
       "name": "Open Road Mazda Morristown",
       "region": "Morristown, NJ",
-      "status": "ok (6 ofertas)"
+      "status": "sin ofertas en https://www.openroadmazdaofmorristown.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofmorristown.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-vehicles/"
     },
     {
       "name": "Westbury Toyota",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "ok (6 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
     },
     {
       "name": "Star Subaru",
@@ -334,7 +334,7 @@
     {
       "name": "Star Nissan of Bayside",
       "region": "Bayside, Queens",
-      "status": "ok (13 ofertas)"
+      "status": "sin ofertas en https://www.starnissanofbayside.com/specials/ · sin ofertas en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.starnissanofbayside.com/specials/ · sin ofertas (navegador) en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD]"
     },
     {
       "name": "Teddy Volkswagen",
@@ -359,7 +359,7 @@
     {
       "name": "Autoworld Kia",
       "region": "East Meadow, LI",
-      "status": "ok (12 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.autoworldkia.net/new-kia-specials/ · HTTP 403 en https://www.autoworldkia.net/new-inventory/index.htm · sin ofertas (navegador) en https://www.autoworldkia.net/new-kia-specials/ · sin ofertas (navegador) en https://www.autoworldkia.net/new-inventory/index.htm"
     },
     {
       "name": "Milea Buick GMC",
