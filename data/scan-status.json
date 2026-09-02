@@ -1,35 +1,35 @@
 {
-  "updatedAt": "2026-09-01T21:02:07.044Z",
+  "updatedAt": "2026-09-02T13:02:22.639Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "HTTP 403 en https://www.premierfordofbayridge.com/lease-specials/ · HTTP 403 en https://www.premierfordofbayridge.com/specials/ · HTTP 403 en https://www.premierfordofbayridge.com/new-inventory/index.htm · HTTP 403 en https://www.premierfordofbayridge.com/new-vehicles/ · fetch failed en https://www.bayridgeford.com/lease-specials/ · HTTP 403 en https://www.premierfordinc.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.premierfordofbayridge.com/new-vehicles/ · page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.bayridgeford.com/lease-specials/\nCall log:\n  - navigating to \"https://www.bayridgeford.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgeford.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordinc.com/lease-specials/"
+      "status": "HTTP 403 en https://www.premierfordofbayridge.com/lease-specials/ · fetch failed en https://www.premierfordofbayridge.com/specials/ · HTTP 403 en https://www.premierfordofbayridge.com/new-inventory/index.htm · HTTP 403 en https://www.premierfordofbayridge.com/new-vehicles/ · fetch failed en https://www.bayridgeford.com/lease-specials/ · HTTP 403 en https://www.premierfordinc.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/specials/ · sin ofertas (navegador) en https://www.premierfordofbayridge.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.premierfordofbayridge.com/new-vehicles/ · page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.bayridgeford.com/lease-specials/\nCall log:\n  - navigating to \"https://www.bayridgeford.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgeford.com/lease-specials/ · sin ofertas (navegador) en https://www.premierfordinc.com/lease-specials/"
     },
     {
       "name": "Starks Ford",
       "region": "Queens, NY",
-      "status": "HTTP 403 en https://www.starksfordofqueens.com/lease-specials/ · HTTP 403 en https://www.starksfordofqueens.com/specials/ · HTTP 403 en https://www.starksfordofqueens.com/new-inventory/index.htm · HTTP 403 en https://www.starksfordofqueens.com/new-vehicles/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/lease-specials/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/specials/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starksfordofqueens.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.starksfordofqueens.com/lease-specials/ · fetch failed en https://www.starksfordofqueens.com/specials/ · HTTP 403 en https://www.starksfordofqueens.com/new-inventory/index.htm · HTTP 403 en https://www.starksfordofqueens.com/new-vehicles/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/lease-specials/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/specials/ · sin ofertas (navegador) en https://www.starksfordofqueens.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starksfordofqueens.com/new-vehicles/"
     },
     {
       "name": "Dana Ford",
       "region": "Staten Island, NY",
-      "status": "HTTP 403 en https://www.drivedanaford.com/lease-specials/ · HTTP 403 en https://www.drivedanaford.com/specials/ · HTTP 403 en https://www.drivedanaford.com/new-inventory/index.htm · HTTP 403 en https://www.drivedanaford.com/new-vehicles/ · sin ofertas (navegador) en https://www.drivedanaford.com/lease-specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.drivedanaford.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.drivedanaford.com/lease-specials/ · fetch failed en https://www.drivedanaford.com/specials/ · HTTP 403 en https://www.drivedanaford.com/new-inventory/index.htm · HTTP 403 en https://www.drivedanaford.com/new-vehicles/ · sin ofertas (navegador) en https://www.drivedanaford.com/lease-specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/specials/ · sin ofertas (navegador) en https://www.drivedanaford.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.drivedanaford.com/new-vehicles/"
     },
     {
       "name": "Stevens Jersey City Ford",
       "region": "Jersey City, NJ",
-      "status": "ok (6 ofertas)"
+      "status": "ok (6 ofertas, con navegador)"
     },
     {
       "name": "Brooklyn CDJR",
       "region": "Brooklyn, NY",
-      "status": "HTTP 403 en https://www.brooklynchrysler.com/lease-specials/ · HTTP 403 en https://www.brooklynchrysler.com/specials/ · HTTP 403 en https://www.brooklynchrysler.com/new-inventory/index.htm · HTTP 403 en https://www.brooklynchrysler.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.brooklynchrysler.com/lease-specials/ · fetch failed en https://www.brooklynchrysler.com/specials/ · HTTP 403 en https://www.brooklynchrysler.com/new-inventory/index.htm · HTTP 403 en https://www.brooklynchrysler.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-vehicles/"
     },
     {
       "name": "United CDJR",
       "region": "Brooklyn, NY",
-      "status": "HTTP 403 en https://www.unitedcdjr.com/lease-specials/ · HTTP 403 en https://www.unitedcdjr.com/specials/ · HTTP 403 en https://www.unitedcdjr.com/new-inventory/index.htm · HTTP 403 en https://www.unitedcdjr.com/new-vehicles/ · sin ofertas (navegador) en https://www.unitedcdjr.com/lease-specials/ · sin ofertas (navegador) en https://www.unitedcdjr.com/specials/ · sin ofertas (navegador) en https://www.unitedcdjr.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.unitedcdjr.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.unitedcdjr.com/lease-specials/ · fetch failed en https://www.unitedcdjr.com/specials/ · HTTP 403 en https://www.unitedcdjr.com/new-inventory/index.htm · HTTP 403 en https://www.unitedcdjr.com/new-vehicles/ · sin ofertas (navegador) en https://www.unitedcdjr.com/lease-specials/ · sin ofertas (navegador) en https://www.unitedcdjr.com/specials/ · sin ofertas (navegador) en https://www.unitedcdjr.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.unitedcdjr.com/new-vehicles/"
     },
     {
       "name": "Island CDJR",
@@ -39,17 +39,17 @@
     {
       "name": "Bical Buick GMC",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bicalbuickgmc.com/lease-specials/ · HTTP 404 en https://www.bicalbuickgmc.com/specials/ · sin ofertas en https://www.bicalbuickgmc.com/new-inventory/index.htm · HTTP 404 en https://www.bicalbuickgmc.com/new-vehicles/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/specials/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bicalbuickgmc.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bicalbuickgmc.com/lease-specials/ · fetch failed en https://www.bicalbuickgmc.com/specials/ · sin ofertas en https://www.bicalbuickgmc.com/new-inventory/index.htm · HTTP 404 en https://www.bicalbuickgmc.com/new-vehicles/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/specials/ · sin ofertas (navegador) en https://www.bicalbuickgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bicalbuickgmc.com/new-vehicles/"
     },
     {
       "name": "Island Buick GMC",
       "region": "Staten Island, NY",
-      "status": "HTTP 403 en https://www.myislandgmc.com/lease-specials/ · HTTP 403 en https://www.myislandgmc.com/specials/ · HTTP 403 en https://www.myislandgmc.com/new-inventory/index.htm · HTTP 403 en https://www.myislandgmc.com/new-vehicles/ · sin ofertas (navegador) en https://www.myislandgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.myislandgmc.com/specials/ · sin ofertas (navegador) en https://www.myislandgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.myislandgmc.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.myislandgmc.com/lease-specials/ · fetch failed en https://www.myislandgmc.com/specials/ · HTTP 403 en https://www.myislandgmc.com/new-inventory/index.htm · HTTP 403 en https://www.myislandgmc.com/new-vehicles/ · sin ofertas (navegador) en https://www.myislandgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.myislandgmc.com/specials/ · sin ofertas (navegador) en https://www.myislandgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.myislandgmc.com/new-vehicles/"
     },
     {
       "name": "North Bergen Buick GMC",
       "region": "North Bergen, NJ",
-      "status": "HTTP 403 en https://www.northbergenbuickgmc.com/lease-specials/ · HTTP 403 en https://www.northbergenbuickgmc.com/specials/ · HTTP 403 en https://www.northbergenbuickgmc.com/new-inventory/index.htm · HTTP 403 en https://www.northbergenbuickgmc.com/new-vehicles/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/specials/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.northbergenbuickgmc.com/lease-specials/ · fetch failed en https://www.northbergenbuickgmc.com/specials/ · HTTP 403 en https://www.northbergenbuickgmc.com/new-inventory/index.htm · HTTP 403 en https://www.northbergenbuickgmc.com/new-vehicles/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/specials/ · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.northbergenbuickgmc.com/new-vehicles/"
     },
     {
       "name": "Plaza Honda",
@@ -69,7 +69,7 @@
     {
       "name": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Toyota RAV4",
@@ -89,17 +89,17 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -119,12 +119,12 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-inventory/index.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-vehicles/ · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-inventory/index.htm [22 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-vehicles/"
+      "status": "fetch failed en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-inventory/index.htm · sin ofertas en https://www.bmwofbrooklyn.com/new-vehicles/ · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/lease-specials.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/specials/lease.htm · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-inventory/index.htm [22 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.bmwofbrooklyn.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Honda",
@@ -134,12 +134,12 @@
     {
       "name": "Bay Ridge Toyota",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · fetch failed en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
     },
     {
       "name": "Plaza Toyota",
       "region": "Brooklyn, NY",
-      "status": "HTTP 403 en https://www.plazatoyota.com/new-vehicle-specials/ · HTTP 403 en https://www.plazatoyota.com/lease-specials/ · HTTP 403 en https://www.plazatoyota.com/new-inventory/index.htm · HTTP 403 en https://www.plazatoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.plazatoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.plazatoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.plazatoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.plazatoyota.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.plazatoyota.com/new-vehicle-specials/ · fetch failed en https://www.plazatoyota.com/lease-specials/ · HTTP 403 en https://www.plazatoyota.com/new-inventory/index.htm · HTTP 403 en https://www.plazatoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.plazatoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.plazatoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.plazatoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.plazatoyota.com/new-vehicles/"
     },
     {
       "name": "Plaza Honda",
@@ -149,7 +149,7 @@
     {
       "name": "Plaza Hyundai",
       "region": "Brooklyn, NY",
-      "status": "HTTP 403 en https://www.plazahyundai.com/lease-specials/ · HTTP 403 en https://www.plazahyundai.com/specials/ · HTTP 403 en https://www.plazahyundai.com/new-inventory/index.htm · HTTP 403 en https://www.plazahyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.plazahyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahyundai.com/specials/ · sin ofertas (navegador) en https://www.plazahyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.plazahyundai.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.plazahyundai.com/lease-specials/ · fetch failed en https://www.plazahyundai.com/specials/ · HTTP 403 en https://www.plazahyundai.com/new-inventory/index.htm · HTTP 403 en https://www.plazahyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.plazahyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahyundai.com/specials/ · sin ofertas (navegador) en https://www.plazahyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.plazahyundai.com/new-vehicles/"
     },
     {
       "name": "Brooklyn Mitsubishi",
@@ -169,7 +169,7 @@
     {
       "name": "Hudson Toyota",
       "region": "Jersey City, NJ",
-      "status": "HTTP 403 en https://www.hudsontoyota.com/lease-specials/ · HTTP 403 en https://www.hudsontoyota.com/new-vehicle-specials/ · HTTP 403 en https://www.hudsontoyota.com/new-inventory/index.htm · HTTP 403 en https://www.hudsontoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.hudsontoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.hudsontoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.hudsontoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hudsontoyota.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.hudsontoyota.com/lease-specials/ · fetch failed en https://www.hudsontoyota.com/new-vehicle-specials/ · HTTP 403 en https://www.hudsontoyota.com/new-inventory/index.htm · HTTP 403 en https://www.hudsontoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.hudsontoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.hudsontoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.hudsontoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hudsontoyota.com/new-vehicles/"
     },
     {
       "name": "Hudson Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (28 ofertas)"
+      "status": "ok (29 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (19 ofertas)"
+      "status": "ok (17 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -269,7 +269,7 @@
     {
       "name": "Koeppel Nissan",
       "region": "Queens, NY",
-      "status": "HTTP 404 en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · HTTP 404 en https://www.koeppelnissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
+      "status": "fetch failed en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · HTTP 404 en https://www.koeppelnissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
     },
     {
       "name": "Brooklyn Volkswagen",
@@ -279,22 +279,22 @@
     {
       "name": "Eastchester CJDR",
       "region": "Bronx, NY",
-      "status": "HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
+      "status": "fetch failed en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
     },
     {
       "name": "Koeppel Hyundai",
       "region": "Queens, NY",
-      "status": "HTTP 403 en https://www.koeppelhyundai.com/promotions/new/index.htm · HTTP 403 en https://www.koeppelhyundai.com/lease-specials/ · HTTP 403 en https://www.koeppelhyundai.com/specials/ · HTTP 403 en https://www.koeppelhyundai.com/new-inventory/index.htm · HTTP 403 en https://www.koeppelhyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.koeppelhyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/specials/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelhyundai.com/new-vehicles/"
+      "status": "fetch failed en https://www.koeppelhyundai.com/promotions/new/index.htm · HTTP 403 en https://www.koeppelhyundai.com/lease-specials/ · HTTP 403 en https://www.koeppelhyundai.com/specials/ · HTTP 403 en https://www.koeppelhyundai.com/new-inventory/index.htm · HTTP 403 en https://www.koeppelhyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.koeppelhyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/specials/ · sin ofertas (navegador) en https://www.koeppelhyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelhyundai.com/new-vehicles/"
     },
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.hyundaicityny.com/promotions/new/index.htm · HTTP 404 en https://www.hyundaicityny.com/lease-specials/ · sin ofertas en https://www.hyundaicityny.com/specials/ · sin ofertas en https://www.hyundaicityny.com/new-inventory/index.htm · HTTP 404 en https://www.hyundaicityny.com/new-vehicles/ · sin ofertas (navegador) en https://www.hyundaicityny.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/lease-specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/new-vehicles/"
+      "status": "fetch failed en https://www.hyundaicityny.com/promotions/new/index.htm · HTTP 404 en https://www.hyundaicityny.com/lease-specials/ · sin ofertas en https://www.hyundaicityny.com/specials/ · sin ofertas en https://www.hyundaicityny.com/new-inventory/index.htm · HTTP 404 en https://www.hyundaicityny.com/new-vehicles/ · sin ofertas (navegador) en https://www.hyundaicityny.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/lease-specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/new-vehicles/"
     },
     {
       "name": "Star Hyundai",
       "region": "Bayside, NY",
-      "status": "HTTP 403 en https://www.starhyundai.com/lease-specials/ · HTTP 403 en https://www.starhyundai.com/specials/ · HTTP 403 en https://www.starhyundai.com/new-inventory/index.htm · HTTP 403 en https://www.starhyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.starhyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.starhyundai.com/specials/ · sin ofertas (navegador) en https://www.starhyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starhyundai.com/new-vehicles/"
+      "status": "fetch failed en https://www.starhyundai.com/lease-specials/ · HTTP 403 en https://www.starhyundai.com/specials/ · HTTP 403 en https://www.starhyundai.com/new-inventory/index.htm · HTTP 403 en https://www.starhyundai.com/new-vehicles/ · sin ofertas (navegador) en https://www.starhyundai.com/lease-specials/ · sin ofertas (navegador) en https://www.starhyundai.com/specials/ · sin ofertas (navegador) en https://www.starhyundai.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starhyundai.com/new-vehicles/"
     },
     {
       "name": "Ramsey Mazda",
@@ -304,12 +304,12 @@
     {
       "name": "Open Road Mazda East Brunswick",
       "region": "East Brunswick, NJ",
-      "status": "sin ofertas en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/"
+      "status": "fetch failed en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/"
     },
     {
       "name": "Open Road Mazda Morristown",
       "region": "Morristown, NJ",
-      "status": "sin ofertas en https://www.openroadmazdaofmorristown.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofmorristown.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-vehicles/"
+      "status": "fetch failed en https://www.openroadmazdaofmorristown.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofmorristown.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofmorristown.com/new-vehicles/"
     },
     {
       "name": "Westbury Toyota",
@@ -319,22 +319,22 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "HTTP 403 en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
+      "status": "fetch failed en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
     },
     {
       "name": "Star Subaru",
       "region": "Bayside, Queens",
-      "status": "HTTP 403 en https://www.starsubaru.com/new-vehicle-specials/ · HTTP 403 en https://www.starsubaru.com/lease-specials/ · HTTP 403 en https://www.starsubaru.com/specials/ · HTTP 403 en https://www.starsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starsubaru.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/specials/ · sin ofertas (navegador) en https://www.starsubaru.com/new-inventory/index.htm"
+      "status": "fetch failed en https://www.starsubaru.com/new-vehicle-specials/ · HTTP 403 en https://www.starsubaru.com/lease-specials/ · HTTP 403 en https://www.starsubaru.com/specials/ · HTTP 403 en https://www.starsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starsubaru.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/specials/ · sin ofertas (navegador) en https://www.starsubaru.com/new-inventory/index.htm"
     },
     {
       "name": "Kings Nissan",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.kingsnissan.com/specials/ · sin ofertas en https://www.kingsnissan.com/inventory/new/ [10 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.kingsnissan.com/specials/ · sin ofertas (navegador) en https://www.kingsnissan.com/inventory/new/ [10 vehículos en JSON-LD]"
+      "status": "fetch failed en https://www.kingsnissan.com/specials/ · sin ofertas en https://www.kingsnissan.com/inventory/new/ [10 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.kingsnissan.com/specials/ · sin ofertas (navegador) en https://www.kingsnissan.com/inventory/new/ [10 vehículos en JSON-LD]"
     },
     {
       "name": "Star Nissan of Bayside",
       "region": "Bayside, Queens",
-      "status": "sin ofertas en https://www.starnissanofbayside.com/specials/ · sin ofertas en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.starnissanofbayside.com/specials/ · sin ofertas (navegador) en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD]"
+      "status": "fetch failed en https://www.starnissanofbayside.com/specials/ · sin ofertas en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.starnissanofbayside.com/specials/ · sin ofertas (navegador) en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD]"
     },
     {
       "name": "Teddy Volkswagen",
@@ -359,57 +359,57 @@
     {
       "name": "Autoworld Kia",
       "region": "East Meadow, LI",
-      "status": "HTTP 403 en https://www.autoworldkia.net/new-kia-specials/ · HTTP 403 en https://www.autoworldkia.net/new-inventory/index.htm · sin ofertas (navegador) en https://www.autoworldkia.net/new-kia-specials/ · sin ofertas (navegador) en https://www.autoworldkia.net/new-inventory/index.htm"
+      "status": "fetch failed en https://www.autoworldkia.net/new-kia-specials/ · HTTP 403 en https://www.autoworldkia.net/new-inventory/index.htm · sin ofertas (navegador) en https://www.autoworldkia.net/new-kia-specials/ · sin ofertas (navegador) en https://www.autoworldkia.net/new-inventory/index.htm"
     },
     {
       "name": "Milea Buick GMC",
       "region": "Bronx, NY",
-      "status": "HTTP 403 en https://www.mileabuickgmc.com/lease-specials/ · HTTP 403 en https://www.mileabuickgmc.com/specials/ · HTTP 403 en https://www.mileabuickgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.mileabuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.mileabuickgmc.com/specials/ · sin ofertas (navegador) en https://www.mileabuickgmc.com/new-inventory/index.htm"
+      "status": "fetch failed en https://www.mileabuickgmc.com/lease-specials/ · HTTP 403 en https://www.mileabuickgmc.com/specials/ · HTTP 403 en https://www.mileabuickgmc.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.mileabuickgmc.com/lease-specials/ · sin ofertas (navegador) en https://www.mileabuickgmc.com/specials/ · sin ofertas (navegador) en https://www.mileabuickgmc.com/new-inventory/index.htm"
     },
     {
       "name": "Toyota — ofertas Greater NY",
       "region": "fabricante — oficial",
-      "status": "ok (24 ofertas)"
+      "status": "ok (24 ofertas, con navegador)"
     },
     {
       "name": "Subaru — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "ok (2 ofertas)"
+      "status": "fetch failed en https://www.subaru.com/special-offers.html · HTTP 404 en https://www.subaru.com/deals-coupons.html · sin ofertas (navegador) en https://www.subaru.com/special-offers.html · sin ofertas (navegador) en https://www.subaru.com/deals-coupons.html"
     },
     {
       "name": "Hyundai — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.hyundaiusa.com/us/en/special-offers · HTTP 404 en https://www.hyundaiusa.com/us/en/lease-deals · sin ofertas (navegador) en https://www.hyundaiusa.com/us/en/special-offers · sin ofertas (navegador) en https://www.hyundaiusa.com/us/en/lease-deals"
+      "status": "fetch failed en https://www.hyundaiusa.com/us/en/special-offers · HTTP 404 en https://www.hyundaiusa.com/us/en/lease-deals · sin ofertas (navegador) en https://www.hyundaiusa.com/us/en/special-offers · sin ofertas (navegador) en https://www.hyundaiusa.com/us/en/lease-deals"
     },
     {
       "name": "Nissan — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.nissanusa.com/shopping-tools/special-offers.html · HTTP 404 en https://www.nissanusa.com/shopping-tools/special-offers/rogue.html · sin ofertas (navegador) en https://www.nissanusa.com/shopping-tools/special-offers.html · sin ofertas (navegador) en https://www.nissanusa.com/shopping-tools/special-offers/rogue.html"
+      "status": "fetch failed en https://www.nissanusa.com/shopping-tools/special-offers.html · HTTP 404 en https://www.nissanusa.com/shopping-tools/special-offers/rogue.html · sin ofertas (navegador) en https://www.nissanusa.com/shopping-tools/special-offers.html · sin ofertas (navegador) en https://www.nissanusa.com/shopping-tools/special-offers/rogue.html"
     },
     {
       "name": "Volkswagen — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "sin ofertas en https://www.vw.com/en/offers.html · HTTP 404 en https://www.vw.com/en/models/tiguan/offers.html · sin ofertas (navegador) en https://www.vw.com/en/offers.html · sin ofertas (navegador) en https://www.vw.com/en/models/tiguan/offers.html"
+      "status": "fetch failed en https://www.vw.com/en/offers.html · HTTP 404 en https://www.vw.com/en/models/tiguan/offers.html · sin ofertas (navegador) en https://www.vw.com/en/offers.html · sin ofertas (navegador) en https://www.vw.com/en/models/tiguan/offers.html"
     },
     {
       "name": "Jeep — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.jeep.com/current-offers.html · HTTP 404 en https://www.jeep.com/bmo/package/offers.html · sin ofertas (navegador) en https://www.jeep.com/current-offers.html · sin ofertas (navegador) en https://www.jeep.com/bmo/package/offers.html"
+      "status": "fetch failed en https://www.jeep.com/current-offers.html · HTTP 404 en https://www.jeep.com/bmo/package/offers.html · sin ofertas (navegador) en https://www.jeep.com/current-offers.html · sin ofertas (navegador) en https://www.jeep.com/bmo/package/offers.html"
     },
     {
       "name": "Kia — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
+      "status": "fetch failed en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
     },
     {
       "name": "Ford — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "timeout en https://www.ford.com/deals/ · timeout en https://www.ford.com/suvs/bronco-sport/offers/ · page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.ford.com/deals/\nCall log:\n  - navigating to \"https://www.ford.com/deals/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.ford.com/deals/ · page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.ford.com/suvs/bronco-sport/offers/\nCall log:\n  - navigating to \"https://www.ford.com/suvs/bronco-sport/offers/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.ford.com/suvs/bronco-sport/offers/"
+      "status": "fetch failed en https://www.ford.com/deals/ · timeout en https://www.ford.com/suvs/bronco-sport/offers/ · page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.ford.com/deals/\nCall log:\n  - navigating to \"https://www.ford.com/deals/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.ford.com/deals/ · page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.ford.com/suvs/bronco-sport/offers/\nCall log:\n  - navigating to \"https://www.ford.com/suvs/bronco-sport/offers/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.ford.com/suvs/bronco-sport/offers/"
     },
     {
       "name": "GMC — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.gmc.com/current-deals · HTTP 404 en https://www.gmc.com/suvs/terrain/offers · sin ofertas (navegador) en https://www.gmc.com/current-deals · sin ofertas (navegador) en https://www.gmc.com/suvs/terrain/offers"
+      "status": "fetch failed en https://www.gmc.com/current-deals · HTTP 404 en https://www.gmc.com/suvs/terrain/offers · sin ofertas (navegador) en https://www.gmc.com/current-deals · sin ofertas (navegador) en https://www.gmc.com/suvs/terrain/offers"
     },
     {
       "name": "Mazda — ofertas oficiales",
@@ -419,7 +419,7 @@
     {
       "name": "Honda — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 403 en https://automobiles.honda.com/tools/current-offers · HTTP 403 en https://automobiles.honda.com/cr-v#offers · sin ofertas (navegador) en https://automobiles.honda.com/tools/current-offers · sin ofertas (navegador) en https://automobiles.honda.com/cr-v#offers"
+      "status": "fetch failed en https://automobiles.honda.com/tools/current-offers · HTTP 403 en https://automobiles.honda.com/cr-v#offers · sin ofertas (navegador) en https://automobiles.honda.com/tools/current-offers · sin ofertas (navegador) en https://automobiles.honda.com/cr-v#offers"
     }
   ]
 }
