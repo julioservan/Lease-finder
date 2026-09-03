@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T13:02:18.673Z",
+  "updatedAt": "2026-09-03T17:02:00.107Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,22 +89,22 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -119,7 +119,7 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (15 ofertas)"
+      "status": "ok (17 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -359,7 +359,7 @@
     {
       "name": "Autoworld Kia",
       "region": "East Meadow, LI",
-      "status": "HTTP 403 en https://www.autoworldkia.net/new-kia-specials/ · HTTP 403 en https://www.autoworldkia.net/new-inventory/index.htm · sin ofertas (navegador) en https://www.autoworldkia.net/new-kia-specials/ · sin ofertas (navegador) en https://www.autoworldkia.net/new-inventory/index.htm"
+      "status": "ok (12 ofertas, con navegador)"
     },
     {
       "name": "Milea Buick GMC",
