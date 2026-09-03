@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T21:01:52.581Z",
+  "updatedAt": "2026-09-03T13:02:18.673Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -19,7 +19,7 @@
     {
       "name": "Stevens Jersey City Ford",
       "region": "Jersey City, NJ",
-      "status": "ok (6 ofertas)"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "Brooklyn CDJR",
@@ -69,7 +69,7 @@
     {
       "name": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — Toyota RAV4",
@@ -79,22 +79,22 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (18 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -114,7 +114,7 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
@@ -179,12 +179,12 @@
     {
       "name": "Metro Honda",
       "region": "Jersey City, NJ",
-      "status": "sin ofertas en https://www.metrohonda.com/lease-specials/ · sin ofertas en https://www.metrohonda.com/specials/ · HTTP 404 en https://www.metrohonda.com/new-inventory/index.htm · HTTP 404 en https://www.metrohonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.metrohonda.com/lease-specials/ · sin ofertas (navegador) en https://www.metrohonda.com/specials/ · sin ofertas (navegador) en https://www.metrohonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.metrohonda.com/new-vehicles/"
+      "status": "ok (2 ofertas)"
     },
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (29 ofertas)"
+      "status": "ok (31 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (18 ofertas)"
+      "status": "ok (15 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -299,7 +299,7 @@
     {
       "name": "Ramsey Mazda",
       "region": "Ramsey, NJ",
-      "status": "ok (2 ofertas, con navegador)"
+      "status": "ok (1 ofertas, con navegador)"
     },
     {
       "name": "Open Road Mazda East Brunswick",
