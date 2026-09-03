@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T17:02:00.107Z",
+  "updatedAt": "2026-09-03T21:02:02.028Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,37 +74,37 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (18 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -304,7 +304,7 @@
     {
       "name": "Open Road Mazda East Brunswick",
       "region": "East Brunswick, NJ",
-      "status": "sin ofertas en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · HTTP 404 en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/newspecials.html · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/lease-specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/specials/ · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.openroadmazdaofeastbrunswick.com/new-vehicles/"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "Open Road Mazda Morristown",
@@ -334,7 +334,7 @@
     {
       "name": "Star Nissan of Bayside",
       "region": "Bayside, Queens",
-      "status": "sin ofertas en https://www.starnissanofbayside.com/specials/ · sin ofertas en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.starnissanofbayside.com/specials/ · sin ofertas (navegador) en https://www.starnissanofbayside.com/new-inventory/index.htm [20 vehículos en JSON-LD]"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "Teddy Volkswagen",
