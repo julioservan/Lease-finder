@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-04T17:02:05.812Z",
+  "updatedAt": "2026-09-04T21:01:54.440Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,22 +89,22 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (18 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bayridgehonda.com/lease-specials/ · sin ofertas en https://www.bayridgehonda.com/specials/ · sin ofertas en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (29 ofertas)"
+      "status": "ok (28 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (16 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.hyundaicityny.com/promotions/new/index.htm · HTTP 404 en https://www.hyundaicityny.com/lease-specials/ · sin ofertas en https://www.hyundaicityny.com/specials/ · sin ofertas en https://www.hyundaicityny.com/new-inventory/index.htm · HTTP 404 en https://www.hyundaicityny.com/new-vehicles/ · sin ofertas (navegador) en https://www.hyundaicityny.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/lease-specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/new-vehicles/"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "Star Hyundai",
