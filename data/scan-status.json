@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T21:02:02.028Z",
+  "updatedAt": "2026-09-04T13:02:09.125Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -114,7 +114,7 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (27 ofertas)"
+      "status": "ok (29 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (17 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "HTTP 403 en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
+      "status": "ok (6 ofertas, con navegador)"
     },
     {
       "name": "Star Subaru",
