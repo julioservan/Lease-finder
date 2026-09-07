@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06T21:01:38.726Z",
+  "updatedAt": "2026-09-07T13:02:29.359Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -134,7 +134,7 @@
     {
       "name": "Bay Ridge Toyota",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · page.goto: net::ERR_CONNECTION_RESET at https://www.bayridgetoyota.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.bayridgetoyota.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
     },
     {
       "name": "Plaza Toyota",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (26 ofertas)"
+      "status": "ok (27 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -239,12 +239,12 @@
     {
       "name": "Bay Ridge Nissan",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · page.goto: net::ERR_CONNECTION_RESET at https://www.bayridgenissan.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.bayridgenissan.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgenissan.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgenissan.com/new-vehicles/"
     },
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (17 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (6 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "Star Hyundai",
