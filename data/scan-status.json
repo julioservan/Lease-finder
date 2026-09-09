@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T21:02:02.262Z",
+  "updatedAt": "2026-09-09T13:02:15.246Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -89,12 +89,12 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (18 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -104,7 +104,7 @@
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (11 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -174,17 +174,17 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (27 ofertas)"
+      "status": "ok (29 ofertas)"
     },
     {
       "name": "Metro Honda",
       "region": "Jersey City, NJ",
-      "status": "ok (2 ofertas)"
+      "status": "sin ofertas en https://www.metrohonda.com/lease-specials/ · sin ofertas en https://www.metrohonda.com/specials/ · HTTP 404 en https://www.metrohonda.com/new-inventory/index.htm · HTTP 404 en https://www.metrohonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.metrohonda.com/lease-specials/ · sin ofertas (navegador) en https://www.metrohonda.com/specials/ · sin ofertas (navegador) en https://www.metrohonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.metrohonda.com/new-vehicles/"
     },
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (29 ofertas)"
+      "status": "ok (21 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -269,7 +269,7 @@
     {
       "name": "Koeppel Nissan",
       "region": "Queens, NY",
-      "status": "HTTP 404 en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · HTTP 404 en https://www.koeppelnissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/index.htm · page.goto: net::ERR_CONNECTION_RESET at https://www.koeppelnissan.com/lease-specials/\nCall log:\n  - navigating to \"https://www.koeppelnissan.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · HTTP 404 en https://www.koeppelnissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
     },
     {
       "name": "Brooklyn Volkswagen",
@@ -289,7 +289,7 @@
     {
       "name": "Hyundai City Bay Ridge",
       "region": "Brooklyn, NY",
-      "status": "ok (5 ofertas)"
+      "status": "sin ofertas en https://www.hyundaicityny.com/promotions/new/index.htm · HTTP 404 en https://www.hyundaicityny.com/lease-specials/ · sin ofertas en https://www.hyundaicityny.com/specials/ · sin ofertas en https://www.hyundaicityny.com/new-inventory/index.htm · HTTP 404 en https://www.hyundaicityny.com/new-vehicles/ · sin ofertas (navegador) en https://www.hyundaicityny.com/promotions/new/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/lease-specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/specials/ · sin ofertas (navegador) en https://www.hyundaicityny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.hyundaicityny.com/new-vehicles/"
     },
     {
       "name": "Star Hyundai",
