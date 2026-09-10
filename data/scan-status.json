@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-10T13:02:05.572Z",
+  "updatedAt": "2026-09-10T17:01:45.512Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -179,7 +179,7 @@
     {
       "name": "Metro Honda",
       "region": "Jersey City, NJ",
-      "status": "sin ofertas en https://www.metrohonda.com/lease-specials/ · sin ofertas en https://www.metrohonda.com/specials/ · HTTP 404 en https://www.metrohonda.com/new-inventory/index.htm · HTTP 404 en https://www.metrohonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.metrohonda.com/lease-specials/ · sin ofertas (navegador) en https://www.metrohonda.com/specials/ · sin ofertas (navegador) en https://www.metrohonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.metrohonda.com/new-vehicles/"
+      "status": "ok (2 ofertas)"
     },
     {
       "name": "Route 22 Honda",
@@ -199,7 +199,7 @@
     {
       "name": "Manhattan Jeep Chrysler Dodge Ram",
       "region": "Manhattan, NY",
-      "status": "fetch failed en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · sin ofertas (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.manhattanjeep.com/lease-specials/ · HTTP 404 en https://www.manhattanjeep.com/specials/ · HTTP 404 en https://www.manhattanjeep.com/new-inventory/index.htm · HTTP 404 en https://www.manhattanjeep.com/new-vehicles/ · sin ofertas (navegador) en https://www.manhattanjeep.com/lease-specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/specials/ · sin ofertas (navegador) en https://www.manhattanjeep.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.manhattanjeep.com/new-vehicles/"
     },
     {
       "name": "Koeppel Mazda",
@@ -239,12 +239,12 @@
     {
       "name": "Bay Ridge Nissan",
       "region": "Brooklyn, NY",
-      "status": "fetch failed en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgenissan.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgenissan.com/new-vehicles/"
     },
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (18 ofertas)"
+      "status": "ok (17 ofertas)"
     },
     {
       "name": "John Starks Kia",
