@@ -1,83 +1,5 @@
 [
  {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Subaru Forester",
-  "best": 439,
-  "count": 11
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Jeep Cherokee",
-  "best": 545,
-  "count": 1
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Kia Sportage",
-  "best": 395,
-  "count": 13
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Kia Sorento",
-  "best": 495,
-  "count": 13
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Toyota RAV4",
-  "best": 499,
-  "count": 2
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Hyundai Tucson",
-  "best": 369,
-  "count": 11
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Hyundai Santa Fe",
-  "best": 320.15,
-  "count": 11
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "GMC Terrain",
-  "best": 499,
-  "count": 15
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Nissan Rogue",
-  "best": 349,
-  "count": 10
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Honda CR-V",
-  "best": 169,
-  "count": 14
- },
- {
-  "t": "2026-07-25T13:29:13.040Z",
-  "model": "Volkswagen Tiguan",
-  "best": 385,
-  "count": 11
- },
- {
-  "t": "2026-07-25T17:19:45.178Z",
-  "model": "Ford Bronco Sport",
-  "best": 339,
-  "count": 13
- },
- {
-  "t": "2026-07-25T17:19:45.178Z",
-  "model": "Mazda CX-50",
-  "best": 199,
-  "count": 17
- },
- {
   "t": "2026-07-25T17:19:45.178Z",
   "model": "Subaru Forester",
   "best": 439,
@@ -11995,6 +11917,84 @@
  },
  {
   "t": "2026-09-13T13:02:11.592Z",
+  "model": "Volkswagen Tiguan",
+  "best": 299,
+  "count": 2
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Ford Bronco Sport",
+  "best": 463.83,
+  "count": 2
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Mazda CX-50",
+  "best": 299.76,
+  "count": 3
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Subaru Forester",
+  "best": 239,
+  "count": 1
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Jeep Cherokee",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Kia Sportage",
+  "best": 259,
+  "count": 5
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Kia Sorento",
+  "best": 289,
+  "count": 6
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Toyota RAV4",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Hyundai Tucson",
+  "best": 329,
+  "count": 2
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Hyundai Santa Fe",
+  "best": 399,
+  "count": 1
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "GMC Terrain",
+  "best": 499,
+  "count": 2
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Nissan Rogue",
+  "best": null,
+  "count": 0
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
+  "model": "Honda CR-V",
+  "best": 169,
+  "count": 32
+ },
+ {
+  "t": "2026-09-13T17:01:55.079Z",
   "model": "Volkswagen Tiguan",
   "best": 299,
   "count": 2
