@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-19T17:01:37.732Z",
+  "updatedAt": "2026-09-19T21:01:55.688Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (13 ofertas)"
+      "status": "ok (14 ofertas)"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (13 ofertas)"
+      "status": "ok (14 ofertas)"
     },
     {
       "name": "Plaza Hyundai",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (35 ofertas)"
+      "status": "ok (34 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (17 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "John Starks Kia",
