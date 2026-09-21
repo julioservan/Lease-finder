@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-21T13:02:05.151Z",
+  "updatedAt": "2026-09-21T17:02:02.565Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -114,7 +114,7 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (16 ofertas)"
+      "status": "ok (17 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -404,7 +404,7 @@
     {
       "name": "Ford — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "timeout en https://www.ford.com/deals/ · timeout en https://www.ford.com/suvs/bronco-sport/offers/ · page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.ford.com/deals/\nCall log:\n  - navigating to \"https://www.ford.com/deals/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.ford.com/deals/ · page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.ford.com/suvs/bronco-sport/offers/\nCall log:\n  - navigating to \"https://www.ford.com/suvs/bronco-sport/offers/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.ford.com/suvs/bronco-sport/offers/"
+      "status": "HTTP 403 en https://www.ford.com/deals/ · HTTP 403 en https://www.ford.com/suvs/bronco-sport/offers/ · sin ofertas (navegador) en https://www.ford.com/deals/ · sin ofertas (navegador) en https://www.ford.com/suvs/bronco-sport/offers/"
     },
     {
       "name": "GMC — ofertas oficiales",
