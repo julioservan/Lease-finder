@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T17:03:02.406Z",
+  "updatedAt": "2026-09-24T21:02:41.342Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -89,22 +89,22 @@
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (18 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -134,7 +134,7 @@
     {
       "name": "Bay Ridge Toyota",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · page.goto: net::ERR_CONNECTION_RESET at https://www.bayridgetoyota.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.bayridgetoyota.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgetoyota.com/lease-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-vehicle-specials/ · HTTP 404 en https://www.bayridgetoyota.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgetoyota.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgetoyota.com/new-vehicles/"
     },
     {
       "name": "Plaza Toyota",
@@ -239,12 +239,12 @@
     {
       "name": "Bay Ridge Nissan",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/ · page.goto: net::ERR_CONNECTION_RESET at https://www.bayridgenissan.com/new-inventory/index.htm\nCall log:\n  - navigating to \"https://www.bayridgenissan.com/new-inventory/index.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgenissan.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.bayridgenissan.com/lease-specials/ · HTTP 404 en https://www.bayridgenissan.com/specials/ · HTTP 404 en https://www.bayridgenissan.com/new-inventory/index.htm · HTTP 404 en https://www.bayridgenissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgenissan.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/specials/ · sin ofertas (navegador) en https://www.bayridgenissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgenissan.com/new-vehicles/"
     },
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (17 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -274,7 +274,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "timeout en https://www.brooklynvolkswagenny.com/new-deals/ · HTTP 404 en https://www.brooklynvolkswagenny.com/lease-specials/ · timeout en https://www.brooklynvolkswagenny.com/specials/ · timeout en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · timeout en https://www.brooklynvolkswagenny.com/new-vehicles/ · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.brooklynvolkswagenny.com/new-deals/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.brooklynvolkswagenny.com/new-deals/ · HTTP 404 en https://www.brooklynvolkswagenny.com/lease-specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · HTTP 404 en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
