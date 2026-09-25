@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-25T17:01:45.591Z",
+  "updatedAt": "2026-09-25T21:02:01.614Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -414,7 +414,7 @@
     {
       "name": "Mazda — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.mazdausa.com/shopping-tools/special-offers · HTTP 404 en https://www.mazdausa.com/vehicles/cx-50/offers · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.mazdausa.com/shopping-tools/special-offers\", waiting until \"domcontentloaded\"\n (navegador) en https://www.mazdausa.com/shopping-tools/special-offers · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.mazdausa.com/vehicles/cx-50/offers\", waiting until \"domcontentloaded\"\n (navegador) en https://www.mazdausa.com/vehicles/cx-50/offers"
+      "status": "ok (2 ofertas, con navegador)"
     },
     {
       "name": "Honda — ofertas oficiales",
