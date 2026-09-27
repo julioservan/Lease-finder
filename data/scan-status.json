@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-27T13:01:56.453Z",
+  "updatedAt": "2026-09-27T17:01:46.275Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,37 +74,37 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -389,7 +389,7 @@
     {
       "name": "Volkswagen — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "sin ofertas en https://www.vw.com/en/offers.html · HTTP 404 en https://www.vw.com/en/models/tiguan/offers.html · sin ofertas (navegador) en https://www.vw.com/en/offers.html · sin ofertas (navegador) en https://www.vw.com/en/models/tiguan/offers.html"
+      "status": "sin ofertas en https://www.vw.com/en/offers.html · timeout en https://www.vw.com/en/models/tiguan/offers.html · sin ofertas (navegador) en https://www.vw.com/en/offers.html · sin ofertas (navegador) en https://www.vw.com/en/models/tiguan/offers.html"
     },
     {
       "name": "Jeep — ofertas oficiales",
