@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-28T13:05:05.994Z",
+  "updatedAt": "2026-09-28T17:02:08.031Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -34,7 +34,7 @@
     {
       "name": "Island CDJR",
       "region": "Staten Island, NY",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.myislandcdjr.com/lease-specials/ · HTTP 403 en https://www.myislandcdjr.com/specials/ · HTTP 403 en https://www.myislandcdjr.com/new-inventory/index.htm · HTTP 403 en https://www.myislandcdjr.com/new-vehicles/ · sin ofertas (navegador) en https://www.myislandcdjr.com/lease-specials/ · sin ofertas (navegador) en https://www.myislandcdjr.com/specials/ · sin ofertas (navegador) en https://www.myislandcdjr.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.myislandcdjr.com/new-vehicles/"
     },
     {
       "name": "Bical Buick GMC",
@@ -64,27 +64,27 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -99,12 +99,12 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -224,7 +224,7 @@
     {
       "name": "Lester Glenn Ford",
       "region": "Toms River, NJ",
-      "status": "ok (3 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.lesterglennford.net/lester-glenn-ford-bronco-sport-special.htm · HTTP 403 en https://www.lesterglennford.net/lease-specials.htm · HTTP 403 en https://www.lesterglennford.net/new-inventory/index.htm · HTTP 403 en https://www.lesterglennford.net/new-vehicles/ · sin ofertas (navegador) en https://www.lesterglennford.net/lester-glenn-ford-bronco-sport-special.htm · sin ofertas (navegador) en https://www.lesterglennford.net/lease-specials.htm · sin ofertas (navegador) en https://www.lesterglennford.net/new-inventory/index.htm · sin ofertas (navegador) en https://www.lesterglennford.net/new-vehicles/"
     },
     {
       "name": "Lester Glenn GMC",
@@ -259,12 +259,12 @@
     {
       "name": "Island Kia",
       "region": "Staten Island, NY",
-      "status": "ok (2 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.myislandkia.com/specials/index.htm · HTTP 403 en https://www.myislandkia.com/lease-specials/ · HTTP 403 en https://www.myislandkia.com/specials/ · HTTP 403 en https://www.myislandkia.com/new-inventory/index.htm · HTTP 403 en https://www.myislandkia.com/new-vehicles/ · sin ofertas (navegador) en https://www.myislandkia.com/specials/index.htm · sin ofertas (navegador) en https://www.myislandkia.com/lease-specials/ · sin ofertas (navegador) en https://www.myislandkia.com/specials/ · sin ofertas (navegador) en https://www.myislandkia.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.myislandkia.com/new-vehicles/"
     },
     {
       "name": "Koeppel Subaru",
       "region": "Long Island City, NY",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.koeppelsubaru.com/specials/index.htm · HTTP 403 en https://www.koeppelsubaru.com/lease-specials/ · HTTP 403 en https://www.koeppelsubaru.com/specials/ · HTTP 403 en https://www.koeppelsubaru.com/new-inventory/index.htm · HTTP 403 en https://www.koeppelsubaru.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelsubaru.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelsubaru.com/specials/ · sin ofertas (navegador) en https://www.koeppelsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelsubaru.com/new-vehicles/"
     },
     {
       "name": "Koeppel Nissan",
@@ -299,7 +299,7 @@
     {
       "name": "Ramsey Mazda",
       "region": "Ramsey, NJ",
-      "status": "ok (2 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.ramseymazda.com/specials/new.htm · HTTP 403 en https://www.ramseymazda.com/lease-specials/ · HTTP 403 en https://www.ramseymazda.com/specials/ · HTTP 403 en https://www.ramseymazda.com/new-inventory/index.htm · HTTP 403 en https://www.ramseymazda.com/new-vehicles/ · sin ofertas (navegador) en https://www.ramseymazda.com/specials/new.htm · sin ofertas (navegador) en https://www.ramseymazda.com/lease-specials/ · sin ofertas (navegador) en https://www.ramseymazda.com/specials/ · sin ofertas (navegador) en https://www.ramseymazda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.ramseymazda.com/new-vehicles/"
     },
     {
       "name": "Open Road Mazda East Brunswick",
@@ -344,12 +344,12 @@
     {
       "name": "Westbury Jeep CDJR",
       "region": "Westbury, LI",
-      "status": "ok (3 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.westburyjeep.com/jeep-lease-deals.htm · sin ofertas en https://westburydeals.com/jeep-deals/ · HTTP 403 en https://www.westburyjeep.com/jeepdeals.htm · sin ofertas (navegador) en https://www.westburyjeep.com/jeep-lease-deals.htm · sin ofertas (navegador) en https://westburydeals.com/jeep-deals/ · sin ofertas (navegador) en https://www.westburyjeep.com/jeepdeals.htm"
     },
     {
       "name": "Garden City Jeep CDJR",
       "region": "Garden City, LI",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.gardencityjeepchryslerdodge.com/jeep-lease-deals.htm · HTTP 403 en https://www.gardencityjeepchryslerdodge.com/lease-specials/ · sin ofertas (navegador) en https://www.gardencityjeepchryslerdodge.com/jeep-lease-deals.htm · sin ofertas (navegador) en https://www.gardencityjeepchryslerdodge.com/lease-specials/"
     },
     {
       "name": "Yonkers Kia",
