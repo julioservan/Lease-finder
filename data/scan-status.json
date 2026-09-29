@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T13:06:15.064Z",
+  "updatedAt": "2026-09-29T17:02:06.905Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bayridgehonda.com/lease-specials/ · sin ofertas en https://www.bayridgehonda.com/specials/ · sin ofertas en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -324,7 +324,7 @@
     {
       "name": "Star Subaru",
       "region": "Bayside, Queens",
-      "status": "HTTP 403 en https://www.starsubaru.com/new-vehicle-specials/ · HTTP 403 en https://www.starsubaru.com/lease-specials/ · HTTP 403 en https://www.starsubaru.com/specials/ · HTTP 403 en https://www.starsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starsubaru.com/new-vehicle-specials/ · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.starsubaru.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.starsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/specials/ · sin ofertas (navegador) en https://www.starsubaru.com/new-inventory/index.htm"
+      "status": "HTTP 403 en https://www.starsubaru.com/new-vehicle-specials/ · HTTP 403 en https://www.starsubaru.com/lease-specials/ · HTTP 403 en https://www.starsubaru.com/specials/ · HTTP 403 en https://www.starsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starsubaru.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/specials/ · sin ofertas (navegador) en https://www.starsubaru.com/new-inventory/index.htm"
     },
     {
       "name": "Kings Nissan",
