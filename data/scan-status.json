@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01T21:06:23.021Z",
+  "updatedAt": "2026-10-02T13:04:10.360Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -59,12 +59,12 @@
     {
       "name": "CarsDirect — CR-V",
       "region": "agregador por modelo",
-      "status": "ok (18 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (35 ofertas)"
+      "status": "ok (33 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
