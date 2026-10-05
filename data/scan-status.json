@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T13:07:50.162Z",
+  "updatedAt": "2026-10-05T17:02:09.648Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -64,62 +64,62 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (18 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -279,7 +279,7 @@
     {
       "name": "Eastchester CJDR",
       "region": "Bronx, NY",
-      "status": "HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
+      "status": "fetch failed en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · fetch failed en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
     },
     {
       "name": "Koeppel Hyundai",
@@ -399,7 +399,7 @@
     {
       "name": "Kia — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
+      "status": "timeout en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
     },
     {
       "name": "Ford — ofertas oficiales",
