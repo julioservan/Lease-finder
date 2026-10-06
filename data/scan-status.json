@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06T17:02:00.076Z",
+  "updatedAt": "2026-10-06T21:02:09.808Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (14 ofertas)"
+      "status": "ok (15 ofertas)"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -74,7 +74,7 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -99,12 +99,12 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas, con navegador)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,7 +114,7 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (40 ofertas, con navegador)"
+      "status": "sin ofertas en https://www.bayridgehonda.com/lease-specials/ · sin ofertas en https://www.bayridgehonda.com/specials/ · sin ofertas en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (14 ofertas)"
+      "status": "ok (15 ofertas)"
     },
     {
       "name": "Plaza Hyundai",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (35 ofertas)"
+      "status": "ok (34 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -309,7 +309,7 @@
     {
       "name": "Open Road Mazda Morristown",
       "region": "Morristown, NJ",
-      "status": "ok (4 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "Westbury Toyota",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "HTTP 403 en https://www.penntoyota.com/new-specials/ · HTTP 403 en https://www.penntoyota.com/current-ads/ · HTTP 403 en https://www.penntoyota.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.penntoyota.com/new-specials/ · sin ofertas (navegador) en https://www.penntoyota.com/current-ads/ · sin ofertas (navegador) en https://www.penntoyota.com/new-inventory/index.htm"
+      "status": "ok (1 ofertas, con navegador)"
     },
     {
       "name": "Star Subaru",
@@ -344,7 +344,7 @@
     {
       "name": "Westbury Jeep CDJR",
       "region": "Westbury, LI",
-      "status": "HTTP 403 en https://www.westburyjeep.com/jeep-lease-deals.htm · terminated en https://westburydeals.com/jeep-deals/ · HTTP 403 en https://www.westburyjeep.com/jeepdeals.htm · sin ofertas (navegador) en https://www.westburyjeep.com/jeep-lease-deals.htm · sin ofertas (navegador) en https://westburydeals.com/jeep-deals/ · sin ofertas (navegador) en https://www.westburyjeep.com/jeepdeals.htm"
+      "status": "HTTP 403 en https://www.westburyjeep.com/jeep-lease-deals.htm · sin ofertas en https://westburydeals.com/jeep-deals/ · HTTP 403 en https://www.westburyjeep.com/jeepdeals.htm · sin ofertas (navegador) en https://www.westburyjeep.com/jeep-lease-deals.htm · sin ofertas (navegador) en https://westburydeals.com/jeep-deals/ · sin ofertas (navegador) en https://www.westburyjeep.com/jeepdeals.htm"
     },
     {
       "name": "Garden City Jeep CDJR",
