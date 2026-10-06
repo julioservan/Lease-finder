@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T17:02:09.648Z",
+  "updatedAt": "2026-10-06T13:04:14.090Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -84,7 +84,7 @@
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "HTTP 500 en https://www.carsdirect.com/subaru/forester/prices-deals · HTTP 403 en https://www.edmunds.com/subaru/forester/lease-deals/ · sin ofertas (navegador) en https://www.carsdirect.com/subaru/forester/prices-deals · sin ofertas (navegador) en https://www.edmunds.com/subaru/forester/lease-deals/"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (33 ofertas)"
+      "status": "ok (35 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -229,7 +229,7 @@
     {
       "name": "Lester Glenn GMC",
       "region": "Toms River, NJ",
-      "status": "ok (3 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "Bay Ridge Subaru",
@@ -279,7 +279,7 @@
     {
       "name": "Eastchester CJDR",
       "region": "Bronx, NY",
-      "status": "fetch failed en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · fetch failed en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
     },
     {
       "name": "Koeppel Hyundai",
@@ -334,7 +334,7 @@
     {
       "name": "Star Nissan of Bayside",
       "region": "Bayside, Queens",
-      "status": "ok (5 ofertas)"
+      "status": "ok (15 ofertas)"
     },
     {
       "name": "Teddy Volkswagen",
@@ -399,7 +399,7 @@
     {
       "name": "Kia — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "timeout en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
+      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
     },
     {
       "name": "Ford — ofertas oficiales",
