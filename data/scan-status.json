@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T17:09:42.184Z",
+  "updatedAt": "2026-10-07T21:06:25.630Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (13 ofertas)"
+      "status": "ok (14 ofertas)"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (13 ofertas)"
+      "status": "ok (14 ofertas)"
     },
     {
       "name": "Plaza Hyundai",
@@ -324,7 +324,7 @@
     {
       "name": "Star Subaru",
       "region": "Bayside, Queens",
-      "status": "HTTP 403 en https://www.starsubaru.com/new-vehicle-specials/ · HTTP 403 en https://www.starsubaru.com/lease-specials/ · HTTP 403 en https://www.starsubaru.com/specials/ · HTTP 403 en https://www.starsubaru.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.starsubaru.com/new-vehicle-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/specials/ · sin ofertas (navegador) en https://www.starsubaru.com/new-inventory/index.htm"
+      "status": "HTTP 403 en https://www.starsubaru.com/new-vehicle-specials/ · HTTP 403 en https://www.starsubaru.com/lease-specials/ · HTTP 403 en https://www.starsubaru.com/specials/ · HTTP 403 en https://www.starsubaru.com/new-inventory/index.htm · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.starsubaru.com/new-vehicle-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.starsubaru.com/new-vehicle-specials/ · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.starsubaru.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.starsubaru.com/lease-specials/ · sin ofertas (navegador) en https://www.starsubaru.com/specials/ · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.starsubaru.com/new-inventory/index.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.starsubaru.com/new-inventory/index.htm"
     },
     {
       "name": "Kings Nissan",
