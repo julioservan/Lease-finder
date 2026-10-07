@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06T21:02:09.808Z",
+  "updatedAt": "2026-10-07T13:08:07.309Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (15 ofertas)"
+      "status": "ok (14 ofertas)"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -129,7 +129,7 @@
     {
       "name": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "status": "sin ofertas en https://www.bayridgehonda.com/lease-specials/ · sin ofertas en https://www.bayridgehonda.com/specials/ · sin ofertas en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas en https://www.bayridgehonda.com/new-vehicles/ · sin ofertas (navegador) en https://www.bayridgehonda.com/lease-specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/specials/ · sin ofertas (navegador) en https://www.bayridgehonda.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.bayridgehonda.com/new-vehicles/"
+      "status": "ok (40 ofertas, con navegador)"
     },
     {
       "name": "Bay Ridge Toyota",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (15 ofertas)"
+      "status": "ok (14 ofertas)"
     },
     {
       "name": "Plaza Hyundai",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (34 ofertas)"
+      "status": "ok (35 ofertas)"
     },
     {
       "name": "Metro Honda",
