@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T17:02:40.108Z",
+  "updatedAt": "2026-10-08T21:02:23.787Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (15 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "ok (15 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "Plaza Hyundai",
@@ -244,7 +244,7 @@
     {
       "name": "Plaza Kia",
       "region": "Brooklyn, NY",
-      "status": "ok (4 ofertas)"
+      "status": "ok (20 ofertas)"
     },
     {
       "name": "John Starks Kia",
@@ -399,7 +399,7 @@
     {
       "name": "Kia — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
+      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.kia.com/us/en/special-offers\", waiting until \"domcontentloaded\"\n (navegador) en https://www.kia.com/us/en/special-offers · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.kia.com/us/en/local-offers\", waiting until \"domcontentloaded\"\n (navegador) en https://www.kia.com/us/en/local-offers"
     },
     {
       "name": "Ford — ofertas oficiales",
