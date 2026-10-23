@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T17:13:10.730Z",
+  "updatedAt": "2026-10-23T21:02:01.975Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -219,7 +219,7 @@
     {
       "name": "Freehold Ford",
       "region": "Freehold, NJ",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.freeholdford.com/bronco-sport-special/ · HTTP 403 en https://www.freeholdford.com/lease-specials/ · HTTP 403 en https://www.freeholdford.com/new-inventory/index.htm · HTTP 403 en https://www.freeholdford.com/new-vehicles/ · sin ofertas (navegador) en https://www.freeholdford.com/bronco-sport-special/ · sin ofertas (navegador) en https://www.freeholdford.com/lease-specials/ · sin ofertas (navegador) en https://www.freeholdford.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.freeholdford.com/new-vehicles/"
     },
     {
       "name": "Lester Glenn Ford",
@@ -354,12 +354,12 @@
     {
       "name": "Yonkers Kia",
       "region": "Yonkers, NY",
-      "status": "ok (3 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · HTTP 403 en https://www.yonkerskia.com/new-vehicles/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/"
     },
     {
       "name": "Autoworld Kia",
       "region": "East Meadow, LI",
-      "status": "HTTP 403 en https://www.autoworldkia.net/new-kia-specials/ · HTTP 403 en https://www.autoworldkia.net/new-inventory/index.htm · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.autoworldkia.net/new-kia-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.autoworldkia.net/new-kia-specials/ · sin ofertas (navegador) en https://www.autoworldkia.net/new-inventory/index.htm"
+      "status": "ok (12 ofertas, con navegador)"
     },
     {
       "name": "Milea Buick GMC",
