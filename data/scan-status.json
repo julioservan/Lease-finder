@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T21:02:01.975Z",
+  "updatedAt": "2026-10-24T13:02:19.521Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (37 ofertas)"
+      "status": "ok (41 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (36 ofertas)"
+      "status": "ok (35 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -279,7 +279,7 @@
     {
       "name": "Eastchester CJDR",
       "region": "Bronx, NY",
-      "status": "HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · HTTP 403 en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/lease.htm · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/lease-specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/specials/ · sin ofertas (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-inventory/index.htm · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.eastchesterchryslerjeepdodgeram.com/new-vehicles/"
     },
     {
       "name": "Koeppel Hyundai",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "ok (6 ofertas, con navegador)"
     },
     {
       "name": "Star Subaru",
