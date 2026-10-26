@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T17:01:50.806Z",
+  "updatedAt": "2026-10-26T21:12:25.460Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -219,7 +219,7 @@
     {
       "name": "Freehold Ford",
       "region": "Freehold, NJ",
-      "status": "HTTP 403 en https://www.freeholdford.com/bronco-sport-special/ · HTTP 403 en https://www.freeholdford.com/lease-specials/ · HTTP 403 en https://www.freeholdford.com/new-inventory/index.htm · HTTP 403 en https://www.freeholdford.com/new-vehicles/ · sin ofertas (navegador) en https://www.freeholdford.com/bronco-sport-special/ · sin ofertas (navegador) en https://www.freeholdford.com/lease-specials/ · sin ofertas (navegador) en https://www.freeholdford.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.freeholdford.com/new-vehicles/"
+      "status": "ok (1 ofertas, con navegador)"
     },
     {
       "name": "Lester Glenn Ford",
