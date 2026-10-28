@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T17:01:57.974Z",
+  "updatedAt": "2026-10-28T21:01:38.883Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (43 ofertas)"
+      "status": "ok (42 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -274,7 +274,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.brooklynvolkswagenny.com/new-deals/ · HTTP 404 en https://www.brooklynvolkswagenny.com/lease-specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · HTTP 404 en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.brooklynvolkswagenny.com/new-deals/ · HTTP 404 en https://www.brooklynvolkswagenny.com/lease-specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · fetch failed en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
