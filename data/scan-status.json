@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T21:01:55.536Z",
+  "updatedAt": "2026-10-30T13:01:46.270Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (10 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
