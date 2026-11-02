@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T17:01:42.907Z",
+  "updatedAt": "2026-11-02T21:01:53.531Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -399,7 +399,7 @@
     {
       "name": "Kia — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "timeout en https://www.kia.com/us/en/special-offers · timeout en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
+      "status": "HTTP 404 en https://www.kia.com/us/en/special-offers · HTTP 404 en https://www.kia.com/us/en/local-offers · sin ofertas (navegador) en https://www.kia.com/us/en/special-offers · sin ofertas (navegador) en https://www.kia.com/us/en/local-offers"
     },
     {
       "name": "Ford — ofertas oficiales",
