@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T21:01:27.989Z",
+  "updatedAt": "2026-11-04T13:01:27.542Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -59,7 +59,7 @@
     {
       "name": "CarsDirect — CR-V",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Bronco Sport",
@@ -69,12 +69,12 @@
     {
       "name": "CarsDirect — GMC Terrain",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
@@ -99,7 +99,7 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
@@ -114,12 +114,12 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -159,7 +159,7 @@
     {
       "name": "Paragon Honda",
       "region": "Queens, NY",
-      "status": "ok (6 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "BMW of Manhattan",
@@ -174,7 +174,7 @@
     {
       "name": "Hudson Honda",
       "region": "West New York, NJ",
-      "status": "ok (42 ofertas)"
+      "status": "ok (43 ofertas)"
     },
     {
       "name": "Metro Honda",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (34 ofertas)"
+      "status": "ok (35 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -339,7 +339,7 @@
     {
       "name": "Teddy Volkswagen",
       "region": "Bronx, NY",
-      "status": "ok (36 ofertas)"
+      "status": "ok (24 ofertas)"
     },
     {
       "name": "Westbury Jeep CDJR",
