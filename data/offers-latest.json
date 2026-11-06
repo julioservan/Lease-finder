@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T17:01:38.172Z",
+  "updatedAt": "2026-11-06T21:01:28.772Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "metro honda|honda 304 / 304|36",
@@ -1095,7 +1095,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-14T21:02:00.841Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "metro honda|honda 314 / 314|36",
@@ -1639,7 +1639,7 @@
         "securityDeposit": null,
         "conditions": [],
         "vin": null,
-        "raw": "The 2027 and 2026 Kia Sportage are now available with lease offers from $239/month and financing as low as 0% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 11/6/2026"
+        "raw": "The 2027 and 2026 Kia Sportage are now available with lease offers from $239/month, up to $3,000 in cash back, and financing as low as 0% APR with a financing bonus up to $750. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 11/6/2026"
       },
       "metrics": {
         "term": 36,
@@ -1654,7 +1654,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-11-06T13:01:42.380Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — nissan rogue|2027 & 2026 nissan rogue: prices, special offers, and lease deals|36",
@@ -1998,7 +1998,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "autoworld kia|new kia specials and lease offers|36",
@@ -2127,7 +2127,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-31T13:01:33.516Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 volkswagen tiguan: prices, special offers, and lease deals|36",
@@ -2241,7 +2241,7 @@
         "securityDeposit": null,
         "conditions": [],
         "vin": null,
-        "raw": "The 2027 and 2026 Kia Sorento are now available with lease offers from $299/month and financing as low as 0% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 11/6/2026"
+        "raw": "The 2027 and 2026 Kia Sorento are now available with lease offers from $299/month, up to $4,250 in cash back, and financing as low as 0% APR with a financing bonus up to $750. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 11/6/2026"
       },
       "metrics": {
         "term": 36,
@@ -2256,7 +2256,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-10T13:02:46.171Z",
-      "lastSeen": "2026-11-06T13:01:42.380Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "open road mazda east brunswick|2026 mazda cx-50 2.5 s select awd|36",
@@ -2569,47 +2569,52 @@
       "lastSeen": "2026-11-05T13:02:12.246Z"
     },
     {
-      "key": "carsdirect — mazda cx-50|mazda cx-50 lease deals near you|36",
-      "source": "CarsDirect — Mazda CX-50",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/mazda/cx-50/prices-deals",
-      "name": "Mazda CX-50 Lease Deals Near You",
+      "key": "open road mazda east brunswick|2026 mazda cx-50 s select awd|36",
+      "source": "Open Road Mazda East Brunswick",
+      "region": "East Brunswick, NJ",
+      "url": "https://www.openroadmazdaofeastbrunswick.com/newspecials.html",
+      "name": "2026 Mazda CX-50 S Select AWD",
       "parsed": {
-        "name": "Mazda CX-50 Lease Deals Near You",
-        "monthly": 339,
+        "name": "2026 Mazda CX-50 S Select AWD",
+        "monthly": 340.26,
         "term": 36,
         "dueAtSigning": null,
-        "msrp": 31395,
+        "msrp": 32705,
         "price": null,
         "milesPerYear": null,
         "residualPct": null,
         "residualAmount": null,
         "moneyFactor": null,
-        "apr": null,
+        "apr": 0,
         "downPayment": null,
         "acqFee": null,
         "dealerFee": null,
         "docFee": null,
         "accessories": null,
         "securityDeposit": null,
-        "conditions": [],
+        "conditions": [
+          {
+            "key": "toptier",
+            "label": "Top-tier credit"
+          }
+        ],
         "vin": null,
-        "raw": "Lease Deals Financing & Rebates Payment Calculator Buying Tips Mazda CX-50 Target Price \n \n Mazda CX-50 Lease Deals Near You\n Lease your 2026 CX-50 2.5 S Select 4dr All-Wheel Drive Sport Utility as low as $339 per month.\n\n Term: 36 months \n MSRP: $31,395 \n\n Get Quote Estimate Your Payment ›"
+        "raw": "Lease offer available on select new 2026 Mazda CX-50 S Select AWD models in dealer stock. Stock #28236. MSRP $32,705. Lease for $340.26 per month for 36 months. $2,999 customer cash. Selling price is $31,769, reflecting a dealer discount of $936. Residual value is $19,295.95. Available to well-qualified lessees subject to credit approval. Not all applicants will qualify. Dealer sets actual prices. See dealer for complete details.\nFinance: 0% APR for 36 months, O.A.C. (on approved credit)."
       },
       "metrics": {
         "term": 36,
-        "monthlyPayment": 339,
+        "monthlyPayment": 340.26,
         "driveOff": 0,
-        "totalCost": 12204,
-        "effectiveMonthly": 339,
-        "pctOfMsrp": 1.0797897754419492,
-        "score": 7.717551622418879,
-        "oneTimeCosts": 339,
-        "dealScore": 74
+        "totalCost": 12249.36,
+        "effectiveMonthly": 340.26,
+        "pctOfMsrp": 1.0403913774652194,
+        "score": 8.009806226611023,
+        "oneTimeCosts": 340,
+        "dealScore": 76
       },
       "isTarget": true,
-      "firstSeen": "2026-07-22T13:31:14.184Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "firstSeen": "2026-11-06T21:01:28.772Z",
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — hyundai tucson|hyundai tucson lease deals near you|36",
@@ -2741,6 +2746,49 @@
       "lastSeen": "2026-10-23T13:03:08.961Z"
     },
     {
+      "key": "carsdirect — mazda cx-50|mazda cx-50 lease deals near you|36",
+      "source": "CarsDirect — Mazda CX-50",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/mazda/cx-50/prices-deals",
+      "name": "Mazda CX-50 Lease Deals Near You",
+      "parsed": {
+        "name": "Mazda CX-50 Lease Deals Near You",
+        "monthly": 357,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": 31395,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "Lease Deals Financing & Rebates Payment Calculator Buying Tips Mazda CX-50 Target Price \n \n Mazda CX-50 Lease Deals Near You\n Lease your 2026 CX-50 2.5 S Select 4dr All-Wheel Drive Sport Utility as low as $357 per month.\n\n Term: 36 months \n MSRP: $31,395 \n\n Get Quote Estimate Your Payment ›"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 357,
+        "driveOff": 0,
+        "totalCost": 12852,
+        "effectiveMonthly": 357,
+        "pctOfMsrp": 1.1371237458193981,
+        "score": 7.328431372549019,
+        "oneTimeCosts": 357,
+        "dealScore": 70
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-22T13:31:14.184Z",
+      "lastSeen": "2026-11-06T21:01:28.772Z"
+    },
+    {
       "key": "carsdirect — subaru forester|subaru forester lease deals near you|36",
       "source": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
@@ -2824,7 +2872,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T17:02:00.076Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 lease deals near you|36",
@@ -2867,7 +2915,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — nissan rogue|2027 nissan rogue deals|36",
@@ -3130,7 +3178,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T13:01:45.451Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 volkswagen tiguan deals|36",
@@ -3173,7 +3221,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-16T13:03:10.699Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "penn toyota|new 2026 toyota rav4 4wd 5dr. wagon le|36",
@@ -3268,7 +3316,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-16T13:03:10.699Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "autoworld kia|2026 kia sportage lx|24",
@@ -3316,7 +3364,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|39",
@@ -3617,7 +3665,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — cr-v|honda cr-v lease deals near you|39",
@@ -3660,7 +3708,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-04T13:01:27.542Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — cr-v|2026 honda cr-v deals|36",
@@ -3789,7 +3837,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-09-29T13:06:15.064Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — gmc terrain|2026 gmc terrain deals|36",
@@ -3918,7 +3966,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-31T13:01:33.516Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 kia sportage deals|36",
@@ -3961,7 +4009,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-11-06T13:01:42.380Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 awd s select|36",
@@ -4004,7 +4052,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T04:16:20.253Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — vw tiguan|volkswagen tiguan lease deals near you|36",
@@ -4133,7 +4181,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-03T14:30:15.929Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 hybrid awd preferred|36",
@@ -4179,6 +4227,49 @@
       "lastSeen": "2026-09-30T21:02:51.327Z"
     },
     {
+      "key": "carsdirect — kia sportage|2026 kia sportage deals|72",
+      "source": "CarsDirect — Kia Sportage",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/kia/sportage/prices-deals",
+      "name": "2026 Kia Sportage Deals",
+      "parsed": {
+        "name": "2026 Kia Sportage Deals",
+        "monthly": 431,
+        "term": 72,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "Estimated Payment: $431 /month \n On a 72-month loan, we estimate that taking the Cash Rebate Deal would save approximately $122 per month compared to the Combo Deal."
+      },
+      "metrics": {
+        "term": 72,
+        "monthlyPayment": 431,
+        "driveOff": 0,
+        "totalCost": 31032,
+        "effectiveMonthly": 431,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 431,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-07-26T13:28:55.930Z",
+      "lastSeen": "2026-11-06T21:01:28.772Z"
+    },
+    {
       "key": "bay ridge honda|2027 honda cr-v hybrid awd sport|39",
       "source": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
@@ -4219,7 +4310,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — jeep cherokee|jeep cherokee lease deals near you|42",
@@ -4263,49 +4354,6 @@
       "isTarget": true,
       "firstSeen": "2026-09-09T13:02:15.246Z",
       "lastSeen": "2026-10-23T13:03:08.961Z"
-    },
-    {
-      "key": "carsdirect — kia sportage|2026 kia sportage deals|72",
-      "source": "CarsDirect — Kia Sportage",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/kia/sportage/prices-deals",
-      "name": "2026 Kia Sportage Deals",
-      "parsed": {
-        "name": "2026 Kia Sportage Deals",
-        "monthly": 443,
-        "term": 72,
-        "dueAtSigning": null,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "Estimated Payment: $443 /month \n On a 72-month loan, we estimate that taking the Cash Rebate Deal would save approximately $124 per month compared to the APR Deal."
-      },
-      "metrics": {
-        "term": 72,
-        "monthlyPayment": 443,
-        "driveOff": 0,
-        "totalCost": 31896,
-        "effectiveMonthly": 443,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 443,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
     },
     {
       "key": "autoworld kia|new kia specials and lease offers|24",
@@ -4401,7 +4449,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — jeep cherokee|jeep cherokee lease deals near you|36",
@@ -4530,7 +4578,50 @@
       },
       "isTarget": true,
       "firstSeen": "2026-08-05T17:29:52.258Z",
-      "lastSeen": "2026-11-06T13:01:42.380Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
+    },
+    {
+      "key": "carsdirect — kia sorento|2026 kia sorento deals|72",
+      "source": "CarsDirect — Kia Sorento",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/kia/sorento/prices-deals",
+      "name": "2026 Kia Sorento Deals",
+      "parsed": {
+        "name": "2026 Kia Sorento Deals",
+        "monthly": 460,
+        "term": 72,
+        "dueAtSigning": null,
+        "msrp": null,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "Estimated Payment: $460 /month \n On a 72-month loan, we estimate that taking the Cash Rebate Deal would save approximately $159 per month compared to the Combo Deal."
+      },
+      "metrics": {
+        "term": 72,
+        "monthlyPayment": 460,
+        "driveOff": 0,
+        "totalCost": 33120,
+        "effectiveMonthly": 460,
+        "pctOfMsrp": null,
+        "score": null,
+        "oneTimeCosts": 460,
+        "dealScore": null
+      },
+      "isTarget": true,
+      "firstSeen": "2026-10-09T13:06:00.093Z",
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "lester glenn ford|lester glenn ford new bronco sport special|36",
@@ -4659,7 +4750,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — kia sorento|kia sorento lease deals near you|72",
@@ -4746,49 +4837,6 @@
       "isTarget": true,
       "firstSeen": "2026-10-03T14:30:15.929Z",
       "lastSeen": "2026-10-05T13:07:50.162Z"
-    },
-    {
-      "key": "carsdirect — kia sorento|2026 kia sorento deals|72",
-      "source": "CarsDirect — Kia Sorento",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/kia/sorento/prices-deals",
-      "name": "2026 Kia Sorento Deals",
-      "parsed": {
-        "name": "2026 Kia Sorento Deals",
-        "monthly": 473,
-        "term": 72,
-        "dueAtSigning": null,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "Estimated Payment: $473 /month \n On a 72-month loan, we estimate that taking the Cash Rebate Deal would save approximately $162 per month compared to the APR Deal."
-      },
-      "metrics": {
-        "term": 72,
-        "monthlyPayment": 473,
-        "driveOff": 0,
-        "totalCost": 34056,
-        "effectiveMonthly": 473,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 473,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-10-09T13:06:00.093Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
     },
     {
       "key": "carsdirect — cr-v|2026 honda cr-v deals|72",
@@ -5046,7 +5094,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T17:02:00.076Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — subaru forester|2027 subaru forester finance deals|72",
@@ -5433,7 +5481,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-31T13:01:33.516Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2026 jeep cherokee deals|72",
@@ -5562,7 +5610,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "lester glenn gmc|2027 gmc terrain 2027 gmc terrain|36",
@@ -5605,7 +5653,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2026 jeep cherokee deals|36",
@@ -5734,7 +5782,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 financing deals & rebates near you|72",
@@ -6078,7 +6126,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-10T13:02:46.171Z",
-      "lastSeen": "2026-11-06T13:01:42.380Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2027 jeep cherokee finance deals|72",
@@ -6121,7 +6169,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-11-06T17:01:38.172Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     },
     {
       "key": "plaza kia|2026 kia sorento|36",
@@ -6207,7 +6255,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-06T13:01:42.380Z"
+      "lastSeen": "2026-11-06T21:01:28.772Z"
     }
   ]
 }
