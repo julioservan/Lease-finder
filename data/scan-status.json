@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T21:01:49.832Z",
+  "updatedAt": "2026-11-09T13:01:35.482Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -184,7 +184,7 @@
     {
       "name": "Route 22 Honda",
       "region": "Hillside, NJ",
-      "status": "ok (38 ofertas)"
+      "status": "ok (39 ofertas)"
     },
     {
       "name": "Route 22 Toyota",
@@ -274,7 +274,7 @@
     {
       "name": "Brooklyn Volkswagen",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.brooklynvolkswagenny.com/new-deals/ · HTTP 404 en https://www.brooklynvolkswagenny.com/lease-specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · HTTP 404 en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.brooklynvolkswagenny.com/new-deals/ · HTTP 404 en https://www.brooklynvolkswagenny.com/lease-specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/specials/ · HTTP 404 en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · HTTP 404 en https://www.brooklynvolkswagenny.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-deals/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/specials/ · sin ofertas (navegador) en https://www.brooklynvolkswagenny.com/new-inventory/index.htm · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.brooklynvolkswagenny.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.brooklynvolkswagenny.com/new-vehicles/"
     },
     {
       "name": "Eastchester CJDR",
@@ -354,7 +354,7 @@
     {
       "name": "Yonkers Kia",
       "region": "Yonkers, NY",
-      "status": "HTTP 403 en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · HTTP 403 en https://www.yonkerskia.com/new-vehicles/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/"
+      "status": "ok (3 ofertas, con navegador)"
     },
     {
       "name": "Autoworld Kia",
