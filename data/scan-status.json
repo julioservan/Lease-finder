@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T21:10:01.479Z",
+  "updatedAt": "2026-11-12T13:01:44.413Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -79,12 +79,12 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
@@ -99,17 +99,17 @@
     {
       "name": "CarsDirect — Subaru Forester",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -119,7 +119,7 @@
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "ok (8 ofertas, con navegador)"
+      "status": "ok (2 ofertas, con navegador)"
     },
     {
       "name": "Star Subaru",
@@ -354,7 +354,7 @@
     {
       "name": "Yonkers Kia",
       "region": "Yonkers, NY",
-      "status": "ok (3 ofertas, con navegador)"
+      "status": "HTTP 403 en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · HTTP 403 en https://www.yonkerskia.com/new-vehicles/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/"
     },
     {
       "name": "Autoworld Kia",
@@ -414,7 +414,7 @@
     {
       "name": "Mazda — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.mazdausa.com/shopping-tools/special-offers · HTTP 429 en https://www.mazdausa.com/vehicles/cx-50/offers · sin ofertas (navegador) en https://www.mazdausa.com/shopping-tools/special-offers · sin ofertas (navegador) en https://www.mazdausa.com/vehicles/cx-50/offers"
+      "status": "HTTP 404 en https://www.mazdausa.com/shopping-tools/special-offers · HTTP 404 en https://www.mazdausa.com/vehicles/cx-50/offers · sin ofertas (navegador) en https://www.mazdausa.com/shopping-tools/special-offers · sin ofertas (navegador) en https://www.mazdausa.com/vehicles/cx-50/offers"
     },
     {
       "name": "Honda — ofertas oficiales",
