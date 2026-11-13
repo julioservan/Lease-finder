@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T13:01:54.937Z",
+  "updatedAt": "2026-11-13T17:01:42.760Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -79,22 +79,22 @@
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (12 ofertas)"
+      "status": "ok (5 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (13 ofertas)"
+      "status": "ok (4 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -104,7 +104,7 @@
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (7 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
@@ -114,7 +114,7 @@
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (6 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
@@ -164,7 +164,7 @@
     {
       "name": "BMW of Manhattan",
       "region": "Manhattan, NY",
-      "status": "fetch failed en https://www.bmwofmanhattan.com/lease-specials.htm · fetch failed en https://www.bmwofmanhattan.com/specials/lease.htm · fetch failed en https://www.bmwofmanhattan.com/new-inventory/index.htm · fetch failed en https://www.bmwofmanhattan.com/new-vehicles/ · page.goto: net::ERR_CONNECTION_CLOSED at https://www.bmwofmanhattan.com/lease-specials.htm\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/lease-specials.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/lease-specials.htm · page.goto: net::ERR_CONNECTION_CLOSED at https://www.bmwofmanhattan.com/specials/lease.htm\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/specials/lease.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/specials/lease.htm · page.goto: net::ERR_CONNECTION_CLOSED at https://www.bmwofmanhattan.com/new-inventory/index.htm\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/new-inventory/index.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/new-inventory/index.htm · page.goto: net::ERR_CONNECTION_CLOSED at https://www.bmwofmanhattan.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/new-vehicles/"
+      "status": "fetch failed en https://www.bmwofmanhattan.com/lease-specials.htm · fetch failed en https://www.bmwofmanhattan.com/specials/lease.htm · fetch failed en https://www.bmwofmanhattan.com/new-inventory/index.htm · fetch failed en https://www.bmwofmanhattan.com/new-vehicles/ · page.goto: net::ERR_CONNECTION_CLOSED at https://www.bmwofmanhattan.com/lease-specials.htm\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/lease-specials.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/lease-specials.htm · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/specials/lease.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/specials/lease.htm · page.goto: net::ERR_CONNECTION_CLOSED at https://www.bmwofmanhattan.com/new-inventory/index.htm\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/new-inventory/index.htm\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/new-inventory/index.htm · page.goto: net::ERR_CONNECTION_CLOSED at https://www.bmwofmanhattan.com/new-vehicles/\nCall log:\n  - navigating to \"https://www.bmwofmanhattan.com/new-vehicles/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.bmwofmanhattan.com/new-vehicles/"
     },
     {
       "name": "Hudson Toyota",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "ok (8 ofertas, con navegador)"
+      "status": "ok (2 ofertas, con navegador)"
     },
     {
       "name": "Star Subaru",
