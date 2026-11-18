@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T13:01:35.025Z",
+  "updatedAt": "2026-11-18T17:06:49.286Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "metro honda|honda 304 / 304|36",
@@ -236,49 +236,6 @@
       "isTarget": true,
       "firstSeen": "2026-09-16T17:01:56.026Z",
       "lastSeen": "2026-11-12T13:01:44.413Z"
-    },
-    {
-      "key": "metro honda|honda 293 / 293|36",
-      "source": "Metro Honda",
-      "region": "Jersey City, NJ",
-      "url": "https://www.metrohonda.com/lease-specials/",
-      "name": "Honda 293 / 293",
-      "parsed": {
-        "name": "Honda 293 / 293",
-        "monthly": 199,
-        "term": 36,
-        "dueAtSigning": null,
-        "msrp": 29590,
-        "price": null,
-        "milesPerYear": 10000,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": "1HGCY1F22TA041153",
-        "raw": "New Honda Lease & Finance Specials\n Lease \n Accord \n Civic Si \n CR-V \n Pilot \n \n Disclaimer New 2026 Honda Accord LX $199 per month plus tax on a 36 month lease. $4,995 total due at signing. Amount due at signing includes $4,995 cash or trade-in equity due from customer. Plus government fees and taxes. Includes a $0 security deposit. Net capitalized cost = $22,516. Capitalized cost reduction = $28,875. On approved credit, not all customers will qualify. On approved credit. 10,000 miles per year, $0.20 per excess mile. End of lease disposition fee of $595. Total lease cost: $7,164. MSRP: $29,590. Vehicle(s) eligible: 1HGCY1F22TA041153. Expires on November 2, 2026."
-      },
-      "metrics": {
-        "term": 36,
-        "monthlyPayment": 199,
-        "driveOff": 0,
-        "totalCost": 7164,
-        "effectiveMonthly": 199,
-        "pctOfMsrp": 0.672524501520784,
-        "score": 12.391122278056951,
-        "oneTimeCosts": 199,
-        "dealScore": 96
-      },
-      "isTarget": true,
-      "firstSeen": "2026-10-03T18:09:34.137Z",
-      "lastSeen": "2026-10-04T14:42:54.232Z"
     },
     {
       "key": "metro honda|honda 287 / 287|36",
@@ -1442,6 +1399,49 @@
       "lastSeen": "2026-11-18T13:01:35.025Z"
     },
     {
+      "key": "metro honda|honda 282 / 282|36",
+      "source": "Metro Honda",
+      "region": "Jersey City, NJ",
+      "url": "https://www.metrohonda.com/lease-specials/",
+      "name": "Honda 282 / 282",
+      "parsed": {
+        "name": "Honda 282 / 282",
+        "monthly": 199,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": 29590,
+        "price": null,
+        "milesPerYear": 10000,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": "1HGCY1F22TA041153",
+        "raw": "New Honda Lease & Finance Specials\n Lease \n Accord \n Civic \n CR-V \n Pilot \n \n Disclaimer New 2026 Honda Accord LX $199 per month plus tax on a 36 month lease. $4995 total due at signing. Amount due at signing includes $4,995 cash or trade-in equity due from customer. Plus government fees and taxes. Includes a $0 security deposit. Net capitalized cost = $22,516. Capitalized cost reduction = $28,875. On approved credit, not all customers will qualify. On approved credit. 10,000 miles per year, $0.20 per excess mile. End of lease disposition fee of $595. Total lease cost: $7,164. MSRP: $29,590. Vehicle(s) eligible: 1HGCY1F22TA041153. Expires on JAN 4, 2027."
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 199,
+        "driveOff": 0,
+        "totalCost": 7164,
+        "effectiveMonthly": 199,
+        "pctOfMsrp": 0.672524501520784,
+        "score": 12.391122278056951,
+        "oneTimeCosts": 199,
+        "dealScore": 96
+      },
+      "isTarget": true,
+      "firstSeen": "2026-11-18T17:06:49.286Z",
+      "lastSeen": "2026-11-18T17:06:49.286Z"
+    },
+    {
       "key": "carsdirect — kia sportage|2027 & 2026 kia sportage: prices, special offers, and lease deals|36",
       "source": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
@@ -2094,7 +2094,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-18T13:01:35.025Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — hyundai tucson|2026 hyundai tucson: prices, special offers, and lease deals|36",
@@ -2361,7 +2361,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-15T17:01:33.671Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "open road mazda east brunswick|2026 mazda cx-50 s select awd|36",
@@ -2409,7 +2409,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-06T21:01:28.772Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 awd s select|36",
@@ -2505,7 +2505,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-18T13:01:35.025Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — hyundai tucson|hyundai tucson lease deals near you|36",
@@ -3026,7 +3026,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T13:01:45.451Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "penn toyota|penn toyota|36",
@@ -3069,7 +3069,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-09T21:01:41.093Z",
-      "lastSeen": "2026-11-17T21:01:39.200Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 volkswagen tiguan deals|36",
@@ -3255,7 +3255,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|39",
@@ -3522,7 +3522,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-09T21:01:41.093Z",
-      "lastSeen": "2026-11-17T21:01:39.200Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — cr-v|2026 honda cr-v deals|39",
@@ -3614,7 +3614,7 @@
       "key": "bay ridge honda|2027 honda cr-v awd lx|39",
       "source": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "url": "https://www.bayridgehonda.com/new-inventory/index.htm",
       "name": "2027 Honda CR-V AWD LX",
       "parsed": {
         "name": "2027 Honda CR-V AWD LX",
@@ -3651,7 +3651,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — cr-v|honda cr-v lease deals near you|39",
@@ -4130,7 +4130,7 @@
       "key": "bay ridge honda|2027 honda cr-v hybrid awd sport|39",
       "source": "Bay Ridge Honda",
       "region": "Brooklyn, NY",
-      "url": "https://www.bayridgehonda.com/lease-specials/",
+      "url": "https://www.bayridgehonda.com/new-inventory/index.htm",
       "name": "2027 Honda CR-V Hybrid AWD Sport",
       "parsed": {
         "name": "2027 Honda CR-V Hybrid AWD Sport",
@@ -4167,7 +4167,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — jeep cherokee|jeep cherokee lease deals near you|42",
@@ -4306,7 +4306,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — jeep cherokee|jeep cherokee lease deals near you|36",
@@ -5381,7 +5381,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "lester glenn gmc|2027 gmc terrain 2027 gmc terrain|36",
@@ -5424,7 +5424,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-18T13:01:35.025Z"
+      "lastSeen": "2026-11-18T17:06:49.286Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2026 jeep cherokee deals|36",
