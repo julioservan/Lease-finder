@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T13:01:34.589Z",
+  "updatedAt": "2026-11-20T17:01:48.289Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD]"
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD]"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -109,7 +109,7 @@
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (8 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD]"
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD]"
     },
     {
       "name": "Plaza Hyundai",
@@ -269,7 +269,7 @@
     {
       "name": "Koeppel Nissan",
       "region": "Queens, NY",
-      "status": "HTTP 404 en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · HTTP 404 en https://www.koeppelnissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
+      "status": "HTTP 404 en https://www.koeppelnissan.com/specials/index.htm · HTTP 404 en https://www.koeppelnissan.com/lease-specials/ · HTTP 404 en https://www.koeppelnissan.com/specials/ · HTTP 404 en https://www.koeppelnissan.com/new-inventory/index.htm · fetch failed en https://www.koeppelnissan.com/new-vehicles/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/lease-specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/specials/ · sin ofertas (navegador) en https://www.koeppelnissan.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.koeppelnissan.com/new-vehicles/"
     },
     {
       "name": "Brooklyn Volkswagen",
