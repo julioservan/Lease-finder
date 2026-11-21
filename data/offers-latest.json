@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T17:01:32.803Z",
+  "updatedAt": "2026-11-21T21:01:58.190Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "metro honda|honda 304 / 304|36",
@@ -564,7 +564,7 @@
         "securityDeposit": null,
         "conditions": [],
         "vin": "1HGCY1F22TA041153",
-        "raw": "New Honda Lease & Finance Specials\n Lease \n Accord \n Civic Si \n CR-V \n Pilot \n \n Disclaimer New 2026 Honda Accord LX $199 per month plus tax on a 36 month lease. $4,995 total due at signing. Amount due at signing includes $4,995 cash or trade-in equity due from customer. Plus government fees and taxes. Includes a $0 security deposit. Net capitalized cost = $22,516. Capitalized cost reduction = $28,875. On approved credit, not all customers will qualify. On approved credit. 10,000 miles per year, $0.20 per excess mile. End of lease disposition fee of $595. Total lease cost: $7,164. MSRP: $29,590. Vehicle(s) eligible: 1HGCY1F22TA041153. Expires on November 2, 2026."
+        "raw": "New Honda Lease & Finance Specials\n Lease \n Accord \n Civic \n CR-V \n Pilot \n \n Disclaimer New 2026 Honda Accord LX $199 per month plus tax on a 36 month lease. $4995 total due at signing. Amount due at signing includes $4,995 cash or trade-in equity due from customer. Plus government fees and taxes. Includes a $0 security deposit. Net capitalized cost = $22,516. Capitalized cost reduction = $28,875. On approved credit, not all customers will qualify. On approved credit. 10,000 miles per year, $0.20 per excess mile. End of lease disposition fee of $595. Total lease cost: $7,164. MSRP: $29,590. Vehicle(s) eligible: 1HGCY1F22TA041153. Expires on JAN 4, 2027."
       },
       "metrics": {
         "term": 36,
@@ -579,7 +579,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-08-26T17:53:52.565Z",
-      "lastSeen": "2026-10-15T17:01:50.659Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "metro honda|honda 317 / 317|36",
@@ -1915,49 +1915,6 @@
       "lastSeen": "2026-10-16T13:03:10.699Z"
     },
     {
-      "key": "carsdirect — kia sorento|2026 kia sorento: prices, special offers, and lease deals|36",
-      "source": "CarsDirect — Kia Sorento",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/kia/sorento/prices-deals",
-      "name": "2026 Kia Sorento: Prices, Special Offers, and Lease Deals",
-      "parsed": {
-        "name": "2026 Kia Sorento: Prices, Special Offers, and Lease Deals",
-        "monthly": 299,
-        "term": null,
-        "dueAtSigning": null,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": 0,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "The 2026 Kia Sorento is now available with lease offers from $299/month and financing as low as 0% APR. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 10/7/2026"
-      },
-      "metrics": {
-        "term": 36,
-        "monthlyPayment": 299,
-        "driveOff": 0,
-        "totalCost": 10764,
-        "effectiveMonthly": 299,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 299,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-10-07T21:06:25.630Z"
-    },
-    {
       "key": "carsdirect — kia sorento|2027 & 2026 kia sorento: prices, special offers, and lease deals|36",
       "source": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
@@ -2046,7 +2003,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-10T13:04:05.228Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "hyundai city bay ridge|available hyundai offers:|36",
@@ -2318,7 +2275,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-19T13:05:20.211Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "open road mazda east brunswick|2026 mazda cx-50 s select awd|36",
@@ -2366,7 +2323,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-06T21:01:28.772Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 awd s select|36",
@@ -2462,7 +2419,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-18T13:01:35.025Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "carsdirect — bronco sport|2027 & 2026 ford bronco sport: prices, special offers, and lease deals|36",
@@ -2811,7 +2768,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T13:01:45.451Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "penn toyota|penn toyota|36",
@@ -2854,7 +2811,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-09T21:01:41.093Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "penn toyota|new 2026 toyota rav4 4wd 5dr. wagon le|36",
@@ -2997,7 +2954,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|39",
@@ -3389,7 +3346,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-19T13:05:20.211Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "penn toyota|new 2026 toyota rav4 4wd 5dr. wagon le|39",
@@ -3441,7 +3398,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-09T21:01:41.093Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "carsdirect — cr-v|2026 honda cr-v deals|39",
@@ -3570,7 +3527,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "carsdirect — cr-v|honda cr-v lease deals near you|39",
@@ -4000,7 +3957,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 volkswagen tiguan deals|36",
@@ -4182,7 +4139,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "carsdirect — jeep cherokee|jeep cherokee lease deals near you|36",
@@ -5171,7 +5128,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "lester glenn gmc|2027 gmc terrain 2027 gmc terrain|36",
@@ -5214,7 +5171,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-21T17:01:32.803Z"
+      "lastSeen": "2026-11-21T21:01:58.190Z"
     },
     {
       "key": "carsdirect — vw tiguan|2027 volkswagen tiguan finance deals|72",
@@ -5473,49 +5430,6 @@
       "isTarget": true,
       "firstSeen": "2026-11-19T17:01:48.346Z",
       "lastSeen": "2026-11-21T17:01:32.803Z"
-    },
-    {
-      "key": "carsdirect — kia sorento|kia sorento lease deals near you|36",
-      "source": "CarsDirect — Kia Sorento",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/kia/sorento/prices-deals",
-      "name": "Kia Sorento Lease Deals Near You",
-      "parsed": {
-        "name": "Kia Sorento Lease Deals Near You",
-        "monthly": 540,
-        "term": null,
-        "dueAtSigning": null,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "Effective Cost: $540 per month before taxes & fees"
-      },
-      "metrics": {
-        "term": 36,
-        "monthlyPayment": 540,
-        "driveOff": 0,
-        "totalCost": 19440,
-        "effectiveMonthly": 540,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 540,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-10-07T21:06:25.630Z"
     },
     {
       "key": "carsdirect — kia sorento|2026 kia sorento deals|36",
