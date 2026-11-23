@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T21:01:41.944Z",
+  "updatedAt": "2026-11-23T13:01:41.166Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD]"
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [12 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [12 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [12 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [12 vehículos en JSON-LD]"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [14 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [14 vehículos en JSON-LD]"
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [12 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [12 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [12 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [12 vehículos en JSON-LD]"
     },
     {
       "name": "Plaza Hyundai",
@@ -219,7 +219,7 @@
     {
       "name": "Freehold Ford",
       "region": "Freehold, NJ",
-      "status": "ok (1 ofertas, con navegador)"
+      "status": "ok (1 ofertas)"
     },
     {
       "name": "Lester Glenn Ford",
@@ -319,7 +319,7 @@
     {
       "name": "Penn Toyota",
       "region": "Greenvale, LI",
-      "status": "ok (8 ofertas, con navegador)"
+      "status": "ok (2 ofertas, con navegador)"
     },
     {
       "name": "Star Subaru",
