@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T13:01:41.166Z",
+  "updatedAt": "2026-11-23T17:01:39.095Z",
   "offers": [
     {
       "key": "garden state honda|lease a new 2026 honda cr-v lx awd suv auto (model #: rs4h2tew) for on|39",
@@ -63,7 +63,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-21T03:07:36.243Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "metro honda|honda 304 / 304|36",
@@ -1267,7 +1267,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-16T17:01:27.759Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "metro honda|honda 285 / 285|36",
@@ -1697,7 +1697,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — toyota rav4|2027 & 2026 toyota rav4: prices, special offers, and lease deals|36",
@@ -1854,7 +1854,7 @@
         "securityDeposit": null,
         "conditions": [],
         "vin": null,
-        "raw": "The 2027 Honda CR-V is now available with lease offers from $289/month and financing as low as 3.99% APR with a financing bonus up to $750. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 11/23/2026"
+        "raw": "The 2027 Honda CR-V is now available with lease offers from $289/month and financing as low as 3.99% APR with a financing bonus up to $500. CarsDirect updates these deals daily to reflect the latest offers available in your area.\n Last updated: 11/23/2026"
       },
       "metrics": {
         "term": 36,
@@ -1869,7 +1869,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-31T13:01:33.516Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — vw tiguan|2026 volkswagen tiguan: prices, special offers, and lease deals|36",
@@ -2003,7 +2003,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-10T13:04:05.228Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "hyundai city bay ridge|available hyundai offers:|36",
@@ -2366,7 +2366,50 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-06T21:01:28.772Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
+    },
+    {
+      "key": "carsdirect — subaru forester|2026 subaru forester deals|36",
+      "source": "CarsDirect — Subaru Forester",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/subaru/forester/prices-deals",
+      "name": "2026 Subaru Forester Deals",
+      "parsed": {
+        "name": "2026 Subaru Forester Deals",
+        "monthly": 341,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": 31445,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "2026 Subaru Forester Deals \n Lease your 2026 Forester Base 4dr All-Wheel Drive as low as $341 per month.\n\n Term: 36 months \n MSRP: $31,445 \n\n Get Quote Estimate Your Payment ›"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 341,
+        "driveOff": 0,
+        "totalCost": 12276,
+        "effectiveMonthly": 341,
+        "pctOfMsrp": 1.084433137223724,
+        "score": 7.684506353861193,
+        "oneTimeCosts": 341,
+        "dealScore": 73
+      },
+      "isTarget": true,
+      "firstSeen": "2026-10-06T17:02:00.076Z",
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "open road mazda morristown|2026 mazda cx-50 awd s select|36",
@@ -2462,7 +2505,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-18T13:01:35.025Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2026 jeep cherokee: prices, special offers, and lease deals|36",
@@ -2506,6 +2549,49 @@
       "isTarget": true,
       "firstSeen": "2026-09-09T17:02:02.589Z",
       "lastSeen": "2026-10-23T13:03:08.961Z"
+    },
+    {
+      "key": "carsdirect — toyota rav4|2026 toyota rav4 deals|36",
+      "source": "CarsDirect — Toyota RAV4",
+      "region": "agregador por modelo",
+      "url": "https://www.carsdirect.com/toyota/rav4/prices-deals",
+      "name": "2026 Toyota RAV4 Deals",
+      "parsed": {
+        "name": "2026 Toyota RAV4 Deals",
+        "monthly": 365,
+        "term": 36,
+        "dueAtSigning": null,
+        "msrp": 33495,
+        "price": null,
+        "milesPerYear": null,
+        "residualPct": null,
+        "residualAmount": null,
+        "moneyFactor": null,
+        "apr": null,
+        "downPayment": null,
+        "acqFee": null,
+        "dealerFee": null,
+        "docFee": null,
+        "accessories": null,
+        "securityDeposit": null,
+        "conditions": [],
+        "vin": null,
+        "raw": "2026 Toyota RAV4 Deals \n Lease your 2026 RAV4 LE 4dr Front-Wheel Drive as low as $365 per month.\n\n Term: 36 months \n MSRP: $33,495 \n\n Get Quote Estimate Your Payment ›"
+      },
+      "metrics": {
+        "term": 36,
+        "monthlyPayment": 365,
+        "driveOff": 0,
+        "totalCost": 13140,
+        "effectiveMonthly": 365,
+        "pctOfMsrp": 1.0897148828183312,
+        "score": 7.647260273972603,
+        "oneTimeCosts": 365,
+        "dealScore": 73
+      },
+      "isTarget": true,
+      "firstSeen": "2026-11-19T17:01:48.346Z",
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 lease deals near you|39",
@@ -2591,49 +2677,6 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-19T17:01:48.346Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
-    },
-    {
-      "key": "carsdirect — subaru forester|2026 subaru forester deals|36",
-      "source": "CarsDirect — Subaru Forester",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/subaru/forester/prices-deals",
-      "name": "2026 Subaru Forester Deals",
-      "parsed": {
-        "name": "2026 Subaru Forester Deals",
-        "monthly": 377,
-        "term": null,
-        "dueAtSigning": null,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "Effective Cost: $377 per month before taxes & fees\n Price drop from last month"
-      },
-      "metrics": {
-        "term": 36,
-        "monthlyPayment": 377,
-        "driveOff": 0,
-        "totalCost": 13572,
-        "effectiveMonthly": 377,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 377,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-10-06T17:02:00.076Z",
       "lastSeen": "2026-11-23T13:01:41.166Z"
     },
     {
@@ -2768,7 +2811,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T13:01:45.451Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "penn toyota|penn toyota|36",
@@ -2814,17 +2857,17 @@
       "lastSeen": "2026-11-23T13:01:41.166Z"
     },
     {
-      "key": "carsdirect — toyota rav4|2026 toyota rav4 deals|36",
-      "source": "CarsDirect — Toyota RAV4",
+      "key": "carsdirect — vw tiguan|2026 volkswagen tiguan deals|36",
+      "source": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/toyota/rav4/prices-deals",
-      "name": "2026 Toyota RAV4 Deals",
+      "url": "https://www.carsdirect.com/volkswagen/tiguan/prices-deals",
+      "name": "2026 Volkswagen Tiguan Deals",
       "parsed": {
-        "name": "2026 Toyota RAV4 Deals",
-        "monthly": 382,
-        "term": null,
+        "name": "2026 Volkswagen Tiguan Deals",
+        "monthly": 383,
+        "term": 36,
         "dueAtSigning": null,
-        "msrp": null,
+        "msrp": 32280,
         "price": null,
         "milesPerYear": null,
         "residualPct": null,
@@ -2839,22 +2882,22 @@
         "securityDeposit": null,
         "conditions": [],
         "vin": null,
-        "raw": "Effective Cost: $382 per month before taxes & fees"
+        "raw": "2026 Volkswagen Tiguan Deals \n Lease your 2026 Tiguan S 4dr Front-Wheel Drive as low as $383 per month.\n\n Term: 36 months \n MSRP: $32,280 \n\n Get Quote Estimate Your Payment ›"
       },
       "metrics": {
         "term": 36,
-        "monthlyPayment": 382,
+        "monthlyPayment": 383,
         "driveOff": 0,
-        "totalCost": 13752,
-        "effectiveMonthly": 382,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 382,
-        "dealScore": null
+        "totalCost": 13788,
+        "effectiveMonthly": 383,
+        "pctOfMsrp": 1.1864931846344486,
+        "score": 7.023498694516971,
+        "oneTimeCosts": 383,
+        "dealScore": 68
       },
       "isTarget": true,
-      "firstSeen": "2026-11-19T17:01:48.346Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "firstSeen": "2026-10-16T13:03:10.699Z",
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "penn toyota|new 2026 toyota rav4 4wd 5dr. wagon le|36",
@@ -2949,7 +2992,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-16T13:03:10.699Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "autoworld kia|2026 kia sportage lx|24",
@@ -2997,7 +3040,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "bay ridge honda|2026 honda cr-v awd lx|39",
@@ -3346,7 +3389,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-19T13:05:20.211Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "penn toyota|new 2026 toyota rav4 4wd 5dr. wagon le|39",
@@ -3527,7 +3570,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — cr-v|honda cr-v lease deals near you|39",
@@ -3570,7 +3613,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-04T13:01:27.542Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — cr-v|2026 honda cr-v deals|36",
@@ -3656,7 +3699,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-09-29T13:06:15.064Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — nissan rogue|2026 nissan rogue deals|72",
@@ -3742,7 +3785,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-31T13:01:33.516Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 kia sportage deals|36",
@@ -3871,7 +3914,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-03T14:30:15.929Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — kia sportage|2026 kia sportage deals|72",
@@ -3914,7 +3957,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "bay ridge honda|2027 honda cr-v hybrid awd sport|39",
@@ -3957,50 +4000,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-03T21:01:27.989Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
-    },
-    {
-      "key": "carsdirect — vw tiguan|2026 volkswagen tiguan deals|36",
-      "source": "CarsDirect — VW Tiguan",
-      "region": "agregador por modelo",
-      "url": "https://www.carsdirect.com/volkswagen/tiguan/prices-deals",
-      "name": "2026 Volkswagen Tiguan Deals",
-      "parsed": {
-        "name": "2026 Volkswagen Tiguan Deals",
-        "monthly": 434,
-        "term": null,
-        "dueAtSigning": null,
-        "msrp": null,
-        "price": null,
-        "milesPerYear": null,
-        "residualPct": null,
-        "residualAmount": null,
-        "moneyFactor": null,
-        "apr": null,
-        "downPayment": null,
-        "acqFee": null,
-        "dealerFee": null,
-        "docFee": null,
-        "accessories": null,
-        "securityDeposit": null,
-        "conditions": [],
-        "vin": null,
-        "raw": "Effective Cost: $434 per month before taxes & fees\n Price hike from last month"
-      },
-      "metrics": {
-        "term": 36,
-        "monthlyPayment": 434,
-        "driveOff": 0,
-        "totalCost": 15624,
-        "effectiveMonthly": 434,
-        "pctOfMsrp": null,
-        "score": null,
-        "oneTimeCosts": 434,
-        "dealScore": null
-      },
-      "isTarget": true,
-      "firstSeen": "2026-10-16T13:03:10.699Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — jeep cherokee|jeep cherokee lease deals near you|42",
@@ -4182,7 +4182,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-05T13:02:12.246Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — jeep cherokee|jeep cherokee lease deals near you|36",
@@ -4268,7 +4268,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-26T13:28:55.930Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — kia sportage|2027 kia sportage deals|36",
@@ -4354,7 +4354,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-09T13:06:00.093Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — cr-v|2026 honda cr-v deals|72",
@@ -4569,7 +4569,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T17:02:00.076Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — subaru forester|2027 subaru forester finance deals|72",
@@ -4837,7 +4837,7 @@
       "name": "Honda CR-V Lease Deals Near You",
       "parsed": {
         "name": "Honda CR-V Lease Deals Near You",
-        "monthly": 495,
+        "monthly": 499,
         "term": 72,
         "dueAtSigning": null,
         "msrp": null,
@@ -4855,22 +4855,22 @@
         "securityDeposit": null,
         "conditions": [],
         "vin": null,
-        "raw": "Estimated Payment: $495 /month \n On a 72-month loan, we estimate that taking the Cash Rebate Deal would save approximately $362 per month compared to the Combo Deal."
+        "raw": "Estimated Payment: $499 /month \n On a 72-month loan, we estimate that taking the Cash Rebate Deal would save approximately $365 per month compared to the Combo Deal."
       },
       "metrics": {
         "term": 72,
-        "monthlyPayment": 495,
+        "monthlyPayment": 499,
         "driveOff": 0,
-        "totalCost": 35640,
-        "effectiveMonthly": 495,
+        "totalCost": 35928,
+        "effectiveMonthly": 499,
         "pctOfMsrp": null,
         "score": null,
-        "oneTimeCosts": 495,
+        "oneTimeCosts": 499,
         "dealScore": null
       },
       "isTarget": true,
       "firstSeen": "2026-10-31T13:01:33.516Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — jeep cherokee|2026 jeep cherokee deals|72",
@@ -4999,7 +4999,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "lester glenn gmc|2027 gmc terrain 2027 gmc terrain|36",
@@ -5042,7 +5042,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-10-06T13:04:14.090Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — vw tiguan|2027 volkswagen tiguan finance deals|72",
@@ -5128,7 +5128,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — toyota rav4|toyota rav4 financing deals & rebates near you|72",
@@ -5300,7 +5300,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-11-19T17:01:48.346Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — kia sorento|2026 kia sorento deals|36",
@@ -5414,7 +5414,7 @@
         "securityDeposit": null,
         "conditions": [],
         "vin": null,
-        "raw": "Jeep Cherokee Financing Deals & Rebates Near You\n 2027 Jeep Cherokee Finance Deals \n Finance your 2027 Cherokee Base Hybrid 4dr 4x4 as low as $570 per month.\n\n Term: 72 months \n MSRP: $37,125 \n\n Get Quote Estimate Your Payment ›"
+        "raw": "Jeep Cherokee Financing Deals & Rebates Near You\n Best Deals See All Offers \n 2027 Jeep Cherokee Finance Deals \n Finance your 2027 Cherokee Base Hybrid 4dr 4x4 as low as $570 per month.\n\n Term: 72 months \n MSRP: $37,125 \n\n Get Quote Estimate Your Payment ›"
       },
       "metrics": {
         "term": 72,
@@ -5429,7 +5429,7 @@
       },
       "isTarget": true,
       "firstSeen": "2026-07-22T00:12:05.649Z",
-      "lastSeen": "2026-11-23T13:01:41.166Z"
+      "lastSeen": "2026-11-23T17:01:39.095Z"
     },
     {
       "key": "carsdirect — kia sorento|2027 kia sorento deals|36",
