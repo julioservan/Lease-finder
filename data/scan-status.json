@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T13:01:26.353Z",
+  "updatedAt": "2026-11-25T17:01:38.923Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -24,7 +24,7 @@
     {
       "name": "Brooklyn CDJR",
       "region": "Brooklyn, NY",
-      "status": "HTTP 403 en https://www.brooklynchrysler.com/lease-specials/ · HTTP 403 en https://www.brooklynchrysler.com/specials/ · HTTP 403 en https://www.brooklynchrysler.com/new-inventory/index.htm · HTTP 403 en https://www.brooklynchrysler.com/new-vehicles/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/lease-specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-vehicles/"
+      "status": "HTTP 403 en https://www.brooklynchrysler.com/lease-specials/ · HTTP 403 en https://www.brooklynchrysler.com/specials/ · HTTP 403 en https://www.brooklynchrysler.com/new-inventory/index.htm · HTTP 403 en https://www.brooklynchrysler.com/new-vehicles/ · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.brooklynchrysler.com/lease-specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.brooklynchrysler.com/lease-specials/ · page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.brooklynchrysler.com/specials/\", waiting until \"domcontentloaded\"\n (navegador) en https://www.brooklynchrysler.com/specials/ · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-inventory/index.htm · sin ofertas (navegador) en https://www.brooklynchrysler.com/new-vehicles/"
     },
     {
       "name": "United CDJR",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [13 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [13 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [13 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [13 vehículos en JSON-LD]"
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD]"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -64,7 +64,7 @@
     {
       "name": "CarsDirect — Bronco Sport",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (7 ofertas)"
     },
     {
       "name": "CarsDirect — GMC Terrain",
@@ -74,27 +74,27 @@
     {
       "name": "CarsDirect — Toyota RAV4",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (8 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Tucson",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (12 ofertas)"
     },
     {
       "name": "CarsDirect — Hyundai Santa Fe",
       "region": "agregador por modelo",
-      "status": "ok (4 ofertas)"
+      "status": "ok (13 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sportage",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "CarsDirect — Kia Sorento",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (18 ofertas)"
     },
     {
       "name": "CarsDirect — Subaru Forester",
@@ -104,22 +104,22 @@
     {
       "name": "CarsDirect — Mazda CX-50",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (11 ofertas)"
     },
     {
       "name": "CarsDirect — Nissan Rogue",
       "region": "agregador por modelo",
-      "status": "ok (5 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — Jeep Cherokee",
       "region": "agregador por modelo",
-      "status": "ok (9 ofertas)"
+      "status": "ok (10 ofertas)"
     },
     {
       "name": "CarsDirect — VW Tiguan",
       "region": "agregador por modelo",
-      "status": "ok (6 ofertas)"
+      "status": "ok (9 ofertas)"
     },
     {
       "name": "BMW of Brooklyn",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [13 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [13 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [13 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [13 vehículos en JSON-LD]"
+      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD]"
     },
     {
       "name": "Plaza Hyundai",
@@ -354,7 +354,7 @@
     {
       "name": "Yonkers Kia",
       "region": "Yonkers, NY",
-      "status": "HTTP 403 en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · HTTP 403 en https://www.yonkerskia.com/new-vehicles/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/"
+      "status": "ok (3 ofertas, con navegador)"
     },
     {
       "name": "Autoworld Kia",
@@ -414,7 +414,7 @@
     {
       "name": "Mazda — ofertas oficiales",
       "region": "fabricante — oficial",
-      "status": "HTTP 404 en https://www.mazdausa.com/shopping-tools/special-offers · HTTP 404 en https://www.mazdausa.com/vehicles/cx-50/offers · sin ofertas (navegador) en https://www.mazdausa.com/shopping-tools/special-offers · sin ofertas (navegador) en https://www.mazdausa.com/vehicles/cx-50/offers"
+      "status": "HTTP 404 en https://www.mazdausa.com/shopping-tools/special-offers · HTTP 429 en https://www.mazdausa.com/vehicles/cx-50/offers · sin ofertas (navegador) en https://www.mazdausa.com/shopping-tools/special-offers · sin ofertas (navegador) en https://www.mazdausa.com/vehicles/cx-50/offers"
     },
     {
       "name": "Honda — ofertas oficiales",
