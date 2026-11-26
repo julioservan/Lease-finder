@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T17:01:21.722Z",
+  "updatedAt": "2026-11-26T21:01:37.085Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -54,7 +54,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD]"
+      "status": "ok (1 ofertas)"
     },
     {
       "name": "CarsDirect — CR-V",
@@ -144,7 +144,7 @@
     {
       "name": "Plaza Honda",
       "region": "Brooklyn, NY",
-      "status": "HTTP 404 en https://www.plazahonda.com/lease-specials/ · HTTP 404 en https://www.plazahonda.com/specials/ · sin ofertas en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/lease-specials/ · sin ofertas (navegador) en https://www.plazahonda.com/specials/ · sin ofertas (navegador) en https://www.plazahonda.com/new-inventory/index.htm [16 vehículos en JSON-LD] · sin ofertas (navegador) en https://www.plazahonda.com/new-vehicles/ [16 vehículos en JSON-LD]"
+      "status": "ok (1 ofertas)"
     },
     {
       "name": "Plaza Hyundai",
