@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T17:01:22.304Z",
+  "updatedAt": "2026-11-27T21:01:33.163Z",
   "sources": [
     {
       "name": "Premier Ford of Bay Ridge",
@@ -354,7 +354,7 @@
     {
       "name": "Yonkers Kia",
       "region": "Yonkers, NY",
-      "status": "HTTP 403 en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · HTTP 403 en https://www.yonkerskia.com/new-vehicles/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/new-vehicle-specials/ · sin ofertas (navegador) en https://www.yonkerskia.com/new-vehicles/"
+      "status": "ok (3 ofertas, con navegador)"
     },
     {
       "name": "Autoworld Kia",
